@@ -43,6 +43,7 @@
      desktop licences — a webfont licence is needed before this goes live. */
   @font-face { font-family:'Cardillac';  src:url('assets/fonts/cardillac-light.woff2') format('woff2'); font-weight:300; font-style:normal; font-display:swap; }
   @font-face { font-family:'Rameau';     src:url('assets/fonts/rameau-regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Elettra';    src:url('assets/fonts/elettra.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
   @font-face { font-family:'Mitchaella'; src:url('assets/fonts/mitchaella.woff2') format('woff2');     font-weight:400; font-style:normal; font-display:swap; }
 
   :root { --gutter: 1.5rem; }
@@ -60,7 +61,7 @@
                font-size:clamp(1.5rem, 2.6vw, 2.125rem); letter-spacing:-.005em; }
   .eyebrow   { font-family:'Jost',sans-serif; font-weight:500; font-size:.75rem; letter-spacing:.2em;
                text-transform:uppercase; color:#bd7875; }
-  .amp       { font-family:'Rameau',Georgia,serif; color:#bd7875; font-style:normal; }
+  .amp       { font-family:'Elettra','Rameau',Georgia,serif; color:#bd7875; font-style:normal; }
 
   /* Content the client still has to supply — visible on purpose in this prototype. */
   .placeholder { color:#bd7875; border-bottom:1px dashed rgba(189,120,117,.7); }
@@ -105,6 +106,24 @@
   #site-menu .menu-tail { opacity:0; transform:translateY(18px);
     transition:opacity .5s ease .62s, transform .5s cubic-bezier(.22,.61,.36,1) .62s; }
   #site-menu.is-open .menu-tail { opacity:1; transform:none; }
+
+  /* --- logo marquee: each track holds the set twice, slides -50% for a seamless loop --- */
+  .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+             mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .marquee__track { display:flex; width:max-content; animation:marquee 60s linear infinite; }
+  .marquee--reverse .marquee__track { animation-direction:reverse; }
+  .marquee:hover .marquee__track, .marquee:focus-within .marquee__track { animation-play-state:paused; }
+  .marquee__track a { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+  .marquee__track li { flex:none; display:flex; align-items:center; justify-content:center; width:11rem; height:6rem; padding:0 1.5rem; }
+  .marquee__track img { max-height:4rem; max-width:100%; width:auto; object-fit:contain;
+                        filter:grayscale(1); opacity:.6; mix-blend-mode:multiply; transition:filter .3s ease, opacity .3s ease; }
+  .marquee__track li:hover img, .marquee__track a:focus-visible img { filter:none; opacity:1; }
+  @keyframes marquee { to { transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { -webkit-mask-image:none; mask-image:none; }
+    .marquee__track { animation:none; width:auto; flex-wrap:wrap; justify-content:center; }
+    .marquee__track [aria-hidden] { display:none; }
+  }
 
   @media (max-width: 767px) { #venn text { font-size:15px; letter-spacing:1.8px; } }
 
@@ -304,13 +323,50 @@
         Gemeenten, waterschappen, zbo's, zorg en onderwijs, en bureaus die met hen meewerken.
       </p>
     </div>
-    <ul class="mt-12 flex flex-wrap gap-x-10 gap-y-4 font-ui text-sm tracking-[.1em] uppercase text-muted reveal">
-      <li class="placeholder placeholder--inherit">[gemeente Vlaardingen]</li>
-      <li class="placeholder placeholder--inherit">[gemeente Haarlemmermeer]</li>
-      <li class="placeholder placeholder--inherit">[opdrachtgever]</li>
-      <li class="placeholder placeholder--inherit">[opdrachtgever]</li>
-      <li class="placeholder placeholder--inherit">[opdrachtgever]</li>
-    </ul>
+  </div>
+  <div class="mt-12 md:mt-16 space-y-6 reveal">
+    <div class="marquee">
+      <ul class="marquee__track">
+        <li><a href="#"><img src="assets/logos/vlaardingen.png" alt="Gemeente Vlaardingen" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/haarlemmermeer.svg" alt="Gemeente Haarlemmermeer" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/alkmaar.png" alt="Gemeente Alkmaar" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/leiden.webp" alt="Gemeente Leiden" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/zaanstad.png" alt="Gemeente Zaanstad" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/culemborg.png" alt="Gemeente Culemborg" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/nissewaard.png" alt="Gemeente Nissewaard" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/delfland.svg" alt="Hoogheemraadschap van Delfland" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/jeugdbescherming-rr.svg" alt="Jeugdbescherming Rotterdam Rijnmond" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/vlaardingen.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/haarlemmermeer.svg" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/alkmaar.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/leiden.webp" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/zaanstad.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/culemborg.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/nissewaard.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/delfland.svg" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/jeugdbescherming-rr.svg" alt="" loading="lazy"></a></li>
+      </ul>
+    </div>
+    <div class="marquee marquee--reverse">
+      <ul class="marquee__track">
+        <li><a href="#"><img src="assets/logos/radboud.png" alt="Radboud Universiteit" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/vo-academie.jpeg" alt="VO-academie" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/ncoi.png" alt="NCOI Opleidingen" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/klm.jpeg" alt="KLM" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/bmc.png" alt="BMC by Randstad" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/van-berkel.svg" alt="Van Berkel Professionals" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/lybrae.png" alt="Lybrae" loading="lazy"></a></li>
+        <li><a href="#"><img src="assets/logos/frank-jol.png" alt="Frank Jol" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/radboud.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/vo-academie.jpeg" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/ncoi.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/klm.jpeg" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/bmc.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/van-berkel.svg" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/lybrae.png" alt="" loading="lazy"></a></li>
+        <li aria-hidden="true"><a href="#" tabindex="-1"><img src="assets/logos/frank-jol.png" alt="" loading="lazy"></a></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -346,7 +402,7 @@
     <div class="grid md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-shell/15">
 
       <div class="md:col-span-5">
-        <a href="index.html" class="font-mark text-4xl text-shell hover:text-shell/80 transition-colors inline-block"><span class="text-rose">&amp;</span>Jonk</a>
+        <a href="index.html" class="font-mark text-4xl text-shell hover:text-shell/80 transition-colors inline-block"><span class="amp text-rose">&amp;</span>Jonk</a>
         <p class="font-script text-2xl mt-3 text-shell/70">talent · leiderschap · teams</p>
       </div>
 
@@ -365,7 +421,6 @@
       <div class="md:col-span-3 font-ui text-sm space-y-2">
         <p><a href="tel:+31610582180" class="hover:text-rose transition-colors">+31 6 10582180</a></p>
         <p><a href="mailto:info@enjonk.nl" class="hover:text-rose transition-colors">info@enjonk.nl</a></p>
-        <p><span class="placeholder">[adres]</span></p>
         <p class="pt-3 space-x-4">
           <a href="#" class="hover:text-rose transition-colors">LinkedIn</a>
           <a href="#" class="hover:text-rose transition-colors">Spotify</a>

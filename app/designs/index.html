@@ -43,6 +43,7 @@
      desktop licences — a webfont licence is needed before this goes live. */
   @font-face { font-family:'Cardillac';  src:url('assets/fonts/cardillac-light.woff2') format('woff2'); font-weight:300; font-style:normal; font-display:swap; }
   @font-face { font-family:'Rameau';     src:url('assets/fonts/rameau-regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Elettra';    src:url('assets/fonts/elettra.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
   @font-face { font-family:'Mitchaella'; src:url('assets/fonts/mitchaella.woff2') format('woff2');     font-weight:400; font-style:normal; font-display:swap; }
 
   :root { --gutter: 1.5rem; }
@@ -60,7 +61,7 @@
                font-size:clamp(1.5rem, 2.6vw, 2.125rem); letter-spacing:-.005em; }
   .eyebrow   { font-family:'Jost',sans-serif; font-weight:500; font-size:.75rem; letter-spacing:.2em;
                text-transform:uppercase; color:#bd7875; }
-  .amp       { font-family:'Rameau',Georgia,serif; color:#bd7875; font-style:normal; }
+  .amp       { font-family:'Elettra','Rameau',Georgia,serif; color:#bd7875; font-style:normal; }
 
   /* Content the client still has to supply — visible on purpose in this prototype. */
   .placeholder { color:#bd7875; border-bottom:1px dashed rgba(189,120,117,.7); }
@@ -648,7 +649,7 @@
     <div class="grid md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-shell/15">
 
       <div class="md:col-span-5">
-        <p class="font-mark text-4xl text-shell"><span class="text-rose">&amp;</span>Jonk</p>
+        <p class="font-mark text-4xl text-shell"><span class="amp text-rose">&amp;</span>Jonk</p>
         <p class="font-script text-2xl mt-3 text-shell/70">talent · leiderschap · teams</p>
       </div>
 
@@ -667,7 +668,6 @@
       <div class="md:col-span-3 font-ui text-sm space-y-2">
         <p><a href="tel:+31610582180" class="hover:text-rose transition-colors">+31 6 10582180</a></p>
         <p><a href="mailto:info@enjonk.nl" class="hover:text-rose transition-colors">info@enjonk.nl</a></p>
-        <p><span class="placeholder">[adres]</span></p>
         <p class="pt-3 space-x-4">
           <a href="#" class="hover:text-rose transition-colors">LinkedIn</a>
           <a href="#" class="hover:text-rose transition-colors">Spotify</a>
