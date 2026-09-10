@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&Jonk — talent, leiderschap, teams</title>
+<meta name="description" content="&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel je de mens, je ontwikkelt de organisatie.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Design tokens. Mirror this block into tailwind.config.js when the real build starts.
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          shell:  '#f9f4f1', // eggshell — page background
+          paper:  '#fffcfa', // cards, slightly lifted off the background
+          ink:    '#162029', // near-black from the logo — all body text
+          muted:  '#5a6670', // secondary text
+          rose:   '#bd7875', // brand accent — large text, rules, buttons (never small text)
+          green:  '#4a6b50',
+          steel:  '#2c5a7a'  // links and the safest coloured text
+        },
+        fontFamily: {
+          display: ['Cardillac', 'Cormorant Garamond', 'Georgia', 'serif'],
+          mark:    ['Rameau', 'Cardillac', 'Georgia', 'serif'],
+          script:  ['Mitchaella', 'Cardillac', 'serif'],
+          body:    ['Spectral', 'Georgia', 'serif'],
+          ui:      ['Jost', 'system-ui', 'sans-serif']
+        },
+        maxWidth: { prose: '62ch' }
+      }
+    }
+  }
+</script>
+
+<style>
+  /* Brand faces, self-hosted. NOTE: Rameau (Linotype) and Cardillac (Hoftype) are
+     desktop licences — a webfont licence is needed before this goes live. */
+  @font-face { font-family:'Cardillac';  src:url('assets/fonts/cardillac-light.woff2') format('woff2'); font-weight:300; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Rameau';     src:url('assets/fonts/rameau-regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Mitchaella'; src:url('assets/fonts/mitchaella.woff2') format('woff2');     font-weight:400; font-style:normal; font-display:swap; }
+
+  :root { --gutter: 1.5rem; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-size: 1.0625rem; line-height: 1.75; }
+
+  /* --- type scale ------------------------------------------------------- */
+  .t-display { font-family:'Cardillac',Georgia,serif; font-weight:300; line-height:1.02; letter-spacing:-.015em;
+               font-size:clamp(2.75rem, 7.2vw, 5.25rem); }
+  .t-h2      { font-family:'Cardillac',Georgia,serif; font-weight:300; line-height:1.1;  letter-spacing:-.01em;
+               font-size:clamp(2rem, 4.4vw, 3.25rem); }
+  .t-h3      { font-family:'Spectral',Georgia,serif;  font-weight:500; line-height:1.35; font-size:1.3125rem; }
+  .t-lead    { font-size:clamp(1.125rem, 1.6vw, 1.3125rem); line-height:1.65; font-weight:300; }
+  .t-quote   { font-family:'Cardillac',Georgia,serif; font-weight:300; line-height:1.25;
+               font-size:clamp(1.5rem, 2.6vw, 2.125rem); letter-spacing:-.005em; }
+  .eyebrow   { font-family:'Jost',sans-serif; font-weight:500; font-size:.75rem; letter-spacing:.2em;
+               text-transform:uppercase; color:#bd7875; }
+  .amp       { font-family:'Rameau',Georgia,serif; color:#bd7875; font-style:normal; }
+
+  /* Content the client still has to supply — visible on purpose in this prototype. */
+  .placeholder { color:#bd7875; border-bottom:1px dashed rgba(189,120,117,.7); }
+  .placeholder--inherit { color:inherit; border-bottom-color:currentColor; opacity:.85; }
+
+  /* --- links & focus ----------------------------------------------------- */
+  .link-underline { background-image:linear-gradient(currentColor,currentColor); background-size:100% 1px;
+                    background-repeat:no-repeat; background-position:0 100%; transition:background-size .25s ease; }
+  a:hover .link-underline, a.link-underline:hover { background-size:100% 2px; }
+  :focus-visible { outline:2px solid #2c5a7a; outline-offset:3px; border-radius:2px; }
+
+  /* --- scroll reveal ------------------------------------------------------ */
+  .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+  .reveal.is-in { opacity:1; transform:none; }
+
+  /* --- venn --------------------------------------------------------------- */
+  .lobe circle { transition:fill-opacity .35s ease, transform .45s cubic-bezier(.22,.61,.36,1); transform-origin:center; }
+  .lobe.is-active circle { fill-opacity:.55; }
+  .lobe.is-dim   circle { fill-opacity:.12; }
+  .lobe text { transition:opacity .3s ease; }
+  .lobe { cursor:pointer; }
+  .level { transition:opacity .35s ease; }
+  .level.is-muted { opacity:.35; }
+
+  /* --- media -------------------------------------------------------------- */
+  .frame { overflow:hidden; border-radius:2px; background:#efe7e2; }
+  .frame img, .frame video { display:block; width:100%; height:100%; object-fit:cover; }
+
+  /* menu overlay: fades in, items rise one by one */
+  #site-menu { opacity:0; transition:opacity .2s ease-out; }
+  #site-menu.is-open { opacity:1; }
+  #site-menu .menu-item { opacity:0; transform:translateY(18px);
+    transition:opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1); }
+  #site-menu.is-open .menu-item { opacity:1; transform:none; }
+  #site-menu.is-open .menu-item:nth-child(1) { transition-delay:.18s }
+  #site-menu.is-open .menu-item:nth-child(2) { transition-delay:.24s }
+  #site-menu.is-open .menu-item:nth-child(3) { transition-delay:.30s }
+  #site-menu.is-open .menu-item:nth-child(4) { transition-delay:.36s }
+  #site-menu.is-open .menu-item:nth-child(5) { transition-delay:.42s }
+  #site-menu.is-open .menu-item:nth-child(6) { transition-delay:.48s }
+  #site-menu.is-open .menu-item:nth-child(7) { transition-delay:.54s }
+  #site-menu .menu-tail { opacity:0; transform:translateY(18px);
+    transition:opacity .5s ease .62s, transform .5s cubic-bezier(.22,.61,.36,1) .62s; }
+  #site-menu.is-open .menu-tail { opacity:1; transform:none; }
+
+  @media (max-width: 767px) { #venn text { font-size:15px; letter-spacing:1.8px; } }
+
+  #site-header.is-scrolled { background:rgba(249,244,241,.88); backdrop-filter:blur(8px); border-bottom:1px solid rgba(22,32,41,.10); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .reveal { opacity:1; transform:none; transition:none; }
+    * { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+</style>
+</head>
+
+<body class="bg-shell text-ink font-body antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[60] focus:top-4 focus:left-4 focus:bg-ink focus:text-shell focus:px-4 focus:py-2 font-ui text-sm">Naar de inhoud</a>
+
+<!-- ============================ HEADER ============================ -->
+<header id="site-header" class="fixed inset-x-0 top-0 z-40 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="flex items-center justify-between h-20 md:h-24">
+      <a href="#top" aria-label="&Jonk, naar boven" class="block">
+        <img src="assets/jonk-logo.svg" alt="&Jonk — talent, leiderschap, teams" class="h-7 md:h-8 w-auto">
+      </a>
+
+      <button id="menu-open" type="button" aria-expanded="false" aria-controls="site-menu"
+              class="group flex items-center gap-3 font-ui text-sm tracking-[.18em] uppercase py-3 px-1 cursor-pointer">
+        <span>Menu</span>
+        <span class="flex flex-col gap-[5px] w-6" aria-hidden="true">
+          <span class="block h-px w-6 bg-ink transition-transform duration-300 group-hover:translate-x-1"></span>
+          <span class="block h-px w-6 bg-ink transition-transform duration-300 group-hover:-translate-x-1"></span>
+          <span class="block h-px w-6 bg-ink transition-transform duration-300 group-hover:translate-x-1"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ MENU OVERLAY ============================ -->
+<div id="site-menu" class="fixed inset-0 z-50 bg-shell hidden" role="dialog" aria-modal="true" aria-label="Hoofdmenu">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="flex items-center justify-between h-20 md:h-24">
+      <img src="assets/jonk-logo.svg" alt="" class="h-7 md:h-8 w-auto" aria-hidden="true">
+      <button id="menu-close" type="button" class="flex items-center gap-3 font-ui text-sm tracking-[.18em] uppercase py-3 px-1 cursor-pointer">
+        <span>Sluiten</span>
+        <span class="relative block w-6 h-6" aria-hidden="true">
+          <span class="absolute top-1/2 left-0 h-px w-6 bg-ink rotate-45"></span>
+          <span class="absolute top-1/2 left-0 h-px w-6 bg-ink -rotate-45"></span>
+        </span>
+      </button>
+    </div>
+
+    <nav class="mt-10 md:mt-16" aria-label="Hoofdnavigatie">
+      <ul class="space-y-2 md:space-y-3">
+        <li class="menu-item"><a href="wat-we-doen.html"  class="t-h2 inline-block hover:text-rose transition-colors">Wat we doen</a></li>
+        <li class="menu-item"><a href="wat-anderen-zeggen.html"  class="t-h2 inline-block hover:text-rose transition-colors">Wat anderen zeggen</a></li>
+        <li class="menu-item"><a href="hoe-wij-kijken.html" aria-current="page" class="t-h2 inline-block hover:text-rose transition-colors">Hoe wij kijken</a></li>
+        <li class="menu-item"><a href="over-jonk.html"  class="t-h2 inline-block hover:text-rose transition-colors">Over <span class="amp">&amp;</span>Jonk</a></li>
+        <li class="menu-item"><a href="cases.html"  class="t-h2 inline-block hover:text-rose transition-colors">Cases</a></li>
+        <li class="menu-item"><a href="podcast.html"  class="t-h2 inline-block hover:text-rose transition-colors">Podcast</a></li>
+        <li class="menu-item"><a href="contact.html"  class="t-h2 inline-block hover:text-rose transition-colors">Contact</a></li>
+      </ul>
+    </nav>
+
+    <p class="menu-tail mt-12 md:mt-16 font-ui text-sm text-muted">
+      Bel <a href="tel:+31610582180" class="text-ink hover:text-rose transition-colors">+31 6 10582180</a><br>
+      of mail <a href="mailto:info@enjonk.nl" class="text-ink hover:text-rose transition-colors">info@enjonk.nl</a>
+    </p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============================ 1. HERO ============================ -->
+<section id="top" class="pt-32 md:pt-44 pb-16 md:pb-24">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+
+      <div class="lg:col-span-7 reveal">
+        <h1 class="t-display">Ontwikkel je de mens <span class="amp">&amp;</span><br class="hidden sm:block"> je ontwikkelt de organisatie.</h1>
+      </div>
+
+      <div class="lg:col-span-5 reveal">
+        <p class="t-lead max-w-prose text-ink/90">
+          Een organisatie is voor ons een groep mensen die samen het werk doet: een complex sociaal systeem.
+          Ontwikkeling begint daarom bij die mensen: bij wat er in ze omgaat en wat er tussen ze gebeurt.
+          De organisatie ontwikkelt mee. Wij stappen daarvoor zelf in en staan naast je.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href="#kennismaken"
+             class="inline-flex items-center gap-2 bg-rose text-ink font-ui text-sm tracking-[.14em] uppercase px-7 py-4 hover:bg-ink hover:text-shell transition-colors duration-300">
+            Kennismaken
+          </a>
+          <p class="font-ui text-sm text-muted">
+            Bel <a href="tel:+31610582180" class="text-ink hover:text-rose transition-colors">+31 6 10582180</a><br>
+            of mail <a href="mailto:info@enjonk.nl" class="text-ink hover:text-rose transition-colors">info@enjonk.nl</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 md:mt-20 reveal">
+      <div class="frame aspect-[16/9]">
+        <img src="assets/img/jonk-hero.webp" srcset="assets/img/jonk-hero-800.webp 800w, assets/img/jonk-hero.webp 1600w"
+             sizes="100vw" width="1600" height="1067"
+             alt="Eric Jonk lachend in gesprek tijdens een bijeenkomst">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. WAAR JE ONS VOOR BELT ============================ -->
+<section class="py-20 md:py-32 border-t border-ink/10">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start reveal">
+      <div class="lg:col-span-5">
+        <p class="eyebrow">Waar je ons voor belt</p>
+        <h2 class="t-h2 mt-4">Ontwikkelpartner voor het publieke domein</h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-6">
+        <p class="t-lead max-w-prose text-muted">
+          Wij werken voor organisaties die zich inzetten voor het publieke domein: gemeenten, waterschappen,
+          zbo's, zorg en onderwijs, en bureaus die met hen meewerken.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 md:mt-20 grid md:grid-cols-3 gap-px bg-ink/10 border-y border-ink/10">
+      <article class="bg-shell p-8 md:p-10 reveal">
+        <h3 class="t-h3">Jong talent dat blijft</h3>
+        <p class="mt-4 text-muted">
+          Nieuwe medewerkers komen binnen met energie en ideeën. Wij zorgen dat hun ontwikkeling doorloopt
+          en dat hun ideeën ergens landen. Zo vinden ze hun volgende stap bij jullie.
+        </p>
+      </article>
+      <article class="bg-shell p-8 md:p-10 reveal">
+        <h3 class="t-h3">Leidinggevenden met een sterke band met hun mensen</h3>
+        <p class="mt-4 text-muted">
+          Of iemand blijft, wordt beslist in het contact met de leidinggevende. Wij helpen leidinggevenden
+          het gesprek te voeren en er iets mee te doen. Dat merkt de medewerker in het jaargesprek en op de werkvloer.
+        </p>
+      </article>
+      <article class="bg-shell p-8 md:p-10 reveal">
+        <h3 class="t-h3">Teams die tegen druk kunnen</h3>
+        <p class="mt-4 text-muted">
+          Elke vertrekker en elke zieke maakt het werk zwaarder voor wie blijft. Wij werken met teams aan wat er
+          tussen mensen gebeurt: elkaar aanspreken, verantwoordelijkheid pakken en samen dragen wat er ligt.
+        </p>
+      </article>
+    </div>
+
+    <p class="mt-10 reveal">
+      <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-steel inline-flex items-center gap-3 group">
+        <span class="link-underline">Bekijk wat we doen</span>
+        <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ 3. WERKWIJZE ============================ -->
+<section class="py-20 md:py-32 bg-paper">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+
+    <div class="max-w-3xl reveal">
+      <p class="eyebrow">Wat anderen zeggen</p>
+      <h2 class="t-h2 mt-4">Hoe klanten ons beschrijven</h2>
+      <p class="mt-6 t-lead text-muted">
+        Opdrachtgevers die ons opnieuw bellen, noemen onafhankelijk van elkaar dezelfde drie dingen.
+      </p>
+    </div>
+
+    <div class="mt-14 md:mt-20 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <ol class="divide-y divide-ink/10 border-y border-ink/10">
+          <li class="py-8 md:py-10 reveal">
+            <p class="t-quote">Ze komen terug om de persoon.</p>
+            <p class="mt-4 text-muted max-w-prose">
+              Je krijgt vakmensen die zichzelf meenemen. Er zijn veel trainers met een trucje, een methodiek en
+              veel ervaring; het verschil is dat hier echt het hart erin zit.
+            </p>
+          </li>
+          <li class="py-8 md:py-10 reveal">
+            <p class="t-quote">Eerlijkheid als onderscheid.</p>
+            <p class="mt-4 text-muted max-w-prose">
+              Ook als het spannend is, richting directie en richting team. En we zeggen nee als een vraag bij
+              ons niet past. Opdrachtgevers noemen dat als reden om ons te kiezen.
+            </p>
+          </li>
+          <li class="py-8 md:py-10 reveal">
+            <p class="t-quote">Aanvoelen gaat voor een methode.</p>
+            <p class="mt-4 text-muted max-w-prose">
+              Op maat werken, mensen op hun gemak stellen en voelen dat de een nog niet zo ver is als de ander.
+              Vaste methodieken en protocollen zijn als houvast losgelaten.
+            </p>
+          </li>
+        </ol>
+
+        <!-- Plek voor de echte klantcitaten uit de interviews -->
+        <blockquote class="mt-12 border-l-2 border-rose pl-6 md:pl-8 reveal">
+          <p class="t-quote text-ink/90">
+            &ldquo;Ik had een partner die zag wat er in de groep gebeurde én wat er in de organisatie omheen
+            speelde. Als dat tweede het leren beïnvloedde, hoorde ik het en dachten we samen na. Het
+            traineeship is daar ieder jaar beter van geworden.&rdquo;
+          </p>
+          <footer class="mt-4 font-ui text-sm text-muted">
+            Edo Ridder<span class="block mt-1 text-ink/60">destijds manager traineeships gemeente Vlaardingen,<br>
+            nu adviseur traineeships gemeente Haarlemmermeer</span>
+          </footer>
+        </blockquote>
+
+        <p class="mt-10 reveal">
+          <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-steel inline-flex items-center gap-3 group">
+            <span class="link-underline">Lees wat anderen zeggen</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2 lg:sticky lg:top-32 reveal">
+        <div class="frame aspect-[4/5]">
+          <img src="assets/img/jonk-hoe-klanten.webp" srcset="assets/img/jonk-hoe-klanten-800.webp 800w, assets/img/jonk-hoe-klanten.webp 1600w"
+               sizes="(min-width:1024px) 40vw, 100vw" loading="lazy" width="1600" height="1067"
+               alt="Eric Jonk in gesprek met deelnemers bij de flipover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 4. WAT WE DOEN — DRIE NIVEAUS ============================ -->
+<section class="py-20 md:py-32 border-t border-ink/10">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+
+    <div class="max-w-3xl reveal">
+      <p class="eyebrow">Wat we doen</p>
+      <h2 class="t-h2 mt-4">Drie niveaus, één gesprek</h2>
+      <p class="mt-6 t-lead text-muted">
+        Ons werk krijgt vorm in het gesprek met jou. In de praktijk lopen de drie niveaus vaak in elkaar over.
+      </p>
+    </div>
+
+    <!-- Drie overlappende bollen -->
+    <div class="mt-12 md:mt-16 reveal">
+      <svg id="venn" viewBox="97 22 426 388" class="w-full max-w-2xl mx-auto h-auto" role="img"
+           aria-label="Drie overlappende cirkels: individueel, team en organisatie, die elkaar in het midden overlappen">
+        <g class="lobe" data-key="individueel" tabindex="0" role="button" aria-label="Individueel uitlichten">
+          <circle cx="235" cy="160" r="128" fill="#bd7875" fill-opacity=".3" style="mix-blend-mode:multiply"></circle>
+          <text x="180" y="130" text-anchor="middle" dominant-baseline="central" class="font-ui" font-size="10" letter-spacing="1.6" fill="#162029">INDIVIDUEEL</text>
+        </g>
+        <g class="lobe" data-key="team" tabindex="0" role="button" aria-label="Team uitlichten">
+          <circle cx="385" cy="160" r="128" fill="#4a6b50" fill-opacity=".3" style="mix-blend-mode:multiply"></circle>
+          <text x="444" y="130" text-anchor="middle" dominant-baseline="central" class="font-ui" font-size="10" letter-spacing="1.6" fill="#162029">TEAM</text>
+        </g>
+        <g class="lobe" data-key="organisatie" tabindex="0" role="button" aria-label="Organisatie uitlichten">
+          <circle cx="310" cy="272" r="128" fill="#2c5a7a" fill-opacity=".3" style="mix-blend-mode:multiply"></circle>
+          <text x="310" y="338" text-anchor="middle" dominant-baseline="central" class="font-ui" font-size="10" letter-spacing="1.6" fill="#162029">ORGANISATIE</text>
+        </g>
+      </svg>
+    </div>
+
+    <div id="levels" class="mt-10 md:mt-14 max-w-2xl mx-auto lg:max-w-none grid lg:grid-cols-3 gap-10 lg:gap-12">
+      <article class="level reveal" data-key="individueel">
+        <span class="block w-10 h-px bg-rose"></span>
+        <h3 class="t-h3 mt-5">Individueel</h3>
+        <p class="mt-3 text-muted">
+          Voor medewerkers, professionals en leidinggevenden die een stap willen zetten. Traineeships,
+          (persoonlijk) leiderschapstrajecten, intervisiegroepen en individuele coaching.
+        </p>
+      </article>
+      <article class="level reveal" data-key="team">
+        <span class="block w-10 h-px bg-green"></span>
+        <h3 class="t-h3 mt-5">Team</h3>
+        <p class="mt-3 text-muted">
+          Voor teams die beter willen samenwerken en verantwoordelijkheid willen pakken. Teamcoaching en
+          teamontwikkeling, gericht op wat er tussen mensen gebeurt en wat daar blijft liggen.
+        </p>
+      </article>
+      <article class="level reveal" data-key="organisatie">
+        <span class="block w-10 h-px bg-steel"></span>
+        <h3 class="t-h3 mt-5">Organisatie</h3>
+        <p class="mt-3 text-muted">
+          Voor directies en HR/L&amp;O die aan ontwikkeling willen werken, passend bij een organisatie als complex
+          sociaal systeem: van leerstrategie tot behoud en doorstroom van talent. Sparringpartner voor directie en MT.
+        </p>
+      </article>
+    </div>
+
+    <!-- Tijdlijn: trajectlengtes -->
+    <div class="mt-20 md:mt-28 max-w-2xl mx-auto lg:max-w-none">
+      <p class="eyebrow reveal">Trajectlengtes</p>
+
+      <div class="mt-8 relative">
+        <div class="hidden lg:block absolute left-0 right-0 top-[7px] h-px reveal" data-delay="80"
+             style="background:linear-gradient(to right, rgba(189,120,117,.5) 0%, rgba(74,107,80,.5) 42%, rgba(44,90,122,.5) 70%, rgba(44,90,122,0) 100%)"></div>
+        <ol class="grid lg:grid-cols-3 gap-10 lg:gap-8">
+          <li class="relative lg:pr-8 border-l lg:border-l-0 border-ink/15 pl-6 lg:pl-0 reveal" data-delay="160">
+            <span class="hidden lg:block w-[15px] h-[15px] rounded-full bg-rose"></span>
+            <span class="lg:hidden absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full bg-rose"></span>
+            <p class="lg:mt-6 font-display text-3xl lg:text-4xl leading-none">Drie bijeenkomsten</p>
+            <p class="mt-3 text-muted">Een korte instap, waarin patronen zichtbaar worden en een volgende stap ontstaat.</p>
+          </li>
+          <li class="relative lg:pr-8 border-l lg:border-l-0 border-ink/15 pl-6 lg:pl-0 reveal" data-delay="360">
+            <span class="hidden lg:block w-[15px] h-[15px] rounded-full bg-green"></span>
+            <span class="lg:hidden absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full bg-green"></span>
+            <p class="lg:mt-6 font-display text-3xl lg:text-4xl leading-none">Een half jaar</p>
+            <p class="mt-3 text-muted">Trajecten waarin het geleerde meebeweegt met het werk zelf.</p>
+          </li>
+          <li class="relative border-l lg:border-l-0 border-ink/15 pl-6 lg:pl-0 reveal" data-delay="560">
+            <span class="hidden lg:block w-[15px] h-[15px] rounded-full bg-steel"></span>
+            <span class="lg:hidden absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full bg-steel"></span>
+            <p class="lg:mt-6 font-display text-3xl lg:text-4xl leading-none">Tot twee jaar</p>
+            <p class="mt-3 text-muted">Traineeships en jaartrajecten, van intake tot overdracht.</p>
+          </li>
+        </ol>
+      </div>
+
+      <p class="mt-10 text-muted text-sm md:text-base reveal" data-delay="700">
+        Wie één losse workshop zoekt, verwijzen we graag door.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5. BEWIJS / UIT DE PRAKTIJK ============================ -->
+<section class="py-20 md:py-32 bg-ink text-shell">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+
+    <div class="max-w-3xl reveal">
+      <p class="eyebrow">Uit de praktijk</p>
+      <h2 class="t-h2 mt-4 text-shell">Wat er blijft staan als wij weg zijn</h2>
+    </div>
+
+    <dl class="mt-14 md:mt-20 grid md:grid-cols-3 gap-12 md:gap-8 border-t border-shell/20 pt-12">
+      <div class="reveal">
+        <dt class="font-display text-6xl md:text-7xl leading-none text-rose">7<sup class="text-3xl md:text-4xl align-super">e</sup></dt>
+        <dd class="mt-4 text-shell/75 max-w-xs">keer dat de leergang <span class="placeholder">[naam leergang]</span> dit jaar draait.</dd>
+      </div>
+      <div class="reveal">
+        <dt class="font-display text-6xl md:text-7xl leading-none text-rose">2018</dt>
+        <dd class="mt-4 text-shell/75 max-w-xs">het jaar waarin we de eerste traineeships gingen begeleiden.</dd>
+      </div>
+      <div class="reveal">
+        <dt class="font-display text-6xl md:text-7xl leading-none text-rose"><span class="placeholder">[cijfer]</span></dt>
+        <dd class="mt-4 text-shell/75 max-w-xs">doorstroom bij een gemeente van ruim 500 medewerkers.</dd>
+      </div>
+    </dl>
+
+    <div class="mt-14 md:mt-20 grid lg:grid-cols-12 gap-10 items-center">
+      <p class="lg:col-span-7 t-lead text-shell/85 reveal">
+        Bij meerdere organisaties draaien de jaartrajecten inmiddels voor de zevende keer of vaker.
+        Een aantal daarvan is volledig overgedragen aan trainers uit de organisatie zelf.
+      </p>
+      <p class="lg:col-span-5 lg:text-right reveal">
+        <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-shell inline-flex items-center gap-3 group">
+          <span class="link-underline">Naar de cases</span>
+          <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6. HOE WIJ KIJKEN ============================ -->
+<section class="py-20 md:py-32 bg-paper">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow">Hoe wij naar ontwikkeling kijken</p>
+        <h2 class="t-h2 mt-4">Ontwikkeling ontstaat tussen mensen</h2>
+        <p class="mt-6 t-lead text-muted max-w-prose">
+          Mensen dragen van nature een drang tot ontwikkeling in zich, maar die ontwikkeling ontstaat pas
+          in de interactie met anderen. Wij willen dat ontwikkelen in organisaties verschuift: van kennis
+          zenden en competenties afvinken, naar leren vanuit ervaring, dialoog en het werk zelf.
+        </p>
+        <p class="mt-6 t-quote">
+          De wereld is te complex om helemaal te snappen. Accepteer de complexiteit, hou vertrouwen en surf mee.
+        </p>
+        <p class="mt-8">
+          <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-steel inline-flex items-center gap-3 group">
+            <span class="link-underline">Hoe wij kijken <span class="amp">&amp;</span> waar we op bouwen</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </p>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <p class="eyebrow reveal">Vier waarden</p>
+        <dl class="mt-6 grid sm:grid-cols-2 gap-x-10 gap-y-8">
+          <div class="reveal" data-delay="0">
+            <dt class="t-h3">Vertrouwen</dt>
+            <dd class="mt-2 text-muted">We gaan uit van het goede. De mensen kunnen het echt zelf.</dd>
+          </div>
+          <div class="reveal" data-delay="120">
+            <dt class="t-h3">Verbinding</dt>
+            <dd class="mt-2 text-muted">Niet jij of ik, maar jij <span class="amp">&amp;</span> ik. Een traject beklijft pas als de context meedoet.</dd>
+          </div>
+          <div class="reveal" data-delay="240">
+            <dt class="t-h3">Beweging</dt>
+            <dd class="mt-2 text-muted">We sluiten aan op het ritme van de groepsbeweging. Ervaring, reflectie en dan pas concept.</dd>
+          </div>
+          <div class="reveal" data-delay="360">
+            <dt class="t-h3">Gekkigheid</dt>
+            <dd class="mt-2 text-muted">Een knipoog, bewust spel en momenten zonder strak doel. Juist dan ontstaan de mooiste inzichten.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 7. DE MENSEN ============================ -->
+<section class="py-20 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+      <div class="lg:col-span-6 reveal">
+        <div class="frame aspect-[3/2]">
+          <img src="assets/img/jonk-vakmensen-2.webp" srcset="assets/img/jonk-vakmensen-2-800.webp 800w, assets/img/jonk-vakmensen-2.webp 1600w"
+               sizes="(min-width:1024px) 50vw, 100vw" loading="lazy" width="1600" height="1067"
+               alt="Eric Jonk in gesprek met een deelnemer">
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div class="frame aspect-[3/2]">
+            <img src="assets/img/jonk-vakmensen-1-800.webp" loading="lazy" width="800" height="533"
+                 alt="Eric Jonk luistert terwijl een collega iets uitlegt">
+          </div>
+          <div class="frame aspect-[3/2]">
+            <img src="assets/img/jonk-vakmensen-3-800.webp" loading="lazy" width="800" height="533"
+                 alt="Twee begeleiders van &Jonk tijdens een oefening">
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 reveal">
+        <p class="eyebrow">De mensen van &Jonk</p>
+        <h2 class="t-h2 mt-4">Vakmensen die zichzelf meenemen</h2>
+        <p class="mt-6 t-lead text-muted max-w-prose">
+          Eerlijk en stevig genoeg om naast je te blijven staan als het ingewikkeld wordt. We combineren
+          vakkennis met gevoel voor humor en intuïtie, iedere keer afgestemd op jou, de groep en de situatie.
+          We kennen elkaar en elkaars werk. Daardoor voelt een traject als één geheel, ook als er meerdere
+          mensen op staan.
+        </p>
+        <p class="mt-6 text-muted max-w-prose">
+          <strong class="font-medium text-ink">Eric Jonk</strong> is oprichter en eigenaar. Hij is geschoold in
+          transactionele analyse en veranderkunde, werkt sinds 2014 in en rond de lokale overheid en begeleidt
+          teams en professionals sinds 2016.
+        </p>
+        <p class="mt-8">
+          <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-steel inline-flex items-center gap-3 group">
+            <span class="link-underline">Wie we zijn <span class="amp">&amp;</span> waar we vandaan komen</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 8. MEELUISTEREN ============================ -->
+<section class="py-20 md:py-32 bg-paper border-y border-ink/10">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow">Meeluisteren</p>
+        <h2 class="t-h2 mt-4">De podcast <em class="not-italic font-display">In Gesprek</em></h2>
+        <p class="mt-6 t-lead text-muted max-w-prose">
+          Elke twee weken: één gesprek, één concreet dilemma uit het werk met mensen en organisaties.
+        </p>
+        <p class="mt-6">
+          <a href="#" class="font-ui text-sm tracking-[.14em] uppercase text-steel inline-flex items-center gap-3 group">
+            <span class="link-underline">Alle afleveringen</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </p>
+      </div>
+
+      <div class="lg:col-span-4 reveal">
+        <div class="frame aspect-[4/5]">
+          <img src="assets/img/jonk-7483.webp" srcset="assets/img/jonk-7483-800.webp 800w, assets/img/jonk-7483.webp 1600w"
+               sizes="(min-width:1024px) 30vw, 100vw" loading="lazy" width="1600" height="1067"
+               alt="Eric Jonk achter de microfoon tijdens een opname van de podcast In Gesprek">
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 reveal">
+        <h3 class="t-h3">Luister mee</h3>
+        <p class="mt-3 text-muted">
+          <em class="not-italic font-display text-xl">In Gesprek</em> staat op Spotify en Apple Podcasts.
+          Nieuwe afleveringen verschijnen automatisch ook hier op de site.
+        </p>
+        <div class="mt-6 space-y-3">
+          <a href="#" class="flex items-center justify-between border border-ink/20 px-5 py-3.5 font-ui text-sm tracking-[.12em] uppercase hover:border-ink hover:bg-ink hover:text-shell transition-colors duration-300 group">
+            <span>Spotify</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+          <a href="#" class="flex items-center justify-between border border-ink/20 px-5 py-3.5 font-ui text-sm tracking-[.12em] uppercase hover:border-ink hover:bg-ink hover:text-shell transition-colors duration-300 group">
+            <span>Apple Podcasts</span>
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 9. KENNISMAKEN ============================ -->
+<section id="kennismaken" class="py-24 md:py-36">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center reveal">
+      <div class="lg:col-span-7">
+        <h2 class="t-display">Zullen we kennismaken?</h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="t-lead text-muted max-w-prose">
+          Het eerste gesprek is een kennismaking. Wij komen kijken en stellen vragen, jij vertelt wat er speelt.
+          Daarna weten we allebei of het past.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="tel:+31610582180" class="inline-flex items-center bg-rose text-ink font-ui text-sm tracking-[.14em] uppercase px-10 py-4 hover:bg-ink hover:text-shell transition-colors duration-300">
+            Bel
+          </a>
+          <a href="mailto:info@enjonk.nl" class="inline-flex items-center border border-ink/25 font-ui text-sm tracking-[.14em] uppercase px-10 py-4 hover:border-ink transition-colors duration-300">
+            Mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="bg-ink text-shell/80 pt-16 md:pt-20 pb-10">
+  <div class="mx-auto max-w-7xl px-6 md:px-10">
+    <div class="grid md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-shell/15">
+
+      <div class="md:col-span-5">
+        <p class="font-mark text-4xl text-shell"><span class="text-rose">&amp;</span>Jonk</p>
+        <p class="font-script text-2xl mt-3 text-shell/70">talent · leiderschap · teams</p>
+      </div>
+
+      <nav class="md:col-span-4" aria-label="Footer navigatie">
+        <ul class="space-y-2 font-ui text-sm">
+          <li><a href="wat-we-doen.html" class="hover:text-rose transition-colors">Wat we doen</a></li>
+          <li><a href="wat-anderen-zeggen.html" class="hover:text-rose transition-colors">Wat anderen zeggen</a></li>
+          <li><a href="hoe-wij-kijken.html" class="hover:text-rose transition-colors">Hoe wij kijken</a></li>
+          <li><a href="over-jonk.html" class="hover:text-rose transition-colors">Over <span class="amp">&amp;</span>Jonk</a></li>
+          <li><a href="cases.html" class="hover:text-rose transition-colors">Cases</a></li>
+          <li><a href="podcast.html" class="hover:text-rose transition-colors">Podcast</a></li>
+          <li><a href="contact.html" class="hover:text-rose transition-colors">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="md:col-span-3 font-ui text-sm space-y-2">
+        <p><a href="tel:+31610582180" class="hover:text-rose transition-colors">+31 6 10582180</a></p>
+        <p><a href="mailto:info@enjonk.nl" class="hover:text-rose transition-colors">info@enjonk.nl</a></p>
+        <p><span class="placeholder">[adres]</span></p>
+        <p class="pt-3 space-x-4">
+          <a href="#" class="hover:text-rose transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-rose transition-colors">Spotify</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between font-ui text-xs text-shell/55">
+      <p>&copy; 2026 &amp;Jonk</p>
+      <p class="space-x-6">
+        <a href="#" class="hover:text-shell transition-colors">Privacyverklaring</a>
+        <a href="#" class="hover:text-shell transition-colors">Algemene voorwaarden</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- header background on scroll ---------- */
+  var header = document.getElementById('site-header');
+  function onScroll() {
+    header.classList.toggle('is-scrolled', window.scrollY > 24);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- menu overlay ---------- */
+  var menu = document.getElementById('site-menu');
+  var openBtn = document.getElementById('menu-open');
+  var closeBtn = document.getElementById('menu-close');
+
+  var MENU_EXIT_MS = reduced ? 0 : 260;
+
+  function openMenu() {
+    menu.classList.remove('hidden');
+    void menu.offsetWidth;            // flush styles so the transition actually runs
+    menu.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    openBtn.setAttribute('aria-expanded', 'true');
+    closeBtn.focus();
+  }
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    document.body.style.overflow = '';
+    openBtn.setAttribute('aria-expanded', 'false');
+    openBtn.focus();
+    window.setTimeout(function () {
+      if (!menu.classList.contains('is-open')) menu.classList.add('hidden');
+    }, MENU_EXIT_MS);
+  }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) closeMenu();
+  });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+  /* ---------- scroll reveal ---------- */
+  var items = document.querySelectorAll('.reveal');
+  if (reduced || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el, i) {
+      var d = el.dataset.delay !== undefined ? el.dataset.delay : (i % 3) * 90;
+      el.style.transitionDelay = d + 'ms';
+      io.observe(el);
+    });
+  }
+
+  /* ---------- venn highlight linked to the three level blocks ---------- */
+  var lobes = Array.prototype.slice.call(document.querySelectorAll('#venn .lobe'));
+  var levels = Array.prototype.slice.call(document.querySelectorAll('#levels .level'));
+
+  function highlight(key) {
+    lobes.forEach(function (g) {
+      var match = g.dataset.key === key;
+      g.classList.toggle('is-active', !!key && match);
+      g.classList.toggle('is-dim', !!key && !match);
+    });
+    levels.forEach(function (el) {
+      el.classList.toggle('is-muted', !!key && el.dataset.key !== key);
+    });
+  }
+  levels.forEach(function (el) {
+    var key = el.dataset.key;
+    ['mouseenter', 'focusin'].forEach(function (ev) {
+      el.addEventListener(ev, function () { highlight(key); });
+    });
+    ['mouseleave', 'focusout'].forEach(function (ev) {
+      el.addEventListener(ev, function () { highlight(null); });
+    });
+  });
+  lobes.forEach(function (g) {
+    ['mouseenter', 'focus'].forEach(function (ev) {
+      g.addEventListener(ev, function () { highlight(g.dataset.key); });
+    });
+    ['mouseleave', 'blur'].forEach(function (ev) {
+      g.addEventListener(ev, function () { highlight(null); });
+    });
+  });
+
+  /* ---------- "live foto" clips: play only when in view, never with reduced motion ---------- */
+  var videos = document.querySelectorAll('video[data-autoplay]');
+  if (!reduced && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) { v.play().catch(function () {}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.25 });
+    videos.forEach(function (v) { vio.observe(v); });
+  }
+})();
+</script>
+</body>
+</html>

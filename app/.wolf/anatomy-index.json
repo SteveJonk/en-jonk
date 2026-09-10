@@ -1,0 +1,2486 @@
+{
+  "version": 1,
+  "meta": {
+    "lastScanned": "2026-09-10T07:49:29.714Z",
+    "fileCount": 146,
+    "hits": 0,
+    "misses": 0,
+    "renderedHash": "5e158c0c0c231bff5c7bd05aba6c2855cee13bbad194a44c949abf4aefa6192c",
+    "storeUpdatedAt": "2026-09-10T07:49:29.715Z"
+  },
+  "files": {
+    ".claude/commands/reframe.md": {
+      "description": "Mode: migrate [framework]",
+      "tokens": 551,
+      "hash": "17a75695be5d4629",
+      "size": 2221,
+      "mtimeMs": 1789026569621.5732,
+      "updatedAt": "2026-09-10T07:49:29.631Z",
+      "source": "scan"
+    },
+    ".claude/commands/security-audit.md": {
+      "description": "Layer 1 — Dependencies",
+      "tokens": 510,
+      "hash": "e6f7e0b7337c9c86",
+      "size": 2060,
+      "mtimeMs": 1789026569621.2354,
+      "updatedAt": "2026-09-10T07:49:29.631Z",
+      "source": "scan"
+    },
+    ".claude/rules/openwolf.md": {
+      "description": "",
+      "tokens": 328,
+      "hash": "6d735b2c1c54a916",
+      "size": 1323,
+      "mtimeMs": 1789026568939.0957,
+      "updatedAt": "2026-09-10T07:49:29.632Z",
+      "source": "scan"
+    },
+    ".claude/settings.json": {
+      "description": "",
+      "tokens": 514,
+      "hash": "f68759bb50af5ee4",
+      "size": 1799,
+      "mtimeMs": 1789026568938.489,
+      "updatedAt": "2026-09-10T07:49:29.632Z",
+      "source": "scan"
+    },
+    ".cursor/rules/openwolf.mdc": {
+      "description": "",
+      "tokens": 87,
+      "hash": "25a895da2047ef4d",
+      "size": 323,
+      "mtimeMs": 1789026569619.913,
+      "updatedAt": "2026-09-10T07:49:29.632Z",
+      "source": "scan"
+    },
+    ".gitignore": {
+      "description": "Git ignore rules",
+      "tokens": 147,
+      "hash": "468399b2c7fcbe78",
+      "size": 552,
+      "mtimeMs": 1789026069567.6,
+      "updatedAt": "2026-09-10T07:49:29.632Z",
+      "source": "scan"
+    },
+    ".opencode/command/reframe.md": {
+      "description": "Mode: migrate [framework]",
+      "tokens": 551,
+      "hash": "17a75695be5d4629",
+      "size": 2221,
+      "mtimeMs": 1789026569622.1414,
+      "updatedAt": "2026-09-10T07:49:29.633Z",
+      "source": "scan"
+    },
+    ".opencode/command/security-audit.md": {
+      "description": "Layer 1 — Dependencies",
+      "tokens": 510,
+      "hash": "e6f7e0b7337c9c86",
+      "size": 2060,
+      "mtimeMs": 1789026569621.9124,
+      "updatedAt": "2026-09-10T07:49:29.633Z",
+      "source": "scan"
+    },
+    ".opencode/plugin/openwolf/anatomy.ts": {
+      "description": "Exports parseAnatomy, serializeAnatomy, extractDescription, STORE_FILE + 12 more",
+      "tokens": 2922,
+      "hash": "de2a14445289179f",
+      "size": 10257,
+      "mtimeMs": 1789026569615.1138,
+      "updatedAt": "2026-09-10T07:49:29.634Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "parseAnatomy",
+          "kind": "fn",
+          "startLine": 5,
+          "endLine": 28,
+          "tokens": 207
+        },
+        {
+          "name": "serializeAnatomy",
+          "kind": "fn",
+          "startLine": 29,
+          "endLine": 53,
+          "tokens": 240
+        },
+        {
+          "name": "extractDescription",
+          "kind": "fn",
+          "startLine": 54,
+          "endLine": 106,
+          "tokens": 577
+        },
+        {
+          "name": "sha256",
+          "kind": "fn",
+          "startLine": 107,
+          "endLine": 110,
+          "tokens": 33
+        },
+        {
+          "name": "StoreFileEntry",
+          "kind": "section",
+          "startLine": 111,
+          "endLine": 121,
+          "tokens": 83
+        },
+        {
+          "name": "AnatomyStoreData",
+          "kind": "section",
+          "startLine": 122,
+          "endLine": 127,
+          "tokens": 63
+        },
+        {
+          "name": "newStore",
+          "kind": "fn",
+          "startLine": 128,
+          "endLine": 132,
+          "tokens": 64
+        },
+        {
+          "name": "loadStore",
+          "kind": "fn",
+          "startLine": 133,
+          "endLine": 142,
+          "tokens": 92
+        },
+        {
+          "name": "saveStore",
+          "kind": "fn",
+          "startLine": 143,
+          "endLine": 157,
+          "tokens": 162
+        },
+        {
+          "name": "renderStore",
+          "kind": "fn",
+          "startLine": 158,
+          "endLine": 188,
+          "tokens": 380
+        },
+        {
+          "name": "renderToFile",
+          "kind": "fn",
+          "startLine": 189,
+          "endLine": 202,
+          "tokens": 146
+        },
+        {
+          "name": "importFromMarkdown",
+          "kind": "fn",
+          "startLine": 203,
+          "endLine": 227,
+          "tokens": 305
+        },
+        {
+          "name": "loadStoreReconciled",
+          "kind": "fn",
+          "startLine": 228,
+          "endLine": 240,
+          "tokens": 137
+        },
+        {
+          "name": "lockSleep",
+          "kind": "fn",
+          "startLine": 241,
+          "endLine": 244,
+          "tokens": 31
+        },
+        {
+          "name": "withAnatomyLock",
+          "kind": "fn",
+          "startLine": 245,
+          "endLine": 276,
+          "tokens": 373
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/fs.ts": {
+      "description": "Exports getWolfDir, wolfDirExists, readJSON, writeJSON + 6 more",
+      "tokens": 538,
+      "hash": "0193b1022c8e098b",
+      "size": 1881,
+      "mtimeMs": 1789026569615.6873,
+      "updatedAt": "2026-09-10T07:49:29.635Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "getWolfDir",
+          "kind": "fn",
+          "startLine": 5,
+          "endLine": 8,
+          "tokens": 28
+        },
+        {
+          "name": "wolfDirExists",
+          "kind": "fn",
+          "startLine": 9,
+          "endLine": 12,
+          "tokens": 31
+        },
+        {
+          "name": "readJSON",
+          "kind": "fn",
+          "startLine": 13,
+          "endLine": 20,
+          "tokens": 50
+        },
+        {
+          "name": "writeJSON",
+          "kind": "fn",
+          "startLine": 21,
+          "endLine": 33,
+          "tokens": 144
+        },
+        {
+          "name": "readMarkdown",
+          "kind": "fn",
+          "startLine": 34,
+          "endLine": 41,
+          "tokens": 41
+        },
+        {
+          "name": "appendMarkdown",
+          "kind": "fn",
+          "startLine": 42,
+          "endLine": 47,
+          "tokens": 64
+        },
+        {
+          "name": "timeShort",
+          "kind": "fn",
+          "startLine": 48,
+          "endLine": 52,
+          "tokens": 46
+        },
+        {
+          "name": "timestamp",
+          "kind": "fn",
+          "startLine": 53,
+          "endLine": 56,
+          "tokens": 22
+        },
+        {
+          "name": "normalizePath",
+          "kind": "fn",
+          "startLine": 57,
+          "endLine": 60,
+          "tokens": 24
+        },
+        {
+          "name": "estimateTokens",
+          "kind": "fn",
+          "startLine": 61,
+          "endLine": 64,
+          "tokens": 60
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/index.ts": {
+      "description": "Exports OpenWolf",
+      "tokens": 1081,
+      "hash": "5044a1f76c74f535",
+      "size": 3782,
+      "mtimeMs": 1789026569616.2,
+      "updatedAt": "2026-09-10T07:49:29.635Z",
+      "source": "scan"
+    },
+    ".opencode/plugin/openwolf/post-read.ts": {
+      "description": "Exports handlePostRead",
+      "tokens": 629,
+      "hash": "1bc80c56ad0cfd32",
+      "size": 2200,
+      "mtimeMs": 1789026569616.5774,
+      "updatedAt": "2026-09-10T07:49:29.635Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "handlePostRead",
+          "kind": "fn",
+          "startLine": 7,
+          "endLine": 57,
+          "tokens": 553
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/post-write.ts": {
+      "description": "Exports handlePostWrite, summarizeEdit, autoDetectBugFix, detectFixPattern",
+      "tokens": 3226,
+      "hash": "02ba6ccd8d82475c",
+      "size": 11300,
+      "mtimeMs": 1789026569617.0632,
+      "updatedAt": "2026-09-10T07:49:29.635Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "handlePostWrite",
+          "kind": "fn",
+          "startLine": 8,
+          "endLine": 39,
+          "tokens": 302
+        },
+        {
+          "name": "updateAnatomy",
+          "kind": "fn",
+          "startLine": 40,
+          "endLine": 86,
+          "tokens": 473
+        },
+        {
+          "name": "appendToMemory",
+          "kind": "fn",
+          "startLine": 87,
+          "endLine": 114,
+          "tokens": 302
+        },
+        {
+          "name": "trackSession",
+          "kind": "fn",
+          "startLine": 115,
+          "endLine": 150,
+          "tokens": 338
+        },
+        {
+          "name": "summarizeEdit",
+          "kind": "fn",
+          "startLine": 151,
+          "endLine": 184,
+          "tokens": 471
+        },
+        {
+          "name": "autoDetectBugFix",
+          "kind": "fn",
+          "startLine": 185,
+          "endLine": 228,
+          "tokens": 523
+        },
+        {
+          "name": "detectFixPattern",
+          "kind": "fn",
+          "startLine": 229,
+          "endLine": 265,
+          "tokens": 610
+        },
+        {
+          "name": "extractChangedLines",
+          "kind": "fn",
+          "startLine": 266,
+          "endLine": 270,
+          "tokens": 88
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/pre-read.ts": {
+      "description": "Exports handlePreRead",
+      "tokens": 685,
+      "hash": "88c051b64b073c6a",
+      "size": 2401,
+      "mtimeMs": 1789026569617.4011,
+      "updatedAt": "2026-09-10T07:49:29.636Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "handlePreRead",
+          "kind": "fn",
+          "startLine": 7,
+          "endLine": 63,
+          "tokens": 613
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/pre-write.ts": {
+      "description": "Exports handlePreWrite",
+      "tokens": 1167,
+      "hash": "c3b34d216601e76f",
+      "size": 4092,
+      "mtimeMs": 1789026569617.6086,
+      "updatedAt": "2026-09-10T07:49:29.636Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "tokenize",
+          "kind": "fn",
+          "startLine": 14,
+          "endLine": 21,
+          "tokens": 63
+        },
+        {
+          "name": "handlePreWrite",
+          "kind": "fn",
+          "startLine": 22,
+          "endLine": 35,
+          "tokens": 132
+        },
+        {
+          "name": "checkCerebrum",
+          "kind": "fn",
+          "startLine": 36,
+          "endLine": 65,
+          "tokens": 369
+        },
+        {
+          "name": "BugEntry",
+          "kind": "section",
+          "startLine": 66,
+          "endLine": 74,
+          "tokens": 37
+        },
+        {
+          "name": "checkBugLog",
+          "kind": "fn",
+          "startLine": 75,
+          "endLine": 105,
+          "tokens": 399
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/session.ts": {
+      "description": "Exports getSessionState, setSessionState, deleteSession, handleSessionStart",
+      "tokens": 952,
+      "hash": "dda2df097f6d5874",
+      "size": 3340,
+      "mtimeMs": 1789026569617.9868,
+      "updatedAt": "2026-09-10T07:49:29.636Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "getSessionState",
+          "kind": "fn",
+          "startLine": 8,
+          "endLine": 11,
+          "tokens": 33
+        },
+        {
+          "name": "setSessionState",
+          "kind": "fn",
+          "startLine": 12,
+          "endLine": 15,
+          "tokens": 33
+        },
+        {
+          "name": "deleteSession",
+          "kind": "fn",
+          "startLine": 16,
+          "endLine": 19,
+          "tokens": 26
+        },
+        {
+          "name": "handleSessionStart",
+          "kind": "fn",
+          "startLine": 20,
+          "endLine": 89,
+          "tokens": 783
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/stop.ts": {
+      "description": "Exports handleStop",
+      "tokens": 1444,
+      "hash": "5f8633a3904ee5ce",
+      "size": 5057,
+      "mtimeMs": 1789026569618.3843,
+      "updatedAt": "2026-09-10T07:49:29.636Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "handleStop",
+          "kind": "fn",
+          "startLine": 6,
+          "endLine": 35,
+          "tokens": 262
+        },
+        {
+          "name": "checkForMissingBugLogs",
+          "kind": "fn",
+          "startLine": 36,
+          "endLine": 50,
+          "tokens": 165
+        },
+        {
+          "name": "buildLedgerEntry",
+          "kind": "fn",
+          "startLine": 51,
+          "endLine": 114,
+          "tokens": 743
+        },
+        {
+          "name": "appendSessionSummary",
+          "kind": "fn",
+          "startLine": 115,
+          "endLine": 126,
+          "tokens": 218
+        }
+      ]
+    },
+    ".opencode/plugin/openwolf/types.ts": {
+      "description": "Exports FileRead, FileWrite, SessionState, PartialSessionState + 2 more",
+      "tokens": 217,
+      "hash": "47f4dfb03abf55f9",
+      "size": 757,
+      "mtimeMs": 1789026569618.658,
+      "updatedAt": "2026-09-10T07:49:29.636Z",
+      "source": "scan"
+    },
+    ".opencode/plugin/openwolf.ts": {
+      "description": "OpenWolf plugin entry — installed by `openwolf init --agent opencode`.",
+      "tokens": 74,
+      "hash": "a29f91aadb9a324d",
+      "size": 261,
+      "mtimeMs": 1789026569618.9207,
+      "updatedAt": "2026-09-10T07:49:29.637Z",
+      "source": "scan"
+    },
+    "AGENTS.md": {
+      "description": "OpenWolf",
+      "tokens": 68,
+      "hash": "8c90778623bf50ac",
+      "size": 271,
+      "mtimeMs": 1789026569619.4277,
+      "updatedAt": "2026-09-10T07:49:29.637Z",
+      "source": "scan"
+    },
+    "CLAUDE.md": {
+      "description": "OpenWolf",
+      "tokens": 57,
+      "hash": "b1ca356fa9d5f3a6",
+      "size": 225,
+      "mtimeMs": 1789026568939.5493,
+      "updatedAt": "2026-09-10T07:49:29.637Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6832-800.webp": {
+      "description": "",
+      "tokens": 9173,
+      "hash": "c1420befcf918175",
+      "size": 36356,
+      "mtimeMs": 1789026263033.2341,
+      "updatedAt": "2026-09-10T07:49:29.639Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6832.webp": {
+      "description": "",
+      "tokens": 22360,
+      "hash": "c59b635fbdbd72d6",
+      "size": 88446,
+      "mtimeMs": 1789026263974.9077,
+      "updatedAt": "2026-09-10T07:49:29.642Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6842-800.webp": {
+      "description": "",
+      "tokens": 4408,
+      "hash": "5222124855844c03",
+      "size": 17424,
+      "mtimeMs": 1789026263342.8047,
+      "updatedAt": "2026-09-10T07:49:29.643Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6842.webp": {
+      "description": "",
+      "tokens": 10220,
+      "hash": "c8dcf93ff6a3e8dc",
+      "size": 40432,
+      "mtimeMs": 1789026262781.8865,
+      "updatedAt": "2026-09-10T07:49:29.644Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6894-800.webp": {
+      "description": "",
+      "tokens": 8399,
+      "hash": "3ae0e7abd0eace19",
+      "size": 33312,
+      "mtimeMs": 1789026264753.9763,
+      "updatedAt": "2026-09-10T07:49:29.645Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-6894.webp": {
+      "description": "",
+      "tokens": 20054,
+      "hash": "385bef0f25871926",
+      "size": 79398,
+      "mtimeMs": 1789026264929.986,
+      "updatedAt": "2026-09-10T07:49:29.647Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7038-800.webp": {
+      "description": "",
+      "tokens": 3839,
+      "hash": "4f980725c447f932",
+      "size": 15136,
+      "mtimeMs": 1789026264586.8604,
+      "updatedAt": "2026-09-10T07:49:29.648Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7038.webp": {
+      "description": "",
+      "tokens": 9579,
+      "hash": "072f8b7598310edf",
+      "size": 37972,
+      "mtimeMs": 1789026262655.0862,
+      "updatedAt": "2026-09-10T07:49:29.650Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7196-800.webp": {
+      "description": "",
+      "tokens": 11098,
+      "hash": "84f0baa778286f6e",
+      "size": 43906,
+      "mtimeMs": 1789026264097.0078,
+      "updatedAt": "2026-09-10T07:49:29.652Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7196.webp": {
+      "description": "",
+      "tokens": 25542,
+      "hash": "868cf99aab7d25ac",
+      "size": 101054,
+      "mtimeMs": 1789026262996.4727,
+      "updatedAt": "2026-09-10T07:49:29.654Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7214-800.webp": {
+      "description": "",
+      "tokens": 7758,
+      "hash": "4989bc2f3e99a63d",
+      "size": 30730,
+      "mtimeMs": 1789026264048.8984,
+      "updatedAt": "2026-09-10T07:49:29.655Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7214.webp": {
+      "description": "",
+      "tokens": 18725,
+      "hash": "9ef90e02b47023b2",
+      "size": 74078,
+      "mtimeMs": 1789026263805.0513,
+      "updatedAt": "2026-09-10T07:49:29.658Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7305-800.webp": {
+      "description": "",
+      "tokens": 6603,
+      "hash": "5a9b89cd8435a5dd",
+      "size": 26098,
+      "mtimeMs": 1789026262532.4219,
+      "updatedAt": "2026-09-10T07:49:29.658Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7305.webp": {
+      "description": "",
+      "tokens": 15942,
+      "hash": "fb292ec11739f524",
+      "size": 63144,
+      "mtimeMs": 1789026263730.0854,
+      "updatedAt": "2026-09-10T07:49:29.660Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7317-800.webp": {
+      "description": "",
+      "tokens": 4596,
+      "hash": "d74b3150cbce8e7e",
+      "size": 18156,
+      "mtimeMs": 1789026264544.6458,
+      "updatedAt": "2026-09-10T07:49:29.661Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7317.webp": {
+      "description": "",
+      "tokens": 10560,
+      "hash": "83eb4621ff6d7302",
+      "size": 41732,
+      "mtimeMs": 1789026265021.3318,
+      "updatedAt": "2026-09-10T07:49:29.662Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7398-800.webp": {
+      "description": "",
+      "tokens": 10047,
+      "hash": "95dd77f56dc28c6d",
+      "size": 39766,
+      "mtimeMs": 1789026262873.2715,
+      "updatedAt": "2026-09-10T07:49:29.664Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7398.webp": {
+      "description": "",
+      "tokens": 23694,
+      "hash": "8001dedd4873be65",
+      "size": 93636,
+      "mtimeMs": 1789026264453.633,
+      "updatedAt": "2026-09-10T07:49:29.667Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7467-800.webp": {
+      "description": "",
+      "tokens": 4830,
+      "hash": "c24ae335099f7cd7",
+      "size": 19126,
+      "mtimeMs": 1789026264282.6848,
+      "updatedAt": "2026-09-10T07:49:29.667Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7467.webp": {
+      "description": "",
+      "tokens": 14134,
+      "hash": "b1bf8b0c0de8d056",
+      "size": 55962,
+      "mtimeMs": 1789026263395.3547,
+      "updatedAt": "2026-09-10T07:49:29.669Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7483-800.webp": {
+      "description": "",
+      "tokens": 4764,
+      "hash": "4c5e1339ac203391",
+      "size": 18868,
+      "mtimeMs": 1789026265151.8462,
+      "updatedAt": "2026-09-10T07:49:29.670Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-7483.webp": {
+      "description": "",
+      "tokens": 13464,
+      "hash": "3745e061292d2fca",
+      "size": 53290,
+      "mtimeMs": 1789026264797.4531,
+      "updatedAt": "2026-09-10T07:49:29.672Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-clip-1-poster.webp": {
+      "description": "",
+      "tokens": 4695,
+      "hash": "6898d2a5569bd32f",
+      "size": 18590,
+      "mtimeMs": 1789026263853.0464,
+      "updatedAt": "2026-09-10T07:49:29.673Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-clip-2-poster.webp": {
+      "description": "",
+      "tokens": 8213,
+      "hash": "954c6ce278c435cd",
+      "size": 32446,
+      "mtimeMs": 1789026263592.032,
+      "updatedAt": "2026-09-10T07:49:29.674Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-clip-3-poster.webp": {
+      "description": "",
+      "tokens": 9422,
+      "hash": "46bf11fcbc777f2f",
+      "size": 37308,
+      "mtimeMs": 1789026263515.3293,
+      "updatedAt": "2026-09-10T07:49:29.675Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-hero-800.webp": {
+      "description": "",
+      "tokens": 4367,
+      "hash": "c95de82bbd7ca5e2",
+      "size": 17300,
+      "mtimeMs": 1789026263465.3308,
+      "updatedAt": "2026-09-10T07:49:29.676Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-hero.webp": {
+      "description": "",
+      "tokens": 11050,
+      "hash": "972e491b805adeba",
+      "size": 43620,
+      "mtimeMs": 1789026265062.5417,
+      "updatedAt": "2026-09-10T07:49:29.678Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-hoe-klanten-800.webp": {
+      "description": "",
+      "tokens": 10315,
+      "hash": "f26998aaca363354",
+      "size": 40760,
+      "mtimeMs": 1789026263213.5488,
+      "updatedAt": "2026-09-10T07:49:29.679Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-hoe-klanten.webp": {
+      "description": "",
+      "tokens": 25954,
+      "hash": "41bd9632cd026345",
+      "size": 102698,
+      "mtimeMs": 1789026262741.0408,
+      "updatedAt": "2026-09-10T07:49:29.682Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-1-800.webp": {
+      "description": "",
+      "tokens": 9608,
+      "hash": "96c4cb604ea6c0b8",
+      "size": 38062,
+      "mtimeMs": 1789026264327.0032,
+      "updatedAt": "2026-09-10T07:49:29.684Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-1.webp": {
+      "description": "",
+      "tokens": 23443,
+      "hash": "a486cc0eaf739a64",
+      "size": 92820,
+      "mtimeMs": 1789026263928.6848,
+      "updatedAt": "2026-09-10T07:49:29.686Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-2-800.webp": {
+      "description": "",
+      "tokens": 8715,
+      "hash": "f7c68a4a119eea57",
+      "size": 34566,
+      "mtimeMs": 1789026262911.1438,
+      "updatedAt": "2026-09-10T07:49:29.687Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-2.webp": {
+      "description": "",
+      "tokens": 21269,
+      "hash": "0bbde6265139836d",
+      "size": 84304,
+      "mtimeMs": 1789026264882.6365,
+      "updatedAt": "2026-09-10T07:49:29.689Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-3-800.webp": {
+      "description": "",
+      "tokens": 7962,
+      "hash": "6f2a678f4c5e2c51",
+      "size": 31498,
+      "mtimeMs": 1789026263259.3623,
+      "updatedAt": "2026-09-10T07:49:29.691Z",
+      "source": "scan"
+    },
+    "designs/assets/img/jonk-vakmensen-3.webp": {
+      "description": "",
+      "tokens": 18836,
+      "hash": "5eaa115fc15f42b3",
+      "size": 74510,
+      "mtimeMs": 1789026264416.2534,
+      "updatedAt": "2026-09-10T07:49:29.693Z",
+      "source": "scan"
+    },
+    "designs/cases.html": {
+      "description": "&Jonk — Cases",
+      "tokens": 6133,
+      "hash": "ad5f488a1804b822",
+      "size": 23020,
+      "mtimeMs": 1789026261446.5798,
+      "updatedAt": "2026-09-10T07:49:29.693Z",
+      "source": "scan"
+    },
+    "designs/contact.html": {
+      "description": "&Jonk — Contact",
+      "tokens": 5973,
+      "hash": "87ae07709ef1f854",
+      "size": 22412,
+      "mtimeMs": 1789026261382.5,
+      "updatedAt": "2026-09-10T07:49:29.694Z",
+      "source": "scan"
+    },
+    "designs/hoe-wij-kijken.html": {
+      "description": "&Jonk — Hoe wij kijken",
+      "tokens": 6440,
+      "hash": "cbe319532564df46",
+      "size": 24172,
+      "mtimeMs": 1789026261513.1274,
+      "updatedAt": "2026-09-10T07:49:29.694Z",
+      "source": "scan"
+    },
+    "designs/index.html": {
+      "description": "&Jonk — talent, leiderschap, teams",
+      "tokens": 9817,
+      "hash": "a857624b1e52b2e1",
+      "size": 36842,
+      "mtimeMs": 1789026261684.9197,
+      "updatedAt": "2026-09-10T07:49:29.695Z",
+      "source": "scan"
+    },
+    "designs/onepager-ignore.html": {
+      "description": "&Jonk — talent, leiderschap, teams",
+      "tokens": 11034,
+      "hash": "c9296e2a5d2cdfa5",
+      "size": 41408,
+      "mtimeMs": 1789026292266.908,
+      "updatedAt": "2026-09-10T07:49:29.695Z",
+      "source": "scan"
+    },
+    "designs/over-jonk.html": {
+      "description": "Over &Jonk",
+      "tokens": 6647,
+      "hash": "ee31cbf4a60f2cd0",
+      "size": 24945,
+      "mtimeMs": 1789026261732.8135,
+      "updatedAt": "2026-09-10T07:49:29.696Z",
+      "source": "scan"
+    },
+    "designs/podcast.html": {
+      "description": "&Jonk — Podcast In Gesprek",
+      "tokens": 6483,
+      "hash": "62c60423b8fed331",
+      "size": 24345,
+      "mtimeMs": 1789026261825.381,
+      "updatedAt": "2026-09-10T07:49:29.696Z",
+      "source": "scan"
+    },
+    "designs/wat-anderen-zeggen.html": {
+      "description": "&Jonk — Wat anderen zeggen",
+      "tokens": 6597,
+      "hash": "331d57ebd2e89fb4",
+      "size": 24759,
+      "mtimeMs": 1789026261868.2534,
+      "updatedAt": "2026-09-10T07:49:29.697Z",
+      "source": "scan"
+    },
+    "designs/wat-we-doen.html": {
+      "description": "&Jonk — Wat we doen",
+      "tokens": 7599,
+      "hash": "9be208e1b2e8752c",
+      "size": 28517,
+      "mtimeMs": 1789026261953.5286,
+      "updatedAt": "2026-09-10T07:49:29.697Z",
+      "source": "scan"
+    },
+    "Dockerfile": {
+      "description": "Docker container definition",
+      "tokens": 294,
+      "hash": "c8a0488797cac4e8",
+      "size": 1100,
+      "mtimeMs": 1789026069567.7278,
+      "updatedAt": "2026-09-10T07:49:29.697Z",
+      "source": "scan"
+    },
+    "eslint.config.mjs": {
+      "description": "ESLint flat configuration",
+      "tokens": 124,
+      "hash": "870f1adccecf3051",
+      "size": 465,
+      "mtimeMs": 1789026069567.9763,
+      "updatedAt": "2026-09-10T07:49:29.697Z",
+      "source": "scan"
+    },
+    "next.config.ts": {
+      "description": "Next.js configuration",
+      "tokens": 526,
+      "hash": "8a7393f02ec13739",
+      "size": 1840,
+      "mtimeMs": 1789026069568.229,
+      "updatedAt": "2026-09-10T07:49:29.697Z",
+      "source": "scan"
+    },
+    "package-lock.json": {
+      "description": "npm lock file",
+      "tokens": 208491,
+      "hash": "d9585d8e01a25eb5",
+      "size": 729717,
+      "mtimeMs": 1789026234615.3064,
+      "updatedAt": "2026-09-10T07:49:29.699Z",
+      "source": "scan"
+    },
+    "package.json": {
+      "description": "Node.js package manifest",
+      "tokens": 395,
+      "hash": "00d33caa165a4fc1",
+      "size": 1382,
+      "mtimeMs": 1789026069569.9915,
+      "updatedAt": "2026-09-10T07:49:29.700Z",
+      "source": "scan"
+    },
+    "postcss.config.mjs": {
+      "description": "Declares config",
+      "tokens": 26,
+      "hash": "dfac7ac2d86d326a",
+      "size": 94,
+      "mtimeMs": 1789026069570.101,
+      "updatedAt": "2026-09-10T07:49:29.700Z",
+      "source": "scan"
+    },
+    "scripts/check-form.ts": {
+      "description": "The smallest thing that fails when the CMS-driven form breaks.",
+      "tokens": 2169,
+      "hash": "dc61630d8de8e272",
+      "size": 7604,
+      "mtimeMs": 1789026069571.0828,
+      "updatedAt": "2026-09-10T07:49:29.700Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "names",
+          "kind": "fn",
+          "startLine": 31,
+          "endLine": 111,
+          "tokens": 746
+        },
+        {
+          "name": "runFormQuery",
+          "kind": "fn",
+          "startLine": 112,
+          "endLine": 121,
+          "tokens": 110
+        },
+        {
+          "name": "checkAllowList",
+          "kind": "fn",
+          "startLine": 122,
+          "endLine": 209,
+          "tokens": 971
+        }
+      ]
+    },
+    "scripts/check-jsonld.ts": {
+      "description": "The smallest thing that fails when the structured data quietly changes.",
+      "tokens": 2615,
+      "hash": "03449dcb6bc36e88",
+      "size": 9161,
+      "mtimeMs": 1789026069571.505,
+      "updatedAt": "2026-09-10T07:49:29.700Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "node",
+          "kind": "fn",
+          "startLine": 37,
+          "endLine": 230,
+          "tokens": 2266
+        }
+      ]
+    },
+    "scripts/seed/about.ts": {
+      "description": "Seeds the second page — /about.",
+      "tokens": 980,
+      "hash": "384d13c82c79b467",
+      "size": 3433,
+      "mtimeMs": 1789026069571.861,
+      "updatedAt": "2026-09-10T07:49:29.701Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "buildAboutContent",
+          "kind": "fn",
+          "startLine": 29,
+          "endLine": 113,
+          "tokens": 753
+        },
+        {
+          "name": "seedAbout",
+          "kind": "fn",
+          "startLine": 114,
+          "endLine": 124,
+          "tokens": 76
+        }
+      ]
+    },
+    "scripts/seed/contact.ts": {
+      "description": "Seeds /contact — the page the demo form actually lives on.",
+      "tokens": 527,
+      "hash": "5d41d3c8ad6d666a",
+      "size": 1846,
+      "mtimeMs": 1789026069571.9846,
+      "updatedAt": "2026-09-10T07:49:29.701Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "buildContactContent",
+          "kind": "fn",
+          "startLine": 12,
+          "endLine": 51,
+          "tokens": 352
+        },
+        {
+          "name": "seedContact",
+          "kind": "fn",
+          "startLine": 52,
+          "endLine": 56,
+          "tokens": 40
+        }
+      ]
+    },
+    "scripts/seed/forms.ts": {
+      "description": "Seeds the shared form settings and one working contact form.",
+      "tokens": 554,
+      "hash": "df2af93ddab1f2f7",
+      "size": 1942,
+      "mtimeMs": 1789026069572.095,
+      "updatedAt": "2026-09-10T07:49:29.701Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "upsertFormSettings",
+          "kind": "fn",
+          "startLine": 18,
+          "endLine": 33,
+          "tokens": 140
+        },
+        {
+          "name": "upsertContactForm",
+          "kind": "fn",
+          "startLine": 34,
+          "endLine": 56,
+          "tokens": 191
+        },
+        {
+          "name": "seedForms",
+          "kind": "fn",
+          "startLine": 57,
+          "endLine": 62,
+          "tokens": 34
+        }
+      ]
+    },
+    "scripts/seed/home.ts": {
+      "description": "Seeds the home page.",
+      "tokens": 887,
+      "hash": "ae342b2a16bb09d1",
+      "size": 3104,
+      "mtimeMs": 1789026069572.3586,
+      "updatedAt": "2026-09-10T07:49:29.701Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "buildHomeContent",
+          "kind": "fn",
+          "startLine": 13,
+          "endLine": 103,
+          "tokens": 783
+        },
+        {
+          "name": "seedHome",
+          "kind": "fn",
+          "startLine": 104,
+          "endLine": 108,
+          "tokens": 36
+        }
+      ]
+    },
+    "scripts/seed/navigation.ts": {
+      "description": "Seeds the navigation and footer singletons.",
+      "tokens": 684,
+      "hash": "40d328cf9c025adb",
+      "size": 2398,
+      "mtimeMs": 1789026069572.4863,
+      "updatedAt": "2026-09-10T07:49:29.701Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "navLinkExternal",
+          "kind": "fn",
+          "startLine": 10,
+          "endLine": 18,
+          "tokens": 47
+        },
+        {
+          "name": "navLinkInternal",
+          "kind": "fn",
+          "startLine": 19,
+          "endLine": 27,
+          "tokens": 66
+        },
+        {
+          "name": "pageIdBySlug",
+          "kind": "fn",
+          "startLine": 28,
+          "endLine": 35,
+          "tokens": 70
+        },
+        {
+          "name": "pageLink",
+          "kind": "fn",
+          "startLine": 36,
+          "endLine": 40,
+          "tokens": 50
+        },
+        {
+          "name": "upsertNavigation",
+          "kind": "fn",
+          "startLine": 41,
+          "endLine": 56,
+          "tokens": 140
+        },
+        {
+          "name": "upsertFooter",
+          "kind": "fn",
+          "startLine": 57,
+          "endLine": 82,
+          "tokens": 192
+        },
+        {
+          "name": "seedNavigation",
+          "kind": "fn",
+          "startLine": 83,
+          "endLine": 88,
+          "tokens": 38
+        }
+      ]
+    },
+    "scripts/seed/shared.ts": {
+      "description": "Shared Sanity write helpers for the per-page seed scripts in this folder.",
+      "tokens": 1358,
+      "hash": "90fa8713dc0404ce",
+      "size": 4762,
+      "mtimeMs": 1789026069572.7024,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "key",
+          "kind": "fn",
+          "startLine": 44,
+          "endLine": 50,
+          "tokens": 48
+        },
+        {
+          "name": "externalLink",
+          "kind": "fn",
+          "startLine": 51,
+          "endLine": 54,
+          "tokens": 34
+        },
+        {
+          "name": "cta",
+          "kind": "fn",
+          "startLine": 55,
+          "endLine": 66,
+          "tokens": 87
+        },
+        {
+          "name": "contentTypeFor",
+          "kind": "fn",
+          "startLine": 67,
+          "endLine": 70,
+          "tokens": 36
+        },
+        {
+          "name": "uploadImage",
+          "kind": "fn",
+          "startLine": 71,
+          "endLine": 105,
+          "tokens": 253
+        },
+        {
+          "name": "upsertFaq",
+          "kind": "fn",
+          "startLine": 106,
+          "endLine": 138,
+          "tokens": 276
+        },
+        {
+          "name": "upsertPage",
+          "kind": "fn",
+          "startLine": 139,
+          "endLine": 162,
+          "tokens": 191
+        }
+      ]
+    },
+    "scripts/seed/site-information.ts": {
+      "description": "The `siteInformation` singleton, filled from the defaults in",
+      "tokens": 341,
+      "hash": "351b9cc32c7b8648",
+      "size": 1197,
+      "mtimeMs": 1789026069572.935,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan"
+    },
+    "scripts/seed.ts": {
+      "description": "Seed Sanity content. Runs every target, or only the ones you name.",
+      "tokens": 630,
+      "hash": "84b806274d9b2d5e",
+      "size": 2207,
+      "mtimeMs": 1789026069571.632,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "parseTargets",
+          "kind": "fn",
+          "startLine": 40,
+          "endLine": 51,
+          "tokens": 106
+        },
+        {
+          "name": "main",
+          "kind": "fn",
+          "startLine": 52,
+          "endLine": 68,
+          "tokens": 119
+        }
+      ]
+    },
+    "sentry.edge.config.ts": {
+      "description": "Sentry for the edge runtime (middleware, edge routes). Imported by",
+      "tokens": 74,
+      "hash": "a1c8602a5143bb25",
+      "size": 256,
+      "mtimeMs": 1789026069573.0535,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan"
+    },
+    "sentry.options.ts": {
+      "description": "One source of Sentry settings for the client, the server and the edge",
+      "tokens": 281,
+      "hash": "b89936601be8277c",
+      "size": 985,
+      "mtimeMs": 1789026069573.1748,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan"
+    },
+    "sentry.server.config.ts": {
+      "description": "Sentry for the Node.js server runtime. Imported by `src/instrumentation.ts`,",
+      "tokens": 69,
+      "hash": "cd70f1e833d830dd",
+      "size": 240,
+      "mtimeMs": 1789026069573.2869,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan"
+    },
+    "src/app/[slug]/page.tsx": {
+      "description": "Every CMS page except the home page renders through this one route — there",
+      "tokens": 594,
+      "hash": "22991f92a45acf00",
+      "size": 2081,
+      "mtimeMs": 1789026069573.7993,
+      "updatedAt": "2026-09-10T07:49:29.702Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "generateMetadata",
+          "kind": "fn",
+          "startLine": 22,
+          "endLine": 31,
+          "tokens": 69
+        },
+        {
+          "name": "SanityPage",
+          "kind": "fn",
+          "startLine": 32,
+          "endLine": 73,
+          "tokens": 292
+        }
+      ]
+    },
+    "src/app/api/submit-form/route.ts": {
+      "description": "Bigger uploads are rejected rather than silently dropped from the mail.",
+      "tokens": 2574,
+      "hash": "6dfdfc380f740d8e",
+      "size": 9013,
+      "mtimeMs": 1789026069574.1963,
+      "updatedAt": "2026-09-10T07:49:29.703Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "verifyRecaptcha",
+          "kind": "fn",
+          "startLine": 14,
+          "endLine": 28,
+          "tokens": 156
+        },
+        {
+          "name": "fail",
+          "kind": "fn",
+          "startLine": 29,
+          "endLine": 33,
+          "tokens": 57
+        },
+        {
+          "name": "splitEmails",
+          "kind": "fn",
+          "startLine": 34,
+          "endLine": 46,
+          "tokens": 109
+        },
+        {
+          "name": "sendViaMailjet",
+          "kind": "fn",
+          "startLine": 47,
+          "endLine": 92,
+          "tokens": 396
+        },
+        {
+          "name": "POST",
+          "kind": "fn",
+          "startLine": 93,
+          "endLine": 258,
+          "tokens": 1705
+        }
+      ]
+    },
+    "src/app/global-error.tsx": {
+      "description": "Last-resort error boundary: it replaces the root layout, so it renders its",
+      "tokens": 239,
+      "hash": "43ef850981c27370",
+      "size": 836,
+      "mtimeMs": 1789026069574.3225,
+      "updatedAt": "2026-09-10T07:49:29.703Z",
+      "source": "scan"
+    },
+    "src/app/globals.css": {
+      "description": "Styles: 4 rules, 54 vars, 1 media queries, 3 animations, 1 layers",
+      "tokens": 1694,
+      "hash": "cef487cbbd39ca36",
+      "size": 5937,
+      "mtimeMs": 1789026069574.529,
+      "updatedAt": "2026-09-10T07:49:29.703Z",
+      "source": "scan"
+    },
+    "src/app/layout.tsx": {
+      "description": "Site-wide metadata defaults, from the `siteInformation` singleton.",
+      "tokens": 1231,
+      "hash": "29b69b492fa52283",
+      "size": 4312,
+      "mtimeMs": 1789026069574.7317,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "generateMetadata",
+          "kind": "fn",
+          "startLine": 46,
+          "endLine": 77,
+          "tokens": 198
+        },
+        {
+          "name": "asNavLinks",
+          "kind": "fn",
+          "startLine": 78,
+          "endLine": 83,
+          "tokens": 58
+        },
+        {
+          "name": "RootLayout",
+          "kind": "fn",
+          "startLine": 84,
+          "endLine": 131,
+          "tokens": 450
+        }
+      ]
+    },
+    "src/app/manifest.json": {
+      "description": "",
+      "tokens": 46,
+      "hash": "5f0aa6d3efda2301",
+      "size": 159,
+      "mtimeMs": 1789026069574.961,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan"
+    },
+    "src/app/not-found.tsx": {
+      "description": "NotFound",
+      "tokens": 248,
+      "hash": "6b9f6a9ea25d62f3",
+      "size": 867,
+      "mtimeMs": 1789026069575.2012,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan"
+    },
+    "src/app/page.tsx": {
+      "description": "options",
+      "tokens": 389,
+      "hash": "a8dd2c9a59997cf6",
+      "size": 1359,
+      "mtimeMs": 1789026069575.316,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan"
+    },
+    "src/app/robots.ts": {
+      "description": "Served at `/robots.txt`.",
+      "tokens": 150,
+      "hash": "32a9a14000924349",
+      "size": 526,
+      "mtimeMs": 1789026069575.4377,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan"
+    },
+    "src/app/sitemap.ts": {
+      "description": "Every CMS page, listed from the CMS itself.",
+      "tokens": 313,
+      "hash": "ad74d223d7159f6b",
+      "size": 1093,
+      "mtimeMs": 1789026069575.7002,
+      "updatedAt": "2026-09-10T07:49:29.704Z",
+      "source": "scan"
+    },
+    "src/components/blocks/Benefits.tsx": {
+      "description": "DEFAULTS — renders chart",
+      "tokens": 1254,
+      "hash": "670b7a41cc9f4536",
+      "size": 4388,
+      "mtimeMs": 1789026069576.6404,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "BenefitIcon",
+          "kind": "fn",
+          "startLine": 32,
+          "endLine": 117,
+          "tokens": 570
+        },
+        {
+          "name": "Benefits",
+          "kind": "fn",
+          "startLine": 118,
+          "endLine": 165,
+          "tokens": 501
+        }
+      ]
+    },
+    "src/components/blocks/ContactForm.tsx": {
+      "description": "The form itself, from the referenced `form` document.",
+      "tokens": 1221,
+      "hash": "0e3f6843b66c86ba",
+      "size": 4273,
+      "mtimeMs": 1789026069576.8267,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ContactForm",
+          "kind": "fn",
+          "startLine": 47,
+          "endLine": 125,
+          "tokens": 842
+        }
+      ]
+    },
+    "src/components/blocks/CrossLinks.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 631,
+      "hash": "c2409741a95105f3",
+      "size": 2207,
+      "mtimeMs": 1789026069576.9434,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "CrossLinks",
+          "kind": "fn",
+          "startLine": 21,
+          "endLine": 63,
+          "tokens": 502
+        }
+      ]
+    },
+    "src/components/blocks/CtaBand.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 664,
+      "hash": "13a4a3890de908e5",
+      "size": 2324,
+      "mtimeMs": 1789026069577.0435,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "CtaBand",
+          "kind": "fn",
+          "startLine": 30,
+          "endLine": 83,
+          "tokens": 478
+        }
+      ]
+    },
+    "src/components/blocks/Faq.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 1065,
+      "hash": "0895048ef53878ea",
+      "size": 3727,
+      "mtimeMs": 1789026069577.2715,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "Faq",
+          "kind": "fn",
+          "startLine": 26,
+          "endLine": 100,
+          "tokens": 890
+        }
+      ]
+    },
+    "src/components/blocks/Hero.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 1679,
+      "hash": "b84adccf3b4a5671",
+      "size": 5876,
+      "mtimeMs": 1789026069577.4712,
+      "updatedAt": "2026-09-10T07:49:29.705Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "Hero",
+          "kind": "fn",
+          "startLine": 40,
+          "endLine": 185,
+          "tokens": 1424
+        }
+      ]
+    },
+    "src/components/blocks/Intro.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 1313,
+      "hash": "a67f06ea1da1bf51",
+      "size": 4593,
+      "mtimeMs": 1789026069577.6528,
+      "updatedAt": "2026-09-10T07:49:29.706Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "renderHighlightedTitle",
+          "kind": "fn",
+          "startLine": 40,
+          "endLine": 63,
+          "tokens": 136
+        },
+        {
+          "name": "Intro",
+          "kind": "fn",
+          "startLine": 64,
+          "endLine": 158,
+          "tokens": 921
+        }
+      ]
+    },
+    "src/components/blocks/MediaText.tsx": {
+      "description": "Text column with a supporting photo on the right.",
+      "tokens": 616,
+      "hash": "523318fad14a60ac",
+      "size": 2156,
+      "mtimeMs": 1789026069577.7683,
+      "updatedAt": "2026-09-10T07:49:29.706Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "MediaText",
+          "kind": "fn",
+          "startLine": 32,
+          "endLine": 82,
+          "tokens": 411
+        }
+      ]
+    },
+    "src/components/blocks/PageHero.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 1055,
+      "hash": "ef79463294be3cf8",
+      "size": 3690,
+      "mtimeMs": 1789026069578.0015,
+      "updatedAt": "2026-09-10T07:49:29.706Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "PageHero",
+          "kind": "fn",
+          "startLine": 31,
+          "endLine": 125,
+          "tokens": 864
+        }
+      ]
+    },
+    "src/components/blocks/Services.tsx": {
+      "description": "DEFAULT_ITEMS",
+      "tokens": 1541,
+      "hash": "2326fb7e72c4bef9",
+      "size": 5391,
+      "mtimeMs": 1789026069578.1987,
+      "updatedAt": "2026-09-10T07:49:29.706Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ServiceCardItem",
+          "kind": "fn",
+          "startLine": 57,
+          "endLine": 102,
+          "tokens": 447
+        },
+        {
+          "name": "Services",
+          "kind": "fn",
+          "startLine": 103,
+          "endLine": 165,
+          "tokens": 710
+        }
+      ]
+    },
+    "src/components/blocks/Steps.tsx": {
+      "description": "DEFAULTS",
+      "tokens": 1656,
+      "hash": "d8223a3648ea8db0",
+      "size": 5796,
+      "mtimeMs": 1789026069578.3884,
+      "updatedAt": "2026-09-10T07:49:29.706Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "stepImageSrc",
+          "kind": "fn",
+          "startLine": 34,
+          "endLine": 37,
+          "tokens": 34
+        },
+        {
+          "name": "Steps",
+          "kind": "fn",
+          "startLine": 38,
+          "endLine": 159,
+          "tokens": 1403
+        }
+      ]
+    },
+    "src/components/form/fields.tsx": {
+      "description": "`stacked` is the roomy page form, `compact` fits a narrow card or sidebar.",
+      "tokens": 1728,
+      "hash": "15b96f35572b6a00",
+      "size": 6050,
+      "mtimeMs": 1789026069578.9019,
+      "updatedAt": "2026-09-10T07:49:29.707Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "selectCaret",
+          "kind": "fn",
+          "startLine": 41,
+          "endLine": 51,
+          "tokens": 128
+        },
+        {
+          "name": "linkify",
+          "kind": "fn",
+          "startLine": 52,
+          "endLine": 73,
+          "tokens": 153
+        },
+        {
+          "name": "FormField",
+          "kind": "fn",
+          "startLine": 74,
+          "endLine": 180,
+          "tokens": 965
+        }
+      ]
+    },
+    "src/components/form/FormRenderer.tsx": {
+      "description": "Public half of the reCAPTCHA settings — the secret stays server-side.",
+      "tokens": 3349,
+      "hash": "a08569df2460e310",
+      "size": 11741,
+      "mtimeMs": 1789026069578.7083,
+      "updatedAt": "2026-09-10T07:49:29.707Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "IconArrowRight",
+          "kind": "fn",
+          "startLine": 64,
+          "endLine": 71,
+          "tokens": 66
+        },
+        {
+          "name": "SuccessPanel",
+          "kind": "fn",
+          "startLine": 72,
+          "endLine": 115,
+          "tokens": 459
+        },
+        {
+          "name": "FormRenderer",
+          "kind": "fn",
+          "startLine": 116,
+          "endLine": 334,
+          "tokens": 2170
+        }
+      ]
+    },
+    "src/components/JsonLd.tsx": {
+      "description": "Put one graph into the page.",
+      "tokens": 98,
+      "hash": "2f919953f124cec0",
+      "size": 342,
+      "mtimeMs": 1789026069575.895,
+      "updatedAt": "2026-09-10T07:49:29.707Z",
+      "source": "scan"
+    },
+    "src/components/layout/SiteFooter.tsx": {
+      "description": "From `getSiteInformation()`; the defaults stand in when not passed.",
+      "tokens": 1214,
+      "hash": "0c38a09c0cfeb3da",
+      "size": 4249,
+      "mtimeMs": 1789026069579.163,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "FooterLinkList",
+          "kind": "fn",
+          "startLine": 14,
+          "endLine": 37,
+          "tokens": 204
+        },
+        {
+          "name": "SiteFooter",
+          "kind": "fn",
+          "startLine": 38,
+          "endLine": 127,
+          "tokens": 923
+        }
+      ]
+    },
+    "src/components/layout/SiteHeader.tsx": {
+      "description": "isActivePath",
+      "tokens": 1490,
+      "hash": "7927a44704dee9ec",
+      "size": 5215,
+      "mtimeMs": 1789026069579.365,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "isActivePath",
+          "kind": "fn",
+          "startLine": 11,
+          "endLine": 15,
+          "tokens": 53
+        },
+        {
+          "name": "DesktopNav",
+          "kind": "fn",
+          "startLine": 16,
+          "endLine": 57,
+          "tokens": 350
+        },
+        {
+          "name": "Burger",
+          "kind": "fn",
+          "startLine": 58,
+          "endLine": 107,
+          "tokens": 328
+        },
+        {
+          "name": "SiteHeader",
+          "kind": "fn",
+          "startLine": 108,
+          "endLine": 171,
+          "tokens": 661
+        }
+      ]
+    },
+    "src/components/PageBuilder.tsx": {
+      "description": "Map one Sanity block onto its React component.",
+      "tokens": 3155,
+      "hash": "62e48167dc34f1e3",
+      "size": 11050,
+      "mtimeMs": 1789026069576.2664,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "toCta",
+          "kind": "fn",
+          "startLine": 26,
+          "endLine": 44,
+          "tokens": 229
+        },
+        {
+          "name": "renderBlock",
+          "kind": "fn",
+          "startLine": 45,
+          "endLine": 307,
+          "tokens": 2526
+        },
+        {
+          "name": "PageBuilder",
+          "kind": "fn",
+          "startLine": 308,
+          "endLine": 320,
+          "tokens": 92
+        }
+      ]
+    },
+    "src/components/TrackingScripts.tsx": {
+      "description": "Google Tag Manager and the Meta (Facebook) pixel, both opt-in.",
+      "tokens": 866,
+      "hash": "0a7755b4be8a0b61",
+      "size": 3032,
+      "mtimeMs": 1789026069576.3958,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "TrackingScriptsHead",
+          "kind": "fn",
+          "startLine": 21,
+          "endLine": 62,
+          "tokens": 399
+        },
+        {
+          "name": "TrackingScriptsBody",
+          "kind": "fn",
+          "startLine": 63,
+          "endLine": 92,
+          "tokens": 222
+        }
+      ]
+    },
+    "src/components/ui/ArrowLink.tsx": {
+      "description": "Standalone text link with circular arrow (renders as `<a>`).",
+      "tokens": 546,
+      "hash": "0f5b786a32e87ac2",
+      "size": 1910,
+      "mtimeMs": 1789026069579.5525,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ArrowLink",
+          "kind": "fn",
+          "startLine": 34,
+          "endLine": 57,
+          "tokens": 154
+        },
+        {
+          "name": "ArrowLinkLabel",
+          "kind": "fn",
+          "startLine": 58,
+          "endLine": 73,
+          "tokens": 93
+        }
+      ]
+    },
+    "src/components/ui/Button.tsx": {
+      "description": "baseClass",
+      "tokens": 451,
+      "hash": "0e8949c30cf8b8b8",
+      "size": 1578,
+      "mtimeMs": 1789026069579.669,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan"
+    },
+    "src/components/ui/ContactIcon.tsx": {
+      "description": "Phone / WhatsApp / mail / map-pin, for the contact panel beside a form.",
+      "tokens": 570,
+      "hash": "b76531db4a4239fd",
+      "size": 1994,
+      "mtimeMs": 1789026069579.7852,
+      "updatedAt": "2026-09-10T07:49:29.708Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ContactIcon",
+          "kind": "fn",
+          "startLine": 9,
+          "endLine": 60,
+          "tokens": 507
+        }
+      ]
+    },
+    "src/components/ui/Eyebrow.tsx": {
+      "description": "Accent tone for dark backgrounds where plain white reads too cold.",
+      "tokens": 192,
+      "hash": "f869c0e71584e43f",
+      "size": 670,
+      "mtimeMs": 1789026069579.9126,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/IconArrow.tsx": {
+      "description": "IconArrow",
+      "tokens": 203,
+      "hash": "6a5c1f24e03300a7",
+      "size": 708,
+      "mtimeMs": 1789026069580.0322,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/Lead.tsx": {
+      "description": "Lead",
+      "tokens": 91,
+      "hash": "0b58910b0d9f88c1",
+      "size": 318,
+      "mtimeMs": 1789026069580.2766,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/LogoMark.tsx": {
+      "description": "From `siteInformation`; falls back to the default when not passed.",
+      "tokens": 478,
+      "hash": "57e1eeee2d0344ca",
+      "size": 1675,
+      "mtimeMs": 1789026069580.399,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/Reveal.tsx": {
+      "description": "delayClass",
+      "tokens": 252,
+      "hash": "aec7f6d2a3d1a840",
+      "size": 882,
+      "mtimeMs": 1789026069580.536,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/RevealLink.tsx": {
+      "description": "delayClass",
+      "tokens": 277,
+      "hash": "dd12002044baeeb5",
+      "size": 969,
+      "mtimeMs": 1789026069580.649,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/SectionHead.tsx": {
+      "description": "SectionHead",
+      "tokens": 160,
+      "hash": "f0ab3aab1f7b059e",
+      "size": 559,
+      "mtimeMs": 1789026069580.7502,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/components/ui/Wrap.tsx": {
+      "description": "Site content width shell.",
+      "tokens": 119,
+      "hash": "bde3116a0bd7d4cd",
+      "size": 416,
+      "mtimeMs": 1789026069580.851,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/hooks/useActiveStep.ts": {
+      "description": "Tracks which step list item is closest to ~42% viewport height.",
+      "tokens": 316,
+      "hash": "3b0e1f6ea523cbf1",
+      "size": 1106,
+      "mtimeMs": 1789026069581.0403,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/hooks/useMobileNav.ts": {
+      "description": "Exports useMobileNav",
+      "tokens": 282,
+      "hash": "59f2e48a7765bf83",
+      "size": 984,
+      "mtimeMs": 1789026069581.1484,
+      "updatedAt": "2026-09-10T07:49:29.709Z",
+      "source": "scan"
+    },
+    "src/hooks/useRevealOnScroll.ts": {
+      "description": "Exports useRevealOnScroll",
+      "tokens": 259,
+      "hash": "ff5027d1717a5bf1",
+      "size": 906,
+      "mtimeMs": 1789026069581.2515,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/hooks/useStickyTopbar.ts": {
+      "description": "Exports useStickyTopbar",
+      "tokens": 236,
+      "hash": "e9e5ab97944164eb",
+      "size": 826,
+      "mtimeMs": 1789026069581.5012,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/instrumentation-client.ts": {
+      "description": "Sentry in the browser.",
+      "tokens": 279,
+      "hash": "fd8bd47a20347fe6",
+      "size": 976,
+      "mtimeMs": 1789026069581.611,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/instrumentation.ts": {
+      "description": "Server-side instrumentation hook. Without `NEXT_PUBLIC_SENTRY_DSN` both",
+      "tokens": 207,
+      "hash": "a53714662dd6eff4",
+      "size": 722,
+      "mtimeMs": 1789026069581.715,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/lib/chrome.ts": {
+      "description": "Scroll threshold (px) before the topbar gets the stuck state.",
+      "tokens": 62,
+      "hash": "0a9825cfe769c118",
+      "size": 214,
+      "mtimeMs": 1789026069581.8718,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/lib/cn.ts": {
+      "description": "Exports cn",
+      "tokens": 37,
+      "hash": "ec1499e69cf8ab14",
+      "size": 129,
+      "mtimeMs": 1789026069581.9688,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/lib/demo-content.ts": {
+      "description": "Demo copy for every block.",
+      "tokens": 3948,
+      "hash": "aaffca5b60f6d551",
+      "size": 13836,
+      "mtimeMs": 1789026069582.4058,
+      "updatedAt": "2026-09-10T07:49:29.710Z",
+      "source": "scan"
+    },
+    "src/lib/env.ts": {
+      "description": "Sanity connection details and analytics ids, read from the environment.",
+      "tokens": 380,
+      "hash": "8e87940b279b29c7",
+      "size": 1336,
+      "mtimeMs": 1789026069582.5168,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan"
+    },
+    "src/lib/form-fields.ts": {
+      "description": "Shape and layout rules for CMS-authored forms. No React in here, so the",
+      "tokens": 1668,
+      "hash": "ef1de2fc32c0e9cc",
+      "size": 5842,
+      "mtimeMs": 1789026069582.7053,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "toRedirect",
+          "kind": "fn",
+          "startLine": 78,
+          "endLine": 92,
+          "tokens": 159
+        },
+        {
+          "name": "toSteps",
+          "kind": "fn",
+          "startLine": 93,
+          "endLine": 104,
+          "tokens": 123
+        },
+        {
+          "name": "fillTokens",
+          "kind": "fn",
+          "startLine": 105,
+          "endLine": 116,
+          "tokens": 126
+        },
+        {
+          "name": "toFieldRows",
+          "kind": "fn",
+          "startLine": 117,
+          "endLine": 135,
+          "tokens": 182
+        },
+        {
+          "name": "toFormDefinition",
+          "kind": "fn",
+          "startLine": 136,
+          "endLine": 179,
+          "tokens": 446
+        }
+      ]
+    },
+    "src/lib/form-mail.ts": {
+      "description": "The mails `POST /api/submit-form` sends.",
+      "tokens": 1688,
+      "hash": "b537639e4583d7d2",
+      "size": 5910,
+      "mtimeMs": 1789026069582.896,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "escapeHtml",
+          "kind": "fn",
+          "startLine": 16,
+          "endLine": 27,
+          "tokens": 92
+        },
+        {
+          "name": "color",
+          "kind": "fn",
+          "startLine": 28,
+          "endLine": 32,
+          "tokens": 62
+        },
+        {
+          "name": "tint",
+          "kind": "fn",
+          "startLine": 33,
+          "endLine": 50,
+          "tokens": 156
+        },
+        {
+          "name": "renderText",
+          "kind": "fn",
+          "startLine": 51,
+          "endLine": 82,
+          "tokens": 230
+        },
+        {
+          "name": "renderFormMail",
+          "kind": "fn",
+          "startLine": 83,
+          "endLine": 169,
+          "tokens": 990
+        }
+      ]
+    },
+    "src/lib/json-ld.ts": {
+      "description": "Structured data (schema.org JSON-LD), built from what is in the CMS.",
+      "tokens": 2953,
+      "hash": "5659969d69b5c77d",
+      "size": 10350,
+      "mtimeMs": 1789026069583.261,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "absoluteUrl",
+          "kind": "fn",
+          "startLine": 32,
+          "endLine": 42,
+          "tokens": 123
+        },
+        {
+          "name": "prune",
+          "kind": "fn",
+          "startLine": 43,
+          "endLine": 67,
+          "tokens": 295
+        },
+        {
+          "name": "serializeJsonLd",
+          "kind": "fn",
+          "startLine": 68,
+          "endLine": 72,
+          "tokens": 54
+        },
+        {
+          "name": "jsonLdGraph",
+          "kind": "fn",
+          "startLine": 73,
+          "endLine": 96,
+          "tokens": 278
+        },
+        {
+          "name": "postalAddress",
+          "kind": "fn",
+          "startLine": 97,
+          "endLine": 123,
+          "tokens": 287
+        },
+        {
+          "name": "organizationJsonLd",
+          "kind": "fn",
+          "startLine": 124,
+          "endLine": 138,
+          "tokens": 129
+        },
+        {
+          "name": "websiteJsonLd",
+          "kind": "fn",
+          "startLine": 139,
+          "endLine": 150,
+          "tokens": 82
+        },
+        {
+          "name": "siteJsonLd",
+          "kind": "fn",
+          "startLine": 151,
+          "endLine": 161,
+          "tokens": 126
+        },
+        {
+          "name": "breadcrumbJsonLd",
+          "kind": "fn",
+          "startLine": 162,
+          "endLine": 180,
+          "tokens": 154
+        },
+        {
+          "name": "faqQuestions",
+          "kind": "fn",
+          "startLine": 181,
+          "endLine": 198,
+          "tokens": 192
+        },
+        {
+          "name": "pageFaqs",
+          "kind": "fn",
+          "startLine": 199,
+          "endLine": 215,
+          "tokens": 188
+        },
+        {
+          "name": "pageBreadcrumbLabel",
+          "kind": "fn",
+          "startLine": 216,
+          "endLine": 242,
+          "tokens": 257
+        },
+        {
+          "name": "webPageJsonLd",
+          "kind": "fn",
+          "startLine": 243,
+          "endLine": 269,
+          "tokens": 341
+        },
+        {
+          "name": "pageJsonLd",
+          "kind": "fn",
+          "startLine": 270,
+          "endLine": 276,
+          "tokens": 59
+        }
+      ]
+    },
+    "src/lib/links.ts": {
+      "description": "The slug of the page that renders at `/`.",
+      "tokens": 446,
+      "hash": "3a4fd193d899c506",
+      "size": 1563,
+      "mtimeMs": 1789026069583.3684,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan"
+    },
+    "src/lib/site.ts": {
+      "description": "Site-wide details, and the defaults they fall back to.",
+      "tokens": 1228,
+      "hash": "0bc87ac9e034474c",
+      "size": 4307,
+      "mtimeMs": 1789026069583.5542,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "text",
+          "kind": "fn",
+          "startLine": 72,
+          "endLine": 75,
+          "tokens": 33
+        },
+        {
+          "name": "list",
+          "kind": "fn",
+          "startLine": 76,
+          "endLine": 90,
+          "tokens": 154
+        },
+        {
+          "name": "resolveSiteInformation",
+          "kind": "fn",
+          "startLine": 91,
+          "endLine": 106,
+          "tokens": 201
+        },
+        {
+          "name": "telHref",
+          "kind": "fn",
+          "startLine": 107,
+          "endLine": 110,
+          "tokens": 29
+        },
+        {
+          "name": "mailtoHref",
+          "kind": "fn",
+          "startLine": 111,
+          "endLine": 121,
+          "tokens": 63
+        }
+      ]
+    },
+    "src/sanity/client.ts": {
+      "description": "Fetch that degrades instead of throwing.",
+      "tokens": 301,
+      "hash": "3224719ec2ccece7",
+      "size": 1055,
+      "mtimeMs": 1789026069583.7273,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan"
+    },
+    "src/sanity/image.ts": {
+      "description": "Exports SanityImage, urlFor, imageSrc, toImage",
+      "tokens": 293,
+      "hash": "b01cf2114cc455b3",
+      "size": 1024,
+      "mtimeMs": 1789026069583.8245,
+      "updatedAt": "2026-09-10T07:49:29.711Z",
+      "source": "scan"
+    },
+    "src/sanity/metadata.ts": {
+      "description": "The OG image for a page's `seo` object, sized for social cards.",
+      "tokens": 635,
+      "hash": "a0c09875b49d2b49",
+      "size": 2223,
+      "mtimeMs": 1789026069584.0566,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "seoImageUrl",
+          "kind": "fn",
+          "startLine": 18,
+          "endLine": 39,
+          "tokens": 228
+        },
+        {
+          "name": "pageMetadata",
+          "kind": "fn",
+          "startLine": 40,
+          "endLine": 68,
+          "tokens": 280
+        }
+      ]
+    },
+    "src/sanity/queries.ts": {
+      "description": "Resolve internal page references on link/cta objects.",
+      "tokens": 1362,
+      "hash": "566dd62e4f5c4d82",
+      "size": 4781,
+      "mtimeMs": 1789026069584.2417,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan"
+    },
+    "src/sanity/sanity.types.ts": {
+      "description": "---------------------------------------------------------------------------------",
+      "tokens": 9726,
+      "hash": "41c9799ce6b08024",
+      "size": 34042,
+      "mtimeMs": 1789026069584.3933,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan"
+    },
+    "src/sanity/schema.json": {
+      "description": "",
+      "tokens": 25734,
+      "hash": "a59c242ae384f92e",
+      "size": 90068,
+      "mtimeMs": 1789026069584.6282,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan"
+    },
+    "src/sanity/site-information.ts": {
+      "description": "The site's details, with defaults filled in where the CMS is empty.",
+      "tokens": 308,
+      "hash": "ece6072bc41e7ce8",
+      "size": 1081,
+      "mtimeMs": 1789026069584.788,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan"
+    },
+    "tsconfig.json": {
+      "description": "TypeScript configuration",
+      "tokens": 192,
+      "hash": "5c51df4c59f4510d",
+      "size": 670,
+      "mtimeMs": 1789026069584.8926,
+      "updatedAt": "2026-09-10T07:49:29.712Z",
+      "source": "scan"
+    }
+  }
+}
