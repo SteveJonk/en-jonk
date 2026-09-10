@@ -1,126 +1,72 @@
-import { LogoMark } from '@/components/ui/LogoMark';
-import { Wrap } from '@/components/ui/Wrap';
-import { cn } from '@/lib/cn';
-import {
-  mailtoHref,
-  resolveSiteInformation,
-  telHref,
-  type FooterLinkGroup,
-  type NavLink,
-  type SiteInformation,
-} from '@/lib/site';
 import Link from 'next/link';
+import { Amp, withAmp } from '@/components/site/Amp';
+import { Container } from '@/components/site/Section';
+import { CONTACT, NAV } from '@/lib/nav';
 
-function FooterLinkList({ links }: { links: NavLink[] }) {
+const link = 'transition-colors hover:text-rose';
+
+export function SiteFooter() {
   return (
-    <ul className='list-none'>
-      {links.map((link) => (
-        <li key={link.label} className='mb-[11px] text-[0.92rem] max-md:mb-0.5'>
-          <Link
-            href={link.href}
-            className='opacity-90 transition-opacity duration-200 hover:underline hover:opacity-100 hover:underline-offset-4 max-md:inline-block max-md:py-3'
-          >
-            {link.label}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
+    <footer className='bg-ink pt-16 pb-10 text-shell/80 md:pt-20'>
+      <Container>
+        <div className='grid gap-10 border-b border-shell/15 pb-12 md:grid-cols-12 md:gap-8'>
+          <div className='md:col-span-5'>
+            <Link
+              href='/'
+              className='inline-block font-mark text-4xl text-shell transition-colors hover:text-shell/80'
+            >
+              <Amp />
+              Jonk
+            </Link>
+            <p className='mt-3 font-script text-2xl text-shell/70'>talent · leiderschap · teams</p>
+          </div>
 
-type SiteFooterProps = {
-  /** From `getSiteInformation()`; the defaults stand in when not passed. */
-  site?: SiteInformation;
-  linkGroups?: FooterLinkGroup[] | null;
-  copyright?: string | null;
-};
+          <nav className='md:col-span-4' aria-label='Footer navigatie'>
+            <ul className='space-y-2 font-ui text-sm'>
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={link}>
+                    {withAmp(item.label)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-export function SiteFooter({
-  site = resolveSiteInformation(null),
-  linkGroups = [],
-  copyright,
-}: SiteFooterProps) {
-  const groups = linkGroups ?? [];
-
-  return (
-    <footer className='bg-inverse pt-24 pb-[34px] text-surface-alt max-sm:pt-[74px]'>
-      <Wrap>
-        <div
-          className={cn(
-            'mb-[70px] grid grid-cols-[1.5fr_1fr_1fr_1.1fr] gap-12',
-            'max-md:grid-cols-2 max-md:gap-10',
-            'max-sm:mb-[46px] max-sm:grid-cols-1 max-sm:gap-[38px]',
-          )}
-        >
-          <div>
-            <LogoMark name={site.name} variant='footer' />
-            <p className='max-w-[270px] text-[0.9rem] leading-[1.75] text-subtle'>
-              {site.description}
+          <div className='space-y-2 font-ui text-sm md:col-span-3'>
+            <p>
+              <a href={CONTACT.phoneHref} className={link}>
+                {CONTACT.phone}
+              </a>
+            </p>
+            <p>
+              <a href={CONTACT.emailHref} className={link}>
+                {CONTACT.email}
+              </a>
+            </p>
+            <p className='space-x-4 pt-3'>
+              <a href={CONTACT.linkedin} className={link}>
+                LinkedIn
+              </a>
+              <a href={CONTACT.spotify} className={link}>
+                Spotify
+              </a>
             </p>
           </div>
-          {groups.map((group) => (
-            <div key={group.title}>
-              <h5 className='mb-5 text-eyebrow font-semibold tracking-[0.22em] text-subtle uppercase'>
-                {group.title}
-              </h5>
-              <FooterLinkList links={group.links ?? []} />
-            </div>
-          ))}
-          <div>
-            <h5 className='mb-5 text-eyebrow font-semibold tracking-[0.22em] text-subtle uppercase'>
-              Contact
-            </h5>
-            <ul className='list-none'>
-              <li className='mb-[11px] text-[0.92rem] max-md:mb-0.5'>
-                {site.address.map((line, index) => (
-                  <span key={line}>
-                    {index > 0 ? <br /> : null}
-                    {line}
-                  </span>
-                ))}
-              </li>
-              <li className='mb-[11px] text-[0.92rem] max-md:mb-0.5'>
-                <Link
-                  href={telHref(site.phone)}
-                  className='opacity-90 transition-opacity duration-200 hover:underline hover:opacity-100 hover:underline-offset-4 max-md:inline-block max-md:py-3'
-                >
-                  {site.phone}
-                </Link>
-              </li>
-              <li className='mb-[11px] text-[0.92rem] max-md:mb-0.5'>
-                <Link
-                  href={mailtoHref(site.email)}
-                  className='opacity-90 transition-opacity duration-200 hover:underline hover:opacity-100 hover:underline-offset-4 max-md:inline-block max-md:py-3'
-                >
-                  {site.email}
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
-        <div
-          className={cn(
-            'flex flex-wrap items-center justify-between gap-4 border-t border-white/13 pt-[26px]',
-            'text-[0.78rem] text-subtle max-sm:gap-[18px] max-sm:text-[0.74rem]',
-          )}
-        >
-          <span>
-            {copyright || `© ${new Date().getFullYear()} ${site.name}`}
-          </span>
-          {site.badges.length > 0 ? (
-            <div className='flex gap-2.5 max-sm:flex-wrap'>
-              {site.badges.map((badge) => (
-                <span
-                  key={badge}
-                  className='rounded-pill border border-white/22 px-[13px] py-[5px] text-[0.65rem] tracking-[0.14em]'
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-          ) : null}
+
+        <div className='flex flex-col gap-4 pt-8 font-ui text-xs text-shell/55 sm:flex-row sm:items-center sm:justify-between'>
+          <p>&copy; 2026 &amp;Jonk</p>
+          <p className='space-x-6'>
+            <a href='#' className='transition-colors hover:text-shell'>
+              Privacyverklaring
+            </a>
+            <a href='#' className='transition-colors hover:text-shell'>
+              Algemene voorwaarden
+            </a>
+          </p>
         </div>
-      </Wrap>
+      </Container>
     </footer>
   );
 }

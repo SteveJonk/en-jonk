@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 const REVEAL_OPTIONS: IntersectionObserverInit = {
-  threshold: 0.12,
-  rootMargin: '0px 0px -40px 0px',
+  threshold: 0.08,
+  rootMargin: '0px 0px -8% 0px',
 };
 
 export function useRevealOnScroll<T extends HTMLElement>() {
