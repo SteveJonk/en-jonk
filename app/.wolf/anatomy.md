@@ -1,10 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-09-10T07:49:29.714Z
-> Files: 146 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-09-10T10:00:00.381Z
+> Files: 150 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
+- `.DS_Store` (~2186 tok)
 - `.gitignore` — Git ignore rules (~147 tok)
 - `AGENTS.md` — OpenWolf (~68 tok)
 - `CLAUDE.md` — OpenWolf (~57 tok)
@@ -110,9 +111,9 @@
 
 - `cases.html` — &Jonk — Cases (~6133 tok)
 - `contact.html` — &Jonk — Contact (~5973 tok)
-- `hoe-wij-kijken.html` — &Jonk — Hoe wij kijken (~6440 tok)
-- `index.html` — &Jonk — talent, leiderschap, teams (~9817 tok)
-- `onepager-ignore.html` — &Jonk — talent, leiderschap, teams (~11034 tok)
+- `hoe-wij-kijken.html` — &Jonk — Hoe wij kijken (~8987 tok)
+- `index.html` — &Jonk — talent, leiderschap, teams (~11094 tok)
+- `onepager-ignore.html` — &Jonk — talent, leiderschap, teams (~9817 tok)
 - `over-jonk.html` — Over &Jonk (~6647 tok)
 - `podcast.html` — &Jonk — Podcast In Gesprek (~6483 tok)
 - `wat-anderen-zeggen.html` — &Jonk — Wat anderen zeggen (~6597 tok)
@@ -155,6 +156,12 @@
 - `jonk-vakmensen-2.webp` (~21269 tok)
 - `jonk-vakmensen-3-800.webp` (~7962 tok)
 - `jonk-vakmensen-3.webp` (~18836 tok)
+
+## designs/hoe-wij-kijken/
+
+- `ik-en-wij.html` — &amp;Jonk — Ik &amp; Wij (~7500 tok)
+- `ik.html` — &amp;Jonk — Ik (~7467 tok)
+- `jij-en-ik.html` — &amp;Jonk — Jij &amp; ik (~7680 tok)
 
 ## scripts/
 
