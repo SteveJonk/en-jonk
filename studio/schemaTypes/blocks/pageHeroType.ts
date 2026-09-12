@@ -1,56 +1,41 @@
 import {ImagesIcon} from '@sanity/icons/Images'
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import {TEXT_HINT, eyebrowField, imageField, leadField, preview} from '../objects/fields'
 
+/** Page opener: heading left, lead right, optional photo or stats underneath. */
 export const pageHeroType = defineType({
   name: 'pageHero',
   title: 'Page hero',
   type: 'object',
   icon: ImagesIcon,
   fields: [
-    defineField({
-      name: 'image',
-      type: 'image',
-      options: {hotspot: true},
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          validation: (rule) => rule.required(),
-        }),
-      ],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'breadcrumbLabel',
-      title: 'Breadcrumb label',
-      type: 'string',
-      description: 'Current page label in the breadcrumb (e.g. About)',
-    }),
-    defineField({name: 'eyebrow', type: 'string', validation: (rule) => rule.required()}),
+    eyebrowField,
     defineField({
       name: 'title',
-      type: 'string',
-      description: 'Headline text before the highlighted phrase',
+      type: 'text',
+      rows: 2,
+      description: `${TEXT_HINT} A line break is kept on larger screens.`,
       validation: (rule) => rule.required(),
     }),
+    defineField({...leadField, validation: (rule) => rule.required()}),
     defineField({
-      name: 'titleHighlight',
-      title: 'Title highlight',
-      type: 'string',
+      name: 'ctas',
+      title: 'Buttons',
+      description: 'The first is the primary button, the rest are outlined.',
+      type: 'array',
+      of: [defineArrayMember({type: 'cta'})],
     }),
-    defineField({name: 'lead', type: 'text', rows: 3, validation: (rule) => rule.required()}),
-    defineField({name: 'primaryCta', title: 'Primary CTA', type: 'cta'}),
-    defineField({name: 'secondaryCta', title: 'Secondary CTA', type: 'cta'}),
+    defineField({name: 'showContactLines', type: 'boolean', description: '"Bel … of mail …" from Site information.'}),
+    defineField({name: 'showPodcastLinks', type: 'boolean', description: 'Spotify and Apple Podcasts buttons from Site information.'}),
+    imageField,
+    defineField({
+      name: 'imageAspect',
+      type: 'string',
+      initialValue: '16/9',
+      options: {list: ['16/9', '21/9'], layout: 'radio', direction: 'horizontal'},
+      hidden: ({parent}) => !parent?.image,
+    }),
+    defineField({name: 'stats', type: 'array', of: [defineArrayMember({type: 'stat'})]}),
   ],
-  preview: {
-    select: {title: 'title', titleHighlight: 'titleHighlight', media: 'image'},
-    prepare({title, titleHighlight, media}) {
-      return {
-        title: [title, titleHighlight].filter(Boolean).join(' '),
-        subtitle: 'Page hero',
-        media,
-      }
-    },
-  },
+  preview: preview('Page hero'),
 })

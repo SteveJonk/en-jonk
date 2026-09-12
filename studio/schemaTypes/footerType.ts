@@ -1,37 +1,8 @@
 import {BlockElementIcon} from '@sanity/icons/BlockElement'
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import {linkFields} from './objects/linkFields'
+import {defineField, defineType} from 'sanity'
+import {navLinkMember} from './navigationType'
 
-const footerLinkMember = defineArrayMember({
-  type: 'object',
-  name: 'footerLink',
-  fields: [
-    defineField({
-      name: 'label',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
-    ...linkFields,
-  ],
-  preview: {
-    select: {
-      title: 'label',
-      linkType: 'linkType',
-      href: 'href',
-      internalTitle: 'internalLink.title',
-    },
-    prepare({title, linkType, href, internalTitle}) {
-      return {
-        title: title || 'Link',
-        subtitle:
-          linkType === 'internal'
-            ? internalTitle || 'Internal page'
-            : href || 'External URL',
-      }
-    },
-  },
-})
-
+/** The footer's own copy. Its menu repeats the Navigation links. */
 export const footerType = defineType({
   name: 'footer',
   title: 'Footer',
@@ -39,37 +10,16 @@ export const footerType = defineType({
   icon: BlockElementIcon,
   fields: [
     defineField({
-      name: 'linkGroups',
-      title: 'Link groups',
+      name: 'tagline',
+      type: 'string',
+      description: 'Handwritten line under the logo.',
+    }),
+    defineField({
+      name: 'legalLinks',
+      title: 'Legal links',
+      description: 'Privacy statement, terms — the bottom row.',
       type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'linkGroup',
-          fields: [
-            defineField({
-              name: 'title',
-              type: 'string',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'links',
-              type: 'array',
-              of: [footerLinkMember],
-            }),
-          ],
-          preview: {
-            select: {title: 'title', links: 'links'},
-            prepare({title, links}) {
-              const count = Array.isArray(links) ? links.length : 0
-              return {
-                title: title || 'Link group',
-                subtitle: `${count} link${count === 1 ? '' : 's'}`,
-              }
-            },
-          },
-        }),
-      ],
+      of: [navLinkMember],
     }),
     defineField({
       name: 'copyright',

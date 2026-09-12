@@ -1,4 +1,23 @@
 {
   "version": 1,
-  "bugs": []
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-09-12T13:58:34",
+      "error_message": "sanity schema extract: 'Node.js version >=22.12 required. You are running v17.8.0'; then tsc 'Module \"sanity\" has no exported member defineType' and cli-spinners/spinners.json 'Unterminated string in JSON'",
+      "file": "studio/node_modules",
+      "root_cause": "Shell defaults to nvm Node 17; studio node_modules was partially installed/corrupt (truncated files, missing sanity types).",
+      "fix": "Prefix commands with PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH and run `npm ci` in studio/.",
+      "tags": [
+        "node",
+        "nvm",
+        "sanity",
+        "node_modules",
+        "tooling"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-12T13:58:34"
+    }
+  ]
 }
