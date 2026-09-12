@@ -1,0 +1,11 @@
+[2026-09-11T12:18:42.885Z] [INFO] Daemon shutting down...
+[2026-09-11T12:18:42.906Z] [INFO] Daemon stopped
+[2026-09-12T11:26:21.084Z] [INFO] Scheduled task: Full anatomy rescan (0 */6 * * *)
+[2026-09-12T11:26:21.086Z] [INFO] Scheduled task: Consolidate old memory (0 2 * * *)
+[2026-09-12T11:26:21.086Z] [INFO] Scheduled task: Token audit report (0 0 * * 1)
+[2026-09-12T11:26:21.086Z] [INFO] Scheduled task: Cerebrum reflection (0 3 * * 0)
+[2026-09-12T11:26:21.087Z] [INFO] Scheduled task: AI suggestions (0 4 * * 1)
+[2026-09-12T11:26:21.087Z] [INFO] File watcher started on .wolf/
+[2026-09-12T11:26:21.088Z] [INFO] OpenWolf daemon started
+[2026-09-12T11:26:21.090Z] [INFO] Dashboard server listening on 127.0.0.1:18793
+[2026-09-12T11:26:35.719Z] [INFO] WebSocket client connected
