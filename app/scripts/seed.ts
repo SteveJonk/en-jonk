@@ -3,35 +3,29 @@
  *
  * Usage (from app/):
  *   npm run seed                 # everything
- *   npm run seed:home            # one page
- *   npm run seed:site            # the site information singleton
- *   npm run seed:forms           # form settings + the demo contact form
- *   npm run seed -- home nav
+ *   npm run seed:pages           # only the pages
+ *   npm run seed -- documents nav
  *
- * Each target is idempotent and only touches its own documents, so seeding one
- * page leaves the others alone. Page content is defined per page in
- * scripts/seed/<page>.ts and comes from src/lib/demo-content.ts.
+ * ONE-TIME: every document has a fixed id and is overwritten on a re-run, so
+ * edits made in the studio are lost. Seed at the start, then edit in the studio.
  *
- * ADDING A PAGE: create scripts/seed/<page>.ts exporting a `seed<Page>`
- * function, then register it in TARGETS below and add an npm script.
+ * The page copy lives in scripts/seed/pages.ts, the testimonials, cases and
+ * podcast episodes (including the design's placeholders) in documents.ts.
  */
-import {seedAbout} from './seed/about'
-import {seedContact} from './seed/contact'
+import {seedDocuments} from './seed/documents'
 import {seedForms} from './seed/forms'
-import {seedHome} from './seed/home'
 import {seedNavigation} from './seed/navigation'
-import {seedSiteInformation} from './seed/site-information'
+import {seedPages} from './seed/pages'
 import {projectRef} from './seed/shared'
+import {seedSiteInformation} from './seed/site-information'
 
 const TARGETS = {
   site: seedSiteInformation,
-  // Before the pages: the contact page references the form by id.
+  // Before the pages: blocks reference the form and these documents.
   forms: seedForms,
-  home: seedHome,
-  about: seedAbout,
-  contact: seedContact,
-  // `nav` runs last by default: it links menu items to pages by slug, so the
-  // pages need to exist first.
+  documents: seedDocuments,
+  pages: seedPages,
+  // Last: menu items reference the pages.
   nav: seedNavigation,
 } as const
 

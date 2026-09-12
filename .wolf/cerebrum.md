@@ -17,6 +17,11 @@
 
 ## Key Learnings
 
+- [2026-09-12] Page model: every page is a Sanity `page` doc (slug may contain `/`, e.g. `hoe-wij-kijken/ik`) rendered by `app/[...slug]` / home via `CmsPage`. Blocks typed with `BlockOf<'x'>` from `PAGE_QUERY_RESULT` — rerun `npm run typegen` after schema/query edits.
+- [2026-09-12] CMS text marks via `rich()` (Rich.tsx): `&` brand amp, `*x*` display em, `**x**` bold, `[x]` tbd placeholder, newline = br.
+- [2026-09-12] Seed is one-time overwrite with fixed ids (`page-<slug-with-dashes>`).
+- [2026-09-12] Browser checks: html has scroll-behavior smooth → use `scrollTo({behavior:'instant'})`; preview_start via launch.json with an nvm node path never came up — start `npx next start -p 3001` via Bash background instead.
+
 - **Project:** en-jonk
 - **Description:** A block-based website scaffold: Next.js 16 (App Router, React 19, Tailwind v4)
 

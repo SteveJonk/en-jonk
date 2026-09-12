@@ -9,9 +9,10 @@ studio and it is live.
 
 ## What's in it
 
-- **Page builder** — ten blocks, each one CMS-editable, composable in any order
-- **Three pages to start from** — a home page, a content page (`/about`) and a
-  working contact page
+- **Page builder** — 26 blocks built from the &Jonk design, each one
+  CMS-editable, composable in any order
+- **The whole &Jonk site seeded** — eleven pages, menus, testimonials, cases and
+  podcast episodes, straight from the approved design (placeholders included)
 - **SEO** — per-page meta title, description, OG image and `noindex`, driven
   from the CMS with sensible site-wide fallbacks
 - **Theming** — one `@theme` block controls every colour, font and spacing token
@@ -27,7 +28,8 @@ studio and it is live.
 
 ## Setup
 
-You need a Sanity project. Create one at [sanity.io/manage](https://www.sanity.io/manage)
+You need Node 22.12 or newer (the Sanity CLI refuses anything older) and a
+Sanity project. Create one at [sanity.io/manage](https://www.sanity.io/manage)
 (free tier is fine) and note its project id.
 
 ```bash
@@ -98,10 +100,9 @@ live in the CMS, as the **Site information** singleton at the top of the
 studio's menu. They drive the header, the footer, the page title template and
 the structured data.
 
-`app/src/lib/site.ts` holds the defaults for all of it, and does the same two
-jobs `demo-content.ts` does for blocks: it is what the front end falls back to
-when a field is empty **or the CMS is unreachable**, *and* it is what
-`npm run seed:site` pushes into Sanity. Replace the constants once and both
+`app/src/lib/site.ts` holds the defaults for all of it, and does two jobs: it
+is what the front end falls back to when a field is empty **or the CMS is
+unreachable**, *and* it is what `npm run seed:site` pushes into Sanity. Replace the constants once and both
 sides move together.
 
 Read the resolved values with `getSiteInformation()`
@@ -116,51 +117,72 @@ need it before — or without — a CMS round trip.
 
 ### Copy
 
-`app/src/lib/demo-content.ts` holds the demo copy for every block, and it does
-two jobs at once: it is what a block falls back to when the CMS has not supplied
-a field, **and** it is what `npm run seed` pushes into Sanity. Replace the
-strings there and both sides move together.
+The page copy lives in the CMS. `scripts/seed/pages.ts` holds the copy of the
+approved design and `npm run seed` pushes it into Sanity, once: every document
+has a fixed id and is overwritten on a re-run, so after the first seed the
+studio is the source of truth.
 
-The copy is written for an invented studio ("Fieldnote") so that a seeded site
-reads like a real site instead of a page of lorem ipsum — it is easier to judge
-spacing and hierarchy against sentences of realistic length. It is still filler:
-replace it, along with the matching details in `app/src/lib/site.ts`.
+Text fields accept a few marks, rendered by `rich()` in
+`src/components/site/Rich.tsx`:
+
+| Write            | Renders as                                          |
+| ---------------- | --------------------------------------------------- |
+| `&`              | the brand ampersand                                 |
+| `*In Gesprek*`   | the display face, as the design uses for titles     |
+| `**Eric Jonk**`  | bold                                                |
+| `[cijfer]`       | a placeholder in the dashed "still to come" style   |
+| a line break     | a line break (in a hero title only from `sm` up)    |
 
 ## The blocks
 
-| Block        | What it is                                       |
-| ------------ | ------------------------------------------------ |
-| `hero`       | Full-bleed opener with a cycling image and badge |
-| `pageHero`   | Shorter opener for inner pages, with breadcrumb  |
-| `intro`      | Text and image with a stat row                   |
-| `services`   | Three cards plus an optional dark highlight band |
-| `mediaText`  | Text column beside a supporting photo            |
-| `benefits`   | Icon list beside an image                        |
-| `steps`      | Numbered process with a sticky image             |
-| `faqs`       | Accordion, fed by reusable FAQ documents         |
-| `contactForm`| A form from Forms, with a contact panel beside it |
-| `crossLinks` | Two cards pointing at related pages              |
-| `ctaBand`    | Closing call to action over a photo              |
+Every block wraps a component from `src/components/site/`, so the CMS renders
+exactly the approved design. Most take a `background` (default, paper, dark).
+
+| Block             | What it is                                                   |
+| ----------------- | ------------------------------------------------------------ |
+| `pageHero`        | Page opener: heading, lead, buttons, photo or stats          |
+| `articleHero`     | Opener of a "drie lagen" page, coloured by its layer         |
+| `mediaText`       | Text beside one photo or a three-photo collage               |
+| `textSplit`       | Heading left, text right, optional photo under the heading   |
+| `cardGrid`        | Heading plus bordered cards, optionally with colour bars     |
+| `kenmerken`       | The three things clients name, beside a photo and a quote    |
+| `threeLevels`     | The individu / team / organisatie Venn, with texts per level |
+| `timeline`        | Dots on a line: programme lengths, history                   |
+| `steps`           | Numbered steps beside a heading                              |
+| `stats`           | Big numbers, usually on the dark band                        |
+| `values`          | The four values, compact or with illustration and photos     |
+| `quote`           | A plain quote or a testimonial on a band                     |
+| `gallery`         | One wide photo, or photos in columns                         |
+| `testimonials`    | Grid of testimonial documents                                |
+| `cases`           | Case documents, featured or as a grid                        |
+| `logos`           | Scrolling client-logo rows                                   |
+| `podcastTeaser`   | Podcast intro with Spotify / Apple Podcasts buttons          |
+| `podcastEpisodes` | The latest `podcastEpisode` documents                        |
+| `contactForm`     | Direct contact details beside a form from Forms              |
+| `articleSplit`, `articleAside`, `articleFigure`, `articleOutcome` | Sections of a "drie lagen" article; consecutive ones share one column |
+| `layerNav`        | Links to the three layer pages                               |
+| `linkBand`        | A short heading with one link                                |
+| `kennismaken`     | The closing call/mail band                                   |
+
+Diagrams (the tangle, the lens, the dramadriehoek, "ik in de wij") are drawn in
+`src/components/site/Diagrams.tsx`; editors pick one by name.
+
+Spotify, Apple Podcasts and LinkedIn buttons read their URL from **Site
+information → Social links**. `#` is a placeholder that still shows the button;
+an empty URL hides it. Only real `https` links go into the structured data.
 
 ## Adding a block
 
-Four touchpoints, in this order:
-
-1. **`studio/schemaTypes/blocks/<name>Type.ts`** — define the fields
+1. **`studio/schemaTypes/blocks/`** — define the fields
 2. **`studio/schemaTypes/index.ts`** and **`pageBuilderType.ts`** — register it
-   so editors can insert it
 3. **`app/src/sanity/queries.ts`** — project any link or reference fields inside
-   `PAGE_QUERY`; a link you forget here arrives as an unresolved reference, and
-   a nested one (inside an object, as on `contactForm`'s panel) needs its own
-   branch
-4. **`app/src/components/PageBuilder.tsx`** — add a `case`, and the component in
-   `app/src/components/blocks/`
-5. **`npm run typegen`** — regenerate the types for the new fields (see
-   [Types](#types))
+   `PAGE_QUERY`; a link you forget here arrives as an unresolved reference
+4. **`npm run typegen`** — the block now has a type in `PAGE_QUERY_RESULT`
+5. **`app/src/components/blocks/`** — a component taking `block: BlockOf<'name'>`,
+   and a `case` in `app/src/components/PageBuilder.tsx`
 
-Give the component optional props with defaults from `demo-content.ts` and it
-renders before an editor has filled anything in. Unknown block types log a
-warning and render nothing, so a half-built block never breaks a page.
+Unknown block types log a warning and render nothing, so a half-built block
+never breaks a page.
 
 ## Types
 
@@ -227,10 +249,9 @@ separate blocks repeating the same facts:
   from the **Site information** singleton, including its social links
   (`sameAs`), with `src/lib/site.ts` as the fallback behind every field
 - each page adds a `WebPage` with its title, description and OG image
-- a page with an `faqs` block is *also* an `FAQPage`, on the same node — two
-  nodes for one URL would claim two pages that do not exist
-- a `pageHero` block's breadcrumb label becomes a `BreadcrumbList`, so the
-  structured data matches the breadcrumb the visitor actually sees
+- every page except home gets a `BreadcrumbList` (Home → the page title)
+- `pageJsonLd` can also mark a page as an `FAQPage` when given questions — on
+  the same node, because two nodes for one URL would claim two pages
 
 Two rules are load-bearing and easy to undo by accident:
 
@@ -285,14 +306,14 @@ field is an editor's job, not a deploy.
   the same one can appear on several pages and its fields live in one place.
 
 ```bash
-npm run seed:forms      # form settings + a working contact form
-npm run seed:contact    # /contact, the page that renders it
+npm run seed:forms      # form settings + the contact form
+npm run seed:pages      # every page, including /contact that renders it
 npm run check:form      # assertions over the layout and the allow-list
 ```
 
-`seed:forms` writes the form document and the shared settings; `seed:contact`
-writes the page that references it, and `seed:nav` points the Contact menu
-items at that page. Run in that order, or let `npm run seed` do it for you.
+`seed:forms` writes the form document and the shared settings; `seed:pages`
+writes the pages that reference it. `npm run seed` runs everything in the
+right order.
 
 ### How a submission travels
 
@@ -502,18 +523,19 @@ app/
   src/app/            routes: / , /[slug] , not-found, sitemap, robots,
                       api/submit-form, globals.css (the theme)
   src/components/
-    blocks/           one component per page-builder block
+    blocks/           the page-builder block components (typed from the query)
+    site/             the &Jonk design components the blocks are built from
     layout/           header, footer
     ui/               small shared primitives
     form/             the form renderer and its field components
     TrackingScripts   GTM + Meta pixel, both opt-in
     JsonLd            renders one structured-data graph
   src/hooks/          scroll, sticky header, mobile nav
-  src/lib/            site defaults, demo copy, link resolution, env,
+  src/lib/            site defaults, link resolution, env,
                       json-ld (schema.org), form-fields + form-mail
   src/sanity/         client, queries, image helpers, metadata mapping,
                       site-information fetch, generated types
-  scripts/seed/       one file per seeded page, plus the singletons and forms
+  scripts/seed/       pages, documents, forms, menus and site information
   scripts/check-jsonld.ts   assertions over the structured data
   scripts/check-form.ts     assertions over the form layout + allow-list
 studio/
@@ -560,7 +582,7 @@ npm run dev          npm run build        npm run start
 npm run lint         npm run typecheck    npm run typegen
 npm run check:jsonld npm run check:form
 npm run seed         npm run seed:site    npm run seed:forms
-npm run seed:home    npm run seed:about   npm run seed:contact
+npm run seed:documents                    npm run seed:pages
 npm run seed:nav
 
 # studio/
@@ -574,6 +596,6 @@ npm run typegen      npm run schema:extract
   from CMS content. The header and footer degrade gracefully if the CMS is
   unreachable; page content does not, on purpose — an outage should surface as
   an error, not as a silently empty page.
-- Placeholder images live in `app/public/images/`. Replace them with real photos
-  and update the paths in `demo-content.ts`.
+- The seed uploads the photos in `app/public/images/` and the logos in
+  `app/public/logos/`; after that, photos are managed in the studio.
 - Pages are revalidated every 30 seconds (`revalidate: 30` in the route files).

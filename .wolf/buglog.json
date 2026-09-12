@@ -18,6 +18,23 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-09-12T13:58:34"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-09-12T14:18:16",
+      "error_message": "Seed failed: read ECONNRESET (during Sanity image uploads)",
+      "file": "app/scripts/seed/shared.ts",
+      "root_cause": "Transient network reset from the Sanity asset API mid-run.",
+      "fix": "Re-run `npm run seed -- pages nav`; uploads are reused by originalFilename and docs use createOrReplace with fixed ids, so re-runs are safe.",
+      "tags": [
+        "sanity",
+        "seed",
+        "network",
+        "upload"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-12T14:18:16"
     }
   ]
 }
