@@ -1,9 +1,10 @@
 /**
  * Seeds the navigation and footer singletons.
  *
- * Menu items point at pages by their fixed ids, so run this after the pages.
+ * Menu items point at pages by their fixed ids, so run this after the pages;
+ * a menu item for a page that is not seeded yet is linked weakly.
  */
-import {client, entry, pageId, ref} from './shared'
+import {client, entry, pageId, ref, weakenMissingReferences} from './shared'
 
 const MENU: [label: string, slug: string][] = [
   ['Wat we doen', 'wat-we-doen'],
@@ -27,11 +28,13 @@ function placeholderLink(label: string) {
 export async function seedNavigation() {
   console.log('Navigation & footer')
 
-  await client.createOrReplace({
+  const navigation = {
     _id: 'navigation',
     _type: 'navigation' as const,
     links: MENU.map(([label, slug]) => navLink(label, slug)),
-  })
+  }
+  await weakenMissingReferences([navigation])
+  await client.createOrReplace(navigation)
   console.log('✓ navigation singleton upserted')
 
   await client.createOrReplace({

@@ -1,54 +1,66 @@
 /**
- * Seed Sanity content. Runs every target, or only the ones you name.
+ * Seed Sanity content. Runs everything, or only the targets and pages you name.
  *
  * Usage (from app/):
- *   npm run seed                 # everything
- *   npm run seed:pages           # only the pages
- *   npm run seed -- documents nav
+ *   npm run seed                      # everything
+ *   npm run seed:pages                # every page
+ *   npm run seed:page -- cases        # one page (any name from PAGES in seed/pages.ts)
+ *   npm run seed -- documents home podcast
  *
  * ONE-TIME: every document has a fixed id and is overwritten on a re-run, so
  * edits made in the studio are lost. Seed at the start, then edit in the studio.
  *
- * The page copy lives in scripts/seed/pages.ts, the testimonials, cases and
- * podcast episodes (including the design's placeholders) in documents.ts.
+ * A single page may link to pages or documents that are not in the dataset
+ * yet; those links are written as weak references (see
+ * `weakenMissingReferences`), and become strong on the next full seed.
  */
 import {seedDocuments} from './seed/documents'
 import {seedForms} from './seed/forms'
 import {seedNavigation} from './seed/navigation'
-import {seedPages} from './seed/pages'
+import {isPageName, PAGES, seedPages, type PageName} from './seed/pages'
 import {projectRef} from './seed/shared'
 import {seedSiteInformation} from './seed/site-information'
 
+/** In run order: blocks reference forms and documents, menus reference pages. */
 const TARGETS = {
   site: seedSiteInformation,
-  // Before the pages: blocks reference the form and these documents.
   forms: seedForms,
   documents: seedDocuments,
-  pages: seedPages,
-  // Last: menu items reference the pages.
+  pages: () => seedPages(),
   nav: seedNavigation,
 } as const
 
 type TargetName = keyof typeof TARGETS
 
-function parseTargets(args: string[]): TargetName[] {
-  if (args.length === 0) return Object.keys(TARGETS) as TargetName[]
-
-  const unknown = args.filter((arg) => !(arg in TARGETS))
-  if (unknown.length > 0) {
-    throw new Error(
-      `Unknown target(s): ${unknown.join(', ')}. Available: ${Object.keys(TARGETS).join(', ')}`,
-    )
-  }
-  return args as TargetName[]
+function isTarget(name: string): name is TargetName {
+  return name in TARGETS
 }
 
 async function main() {
-  const targets = parseTargets(process.argv.slice(2))
-  console.log(`Seeding Sanity project ${projectRef} — ${targets.join(', ')}\n`)
+  const args = process.argv.slice(2)
+  const unknown = args.filter((arg) => !isTarget(arg) && !isPageName(arg))
+  if (unknown.length > 0) {
+    throw new Error(
+      `Unknown target(s): ${unknown.join(', ')}.\n` +
+        `  Targets: ${Object.keys(TARGETS).join(', ')}\n` +
+        `  Pages:   ${Object.keys(PAGES).join(', ')}`,
+    )
+  }
 
-  for (const target of targets) {
-    await TARGETS[target]()
+  const targets = args.length ? args.filter(isTarget) : (Object.keys(TARGETS) as TargetName[])
+  // Named pages are covered already when `pages` itself is a target.
+  const pages = targets.includes('pages') ? [] : (args.filter(isPageName) as PageName[])
+
+  console.log(`Seeding Sanity project ${projectRef} — ${[...targets, ...pages].join(', ')}\n`)
+
+  for (const name of Object.keys(TARGETS) as TargetName[]) {
+    // Single pages go where `pages` would, so they land before the menus.
+    if (name === 'pages' && pages.length) {
+      await seedPages(pages)
+      console.log('')
+    }
+    if (!targets.includes(name)) continue
+    await TARGETS[name]()
     console.log('')
   }
 

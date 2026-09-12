@@ -26,6 +26,7 @@ import {
   ref,
   refItem,
   urlLink,
+  weakenMissingReferences,
   type Block,
 } from './shared'
 
@@ -846,15 +847,40 @@ async function contact() {
   )
 }
 
-export async function seedPages() {
-  console.log('Pages')
+/** Every page by seed target name, in menu order. `npm run seed -- <name>` seeds one. */
+export const PAGES = {
+  home,
+  'wat-we-doen': watWeDoen,
+  'wat-anderen-zeggen': watAnderenZeggen,
+  'hoe-wij-kijken': hoeWijKijken,
+  ik,
+  'jij-en-ik': jijEnIk,
+  'ik-en-wij': ikEnWij,
+  'over-jonk': overJonk,
+  cases,
+  podcast,
+  contact,
+}
+
+export type PageName = keyof typeof PAGES
+
+export function isPageName(name: string): name is PageName {
+  return name in PAGES
+}
+
+/** All pages, or only the named ones. */
+export async function seedPages(names = Object.keys(PAGES) as PageName[]) {
+  console.log(`Pages — ${names.join(', ')}`)
 
   const docs = []
-  for (const build of [home, watWeDoen, watAnderenZeggen, hoeWijKijken, ik, jijEnIk, ikEnWij, overJonk, cases, podcast, contact]) {
-    docs.push(await build())
+  for (const name of names) {
+    docs.push(await PAGES[name]())
   }
 
-  // One transaction: the pages link to each other, so they arrive together.
+  // A single page can link to pages or documents that are not seeded yet.
+  await weakenMissingReferences(docs)
+
+  // One transaction: pages seeded together link to each other, so they arrive together.
   const tx = client.transaction()
   for (const doc of docs) tx.createOrReplace(doc)
   await tx.commit()

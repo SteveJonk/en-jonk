@@ -122,6 +122,20 @@ approved design and `npm run seed` pushes it into Sanity, once: every document
 has a fixed id and is overwritten on a re-run, so after the first seed the
 studio is the source of truth.
 
+Seed everything with `npm run seed`, or one page at a time:
+
+```bash
+npm run seed:page -- cases              # one page
+npm run seed -- home podcast            # several, by name
+npm run seed -- documents cases nav     # mixed with the other targets
+```
+
+Page names are the keys of `PAGES` in `scripts/seed/pages.ts` (`home`,
+`wat-we-doen`, `ik`, `jij-en-ik`, …); an unknown name lists them all. A page
+seeded on its own may link to pages or documents that are not there yet —
+those links are written as weak references and turn strong on the next full
+seed.
+
 Text fields accept a few marks, rendered by `rich()` in
 `src/components/site/Rich.tsx`:
 
@@ -583,7 +597,7 @@ npm run lint         npm run typecheck    npm run typegen
 npm run check:jsonld npm run check:form
 npm run seed         npm run seed:site    npm run seed:forms
 npm run seed:documents                    npm run seed:pages
-npm run seed:nav
+npm run seed:page -- cases                npm run seed:nav
 
 # studio/
 npm run dev          npm run build        npm run deploy

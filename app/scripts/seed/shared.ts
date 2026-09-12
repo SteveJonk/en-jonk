@@ -141,6 +141,41 @@ export function entry<T extends Record<string, unknown>>(type: string, fields: T
   return {_type: type, _key: key(seed ?? `${type}:${JSON.stringify(fields)}`), ...fields}
 }
 
+/**
+ * Mark every reference to a document that exists neither in the dataset nor in
+ * `docs` as weak, so a partial seed (one page, on a fresh dataset) is not
+ * rejected for linking to what is not there yet. A weak link to a missing
+ * document renders as nothing; seed that document, then re-seed this one (or
+ * run the full seed) and the link is strong again.
+ */
+export async function weakenMissingReferences(docs: {_id: string}[]) {
+  const references: {_ref: string; _weak?: boolean}[] = []
+  const walk = (value: unknown) => {
+    if (Array.isArray(value)) return value.forEach(walk)
+    if (!value || typeof value !== 'object') return
+    const node = value as Record<string, unknown>
+    if (node._type === 'reference' && typeof node._ref === 'string') {
+      references.push(node as {_ref: string})
+    }
+    Object.values(node).forEach(walk)
+  }
+  docs.forEach(walk)
+
+  const ids = [...new Set(references.map((reference) => reference._ref))]
+  const existing = new Set([
+    ...(await client.fetch<string[]>(`*[_id in $ids]._id`, {ids})),
+    ...docs.map((doc) => doc._id),
+  ])
+
+  const missing = references.filter((reference) => !existing.has(reference._ref))
+  for (const reference of missing) reference._weak = true
+
+  if (missing.length) {
+    const names = [...new Set(missing.map((reference) => reference._ref))]
+    console.log(`  ~ not seeded yet, linked weakly: ${names.join(', ')}`)
+  }
+}
+
 export type Block = {_type: string} & Record<string, unknown>
 
 /**
