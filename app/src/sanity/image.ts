@@ -37,3 +37,11 @@ export function toImage(
   if (!src) return undefined;
   return { src, alt: source?.alt ?? '' };
 }
+
+/** A `photo` from the studio: an image with its alt text and crop focus. */
+export type Photo = {
+  asset?: { _ref: string } | null;
+  alt?: string | null;
+  hotspot?: { x?: number | null; y?: number | null } | null;
+  crop?: unknown;
+};

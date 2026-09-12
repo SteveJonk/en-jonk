@@ -1,27 +1,12 @@
 import { Reveal } from '@/components/site/Reveal';
+import { rich } from '@/components/site/Rich';
 import { cn } from '@/lib/cn';
 
-const STATS = [
-  {
-    value: (
-      <>
-        7<sup className='align-super text-3xl md:text-4xl'>e</sup>
-      </>
-    ),
-    text: (
-      <>
-        keer dat de leergang <span className='tbd'>[naam leergang]</span> dit jaar draait.
-      </>
-    ),
-  },
-  { value: '2018', text: 'het jaar waarin we de eerste traineeships gingen begeleiden.' },
-  {
-    value: <span className='tbd'>[cijfer]</span>,
-    text: 'doorstroom bij een gemeente van ruim 500 medewerkers.',
-  },
-];
+export type Stat = { value?: string | null; suffix?: string | null; text?: string | null };
 
-export function Stats({ dark }: { dark?: boolean }) {
+export function Stats({ items, dark }: { items: Stat[]; dark?: boolean }) {
+  if (!items.length) return null;
+
   return (
     <dl
       className={cn(
@@ -29,11 +14,14 @@ export function Stats({ dark }: { dark?: boolean }) {
         dark ? 'border-shell/20' : 'border-ink/10',
       )}
     >
-      {STATS.map((stat, i) => (
+      {items.map((stat, i) => (
         <Reveal key={i}>
-          <dt className='font-display text-6xl leading-none text-rose md:text-7xl'>{stat.value}</dt>
+          <dt className='font-display text-6xl leading-none text-rose md:text-7xl'>
+            {rich(stat.value)}
+            {stat.suffix && <sup className='align-super text-3xl md:text-4xl'>{stat.suffix}</sup>}
+          </dt>
           <dd className={cn('mt-4 max-w-xs', dark ? 'text-shell/75' : 'text-muted')}>
-            {stat.text}
+            {rich(stat.text)}
           </dd>
         </Reveal>
       ))}

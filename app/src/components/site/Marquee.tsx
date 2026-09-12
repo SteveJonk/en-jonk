@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- logos have mixed intrinsic sizes */
 import { cn } from '@/lib/cn';
 
-export type MarqueeLogo = { src: string; alt: string };
+export type MarqueeLogo = { src: string; alt: string; href?: string | null };
 
 /**
  * Endless logo strip. The track holds the set twice and slides -50% for a
@@ -30,12 +30,12 @@ export function Marquee({ logos, reverse }: { logos: MarqueeLogo[]; reverse?: bo
               )}
             >
               <a
-                href='#'
+                href={logo.href || undefined}
                 tabIndex={copy ? -1 : undefined}
                 className='group/logo flex size-full items-center justify-center'
               >
                 <img
-                  src={`/logos/${logo.src}`}
+                  src={logo.src}
                   alt={copy ? '' : logo.alt}
                   loading='lazy'
                   className='max-h-16 w-auto max-w-full object-contain opacity-60 mix-blend-multiply grayscale transition-[filter,opacity] duration-300 group-hover/logo:opacity-100 group-hover/logo:grayscale-0 group-focus-visible/logo:opacity-100 group-focus-visible/logo:grayscale-0'

@@ -7,7 +7,6 @@ import { withAmp } from '@/components/site/Amp';
 import { ContactLines } from '@/components/site/Links';
 import { useStickyTopbar } from '@/hooks/useStickyTopbar';
 import { cn } from '@/lib/cn';
-import { NAV } from '@/lib/nav';
 
 const bar = 'mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:h-24 md:px-10';
 const toggle = 'flex cursor-pointer items-center gap-3 px-1 py-3 font-ui text-sm tracking-[.18em] uppercase';
@@ -18,8 +17,15 @@ function Logo(props: { alt: string }) {
   return <img src='/jonk-logo.svg' alt={props.alt} className='h-7 w-auto md:h-8' />;
 }
 
+type SiteHeaderProps = {
+  /** Main navigation, from the `navigation` document. `&` renders as the brand ampersand. */
+  links: { label: string; href: string }[];
+  phone: string;
+  email: string;
+};
+
 /** Fixed top bar + full-screen menu overlay (used at every width). */
-export function SiteHeader() {
+export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
   const scrolled = useStickyTopbar();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -101,7 +107,7 @@ export function SiteHeader() {
 
           <nav className='mt-10 md:mt-16' aria-label='Hoofdnavigatie'>
             <ul className='space-y-2 md:space-y-3'>
-              {NAV.map((link, i) => (
+              {links.map((link, i) => (
                 <li
                   key={link.href}
                   className={cn(rise, open ? 'translate-y-0 opacity-100' : 'translate-y-[18px] opacity-0')}
@@ -125,6 +131,8 @@ export function SiteHeader() {
           </nav>
 
           <ContactLines
+            phone={phone}
+            email={email}
             className={cn(
               'mt-12 md:mt-16',
               rise,

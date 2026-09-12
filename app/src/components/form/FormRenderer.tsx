@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useRef, useState, type FormEvent, type MouseEvent, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { btnPrimary } from '@/components/site/Links';
 import { cn } from '@/lib/cn';
 import { fillTokens, toFieldRows, toSteps, type FormDefinition } from '@/lib/form-fields';
 import { FormField, type FormFieldVariant } from './fields';
@@ -33,13 +34,7 @@ export type FormRendererProps = {
 
 type Control = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
-const BUTTON_BASE = cn(
-  'inline-flex items-center justify-center gap-2.5 rounded-pill border border-transparent',
-  'bg-brand text-btn font-semibold text-brand-fg',
-  'transition-[background,transform] duration-300 ease-brand hover:-translate-y-0.5 hover:bg-brand-hover',
-  'focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-accent-strong',
-  'cursor-pointer disabled:pointer-events-none disabled:opacity-60',
-);
+const BUTTON_BASE = cn(btnPrimary, 'cursor-pointer justify-center gap-2.5 disabled:pointer-events-none disabled:opacity-60');
 
 /**
  * Per-variant chrome. `stacked` is the page-width form (inline button, panel
@@ -48,13 +43,13 @@ const BUTTON_BASE = cn(
  */
 const VARIANTS = {
   stacked: {
-    button: cn(BUTTON_BASE, 'px-[34px] py-[17px] whitespace-nowrap max-sm:w-full'),
+    button: cn(BUTTON_BASE, 'px-10 whitespace-nowrap'),
     title: 'mb-6 text-[1.4rem]',
     lead: 'mb-6 leading-[1.7] text-muted',
-    rowGap: 'gap-5',
+    rowGap: 'gap-6',
   },
   compact: {
-    button: cn(BUTTON_BASE, 'w-full px-[28px] py-[17px]'),
+    button: cn(BUTTON_BASE, 'w-full px-7'),
     title: 'mb-2 text-[1.55rem]',
     lead: 'text-[0.92rem] leading-[1.6] text-muted',
     rowGap: 'gap-3.5',
@@ -80,8 +75,8 @@ function SuccessPanel({
 }) {
   if (variant === 'stacked') {
     return (
-      <div className='rounded border-l-[3px] border-accent-strong bg-surface px-10 py-11 max-sm:px-6 max-sm:py-8'>
-        {title ? <h3 className='mb-2.5 text-[1.6rem]'>{title}</h3> : null}
+      <div className='border-l-2 border-rose bg-shell px-10 py-11 max-sm:px-6 max-sm:py-8'>
+        {title ? <h3 className='t-h3 mb-2.5'>{title}</h3> : null}
         {body ? <p className='leading-[1.7] text-muted'>{body}</p> : null}
       </div>
     );
@@ -89,7 +84,7 @@ function SuccessPanel({
 
   return (
     <div className='py-3 text-center'>
-      <div className='mx-auto mb-4 grid size-[58px] place-items-center rounded-full bg-accent text-accent-strong'>
+      <div className='mx-auto mb-4 grid size-[58px] place-items-center rounded-full bg-paper text-steel'>
         <svg width='30' height='30' viewBox='0 0 24 24' fill='none' aria-hidden='true'>
           <path d='M4 12.5 9.5 18 20 7' stroke='currentColor' strokeWidth='2' />
         </svg>
@@ -182,7 +177,7 @@ export function FormRenderer({
     if (usesRecaptcha) {
       const token = recaptchaRef.current?.getValue();
       if (!token) {
-        setError('Please confirm you are not a robot.');
+        setError('Bevestig dat je geen robot bent.');
         return;
       }
       body.set('recaptchaToken', token);
@@ -194,7 +189,7 @@ export function FormRenderer({
       const response = await fetch('/api/submit-form', { method: 'POST', body });
       const result = (await response.json()) as { success?: boolean; message?: string };
       if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Sending failed.');
+        throw new Error(result.message || 'Versturen is niet gelukt.');
       }
       if (form.redirect) {
         // Stay on 'sending' so the button keeps its disabled state until the
@@ -211,7 +206,7 @@ export function FormRenderer({
       setError(
         submitError instanceof Error
           ? submitError.message
-          : 'Sending failed. Please try again later.',
+          : 'Versturen is niet gelukt. Probeer het later nog eens, of mail ons direct.',
       );
     }
   }
@@ -231,14 +226,14 @@ export function FormRenderer({
 
       {total > 1 ? (
         <div className='mb-[26px] flex items-center gap-3.5'>
-          <div className='h-1 flex-1 overflow-hidden rounded-pill bg-fg/13'>
+          <div className='h-1 flex-1 overflow-hidden bg-ink/10'>
             <span
-              className='block h-full rounded-pill bg-accent-strong transition-[width] duration-[450ms] ease-brand'
+              className='block h-full bg-steel transition-[width] duration-[450ms] ease-brand'
               style={{ width: `${((step + 1) / total) * 100}%` }}
             />
           </div>
-          <span className='text-[0.74rem] font-semibold tracking-[0.11em] whitespace-nowrap text-subtle uppercase'>
-            Step {step + 1} of {total}
+          <span className='text-[0.74rem] font-semibold tracking-[0.11em] whitespace-nowrap text-muted uppercase'>
+            Stap {step + 1} van {total}
           </span>
         </div>
       ) : null}
@@ -300,18 +295,18 @@ export function FormRenderer({
         ) : null}
 
         {error ? (
-          <p role='alert' className='mb-4 text-[0.9rem] text-danger'>
+          <p role='alert' className='mb-4 text-sm text-rose'>
             {error}
           </p>
         ) : null}
 
         {isLastStep ? (
           <button type='submit' disabled={status === 'sending'} className={styles.button}>
-            {status === 'sending' ? 'Sending…' : (form.submitButtonText ?? 'Send')}
+            {status === 'sending' ? 'Versturen…' : (form.submitButtonText ?? 'Versturen')}
           </button>
         ) : (
           <button type='button' onClick={goNext} className={styles.button}>
-            {form.nextButtonText ?? 'Next'}
+            {form.nextButtonText ?? 'Volgende'}
             <IconArrowRight />
           </button>
         )}
@@ -320,9 +315,9 @@ export function FormRenderer({
           <button
             type='button'
             onClick={() => setStep((current) => Math.max(current - 1, 0))}
-            className='mt-3.5 flex w-full items-center justify-center gap-1.5 text-[0.85rem] font-medium text-subtle transition-colors duration-250 ease-brand hover:text-fg'
+            className='mt-3.5 flex w-full items-center justify-center gap-1.5 font-ui text-sm text-muted transition-colors hover:text-ink'
           >
-            ← {form.backButtonText ?? 'Back'}
+            ← {form.backButtonText ?? 'Terug'}
           </button>
         ) : null}
 

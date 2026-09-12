@@ -12,18 +12,18 @@
  * component, or an editor's change will not show up there.
  */
 export const SITE_DEFAULTS = {
-  name: 'Fieldnote',
+  name: '&Jonk',
   description:
-    'A small design and engineering studio. We take on a handful of projects a year and stay on them until they are finished.',
+    '&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel je de mens, je ontwikkelt de organisatie.',
   /** BCP 47 language tag. Sets `<html lang>` and `inLanguage` in the graph. */
-  language: 'en',
-  phone: '+31 (0)20 123 4567',
-  email: 'hello@fieldnote.example',
-  address: ['Prinsengracht 263', '1016 GV Amsterdam'],
+  language: 'nl',
+  phone: '+31 6 10582180',
+  email: 'info@enjonk.nl',
+  address: [] as string[],
   /** ISO 3166-1 alpha-2 code for the address above. Structured data only. */
   addressCountry: 'NL',
-  /** Memberships, certifications, awards. Empty hides the footer row. */
-  badges: ['B CORP', 'ISO 27001'],
+  /** Memberships, certifications, awards. */
+  badges: [] as string[],
 } as const;
 
 /**
@@ -50,8 +50,13 @@ export type SiteInformation = {
   address: string[];
   addressCountry: string;
   badges: string[];
-  /** Profile URLs elsewhere. Empty unless an editor adds some. */
+  /** Real (http) profile URLs, for `sameAs` in the structured data. */
   socialLinks: string[];
+  /**
+   * Link per platform (`linkedin`, `spotify`, `applePodcasts`, …), including
+   * `#` placeholders. A platform without a URL is absent, and its button hides.
+   */
+  social: Record<string, string>;
   logoUrl: string | null;
 };
 
@@ -65,7 +70,7 @@ export type SiteInformationDocument = {
   address?: Array<string | null> | null;
   addressCountry?: string | null;
   badges?: Array<string | null> | null;
-  socialLinks?: Array<string | null> | null;
+  socialLinks?: Array<{ platform?: string | null; url?: string | null } | null> | null;
   logoUrl?: string | null;
 } | null;
 
@@ -86,9 +91,15 @@ function list(
  *
  * A field an editor left empty falls back rather than rendering as a blank —
  * which is also what happens when the CMS is unreachable and `doc` is null.
- * `socialLinks` is the exception: nothing to fall back to, so empty is empty.
+ * Social links are the exception: nothing to fall back to, so empty is empty.
  */
 export function resolveSiteInformation(doc: SiteInformationDocument): SiteInformation {
+  const social: Record<string, string> = {};
+  for (const link of doc?.socialLinks ?? []) {
+    const url = link?.url?.trim();
+    if (link?.platform && url) social[link.platform] = url;
+  }
+
   return {
     name: text(doc?.name, SITE_DEFAULTS.name),
     description: text(doc?.description, SITE_DEFAULTS.description),
@@ -98,7 +109,8 @@ export function resolveSiteInformation(doc: SiteInformationDocument): SiteInform
     address: list(doc?.address, SITE_DEFAULTS.address),
     addressCountry: text(doc?.addressCountry, SITE_DEFAULTS.addressCountry),
     badges: list(doc?.badges, SITE_DEFAULTS.badges),
-    socialLinks: list(doc?.socialLinks),
+    socialLinks: Object.values(social).filter((url) => /^https?:\/\//.test(url)),
+    social,
     logoUrl: doc?.logoUrl?.trim() || null,
   };
 }

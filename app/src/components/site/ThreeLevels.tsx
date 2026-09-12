@@ -10,11 +10,11 @@ const LOBES = [
   { key: 'organisatie', title: 'Organisatie', fill: '#2c5a7a', bar: 'bg-steel', cx: 310, cy: 272, tx: 310, ty: 338 },
 ];
 
-export type Level = { text: ReactNode; items?: string[] };
+export type Level = { text: ReactNode; items?: string[] | null };
 
 type ThreeLevelsProps = {
   /** Individueel, team, organisatie — in that order. */
-  levels: [Level, Level, Level];
+  levels: Level[];
   /** Bordered cards (wat-we-doen) instead of open columns (home). */
   cards?: boolean;
 };
@@ -89,6 +89,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
       >
         {LOBES.map((lobe, i) => {
           const level = levels[i];
+          if (!level) return null;
           return (
             <Reveal
               as='article'
@@ -105,7 +106,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
                 <span className={cn('block h-px w-10', lobe.bar)} />
                 <h3 className='t-h3 mt-5'>{lobe.title}</h3>
                 <p className='mt-3 text-muted'>{level.text}</p>
-                {level.items && (
+                {level.items?.length ? (
                   <ul className='mt-5 space-y-2 font-ui text-sm text-muted'>
                     {level.items.map((item) => (
                       <li key={item} className='border-l border-ink/15 pl-4'>
@@ -113,7 +114,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
                       </li>
                     ))}
                   </ul>
-                )}
+                ) : null}
               </div>
             </Reveal>
           );

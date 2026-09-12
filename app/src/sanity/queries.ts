@@ -14,6 +14,13 @@ const linkExpansion = /* groq */ `{
   }
 }`;
 
+const testimonialProjection = /* groq */ `{
+  _id,
+  quote,
+  name,
+  role
+}`;
+
 /**
  * Everything the renderer needs to draw a form.
  *
@@ -44,9 +51,9 @@ const formProjection = /* groq */ `{
  * One page and its blocks.
  *
  * The `content[]` projection spreads every block wholesale (`...`) and then
- * re-projects the fields that need resolving — links, referenced documents.
- * When you add a block with a link field, add its field name here or the href
- * will arrive as an unresolved reference.
+ * re-projects the fields that need resolving — links and referenced documents.
+ * When you add a block with a link or reference field, add it here or it will
+ * arrive unresolved.
  */
 export const PAGE_QUERY = defineQuery(`
   *[_type == "page" && slug.current == $slug][0]{
@@ -56,42 +63,46 @@ export const PAGE_QUERY = defineQuery(`
     seo,
     content[]{
       ...,
-      primaryCta${linkExpansion},
-      secondaryCta${linkExpansion},
       link${linkExpansion},
-      cta${linkExpansion},
-      highlight{
-        ...,
-        cta${linkExpansion}
-      },
+      backLink${linkExpansion},
+      ctas[]${linkExpansion},
       items[]{
         ...,
-        link${linkExpansion},
-        cta${linkExpansion}
+        link${linkExpansion}
+      },
+      testimonial->${testimonialProjection},
+      testimonials[]->${testimonialProjection},
+      cases[]->{
+        _id,
+        client,
+        type,
+        summary,
+        image,
+        testimonial->${testimonialProjection}
+      },
+      layers[]->{
+        _id,
+        title,
+        "slug": slug.current
+      },
+      _type == "podcastEpisodes" => {
+        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){
+          _id,
+          number,
+          title,
+          description,
+          url
+        }
       },
       // The form lives in its own document so several pages can share it, and
       // the public half of the reCAPTCHA settings rides along — the secret
       // stays server-side, in the submit route.
       _type == "contactForm" => {
         form->${formProjection},
-        // The panel's own CTA is nested, so the top-level link projections do
-        // not reach it — an internal link would arrive as a bare reference.
-        aside{
-          ...,
-          cta${linkExpansion}
-        },
         "recaptcha": *[_type == "formGeneralSettings"][0]{
           recaptchaEnabled,
           recaptchaSiteKey
         }
-      },
-      _type == "faqs" => {
-        ...,
-        faqs[]->{
-          ...,
-          link${linkExpansion}
-        },
-        link${linkExpansion}
       }
     }
   }
@@ -107,8 +118,7 @@ export const PAGE_SLUGS_QUERY = defineQuery(`
 
 export const NAVIGATION_QUERY = defineQuery(`
   *[_id == "navigation"][0]{
-    navLeft[]${linkExpansion},
-    navRight[]${linkExpansion}
+    links[]${linkExpansion}
   }
 `);
 
@@ -129,18 +139,18 @@ export const SITE_INFORMATION_QUERY = defineQuery(`
     address,
     addressCountry,
     badges,
-    // Only the URLs: they become sameAs in the structured data.
-    "socialLinks": socialLinks[].url,
+    socialLinks[]{
+      platform,
+      url
+    },
     "logoUrl": logo.asset->url
   }
 `);
 
 export const FOOTER_QUERY = defineQuery(`
   *[_id == "footer"][0]{
-    linkGroups[]{
-      title,
-      links[]${linkExpansion}
-    },
+    tagline,
+    legalLinks[]${linkExpansion},
     copyright
   }
 `);

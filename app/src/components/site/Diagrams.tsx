@@ -1,29 +1,8 @@
-import type { Metadata } from 'next';
-import { Amp } from '@/components/site/Amp';
-import {
-  ArticleAside,
-  ArticleBody,
-  ArticleFigure,
-  ArticleHero,
-  ArticleOutcome,
-  ArticleSplit,
-  AsideImage,
-  AsideQuote,
-  LayerNav,
-} from '@/components/site/Article';
-import { Kennismaken } from '@/components/site/Kennismaken';
-import { ArrowLink } from '@/components/site/Links';
-
-const LEAD =
-  'Een leidinggevende hoort dat een medewerker een fout heeft gemaakt en voelt de irritatie opkomen. Een adviseur zit in een overleg en merkt dat zijn buik zich aanspant als een collega weer over hem heen praat. Een deelnemer weet het even niet en wilt meteen naar een oplossing. In alle drie de gevallen gebeurt er eerst iets binnenin, voordat iemand reageert. Deze laag gaat over dat moment.';
-
-export const metadata: Metadata = {
-  title: 'Ik',
-  description:
-    'Een leidinggevende hoort dat een medewerker een fout heeft gemaakt en voelt de irritatie opkomen. Een adviseur zit in een overleg en merkt dat zijn…',
-};
-
-/* --- Diagrams ------------------------------------------------------------- */
+/**
+ * The diagrams editors can place on a page. They are drawn in code, not
+ * uploaded: the studio stores only the key (`articleFigure.diagram`,
+ * `articleAside.diagram`), and `DIAGRAMS` maps it to the drawing.
+ */
 
 const INK = '#162029';
 const MUTED = '#5a6670';
@@ -188,7 +167,7 @@ function Filter({ x, y }: { x: number; y: number }) {
 const TANGLE_LABEL =
   'Van één kluwen naar onderscheid: eerst lijkt alles gedachten, dan worden gedachten, gevoel, lichaamssensaties en neiging tot gedrag zichtbaar als overlappende delen, en uiteindelijk als losse delen die je apart kunt opmerken';
 
-function TangleDiagram() {
+export function TangleDiagram() {
   return (
     <>
       <div className='hidden md:block'>
@@ -216,7 +195,7 @@ function TangleDiagram() {
 const LENS_LABEL =
   'De lens: een situatie komt binnen via een filter van sociale conditionering, genetische aanleg en eigen ervaringen. Dat filter selecteert, vervormt en generaliseert. Wat binnenkomt zet gedachten, gevoel, lichaamssensaties en neiging tot gedrag in gang, en dat leidt tot gedrag.';
 
-function LensDiagram() {
+export function LensDiagram() {
   return (
     <>
       <div className='hidden md:block'>
@@ -256,78 +235,110 @@ function LensDiagram() {
   );
 }
 
-/* --- Page ----------------------------------------------------------------- */
-
-export default function IkPage() {
+export function DramaTriangle() {
   return (
-    <>
-      <ArticleHero
-        layer={0}
-        lead={LEAD}
-        image='jonk-7305'
-        alt='Eric Jonk luistert aandachtig in een groep'
-      />
-
-      <ArticleBody>
-        <ArticleAside
-          title='Wat er binnenin gebeurt'
-          paras={[
-            'Ontwikkeling begint bij wat zich binnen iemand afspeelt: overtuigingen, gedachten, gevoelens, lichaamssensaties en de neiging om iets te doen. Een gevoel kan ontstaan in contact met een ander. Wat zich daarna in jou voltrekt, is van jou. Je vat het nooit helemaal, en dat hoeft ook niet. Wij oefenen met opmerken en vertragen: wat gebeurt er nu?',
-            'Wie dat moment leert opmerken, krijgt de ruimte om te kiezen. De leidinggevende die de irritatie voelt, kan dan eerst vragen hoe de fout is ontstaan. De adviseur kan benoemen wat het overleg met hem doet. De deelnemer die het even niet weet, kan zichzelf de tijd geven.',
-          ]}
-          aside={<AsideQuote>Tussen prikkel en reactie zit een moment.</AsideQuote>}
-        />
-
-        <ArticleFigure caption='Opmerken en vertragen: wat gebeurt er nu?'>
-          <TangleDiagram />
-        </ArticleFigure>
-
-        <ArticleSplit
-          title='Patronen die logisch zijn'
-          paras={[
-            'Ieder mens denkt, voelt en handelt vanuit patronen die logisch zijn gezien eerdere ervaringen. Die patronen vormen samen een verhaal dat betekenis geeft aan je verleden, houvast biedt in het heden en een voorspelling doet over de toekomst. Ze helpen je en ze belemmeren je. Werken met je patronen betekent dat je gaat zien welke je volgt en wat die je opleveren, zonder een patroon meteen te lezen als een oordeel over wie je bent.',
-            'Dat geldt ook voor hoe je naar anderen kijkt. De vraag verschuift van "wat is er mis met die collega" naar "hoe is dit gedrag logisch geworden". Die vraag brengt mildheid en nieuwsgierigheid, en vanuit daar ontstaat ruimte om iets anders te kiezen.',
-          ]}
-        />
-
-        <ArticleSplit
-          title='De lens'
-          paras={[
-            'In ons werk gebruiken we een tekening van een oog met een filter. Normen, waarden, ervaringen en gewoontes vormen samen een lens waardoor je kijkt. Die lens geeft selectief aandacht en vervormt. Wat zie je, wat mis je, wat vul je in? Wanneer iemand zeker weet hoe iets zit, is dat voor ons een signaal om te vertragen.',
-          ]}
-        />
-
-        <ArticleFigure caption='De lens: wat je ziet, gaat eerst door een filter'>
-          <LensDiagram />
-        </ArticleFigure>
-
-        <ArticleAside
-          reverse
-          title='Hoe wij daarin werken'
-          paras={[
-            'In onze trajecten geven we hier bewust tijd en taal voor: een vraag over het moment, ruimte voor stilte, een ervaring die eerst even mag sudderen voordat we hem duiden. Naar binnen kijken ontwikkel je door het veel te doen. We vergelijken het met een donkere kamer instappen: eerst zie je niets, dan schimmen, dan contouren en uiteindelijk herken je de bank. Oefenen kan met meditatie, schrijven, coaching, supervisie en in de groep.',
-          ]}
-          aside={<AsideImage src='jonk-6842' alt='Een deelnemer vertelt, Eric Jonk luistert' />}
-        />
-
-        <ArticleOutcome layer={0}>
-          <p className='text-ink/85'>
-            Mensen die opmerken wat er in hen gebeurt voordat ze reageren, oordelen minder snel en
-            verkrampen minder onder druk. Ze kennen hun eigen patronen en kiezen vaker bewust. Dat
-            ziet een organisatie terug in hoe een leidinggevende een lastig gesprek voert en in hoe een
-            medewerker omgaat met een fout. En het is de basis voor de volgende laag: wie zichzelf kan
-            waarnemen, kan de ander werkelijk zien.
-          </p>
-          <p className='mt-10'>
-            <ArrowLink href='/hoe-wij-kijken/jij-en-ik'>
-              Lees verder: Jij <Amp /> ik
-            </ArrowLink>
-          </p>
-        </ArticleOutcome>
-      </ArticleBody>
-
-      <LayerNav current={0} />
-      <Kennismaken paper />
-    </>
+    <svg
+      viewBox='0 0 400 300'
+      className='mx-auto h-auto w-full max-w-sm'
+      role='img'
+      aria-label='De dramadriehoek: Redder, Aanklager en Slachtoffer op de hoeken van een driehoek'
+    >
+      <path d='M80 70 L320 70 L200 250 Z' fill='#4a6b50' fillOpacity={0.14} stroke='#4a6b50' strokeWidth={1.5} />
+      {[
+        [80, 70],
+        [320, 70],
+        [200, 250],
+      ].map(([cx, cy]) => (
+        <circle key={cx} cx={cx} cy={cy} r={7} fill='#bd7875' />
+      ))}
+      <g className='font-ui' fontSize={10} letterSpacing={1.6} fill='#162029' textAnchor='middle'>
+        <text x={80} y={42}>REDDER</text>
+        <text x={320} y={42}>AANKLAGER</text>
+        <text x={200} y={282}>SLACHTOFFER</text>
+      </g>
+    </svg>
   );
 }
+
+/** Ten people in a circle; the first (bottom) one is "ik". */
+export function IkInDeWij() {
+  return (
+    <svg
+      viewBox='0 0 400 300'
+      className='mx-auto h-auto w-full max-w-sm'
+      role='img'
+      aria-label='Tien mensen in een kring; één van hen is uitgelicht: een ik in de wij'
+    >
+      <circle cx={200} cy={150} r={110} fill='none' stroke='#2c5a7a' strokeWidth={1} strokeDasharray='3 5' />
+      {Array.from({ length: 10 }, (_, i) => {
+        const angle = (i * Math.PI) / 5;
+        const cx = +(200 - 110 * Math.sin(angle)).toFixed(1);
+        const cy = +(150 + 110 * Math.cos(angle)).toFixed(1);
+        return i === 0 ? (
+          <circle key={i} cx={cx} cy={cy} r={14} fill='#bd7875' />
+        ) : (
+          <circle key={i} cx={cx} cy={cy} r={10} fill='#2c5a7a' fillOpacity={0.3} />
+        );
+      })}
+      <g className='font-ui' fontSize={10} letterSpacing={1.6} fill='#162029' textAnchor='middle'>
+        <text x={200} y={154}>WIJ</text>
+        <text x={200} y={298}>IK</text>
+      </g>
+    </svg>
+  );
+}
+
+/** Vertrouwen draagt (kom), verbinding (twee ringen), beweging (golf), gekkigheid (lus). */
+export function ValuesIllustration() {
+  return (
+    <svg
+      viewBox='0 0 480 360'
+      className='mx-auto h-auto w-full max-w-md'
+      role='img'
+      aria-label='Illustratie van de vier waarden: een dragende kom voor vertrouwen, twee overlappende ringen voor verbinding, een golf voor beweging en een speelse lus voor gekkigheid'
+    >
+      <path d='M100 200 A140 140 0 0 0 380 200 Z' fill='#bd7875' fillOpacity={0.18} />
+      <path d='M100 200 A140 140 0 0 0 380 200' fill='none' stroke='#bd7875' strokeWidth={1.5} />
+      {[208, 272].map((cx) => (
+        <circle
+          key={cx}
+          cx={cx}
+          cy={160}
+          r={62}
+          fill='#4a6b50'
+          fillOpacity={0.28}
+          stroke='#4a6b50'
+          strokeWidth={1.5}
+          style={{ mixBlendMode: 'multiply' }}
+        />
+      ))}
+      <path d='M20 250 C90 205 150 295 240 250 S390 205 460 250' fill='none' stroke='#2c5a7a' strokeWidth={1.5} />
+      <path
+        d='M318 112 c26 -38 78 -32 70 2 c-7 28 -50 20 -38 -8 c14 -32 58 -44 92 -76'
+        fill='none'
+        stroke='#bd7875'
+        strokeWidth={1.5}
+        strokeLinecap='round'
+      />
+      <circle cx={452} cy={24} r={4} fill='#bd7875' />
+      <circle cx={434} cy={14} r={2.5} fill='#bd7875' />
+      <circle cx={464} cy={44} r={2} fill='#bd7875' />
+      <g className='font-ui' fontSize={10} letterSpacing={1.6} fill='#162029' textAnchor='middle'>
+        <text x={240} y={315}>VERTROUWEN</text>
+        <text x={240} y={164}>VERBINDING</text>
+        <text x={420} y={285}>BEWEGING</text>
+        <text x={330} y={60}>GEKKIGHEID</text>
+      </g>
+    </svg>
+  );
+}
+
+/** Keys as stored by the studio's diagram picker. */
+export const DIAGRAMS = {
+  tangle: TangleDiagram,
+  lens: LensDiagram,
+  dramaTriangle: DramaTriangle,
+  ikInDeWij: IkInDeWij,
+} as const;
+
+export type DiagramKey = keyof typeof DIAGRAMS;
