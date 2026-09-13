@@ -7,6 +7,7 @@ import { withAmp } from '@/components/site/Amp';
 import { ContactLines } from '@/components/site/Links';
 import { useStickyTopbar } from '@/hooks/useStickyTopbar';
 import { cn } from '@/lib/cn';
+import type { InterfaceText } from '@/lib/interface-text';
 
 const bar = 'mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:h-24 md:px-10';
 const toggle = 'flex cursor-pointer items-center gap-3 px-1 py-3 font-ui text-sm tracking-[.18em] uppercase';
@@ -22,10 +23,13 @@ type SiteHeaderProps = {
   links: { label: string; href: string }[];
   phone: string;
   email: string;
+  /** Button texts and screen-reader labels, from the interface text. */
+  labels: InterfaceText['header'];
+  contact: InterfaceText['contact'];
 };
 
 /** Fixed top bar + full-screen menu overlay (used at every width). */
-export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
+export function SiteHeader({ links, phone, email, labels, contact }: SiteHeaderProps) {
   const scrolled = useStickyTopbar();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -58,8 +62,8 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
         )}
       >
         <div className={bar}>
-          <Link href='/' aria-label='&Jonk, naar home' className='block'>
-            <Logo alt='&Jonk — talent, leiderschap, teams' />
+          <Link href='/' aria-label={labels.homeLabel} className='block'>
+            <Logo alt={labels.logoAlt} />
           </Link>
           <button
             ref={openButton}
@@ -69,7 +73,7 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
             onClick={() => setOpen(true)}
             className={cn(toggle, 'group')}
           >
-            <span>Menu</span>
+            <span>{labels.menu}</span>
             <span className='flex w-6 flex-col gap-[5px]' aria-hidden>
               <span className='block h-px w-6 bg-ink transition-transform duration-300 group-hover:translate-x-1' />
               <span className='block h-px w-6 bg-ink transition-transform duration-300 group-hover:-translate-x-1' />
@@ -84,7 +88,7 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
         id='site-menu'
         role='dialog'
         aria-modal='true'
-        aria-label='Hoofdmenu'
+        aria-label={labels.menuLabel}
         className={cn(
           'fixed inset-0 z-50 bg-shell duration-200 ease-out',
           // Visible at once on open so the close button can take focus; hidden only after the fade on close.
@@ -97,7 +101,7 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
           <div className='flex h-20 items-center justify-between md:h-24'>
             <Logo alt='' />
             <button ref={closeButton} type='button' onClick={close} className={toggle}>
-              <span>Sluiten</span>
+              <span>{labels.close}</span>
               <span className='relative block size-6' aria-hidden>
                 <span className='absolute top-1/2 left-0 h-px w-6 rotate-45 bg-ink' />
                 <span className='absolute top-1/2 left-0 h-px w-6 -rotate-45 bg-ink' />
@@ -105,7 +109,7 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
             </button>
           </div>
 
-          <nav className='mt-10 md:mt-16' aria-label='Hoofdnavigatie'>
+          <nav className='mt-10 md:mt-16' aria-label={labels.navLabel}>
             <ul className='space-y-2 md:space-y-3'>
               {links.map((link, i) => (
                 <li
@@ -133,6 +137,8 @@ export function SiteHeader({ links, phone, email }: SiteHeaderProps) {
           <ContactLines
             phone={phone}
             email={email}
+            callPrefix={contact.callPrefix}
+            mailPrefix={contact.mailPrefix}
             className={cn(
               'mt-12 md:mt-16',
               rise,

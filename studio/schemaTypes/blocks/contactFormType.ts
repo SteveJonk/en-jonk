@@ -13,6 +13,8 @@ export const contactFormType = defineType({
   icon: EnvelopeIcon,
   fields: [
     defineField({name: 'detailsEyebrow', type: 'string', initialValue: 'Direct contact'}),
+    defineField({name: 'phoneLabel', type: 'string', initialValue: 'Telefoon'}),
+    defineField({name: 'emailLabel', type: 'string', initialValue: 'E-mail'}),
     defineField({name: 'formEyebrow', type: 'string', initialValue: 'Stuur een bericht'}),
     defineField({
       name: 'form',

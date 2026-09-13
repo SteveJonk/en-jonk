@@ -1,5 +1,6 @@
 import {BlockElementIcon} from '@sanity/icons/BlockElement'
 import {CogIcon} from '@sanity/icons/Cog'
+import {ComposeIcon} from '@sanity/icons/Compose'
 import {EnvelopeIcon} from '@sanity/icons/Envelope'
 import {ImagesIcon} from '@sanity/icons/Images'
 import {MenuIcon} from '@sanity/icons/Menu'
@@ -11,7 +12,7 @@ import {MediaLibrary} from './tools/MediaTool'
  * menu entry, and are filtered out of the generic document list below so they
  * cannot be created twice.
  */
-const SINGLETONS = ['siteInformation', 'navigation', 'footer', 'formGeneralSettings']
+const SINGLETONS = ['siteInformation', 'interfaceText', 'navigation', 'footer', 'formGeneralSettings']
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -26,6 +27,13 @@ export const structure: StructureResolver = (S) =>
             .schemaType('siteInformation')
             .documentId('siteInformation')
             .title('Site information'),
+        ),
+      S.listItem()
+        .title('Interface text')
+        .id('interfaceText')
+        .icon(ComposeIcon)
+        .child(
+          S.document().schemaType('interfaceText').documentId('interfaceText').title('Interface text'),
         ),
       S.listItem()
         .title('Navigation')

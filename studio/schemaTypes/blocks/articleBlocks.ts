@@ -37,6 +37,7 @@ export const articleHeroType = defineType({
       options: {list: [1, 2, 3], layout: 'radio', direction: 'horizontal'},
       validation: (rule) => rule.required(),
     }),
+    defineField({name: 'eyebrow', type: 'string', description: 'e.g. "Drie lagen · laag 1 van 3".'}),
     titleField(),
     defineField({...leadField, validation: (rule) => rule.required()}),
     defineField({...imageField, validation: (rule) => rule.required()}),
@@ -89,8 +90,20 @@ export const articleOutcomeType = defineType({
   type: 'object',
   icon: ImageIcon,
   description: '"Wat het oplevert", closing the article.',
-  fields: [paragraphsField, defineField({...linkField, title: 'Read-on link'})],
-  preview: {prepare: () => ({title: 'Wat het oplevert', subtitle: 'Article outcome'})},
+  fields: [
+    defineField({
+      name: 'title',
+      type: 'string',
+      initialValue: 'Wat het oplevert',
+      validation: (rule) => rule.required(),
+    }),
+    paragraphsField,
+    defineField({...linkField, title: 'Read-on link'}),
+  ],
+  preview: {
+    select: {title: 'title'},
+    prepare: ({title}) => ({title: title || 'Article outcome', subtitle: 'Article outcome'}),
+  },
 })
 
 export const layerNavType = defineType({
@@ -99,7 +112,9 @@ export const layerNavType = defineType({
   type: 'object',
   icon: MenuIcon,
   fields: [
-    defineField({name: 'eyebrow', type: 'string'}),
+    defineField({name: 'eyebrow', type: 'string', description: 'Also the label screen readers announce.'}),
+    defineField({name: 'layerLabel', type: 'string', initialValue: 'Laag', description: 'Before the number: "Laag 1".'}),
+    defineField({name: 'currentLabel', type: 'string', initialValue: 'je leest nu', description: 'After the layer you are on.'}),
     defineField({
       name: 'layers',
       description: 'The three layer pages, in reading order.',
@@ -108,5 +123,8 @@ export const layerNavType = defineType({
       validation: (rule) => rule.max(3),
     }),
   ],
-  preview: {prepare: () => ({title: 'De drie lagen', subtitle: 'Layer navigation'})},
+  preview: {
+    select: {title: 'eyebrow'},
+    prepare: ({title}) => ({title: title || 'Layer navigation', subtitle: 'Layer navigation'}),
+  },
 })

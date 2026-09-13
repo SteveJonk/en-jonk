@@ -27,12 +27,16 @@
 
 ## Do-Not-Repeat
 
+- [2026-09-13] When re-enabling a disabled CMS integration, grep the WHOLE app for the disable marker (`SANITY —`), API routes included, and exercise every interactive path (submit the form) before calling it done.
+
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 <!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
 
 - [2026-09-12] Default shell Node is v17 (nvm). Sanity CLI/Next need >=22.12: always run npm/npx with `PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH`. If studio tsc says `sanity` has no exported member defineType, node_modules is corrupt → `npm ci`.
 
 ## Decision Log
+
+- [2026-09-13] Hardcoded strings: site-wide labels live in ONE `interfaceText` singleton (groups header/footer/contact/kennismaken/forms/notFound) with code defaults in `app/src/lib/interface-text.ts` (same pattern as SITE_DEFAULTS). Section copy = block fields. Social button labels = siteInformation.socialLinks[].label. Diagram labels + Venn aria + global-error stay in code (user chose: drawings break with long text; crash page must not depend on CMS).
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
 

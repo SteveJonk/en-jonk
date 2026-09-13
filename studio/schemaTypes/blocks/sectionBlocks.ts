@@ -101,10 +101,11 @@ export const threeLevelsType = defineType({
           type: 'object',
           name: 'level',
           fields: [
+            defineField({name: 'title', type: 'string', description: 'Heading and label in the diagram.', validation: (rule) => rule.required()}),
             defineField({name: 'text', type: 'text', rows: 3, description: TEXT_HINT, validation: (rule) => rule.required()}),
             defineField({name: 'items', type: 'array', of: [defineArrayMember({type: 'string'})]}),
           ],
-          preview: {select: {title: 'text'}},
+          preview: {select: {title: 'title', subtitle: 'text'}},
         }),
       ],
       validation: (rule) => rule.length(3),

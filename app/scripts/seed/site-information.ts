@@ -22,9 +22,11 @@ export async function seedSiteInformation() {
     phone: SITE_DEFAULTS.phone,
     email: SITE_DEFAULTS.email,
     addressCountry: SITE_DEFAULTS.addressCountry,
-    socialLinks: ['linkedin', 'spotify', 'applePodcasts'].map((platform) =>
-      entry('socialLink', {platform, url: '#'}, platform),
-    ),
+    socialLinks: [
+      ['linkedin', 'LinkedIn'],
+      ['spotify', 'Spotify'],
+      ['applePodcasts', 'Apple Podcasts'],
+    ].map(([platform, label]) => entry('socialLink', {platform, label, url: '#'}, platform)),
   })
 
   console.log('✓ siteInformation singleton upserted')

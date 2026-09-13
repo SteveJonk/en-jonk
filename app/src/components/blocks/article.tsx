@@ -28,6 +28,7 @@ export function ArticleHeroBlock({ block }: { block: BlockOf<'articleHero'> }) {
   return (
     <ArticleHero
       layer={block.layer}
+      eyebrow={rich(block.eyebrow)}
       title={rich(block.title)}
       lead={rich(block.lead)}
       image={block.image}
@@ -75,7 +76,7 @@ export function ArticleSection({ block, layer }: { block: ArticleBlock; layer?: 
 
     case 'articleOutcome':
       return (
-        <ArticleOutcome layer={layer}>
+        <ArticleOutcome layer={layer} title={rich(block.title)}>
           {paras(block.paragraphs).map((p, i) => (
             <p key={i} className={cn('text-ink/85', i > 0 && 'mt-5')}>
               {p}
@@ -97,5 +98,13 @@ export function LayerNavBlock({ block, path }: { block: BlockOf<'layerNav'>; pat
     .map((layer) => ({ title: rich(layer.title), href: pathForSlug(layer.slug) }));
   if (!layers.length) return null;
 
-  return <LayerNav eyebrow={block.eyebrow || undefined} layers={layers} currentPath={path} />;
+  return (
+    <LayerNav
+      eyebrow={block.eyebrow}
+      layerLabel={block.layerLabel}
+      currentLabel={block.currentLabel}
+      layers={layers}
+      currentPath={path}
+    />
+  );
 }

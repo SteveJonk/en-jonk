@@ -16,6 +16,7 @@
  */
 import {seedDocuments} from './seed/documents'
 import {seedForms} from './seed/forms'
+import {seedInterfaceText} from './seed/interface-text'
 import {seedNavigation} from './seed/navigation'
 import {isPageName, PAGES, seedPages, type PageName} from './seed/pages'
 import {projectRef} from './seed/shared'
@@ -24,6 +25,7 @@ import {seedSiteInformation} from './seed/site-information'
 /** In run order: blocks reference forms and documents, menus reference pages. */
 const TARGETS = {
   site: seedSiteInformation,
+  interface: seedInterfaceText,
   forms: seedForms,
   documents: seedDocuments,
   pages: () => seedPages(),

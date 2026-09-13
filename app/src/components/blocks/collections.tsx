@@ -7,17 +7,18 @@ import { rich } from '@/components/site/Rich';
 import { bgClass, Container, Section, SectionHead } from '@/components/site/Section';
 import { cn } from '@/lib/cn';
 import { toFormDefinition } from '@/lib/form-fields';
-import { mailtoHref, telHref } from '@/lib/site';
+import { mailtoHref, telHref, type SocialLink } from '@/lib/site';
 import { urlFor } from '@/sanity/image';
+import { getInterfaceText } from '@/sanity/interface-text';
 import { getSiteInformation } from '@/sanity/site-information';
 
 function Note({ text }: { text?: string | null }) {
   return text ? <p className='mt-6 font-ui text-xs text-muted'>{rich(text)}</p> : null;
 }
 
-/** Social/podcast buttons in design order; a platform without a URL is left out. */
-function platforms(social: Record<string, string>, keys: [string, string][]) {
-  return keys.filter(([key]) => social[key]).map(([key, label]) => ({ label, href: social[key] }));
+/** Which profiles a spot shows is the design's; label and URL are the CMS's. No URL, no button. */
+function platforms(social: Record<string, SocialLink>, keys: string[]) {
+  return keys.flatMap((key) => (social[key] ? [{ label: social[key].label, href: social[key].url }] : []));
 }
 
 export function TestimonialsBlock({ block }: { block: BlockOf<'testimonials'> }) {
@@ -58,9 +59,9 @@ export function CasesBlock({ block }: { block: BlockOf<'cases'> }) {
             <Frame image={item.image} sizes='(min-width:1024px) 50vw, 100vw' className='aspect-[4/5]' />
           </Reveal>
           <Reveal className='lg:col-span-6'>
-            <p className='eyebrow'>
-              Case{item.type && <> &middot; {rich(item.type)}</>}
-            </p>
+            {(block.eyebrow || item.type) && (
+              <p className='eyebrow'>{rich([block.eyebrow, item.type].filter(Boolean).join(' · '))}</p>
+            )}
             <h2 className='t-h2 mt-4'>{rich(item.client)}</h2>
             {item.summary && <p className='t-lead mt-6 max-w-prose text-muted'>{rich(item.summary)}</p>}
             {item.testimonial?.quote && (
@@ -121,10 +122,7 @@ const platformLink =
 
 export async function PodcastTeaserBlock({ block }: { block: BlockOf<'podcastTeaser'> }) {
   const site = await getSiteInformation();
-  const links = platforms(site.social, [
-    ['spotify', 'Spotify'],
-    ['applePodcasts', 'Apple Podcasts'],
-  ]);
+  const links = platforms(site.social, ['spotify', 'applePodcasts']);
 
   return (
     <Section className={bgClass(block.background)}>
@@ -185,7 +183,7 @@ export function PodcastEpisodesBlock({ block }: { block: BlockOf<'podcastEpisode
             {episode.url && (
               <a
                 href={episode.url}
-                aria-label='Beluister deze aflevering'
+                aria-label={block.listenLabel || undefined}
                 className='flex size-10 shrink-0 items-center justify-center rounded-full border border-ink/20 transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-shell'
               >
                 &rarr;
@@ -203,12 +201,9 @@ const socialLink = 'text-steel transition-colors hover:text-rose';
 const contactLink = 'transition-colors hover:text-rose';
 
 export async function ContactFormBlock({ block, path }: { block: BlockOf<'contactForm'>; path?: string }) {
-  const site = await getSiteInformation();
+  const [site, ui] = await Promise.all([getSiteInformation(), getInterfaceText()]);
   const form = toFormDefinition(block.form);
-  const social = platforms(site.social, [
-    ['linkedin', 'LinkedIn'],
-    ['spotify', 'Spotify'],
-  ]);
+  const social = platforms(site.social, ['linkedin', 'spotify']);
   // Only the site key travels to the browser; the secret stays in the submit route.
   const recaptcha =
     block.recaptcha?.recaptchaEnabled && block.recaptcha.recaptchaSiteKey
@@ -222,7 +217,7 @@ export async function ContactFormBlock({ block, path }: { block: BlockOf<'contac
           {block.detailsEyebrow && <p className='eyebrow'>{rich(block.detailsEyebrow)}</p>}
           <dl className='mt-6 space-y-6 font-ui'>
             <div>
-              <dt className='text-sm text-muted'>Telefoon</dt>
+              <dt className='text-sm text-muted'>{block.phoneLabel}</dt>
               <dd className='t-h3 mt-1'>
                 <a href={telHref(site.phone)} className={contactLink}>
                   {site.phone}
@@ -230,7 +225,7 @@ export async function ContactFormBlock({ block, path }: { block: BlockOf<'contac
               </dd>
             </div>
             <div>
-              <dt className='text-sm text-muted'>E-mail</dt>
+              <dt className='text-sm text-muted'>{block.emailLabel}</dt>
               <dd className='t-h3 mt-1'>
                 <a href={mailtoHref(site.email)} className={contactLink}>
                   {site.email}
@@ -257,12 +252,13 @@ export async function ContactFormBlock({ block, path }: { block: BlockOf<'contac
                 form={form}
                 variant='stacked'
                 recaptcha={recaptcha}
+                labels={ui.forms}
                 // What a hidden `{{path}}` field is filled with, so the mail
                 // says which page the form was sent from.
                 context={path ? { path } : undefined}
               />
             ) : (
-              <p className='text-muted'>Er is nog geen formulier gekoppeld aan dit blok.</p>
+              <p className='text-muted'>{ui.forms.noForm}</p>
             )}
           </div>
         </Reveal>

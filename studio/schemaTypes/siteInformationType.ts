@@ -96,6 +96,12 @@ export const siteInformationType = defineType({
               validation: (rule) => rule.required(),
             }),
             defineField({
+              name: 'label',
+              type: 'string',
+              description: 'Button text, e.g. Apple Podcasts.',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
               name: 'url',
               type: 'string',
               description: 'Leave empty to hide the button; # is a placeholder.',
@@ -103,7 +109,7 @@ export const siteInformationType = defineType({
             }),
           ],
           preview: {
-            select: {title: 'platform', subtitle: 'url'},
+            select: {title: 'label', subtitle: 'url'},
           },
         }),
       ],

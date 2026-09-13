@@ -8,6 +8,7 @@ import { HOME_SLUG, pathForSlug } from '@/lib/links';
 import { client } from '@/sanity/client';
 import { pageMetadata, seoImageUrl } from '@/sanity/metadata';
 import { PAGE_QUERY } from '@/sanity/queries';
+import { getInterfaceText } from '@/sanity/interface-text';
 import { getSiteInformation } from '@/sanity/site-information';
 
 const options = { next: { revalidate: 30 } };
@@ -16,8 +17,12 @@ const options = { next: { revalidate: 30 } };
 const getPage = cache((slug: string) => client.fetch(PAGE_QUERY, { slug }, options));
 
 export async function cmsMetadata(slug: string): Promise<Metadata> {
-  const [page, site] = await Promise.all([getPage(slug), getSiteInformation()]);
-  return pageMetadata(page, { isHome: slug === HOME_SLUG, siteName: site.name });
+  const [page, site, ui] = await Promise.all([getPage(slug), getSiteInformation(), getInterfaceText()]);
+  return pageMetadata(page, {
+    isHome: slug === HOME_SLUG,
+    siteName: site.name,
+    notFoundTitle: ui.notFound.title,
+  });
 }
 
 /**

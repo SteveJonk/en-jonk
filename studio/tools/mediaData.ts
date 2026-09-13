@@ -109,6 +109,7 @@ const TYPE_LABELS: Record<string, string> = {
   navigation: 'Navigation',
   footer: 'Footer',
   siteInformation: 'Site information',
+  interfaceText: 'Interface text',
   formGeneralSettings: 'Form settings',
 }
 

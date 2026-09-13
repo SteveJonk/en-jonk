@@ -69,7 +69,13 @@ function kennismaken(fields: {title?: string; text?: string; mailOnly?: boolean;
 }
 
 function layerNav(): Block {
-  return {_type: 'layerNav', eyebrow: 'De drie lagen', layers: LAYERS.map((slug) => refItem(`page-${slug.replace(/\//g, '-')}`))}
+  return {
+    _type: 'layerNav',
+    eyebrow: 'De drie lagen',
+    layerLabel: 'Laag',
+    currentLabel: 'je leest nu',
+    layers: LAYERS.map((slug) => refItem(`page-${slug.replace(/\//g, '-')}`)),
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -134,12 +140,15 @@ async function home() {
         lead: 'Ons werk krijgt vorm in het gesprek met jou. In de praktijk lopen de drie niveaus vaak in elkaar over.',
         levels: [
           entry('level', {
+            title: 'Individueel',
             text: 'Voor medewerkers, professionals en leidinggevenden die een stap willen zetten. Traineeships, (persoonlijk) leiderschapstrajecten, intervisiegroepen en individuele coaching.',
           }),
           entry('level', {
+            title: 'Team',
             text: 'Voor teams die beter willen samenwerken en verantwoordelijkheid willen pakken. Teamcoaching en teamontwikkeling, gericht op wat er tussen mensen gebeurt en wat daar blijft liggen.',
           }),
           entry('level', {
+            title: 'Organisatie',
             text: 'Voor directies en HR/L&O die aan ontwikkeling willen werken, passend bij een organisatie als complex sociaal systeem: van leerstrategie tot behoud en doorstroom van talent. Sparringpartner voor directie en MT.',
           }),
         ],
@@ -236,14 +245,17 @@ async function watWeDoen() {
         cards: true,
         levels: [
           entry('level', {
+            title: 'Individueel',
             text: 'Voor medewerkers, professionals en leidinggevenden die een stap willen zetten.',
             items: ['Traineeships', '(Persoonlijk) leiderschapstraject', 'Intervisiegroepen', 'Individuele coaching'],
           }),
           entry('level', {
+            title: 'Team',
             text: 'Voor teams die beter willen samenwerken en verantwoordelijkheid willen pakken.',
             items: ['Teamcoaching', 'Teamontwikkeling', 'Werken aan onderling aanspreken'],
           }),
           entry('level', {
+            title: 'Organisatie',
             text: 'Voor directies en HR/L&O die aan ontwikkeling willen werken als complex sociaal systeem.',
             items: ['Leerstrategie', 'Behoud & doorstroom van talent', 'Sparringpartner voor directie en MT'],
           }),
@@ -484,6 +496,7 @@ async function ik() {
       {
         _type: 'articleHero',
         layer: 1,
+        eyebrow: 'Drie lagen · laag 1 van 3',
         title: 'Ik',
         lead: 'Een leidinggevende hoort dat een medewerker een fout heeft gemaakt en voelt de irritatie opkomen. Een adviseur zit in een overleg en merkt dat zijn buik zich aanspant als een collega weer over hem heen praat. Een deelnemer weet het even niet en wilt meteen naar een oplossing. In alle drie de gevallen gebeurt er eerst iets binnenin, voordat iemand reageert. Deze laag gaat over dat moment.',
         image: await photo('jonk-7305', 'Eric Jonk luistert aandachtig in een groep'),
@@ -526,6 +539,7 @@ async function ik() {
       },
       {
         _type: 'articleOutcome',
+        title: 'Wat het oplevert',
         paragraphs: [
           'Mensen die opmerken wat er in hen gebeurt voordat ze reageren, oordelen minder snel en verkrampen minder onder druk. Ze kennen hun eigen patronen en kiezen vaker bewust. Dat ziet een organisatie terug in hoe een leidinggevende een lastig gesprek voert en in hoe een medewerker omgaat met een fout. En het is de basis voor de volgende laag: wie zichzelf kan waarnemen, kan de ander werkelijk zien.',
         ],
@@ -549,6 +563,7 @@ async function jijEnIk() {
       {
         _type: 'articleHero',
         layer: 2,
+        eyebrow: 'Drie lagen · laag 2 van 3',
         title: 'Jij & ik',
         lead: "Een medewerker begint in het jaargesprek over haar ambities en merkt dat er niets mee gebeurt. Ze trekt haar conclusie en een half jaar later is ze weg. Twee collega's vermijden al maanden het gesprek dat ze eigenlijk moeten voeren en werken om elkaar heen. Een team heeft goede afspraken op papier en toch loopt de samenwerking vast. In alle gevallen ontbreekt de ontmoeting. Deze laag gaat over wat er tussen jou en de ander gebeurt.",
         image: await photo('jonk-6894', 'Deelnemers in gesprek met elkaar tijdens een leersessie'),
@@ -598,6 +613,7 @@ async function jijEnIk() {
       },
       {
         _type: 'articleOutcome',
+        title: 'Wat het oplevert',
         paragraphs: [
           "Leidinggevenden die het gesprek over ambities werkelijk voeren, zodat een medewerker zich gezien weet en blijft. Collega's die elkaar aanspreken en spanning uithouden. Teams waarin de afspraken op papier ook in het contact kloppen.",
           'Bewustzijn van wat er in jou gebeurt maakt echt contact mogelijk en uit echt contact ontstaat ontwikkeling. Dat werkt door in de groep als geheel: de volgende laag.',
@@ -622,6 +638,7 @@ async function ikEnWij() {
       {
         _type: 'articleHero',
         layer: 3,
+        eyebrow: 'Drie lagen · laag 3 van 3',
         title: 'Ik & Wij',
         lead: 'Een MT-lid vertelt over "mijn team" alsof zij er zelf buiten staat. Een team wacht tot de directie eindelijk een besluit neemt. Een afdeling heeft haar hoop gevestigd op de reorganisatie van volgend jaar. In alle drie de gevallen kijkt iemand naar de groep alsof hij er zelf geen deel van uitmaakt. Wie in een groep werkt, is er onderdeel van. Deze laag gaat over de vraag hoe je vanuit die plek je eigen handelingsruimte vindt.',
         image: await photo('jonk-6832', 'Een groep deelnemers in een kring met Eric Jonk'),
@@ -657,6 +674,7 @@ async function ikEnWij() {
       },
       {
         _type: 'articleOutcome',
+        title: 'Wat het oplevert',
         paragraphs: [
           'Leidinggevenden en professionals die leren lezen wat er om hen heen gebeurt, hoe groepen werken, welke invloed de cultuur heeft en welke ongeschreven regels meespelen, hoeven minder te wachten op de directie, de reorganisatie of de nieuwe collega. Zij vinden hun eigen ruimte in een groep die altijd in beweging is en pakken verantwoordelijkheid waar dat kan.',
         ],
@@ -749,7 +767,7 @@ async function cases() {
         lead: 'Bij meerdere organisaties draaien de jaartrajecten inmiddels voor de zevende keer of vaker. Een aantal daarvan is volledig overgedragen aan trainers uit de organisatie zelf.',
         stats: STATS,
       },
-      {_type: 'cases', layout: 'featured', cases: [refItem(CASE_VLAARDINGEN)], background: 'paper'},
+      {_type: 'cases', layout: 'featured', eyebrow: 'Case', cases: [refItem(CASE_VLAARDINGEN)], background: 'paper'},
       {
         _type: 'cases',
         layout: 'grid',
@@ -785,6 +803,7 @@ async function podcast() {
       },
       {
         _type: 'podcastEpisodes',
+        listenLabel: 'Beluister deze aflevering',
         eyebrow: 'Afleveringen',
         title: 'Luister de laatste gesprekken terug',
         limit: 4,
@@ -831,6 +850,8 @@ async function contact() {
       {
         _type: 'contactForm',
         detailsEyebrow: 'Direct contact',
+        phoneLabel: 'Telefoon',
+        emailLabel: 'E-mail',
         formEyebrow: 'Stuur een bericht',
         form: ref(CONTACT_FORM_ID),
         background: 'paper',

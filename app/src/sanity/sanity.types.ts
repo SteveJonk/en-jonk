@@ -68,6 +68,8 @@ export type PageReference = {
 export type LayerNav = {
   _type: "layerNav";
   eyebrow?: string;
+  layerLabel?: string;
+  currentLabel?: string;
   layers?: Array<
     {
       _key: string;
@@ -77,6 +79,7 @@ export type LayerNav = {
 
 export type ArticleOutcome = {
   _type: "articleOutcome";
+  title: string;
   paragraphs?: Array<string>;
   link?: Cta;
 };
@@ -114,6 +117,8 @@ export type FormReference = {
 export type ContactForm = {
   _type: "contactForm";
   detailsEyebrow?: string;
+  phoneLabel?: string;
+  emailLabel?: string;
   formEyebrow?: string;
   form: FormReference;
   background?: "default" | "paper" | "dark";
@@ -124,6 +129,7 @@ export type PodcastEpisodes = {
   eyebrow?: string;
   title: string;
   limit?: number;
+  listenLabel?: string;
   note?: string;
   background?: "default" | "paper" | "dark";
 };
@@ -290,6 +296,7 @@ export type ThreeLevels = {
   lead?: string;
   cards?: boolean;
   levels?: Array<{
+    title: string;
     text: string;
     items?: Array<string>;
     _type: "level";
@@ -364,6 +371,7 @@ export type MediaText = {
 export type ArticleHero = {
   _type: "articleHero";
   layer: 1 | 2 | 3;
+  eyebrow?: string;
   title: string;
   lead: string;
   image: Photo;
@@ -559,6 +567,7 @@ export type FormGeneralSettings = {
   fromName?: string;
   confirmationSubject: string;
   confirmationMessage?: string;
+  mailFooter?: string;
   mailjetApiKey?: string;
   mailjetApiSecret?: string;
   mailLogo?: {
@@ -630,6 +639,57 @@ export type Form = {
   copyMessage?: string;
 };
 
+export type InterfaceText = {
+  _id: string;
+  _type: "interfaceText";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  header?: {
+    menu?: string;
+    close?: string;
+    logoAlt?: string;
+    homeLabel?: string;
+    menuLabel?: string;
+    navLabel?: string;
+    skipLink?: string;
+  };
+  footer?: {
+    navLabel?: string;
+  };
+  contact?: {
+    callPrefix?: string;
+    mailPrefix?: string;
+  };
+  kennismaken?: {
+    title?: string;
+    text?: string;
+    callButton?: string;
+    mailButton?: string;
+  };
+  forms?: {
+    submit?: string;
+    next?: string;
+    back?: string;
+    sending?: string;
+    step?: string;
+    recaptcha?: string;
+    required?: string;
+    fileTooLarge?: string;
+    empty?: string;
+    invalid?: string;
+    notConfigured?: string;
+    sendError?: string;
+    noForm?: string;
+  };
+  notFound?: {
+    eyebrow?: string;
+    title?: string;
+    text?: string;
+    button?: string;
+  };
+};
+
 export type SiteInformation = {
   _id: string;
   _type: "siteInformation";
@@ -653,6 +713,7 @@ export type SiteInformation = {
   socialLinks?: Array<{
     platform:
       "linkedin" | "spotify" | "applePodcasts" | "instagram" | "youtube";
+    label: string;
     url?: string;
     _type: "socialLink";
     _key: string;
@@ -892,6 +953,7 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Form
+  | InterfaceText
   | SiteInformation
   | Footer
   | Navigation
@@ -955,6 +1017,7 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "articleHero";
         layer: 1 | 2 | 3;
+        eyebrow?: string;
         title: string;
         lead: string;
         image: Photo;
@@ -978,6 +1041,7 @@ export type PAGE_QUERY_RESULT = {
     | {
         _key: string;
         _type: "articleOutcome";
+        title: string;
         paragraphs?: Array<string>;
         link: {
           _type: "cta";
@@ -1084,6 +1148,8 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "contactForm";
         detailsEyebrow?: string;
+        phoneLabel?: string;
+        emailLabel?: string;
         formEyebrow?: string;
         form: {
           _id: string;
@@ -1209,6 +1275,8 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "layerNav";
         eyebrow?: string;
+        layerLabel?: string;
+        currentLabel?: string;
         layers: Array<{
           _id: string;
           title: string;
@@ -1350,6 +1418,7 @@ export type PAGE_QUERY_RESULT = {
         eyebrow?: string;
         title: string;
         limit?: number;
+        listenLabel?: string;
         note?: string;
         background?: "dark" | "default" | "paper";
         link: null;
@@ -1513,6 +1582,7 @@ export type PAGE_QUERY_RESULT = {
         lead?: string;
         cards?: boolean;
         levels?: Array<{
+          title: string;
           text: string;
           items?: Array<string>;
           _type: "level";
@@ -1624,7 +1694,7 @@ export type NAVIGATION_QUERY_RESULT =
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: SITE_INFORMATION_QUERY
-// Query: *[_id == "siteInformation"][0]{    name,    description,    language,    phone,    email,    address,    addressCountry,    badges,    socialLinks[]{      platform,      url    },    "logoUrl": logo.asset->url  }
+// Query: *[_id == "siteInformation"][0]{    name,    description,    language,    phone,    email,    address,    addressCountry,    badges,    socialLinks[]{      platform,      label,      url    },    "logoUrl": logo.asset->url  }
 export type SITE_INFORMATION_QUERY_RESULT =
   | {
       name: null;
@@ -1674,9 +1744,69 @@ export type SITE_INFORMATION_QUERY_RESULT =
       socialLinks: Array<{
         platform:
           "applePodcasts" | "instagram" | "linkedin" | "spotify" | "youtube";
+        label: string;
         url: string | null;
       }> | null;
       logoUrl: string | null;
+    }
+  | null;
+
+// Source: ../app/src/sanity/queries.ts
+// Variable: INTERFACE_TEXT_QUERY
+// Query: *[_id == "interfaceText"][0]{    header,    footer,    contact,    kennismaken,    forms,    notFound  }
+export type INTERFACE_TEXT_QUERY_RESULT =
+  | {
+      header: null;
+      footer: null;
+      contact: null;
+      kennismaken: null;
+      forms: null;
+      notFound: null;
+    }
+  | {
+      header: {
+        menu?: string;
+        close?: string;
+        logoAlt?: string;
+        homeLabel?: string;
+        menuLabel?: string;
+        navLabel?: string;
+        skipLink?: string;
+      } | null;
+      footer: {
+        navLabel?: string;
+      } | null;
+      contact: {
+        callPrefix?: string;
+        mailPrefix?: string;
+      } | null;
+      kennismaken: {
+        title?: string;
+        text?: string;
+        callButton?: string;
+        mailButton?: string;
+      } | null;
+      forms: {
+        submit?: string;
+        next?: string;
+        back?: string;
+        sending?: string;
+        step?: string;
+        recaptcha?: string;
+        required?: string;
+        fileTooLarge?: string;
+        empty?: string;
+        invalid?: string;
+        notConfigured?: string;
+        sendError?: string;
+        noForm?: string;
+      } | null;
+      notFound: {
+        eyebrow?: string;
+        title?: string;
+        text?: string;
+        button?: string;
+      } | null;
     }
   | null;
 
@@ -1737,7 +1867,7 @@ export type FORM_QUERY_RESULT = {
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: FORM_SETTINGS_QUERY
-// Query: *[_type == "formGeneralSettings"][0]{    adminEmail,    fromEmail,    fromName,    mailLogo,    primaryColor,    textColor,    mailjetApiKey,    mailjetApiSecret,    confirmationSubject,    confirmationMessage,    recaptchaEnabled,    recaptchaSecretKey  }
+// Query: *[_type == "formGeneralSettings"][0]{    adminEmail,    fromEmail,    fromName,    mailLogo,    primaryColor,    textColor,    mailjetApiKey,    mailjetApiSecret,    confirmationSubject,    confirmationMessage,    mailFooter,    recaptchaEnabled,    recaptchaSecretKey  }
 export type FORM_SETTINGS_QUERY_RESULT = {
   adminEmail: string;
   fromEmail: string | null;
@@ -1755,20 +1885,25 @@ export type FORM_SETTINGS_QUERY_RESULT = {
   mailjetApiSecret: string | null;
   confirmationSubject: string;
   confirmationMessage: string | null;
+  mailFooter: string | null;
   recaptchaEnabled: boolean | null;
   recaptchaSecretKey: string | null;
 } | null;
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+declare global {
   interface SanityQueries {
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    seo,\n    content[]{\n      ...,\n      link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      backLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      ctas[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      items[]{\n        ...,\n        link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n      },\n      testimonial->{\n  _id,\n  quote,\n  name,\n  role\n},\n      testimonials[]->{\n  _id,\n  quote,\n  name,\n  role\n},\n      cases[]->{\n        _id,\n        client,\n        type,\n        summary,\n        image,\n        testimonial->{\n  _id,\n  quote,\n  name,\n  role\n}\n      },\n      layers[]->{\n        _id,\n        title,\n        "slug": slug.current\n      },\n      _type == "podcastEpisodes" => {\n        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){\n          _id,\n          number,\n          title,\n          description,\n          url\n        }\n      },\n      // The form lives in its own document so several pages can share it, and\n      // the public half of the reCAPTCHA settings rides along \u2014 the secret\n      // stays server-side, in the submit route.\n      _type == "contactForm" => {\n        form->{\n  _id,\n  title,\n  showTitle,\n  mode,\n  fields[],\n  steps[]{\n    title,\n    fields[]\n  },\n  submitButtonText,\n  nextButtonText,\n  backButtonText,\n  successTitle,\n  successBody,\n  redirectAfterSubmit,\n  redirectLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n},\n        "recaptcha": *[_type == "formGeneralSettings"][0]{\n          recaptchaEnabled,\n          recaptchaSiteKey\n        }\n      }\n    }\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  }\n': PAGE_SLUGS_QUERY_RESULT;
     '\n  *[_id == "navigation"][0]{\n    links[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n  }\n': NAVIGATION_QUERY_RESULT;
-    '\n  *[_id == "siteInformation"][0]{\n    name,\n    description,\n    language,\n    phone,\n    email,\n    address,\n    addressCountry,\n    badges,\n    socialLinks[]{\n      platform,\n      url\n    },\n    "logoUrl": logo.asset->url\n  }\n': SITE_INFORMATION_QUERY_RESULT;
+    '\n  *[_id == "siteInformation"][0]{\n    name,\n    description,\n    language,\n    phone,\n    email,\n    address,\n    addressCountry,\n    badges,\n    socialLinks[]{\n      platform,\n      label,\n      url\n    },\n    "logoUrl": logo.asset->url\n  }\n': SITE_INFORMATION_QUERY_RESULT;
+    '\n  *[_id == "interfaceText"][0]{\n    header,\n    footer,\n    contact,\n    kennismaken,\n    forms,\n    notFound\n  }\n': INTERFACE_TEXT_QUERY_RESULT;
     '\n  *[_id == "footer"][0]{\n    tagline,\n    legalLinks[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n    copyright\n  }\n': FOOTER_QUERY_RESULT;
     '\n  *[_id == $formId && _type == "form"][0]{\n    _id,\n    title,\n    mailRecipients,\n    mailSubject,\n    mailMessage,\n    sendCopyToSubmitter,\n    copySubject,\n    copyMessage,\n    "fields": select(\n      mode == "steps" => steps[].fields[]{label, name, type, isRequired},\n      fields[]{label, name, type, isRequired}\n    )\n  }\n': FORM_QUERY_RESULT;
-    '\n  *[_type == "formGeneralSettings"][0]{\n    adminEmail,\n    fromEmail,\n    fromName,\n    mailLogo,\n    primaryColor,\n    textColor,\n    mailjetApiKey,\n    mailjetApiSecret,\n    confirmationSubject,\n    confirmationMessage,\n    recaptchaEnabled,\n    recaptchaSecretKey\n  }\n': FORM_SETTINGS_QUERY_RESULT;
+    '\n  *[_type == "formGeneralSettings"][0]{\n    adminEmail,\n    fromEmail,\n    fromName,\n    mailLogo,\n    primaryColor,\n    textColor,\n    mailjetApiKey,\n    mailjetApiSecret,\n    confirmationSubject,\n    confirmationMessage,\n    mailFooter,\n    recaptchaEnabled,\n    recaptchaSecretKey\n  }\n': FORM_SETTINGS_QUERY_RESULT;
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module "@sanity/client" {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }

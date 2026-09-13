@@ -34,6 +34,7 @@ import {caseType, podcastEpisodeType, testimonialType} from './documents'
 import {footerType} from './footerType'
 import {formGeneralSettingsType} from './formGeneralSettingsType'
 import {formType} from './formType'
+import {interfaceTextType} from './interfaceTextType'
 import {navigationType} from './navigationType'
 import {itemType, photoType, statType} from './objects/contentObjects'
 import {ctaType} from './objects/ctaType'
@@ -61,6 +62,7 @@ export const schemaTypes = [
   navigationType,
   footerType,
   siteInformationType,
+  interfaceTextType,
   formType,
   formGeneralSettingsType,
   // Shared objects

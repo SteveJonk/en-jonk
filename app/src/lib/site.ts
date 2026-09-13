@@ -56,7 +56,7 @@ export type SiteInformation = {
    * Link per platform (`linkedin`, `spotify`, `applePodcasts`, …), including
    * `#` placeholders. A platform without a URL is absent, and its button hides.
    */
-  social: Record<string, string>;
+  social: Record<string, SocialLink>;
   logoUrl: string | null;
 };
 
@@ -70,7 +70,11 @@ export type SiteInformationDocument = {
   address?: Array<string | null> | null;
   addressCountry?: string | null;
   badges?: Array<string | null> | null;
-  socialLinks?: Array<{ platform?: string | null; url?: string | null } | null> | null;
+  socialLinks?: Array<{
+    platform?: string | null;
+    label?: string | null;
+    url?: string | null;
+  } | null> | null;
   logoUrl?: string | null;
 } | null;
 
@@ -94,10 +98,12 @@ function list(
  * Social links are the exception: nothing to fall back to, so empty is empty.
  */
 export function resolveSiteInformation(doc: SiteInformationDocument): SiteInformation {
-  const social: Record<string, string> = {};
+  const social: Record<string, SocialLink> = {};
   for (const link of doc?.socialLinks ?? []) {
     const url = link?.url?.trim();
-    if (link?.platform && url) social[link.platform] = url;
+    if (link?.platform && url) {
+      social[link.platform] = { url, label: link.label?.trim() || link.platform };
+    }
   }
 
   return {
@@ -109,7 +115,9 @@ export function resolveSiteInformation(doc: SiteInformationDocument): SiteInform
     address: list(doc?.address, SITE_DEFAULTS.address),
     addressCountry: text(doc?.addressCountry, SITE_DEFAULTS.addressCountry),
     badges: list(doc?.badges, SITE_DEFAULTS.badges),
-    socialLinks: Object.values(social).filter((url) => /^https?:\/\//.test(url)),
+    socialLinks: Object.values(social)
+      .map((link) => link.url)
+      .filter((url) => /^https?:\/\//.test(url)),
     social,
     logoUrl: doc?.logoUrl?.trim() || null,
   };
@@ -125,6 +133,9 @@ export function mailtoHref(email: string): string {
 }
 
 export type NavLink = { href: string; label: string };
+
+/** A profile elsewhere, as a button: the label is editable in the studio. */
+export type SocialLink = { url: string; label: string };
 
 export type FooterLinkGroup = {
   title: string;

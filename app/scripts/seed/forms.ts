@@ -22,6 +22,7 @@ async function upsertFormSettings() {
     fromName: SITE_DEFAULTS.name,
     confirmationSubject: 'Nieuw bericht via de website',
     confirmationMessage: 'Er is een nieuw bericht binnengekomen via het contactformulier.',
+    mailFooter: 'Verstuurd via het formulier „{form}” op de website van {site}.',
     primaryColor: '#bd7875',
     textColor: '#162029',
     recaptchaEnabled: false,

@@ -66,6 +66,13 @@ export const formGeneralSettingsType = defineType({
       initialValue: 'A new message came in through the website.',
     }),
     defineField({
+      name: 'mailFooter',
+      title: 'Mail footer',
+      type: 'string',
+      group: 'mail',
+      description: 'Small print under every form mail. Use {form} for the form name and {site} for the sender name.',
+    }),
+    defineField({
       name: 'mailjetApiKey',
       title: 'Mailjet API key',
       type: 'string',

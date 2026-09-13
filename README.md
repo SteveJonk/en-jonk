@@ -115,6 +115,34 @@ One detail stays in code: **`SITE_URL`**, from `NEXT_PUBLIC_SITE_URL`. It
 differs per deploy, and `metadataBase`, `robots.txt` and the structured data all
 need it before — or without — a CMS round trip.
 
+### Interface text
+
+Labels that belong to the site rather than to one page live in the
+**Interface text** singleton in the studio, grouped by where they appear:
+
+| Group        | What is in it                                                        |
+| ------------ | -------------------------------------------------------------------- |
+| Header       | "Menu", "Sluiten", logo alt text, screen-reader labels, skip link    |
+| Footer       | the footer menu's screen-reader label                                |
+| Contact lines| "Bel …" / "of mail …"                                                |
+| Kennismaken  | default title and text of the closing band, "Bel" / "Mail" buttons   |
+| Forms        | buttons, "Stap {step} van {total}", and every message a visitor sees |
+| 404 page     | eyebrow, title (also the page title), text, button                   |
+
+`app/src/lib/interface-text.ts` holds the same texts as defaults — what the
+site shows when a field is empty or the CMS is unreachable, and what
+`npm run seed:interface` writes. Read them with `getInterfaceText()`.
+
+Copy that belongs to one section is a field on that block (the article's
+"Wat het oplevert", the layer navigation's "Laag" / "je leest nu", the level
+titles, "Telefoon" / "E-mail" on the contact block). Button labels for social
+profiles are on **Site information → Social links**.
+
+Two kinds of text deliberately stay in code: the words drawn inside the
+diagrams (they are positioned by coordinates, so a longer word would break the
+drawing) and the crash page (`global-error.tsx`), which has to work when
+nothing else does.
+
 ### Copy
 
 The page copy lives in the CMS. `scripts/seed/pages.ts` holds the copy of the
@@ -337,9 +365,13 @@ right order.
    a key the browser posts that the form does not declare never reaches the
    mail. `npm run check:form` asserts that the query and the renderer agree,
    because if they drift the form quietly stops recording answers.
-3. Answers are rendered into an HTML + plain-text mail (`src/lib/form-mail.ts`)
+3. Anything that goes wrong is answered with a message from **Interface text
+   → Forms** (`„{label}” is verplicht.`, …), so visitors never see an English
+   or technical error.
+4. Answers are rendered into an HTML + plain-text mail (`src/lib/form-mail.ts`)
    and sent through Mailjet. Swapping providers means rewriting one function,
-   `sendViaMailjet`; nothing else is provider-specific.
+   `sendViaMailjet`; nothing else is provider-specific. The mail's subject,
+   intro and footer come from **Form settings**.
 
 ### Field types and layout
 
@@ -595,7 +627,8 @@ deliberately only covers the studio.
 npm run dev          npm run build        npm run start
 npm run lint         npm run typecheck    npm run typegen
 npm run check:jsonld npm run check:form
-npm run seed         npm run seed:site    npm run seed:forms
+npm run seed         npm run seed:site    npm run seed:interface
+npm run seed:forms
 npm run seed:documents                    npm run seed:pages
 npm run seed:page -- cases                npm run seed:nav
 

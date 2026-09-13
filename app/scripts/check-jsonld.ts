@@ -104,8 +104,8 @@ const merged = resolveSiteInformation({
   description: '   ',
   address: ['Chausseestrasse 1', '10115 Berlin', null],
   socialLinks: [
-    { platform: 'linkedin', url: 'https://example.com/profile' },
-    { platform: 'spotify', url: '#' },
+    { platform: 'linkedin', label: 'LinkedIn', url: 'https://example.com/profile' },
+    { platform: 'spotify', label: 'Spotify', url: '#' },
     { platform: 'youtube', url: '' },
     null,
   ],
@@ -117,7 +117,7 @@ assert.equal(merged.description, SITE_DEFAULTS.description, 'a blank field falls
 assert.equal(merged.email, SITE_DEFAULTS.email, 'a missing field falls back');
 assert.deepEqual(merged.address, ['Chausseestrasse 1', '10115 Berlin']);
 assert.deepEqual(merged.socialLinks, ['https://example.com/profile'], 'only real links become sameAs');
-assert.equal(merged.social.spotify, '#', 'a # placeholder still drives the button');
+assert.deepEqual(merged.social.spotify, { url: '#', label: 'Spotify' }, 'a # placeholder still drives the button');
 assert.equal(merged.social.youtube, undefined, 'an empty URL hides the button');
 assert.deepEqual(
   resolveSiteInformation({ address: [], badges: [null, ''] }).address,

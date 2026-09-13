@@ -40,11 +40,16 @@ type Options = {
    * of going through the layout's "&Jonk — %s" template.
    */
   siteName?: string;
+  /** Title for a missing page, from the interface text. */
+  notFoundTitle?: string;
 };
 
 export function pageMetadata(page: SanityPage, options?: Options): Metadata {
   if (!page) {
-    return { title: 'Page not found', robots: { index: false } };
+    return {
+      ...(options?.notFoundTitle ? { title: options.notFoundTitle } : {}),
+      robots: { index: false },
+    };
   }
 
   const seo = page.seo ?? {};

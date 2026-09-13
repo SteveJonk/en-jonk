@@ -47,11 +47,16 @@ export function ArrowLink({ href, children, className = 'text-steel', back }: Ar
 export function ContactLines({
   phone,
   email,
+  callPrefix,
+  mailPrefix,
   className,
   style,
 }: {
   phone: string;
   email: string;
+  /** "Bel" and "of mail", from the interface text. */
+  callPrefix: string;
+  mailPrefix: string;
   className?: string;
   style?: CSSProperties;
 }) {
@@ -59,12 +64,12 @@ export function ContactLines({
 
   return (
     <p className={cn('font-ui text-sm text-muted', className)} style={style}>
-      Bel{' '}
+      {callPrefix}{' '}
       <a href={telHref(phone)} className={link}>
         {phone}
       </a>
       <br />
-      of mail{' '}
+      {mailPrefix}{' '}
       <a href={mailtoHref(email)} className={link}>
         {email}
       </a>

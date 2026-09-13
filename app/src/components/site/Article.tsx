@@ -20,12 +20,14 @@ export function layerColor(layer?: number | null) {
 
 export function ArticleHero({
   layer,
+  eyebrow,
   title,
   lead,
   image,
   backLink,
 }: {
   layer: number;
+  eyebrow?: ReactNode;
   title: ReactNode;
   lead: ReactNode;
   image?: Photo | null;
@@ -44,8 +46,8 @@ export function ArticleHero({
           )}
           <div className='mt-10 grid items-end gap-10 lg:grid-cols-12 lg:gap-14'>
             <Reveal className='lg:col-span-7'>
-              <p className='eyebrow'>Drie lagen &middot; laag {layer} van 3</p>
-              <span className={cn('mt-5 block h-px w-10', layerColor(layer).bar)} />
+              {eyebrow && <p className='eyebrow'>{eyebrow}</p>}
+              <span className={cn('block h-px w-10', eyebrow ? 'mt-5' : null, layerColor(layer).bar)} />
               <h1 className='t-display mt-5'>{title}</h1>
             </Reveal>
             <Reveal className='lg:col-span-5'>
@@ -72,7 +74,13 @@ export function ArticleBody({ children }: { children: ReactNode }) {
 }
 
 /** Heading left (4 cols), text right (8 cols). */
-export function ArticleSplit({ title, paras }: { title: ReactNode; paras: ReactNode[] }) {
+export function ArticleSplit({
+  title,
+  paras,
+}: {
+  title: ReactNode;
+  paras: ReactNode[];
+}) {
   return (
     <section className='grid gap-6 border-t border-ink/10 py-14 md:py-20 lg:grid-cols-12 lg:gap-16'>
       <Reveal className='lg:col-span-4'>
@@ -107,12 +115,20 @@ export function ArticleAside({
       <Reveal className={cn('lg:col-span-7', reverse && 'lg:order-2')}>
         <h2 className='t-h2'>{title}</h2>
         {paras.map((p, i) => (
-          <p key={i} className={cn('max-w-prose text-ink/85', i === 0 ? 'mt-6' : 'mt-5')}>
+          <p
+            key={i}
+            className={cn('max-w-prose text-ink/85', i === 0 ? 'mt-6' : 'mt-5')}
+          >
             {p}
           </p>
         ))}
       </Reveal>
-      <div className={cn('space-y-10 lg:sticky lg:top-28 lg:col-span-5', reverse && 'lg:order-1')}>
+      <div
+        className={cn(
+          'space-y-10 lg:sticky lg:top-28 lg:col-span-5',
+          reverse && 'lg:order-1',
+        )}
+      >
         {aside}
       </div>
     </section>
@@ -130,7 +146,11 @@ export function AsideQuote({ children }: { children: ReactNode }) {
 export function AsideImage({ image }: { image?: Photo | null }) {
   return (
     <Reveal as='figure'>
-      <Frame image={image} sizes='(min-width:1024px) 50vw, 100vw' className='aspect-[4/5]' />
+      <Frame
+        image={image}
+        sizes='(min-width:1024px) 50vw, 100vw'
+        className='aspect-[4/5]'
+      />
     </Reveal>
   );
 }
@@ -144,7 +164,13 @@ function Caption({ children }: { children: ReactNode }) {
 }
 
 /** Small diagram in the sticky aside. */
-export function AsideFigure({ caption, children }: { caption?: string | null; children: ReactNode }) {
+export function AsideFigure({
+  caption,
+  children,
+}: {
+  caption?: string | null;
+  children: ReactNode;
+}) {
   return (
     <Reveal as='figure' className='bg-paper px-6 py-10 md:px-10'>
       {children}
@@ -154,7 +180,13 @@ export function AsideFigure({ caption, children }: { caption?: string | null; ch
 }
 
 /** Full-width diagram between two article sections. */
-export function ArticleFigure({ caption, children }: { caption?: string | null; children: ReactNode }) {
+export function ArticleFigure({
+  caption,
+  children,
+}: {
+  caption?: string | null;
+  children: ReactNode;
+}) {
   return (
     <div className='-mt-2 pb-14 md:-mt-6 md:pb-20'>
       <Reveal as='figure' className='bg-paper px-6 py-10 md:px-12 md:py-14'>
@@ -165,7 +197,15 @@ export function ArticleFigure({ caption, children }: { caption?: string | null; 
   );
 }
 
-export function ArticleOutcome({ layer, children }: { layer?: number | null; children: ReactNode }) {
+export function ArticleOutcome({
+  layer,
+  title,
+  children,
+}: {
+  layer?: number | null;
+  title: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <Reveal
       className={cn(
@@ -173,27 +213,36 @@ export function ArticleOutcome({ layer, children }: { layer?: number | null; chi
         layerColor(layer).border,
       )}
     >
-      <h2 className='t-h2 lg:col-span-4'>Wat het oplevert</h2>
+      <h2 className='t-h2 lg:col-span-4'>{title}</h2>
       <div className='max-w-prose lg:col-span-8'>{children}</div>
     </Reveal>
   );
 }
 
 export function LayerNav({
-  eyebrow = 'De drie lagen',
+  eyebrow,
+  layerLabel,
+  currentLabel,
   layers,
   currentPath,
 }: {
+  /** Shown above the cards, and the label screen readers announce. */
   eyebrow?: string | null;
+  /** "Laag", before the number. */
+  layerLabel?: string | null;
+  /** "je leest nu", after the layer you are on. */
+  currentLabel?: string | null;
   layers: { title: ReactNode; href: string }[];
   currentPath?: string;
 }) {
   return (
-    <nav className='pb-20 md:pb-28' aria-label='De drie lagen'>
+    <nav className='pb-20 md:pb-28' aria-label={eyebrow || undefined}>
       <Container>
-        <Reveal as='p' className='eyebrow'>
-          {eyebrow}
-        </Reveal>
+        {eyebrow && (
+          <Reveal as='p' className='eyebrow'>
+            {eyebrow}
+          </Reveal>
+        )}
         <Reveal className='mt-6 grid gap-px border-y border-ink/10 bg-ink/10 md:grid-cols-3'>
           {layers.map((layer, i) => {
             const isCurrent = layer.href === currentPath;
@@ -202,12 +251,15 @@ export function LayerNav({
                 key={layer.href}
                 href={layer.href}
                 aria-current={isCurrent ? 'page' : undefined}
-                className={cn('group block bg-shell p-8 md:p-10', isCurrent && 'pointer-events-none')}
+                className={cn(
+                  'group block bg-shell p-8 md:p-10',
+                  isCurrent && 'pointer-events-none',
+                )}
               >
                 <span className={cn('block h-px w-10', layerColor(i + 1).bar)} />
                 <span className='mt-5 block font-ui text-xs tracking-[.14em] text-muted uppercase'>
-                  Laag {i + 1}
-                  {isCurrent && ' · je leest nu'}
+                  {[layerLabel, i + 1].filter(Boolean).join(' ')}
+                  {isCurrent && currentLabel && ` · ${currentLabel}`}
                 </span>
                 <span
                   className={cn(

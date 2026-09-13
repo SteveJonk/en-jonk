@@ -9,6 +9,8 @@ type FooterLink = { label: string; href: string };
 
 type SiteFooterProps = {
   site: SiteInformation;
+  /** Screen-reader label of the footer menu, from the interface text. */
+  navLabel: string;
   /** The main navigation, repeated. */
   links: FooterLink[];
   tagline?: string | null;
@@ -16,14 +18,11 @@ type SiteFooterProps = {
   copyright?: string | null;
 };
 
-/** Social buttons in the order the design shows them; a missing URL hides one. */
-const SOCIAL = [
-  { key: 'linkedin', label: 'LinkedIn' },
-  { key: 'spotify', label: 'Spotify' },
-];
+/** Which profiles the footer shows, in design order; a missing URL hides one. */
+const SOCIAL = ['linkedin', 'spotify'];
 
-export function SiteFooter({ site, links, tagline, legalLinks, copyright }: SiteFooterProps) {
-  const social = SOCIAL.filter((item) => site.social[item.key]);
+export function SiteFooter({ site, navLabel, links, tagline, legalLinks, copyright }: SiteFooterProps) {
+  const social = SOCIAL.flatMap((key) => (site.social[key] ? [site.social[key]] : []));
 
   return (
     <footer className='bg-ink pt-16 pb-10 text-shell/80 md:pt-20'>
@@ -40,7 +39,7 @@ export function SiteFooter({ site, links, tagline, legalLinks, copyright }: Site
             {tagline && <p className='mt-3 font-script text-2xl text-shell/70'>{tagline}</p>}
           </div>
 
-          <nav className='md:col-span-4' aria-label='Footer navigatie'>
+          <nav className='md:col-span-4' aria-label={navLabel}>
             <ul className='space-y-2 font-ui text-sm'>
               {links.map((item) => (
                 <li key={item.href}>
@@ -66,7 +65,7 @@ export function SiteFooter({ site, links, tagline, legalLinks, copyright }: Site
             {social.length > 0 && (
               <p className='space-x-4 pt-3'>
                 {social.map((item) => (
-                  <a key={item.key} href={site.social[item.key]} className={link}>
+                  <a key={item.label} href={item.url} className={link}>
                     {item.label}
                   </a>
                 ))}

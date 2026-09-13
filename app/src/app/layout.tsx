@@ -10,7 +10,11 @@ import { toLabeledHref, type SanityLabeledLink } from '@/lib/links';
 import { SITE_URL } from '@/lib/site';
 import { safeFetch } from '@/sanity/client';
 import { FOOTER_QUERY, NAVIGATION_QUERY } from '@/sanity/queries';
-import type { FOOTER_QUERY_RESULT, NAVIGATION_QUERY_RESULT } from '@/sanity/sanity.types';
+import type {
+  FOOTER_QUERY_RESULT,
+  NAVIGATION_QUERY_RESULT,
+} from '@/sanity/sanity.types';
+import { getInterfaceText } from '@/sanity/interface-text';
 import { getSiteInformation } from '@/sanity/site-information';
 import './globals.css';
 
@@ -76,8 +80,9 @@ export default async function RootLayout({
 }>) {
   // Header and footer degrade instead of throwing: a CMS outage should not take
   // every page down with it. Page content does fail loudly — see `CmsPage`.
-  const [site, navigation, footer] = await Promise.all([
+  const [site, ui, navigation, footer] = await Promise.all([
     getSiteInformation(),
+    getInterfaceText(),
     safeFetch<NAVIGATION_QUERY_RESULT>(NAVIGATION_QUERY, {}, options),
     safeFetch<FOOTER_QUERY_RESULT>(FOOTER_QUERY, {}, options),
   ]);
@@ -96,12 +101,19 @@ export default async function RootLayout({
           href='#main'
           className='sr-only font-ui text-sm focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:text-shell'
         >
-          Naar de inhoud
+          {ui.header.skipLink}
         </a>
-        <SiteHeader links={links} phone={site.phone} email={site.email} />
+        <SiteHeader
+          links={links}
+          phone={site.phone}
+          email={site.email}
+          labels={ui.header}
+          contact={ui.contact}
+        />
         <main id='main'>{children}</main>
         <SiteFooter
           site={site}
+          navLabel={ui.footer.navLabel}
           links={links}
           tagline={footer?.tagline}
           legalLinks={toLinks(footer?.legalLinks)}

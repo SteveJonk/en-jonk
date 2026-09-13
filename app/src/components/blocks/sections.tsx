@@ -12,6 +12,7 @@ import { Stats } from '@/components/site/Stats';
 import { ThreeLevels } from '@/components/site/ThreeLevels';
 import { Timeline } from '@/components/site/Timeline';
 import { cn } from '@/lib/cn';
+import { getInterfaceText } from '@/sanity/interface-text';
 import { getSiteInformation } from '@/sanity/site-information';
 
 const BARS = ['bg-rose', 'bg-green', 'bg-steel'];
@@ -21,14 +22,13 @@ function timelineItems(items: { title?: string | null; text?: string | null }[] 
 }
 
 export async function PageHeroBlock({ block }: { block: BlockOf<'pageHero'> }) {
-  const site = await getSiteInformation();
+  const [site, ui] = await Promise.all([getSiteInformation(), getInterfaceText()]);
   const buttons = [
     ...(block.ctas ?? []).map(toLink),
     ...(block.showPodcastLinks
-      ? [
-          { label: 'Spotify', href: site.social.spotify },
-          { label: 'Apple Podcasts', href: site.social.applePodcasts },
-        ]
+      ? ['spotify', 'applePodcasts'].flatMap((key) =>
+          site.social[key] ? [{ label: site.social[key].label, href: site.social[key].url }] : [],
+        )
       : []),
   ].filter((button) => button?.href) as { label: string; href: string }[];
 
@@ -45,7 +45,14 @@ export async function PageHeroBlock({ block }: { block: BlockOf<'pageHero'> }) {
             {rich(button.label)}
           </a>
         ))}
-        {block.showContactLines && <ContactLines phone={site.phone} email={site.email} />}
+        {block.showContactLines && (
+          <ContactLines
+            phone={site.phone}
+            email={site.email}
+            callPrefix={ui.contact.callPrefix}
+            mailPrefix={ui.contact.mailPrefix}
+          />
+        )}
       </div>
     ) : undefined;
 
@@ -163,7 +170,11 @@ export function ThreeLevelsBlock({ block }: { block: BlockOf<'threeLevels'> }) {
       <SectionHead eyebrow={rich(block.eyebrow)} title={rich(block.title)} lead={rich(block.lead)} />
       <ThreeLevels
         cards={Boolean(block.cards)}
-        levels={(block.levels ?? []).map((level) => ({ text: rich(level.text), items: level.items }))}
+        levels={(block.levels ?? []).map((level) => ({
+          title: level.title ?? '',
+          text: rich(level.text),
+          items: level.items,
+        }))}
       />
 
       {timeline?.items?.length ? (

@@ -12,13 +12,14 @@
   - Studio: page builder with 26 blocks mirroring `components/site/*`; `testimonial`, `case`, `podcastEpisode` docs; navigation → `links[]`; footer → tagline/legalLinks/copyright; socialLinks allow `#`. English labels.
   - App: `[...slug]` catch-all + home via `components/CmsPage.tsx`; typed `PageBuilder` + `components/blocks/{shared,sections,collections,article}.tsx`; `rich()` text marks (`&`, `*em*`, `**b**`, `[tbd]`, line breaks); header/footer/site info from CMS; contact form = CMS form + `/api/submit-form`, restyled to design; sitemap from CMS; old template blocks/ui/demo-content/static routes deleted.
   - Seed: `scripts/seed/{pages,documents,forms,navigation,site-information}.ts`, one-time overwrite with fixed ids; all design placeholders seeded published; social URLs `#`. Dataset rjioz4di/production seeded 2026-09-12.
+  - Interface text (2026-09-13): all visitor-facing strings moved to Sanity — `interfaceText` singleton (header, footer, contact lines, kennismaken defaults, forms, 404), new block fields (articleHero eyebrow, articleOutcome title, layerNav labels, level titles, cases eyebrow, podcast listenLabel, contact labels), social link labels, Form settings mailFooter. Submit route restored (was still a stub) and verified by POST.
   - Verified: studio + app typecheck, lint, check:jsonld, check:form, `sanity documents validate` (27 valid), `next build` (11 pages SSG), all routes 200 with Sanity images, visual check of home / ik / contact.
 
 ---
 
 ## 🚀 Next phase — go live with real content
 
-1. Add Mailjet keys to `app/.env` (MAILJET_API_KEY/SECRET/FROM_EMAIL) and test a real contact submission.
+1. Add Mailjet keys to `app/.env` (MAILJET_API_KEY/SECRET/FROM_EMAIL) and send a real test message (route verified up to the mail step).
 2. Replace `#` social URLs (LinkedIn, Spotify, Apple Podcasts) in Studio → Site information.
 3. Client fills placeholders in Studio: stats ([naam leergang], [cijfer]), 3 testimonials, 2 cases, podcast episodes, legal links.
 4. Deploy studio (workflow exists) and the app; set `NEXT_PUBLIC_SITE_URL`.

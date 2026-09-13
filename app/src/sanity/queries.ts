@@ -141,9 +141,22 @@ export const SITE_INFORMATION_QUERY = defineQuery(`
     badges,
     socialLinks[]{
       platform,
+      label,
       url
     },
     "logoUrl": logo.asset->url
+  }
+`);
+
+/** Labels and messages of the interface — see `src/lib/interface-text.ts`. */
+export const INTERFACE_TEXT_QUERY = defineQuery(`
+  *[_id == "interfaceText"][0]{
+    header,
+    footer,
+    contact,
+    kennismaken,
+    forms,
+    notFound
   }
 `);
 
@@ -193,6 +206,7 @@ export const FORM_SETTINGS_QUERY = defineQuery(`
     mailjetApiSecret,
     confirmationSubject,
     confirmationMessage,
+    mailFooter,
     recaptchaEnabled,
     recaptchaSecretKey
   }

@@ -6,6 +6,7 @@ import { flushSync } from 'react-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { btnPrimary } from '@/components/site/Links';
 import { cn } from '@/lib/cn';
+import { fillTemplate, type InterfaceText } from '@/lib/interface-text';
 import { fillTokens, toFieldRows, toSteps, type FormDefinition } from '@/lib/form-fields';
 import { FormField, type FormFieldVariant } from './fields';
 
@@ -23,6 +24,8 @@ export type FormRendererProps = {
   /** Small print under the form, shown in every state. */
   footer?: ReactNode;
   recaptcha?: FormRecaptcha;
+  /** Buttons and messages, from the interface text. The form's own button texts win. */
+  labels: InterfaceText['forms'];
   variant?: FormFieldVariant;
   /**
    * Values the surrounding page knows and the visitor does not type — which
@@ -114,6 +117,7 @@ export function FormRenderer({
   lead,
   footer,
   recaptcha,
+  labels,
   variant = 'compact',
   context,
 }: FormRendererProps) {
@@ -177,7 +181,7 @@ export function FormRenderer({
     if (usesRecaptcha) {
       const token = recaptchaRef.current?.getValue();
       if (!token) {
-        setError('Bevestig dat je geen robot bent.');
+        setError(labels.recaptcha);
         return;
       }
       body.set('recaptchaToken', token);
@@ -189,7 +193,7 @@ export function FormRenderer({
       const response = await fetch('/api/submit-form', { method: 'POST', body });
       const result = (await response.json()) as { success?: boolean; message?: string };
       if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Versturen is niet gelukt.');
+        throw new Error(result.message || labels.sendError);
       }
       if (form.redirect) {
         // Stay on 'sending' so the button keeps its disabled state until the
@@ -206,7 +210,7 @@ export function FormRenderer({
       setError(
         submitError instanceof Error
           ? submitError.message
-          : 'Versturen is niet gelukt. Probeer het later nog eens, of mail ons direct.',
+          : labels.sendError,
       );
     }
   }
@@ -233,7 +237,7 @@ export function FormRenderer({
             />
           </div>
           <span className='text-[0.74rem] font-semibold tracking-[0.11em] whitespace-nowrap text-muted uppercase'>
-            Stap {step + 1} van {total}
+            {fillTemplate(labels.step, { step: step + 1, total })}
           </span>
         </div>
       ) : null}
@@ -302,11 +306,11 @@ export function FormRenderer({
 
         {isLastStep ? (
           <button type='submit' disabled={status === 'sending'} className={styles.button}>
-            {status === 'sending' ? 'Versturen…' : (form.submitButtonText ?? 'Versturen')}
+            {status === 'sending' ? labels.sending : (form.submitButtonText ?? labels.submit)}
           </button>
         ) : (
           <button type='button' onClick={goNext} className={styles.button}>
-            {form.nextButtonText ?? 'Volgende'}
+            {form.nextButtonText ?? labels.next}
             <IconArrowRight />
           </button>
         )}
@@ -317,7 +321,7 @@ export function FormRenderer({
             onClick={() => setStep((current) => Math.max(current - 1, 0))}
             className='mt-3.5 flex w-full items-center justify-center gap-1.5 font-ui text-sm text-muted transition-colors hover:text-ink'
           >
-            ← {form.backButtonText ?? 'Terug'}
+            ← {form.backButtonText ?? labels.back}
           </button>
         ) : null}
 

@@ -54,7 +54,7 @@ export const casesType = defineType({
         layout: 'radio',
       },
     }),
-    eyebrowField,
+    defineField({...eyebrowField, description: 'Featured: shown before the case type, e.g. "Case" → "Case · Traineeship".'}),
     titleField(false),
     defineField({
       name: 'cases',
@@ -146,6 +146,7 @@ export const podcastEpisodesType = defineType({
     eyebrowField,
     titleField(),
     defineField({name: 'limit', type: 'number', initialValue: 4, validation: (rule) => rule.min(1).integer()}),
+    defineField({name: 'listenLabel', type: 'string', initialValue: 'Beluister deze aflevering', description: 'Label of the play button, read by screen readers.'}),
     noteField,
     backgroundField('paper'),
   ],
