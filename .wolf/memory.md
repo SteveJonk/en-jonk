@@ -8,3 +8,4 @@
 | 14:23 | wire-sanity verified (build, validate, routes, visual) + README/STATUS updated | README.md, .wolf/* | done | ~30k |
 | 15:28 | seed per page: PAGES map, page names as seed targets, weak refs for missing docs | app/scripts/seed.ts, seed/pages.ts, seed/shared.ts, seed/navigation.ts, README | verified tsc/lint/dry-run | ~10k |
 | 13:29 | interface text: all hardcoded strings → Sanity (singleton + block fields), submit route restored + verified | studio/schemaTypes/*, app/src/**, app/scripts/seed/*, README | done, verified build/validate/POST | ~70k |
+| 14:00 | diagnosed studio deploy CI failure: SANITY_AUTH_TOKEN secret missing (config, not code) | .github/workflows/deploy-sanity-studio.yml | user must add secret | ~5k |

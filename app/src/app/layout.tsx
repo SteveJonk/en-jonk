@@ -91,6 +91,7 @@ export default async function RootLayout({
   return (
     <html lang={site.language} data-scroll-behavior='smooth' className={fonts}>
       <head>
+        <meta name='apple-mobile-web-app-title' content='Hart en Huis' />
         <TrackingScriptsHead />
       </head>
       <body>

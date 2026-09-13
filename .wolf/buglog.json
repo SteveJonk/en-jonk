@@ -53,6 +53,24 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-09-13T13:29:16"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-09-13T14:00:00",
+      "error_message": "Deploy Sanity Studio workflow: 'Failed to resolve deploy target: You must login first - run \"sanity login\"'",
+      "file": ".github/workflows/deploy-sanity-studio.yml",
+      "root_cause": "SANITY_AUTH_TOKEN was never created as a GitHub Actions secret (only the SANITY_STUDIO_* Variables existed). An unset secret expands to an empty string, so sanity deploy ran unauthenticated. Run log showed 'SANITY_AUTH_TOKEN: ' (a set secret prints '***').",
+      "fix": "No code change: add a repo-level Actions secret SANITY_AUTH_TOKEN (Sanity deploy-studio token). Not an environment secret \u2014 the job declares no environment.",
+      "tags": [
+        "ci",
+        "github-actions",
+        "sanity",
+        "deploy",
+        "secrets"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-13T14:00:00"
     }
   ]
 }

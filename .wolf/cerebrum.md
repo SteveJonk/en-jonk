@@ -21,6 +21,7 @@
 - [2026-09-12] CMS text marks via `rich()` (Rich.tsx): `&` brand amp, `*x*` display em, `**x**` bold, `[x]` tbd placeholder, newline = br.
 - [2026-09-12] Seed is one-time overwrite with fixed ids (`page-<slug-with-dashes>`).
 - [2026-09-12] Browser checks: html has scroll-behavior smooth → use `scrollTo({behavior:'instant'})`; preview_start via launch.json with an nvm node path never came up — start `npx next start -p 3001` via Bash background instead.
+- [2026-09-13] Studio deploy CI (`deploy-sanity-studio.yml`) needs `SANITY_AUTH_TOKEN` as a **repo-level Actions secret**; SANITY_STUDIO_* are Actions Variables. The Preview/Production GitHub environments are Vercel's — the job uses neither. An unset secret shows as `SANITY_AUTH_TOKEN: ` (empty) in the run log and the CLI errors "You must login first".
 
 - **Project:** en-jonk
 - **Description:** A block-based website scaffold: Next.js 16 (App Router, React 19, Tailwind v4)
