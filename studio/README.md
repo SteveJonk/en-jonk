@@ -1,6 +1,6 @@
 # Studio
 
-The Sanity studio for this project. Content edited here is what the app in
+The Sanity studio for this project. Content edited here is what the app in:
 `../app` renders.
 
 ## Setup
