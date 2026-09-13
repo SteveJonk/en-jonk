@@ -1,11 +1,29 @@
 import Link from 'next/link';
 import { Amp, withAmp } from '@/components/site/Amp';
 import { Container } from '@/components/site/Section';
-import { CONTACT, NAV } from '@/lib/nav';
+import { mailtoHref, telHref, type SiteInformation } from '@/lib/site';
 
 const link = 'transition-colors hover:text-rose';
 
-export function SiteFooter() {
+type FooterLink = { label: string; href: string };
+
+type SiteFooterProps = {
+  site: SiteInformation;
+  /** Screen-reader label of the footer menu, from the interface text. */
+  navLabel: string;
+  /** The main navigation, repeated. */
+  links: FooterLink[];
+  tagline?: string | null;
+  legalLinks: FooterLink[];
+  copyright?: string | null;
+};
+
+/** Which profiles the footer shows, in design order; a missing URL hides one. */
+const SOCIAL = ['linkedin', 'spotify'];
+
+export function SiteFooter({ site, navLabel, links, tagline, legalLinks, copyright }: SiteFooterProps) {
+  const social = SOCIAL.flatMap((key) => (site.social[key] ? [site.social[key]] : []));
+
   return (
     <footer className='bg-ink pt-16 pb-10 text-shell/80 md:pt-20'>
       <Container>
@@ -18,12 +36,12 @@ export function SiteFooter() {
               <Amp />
               Jonk
             </Link>
-            <p className='mt-3 font-script text-2xl text-shell/70'>talent · leiderschap · teams</p>
+            {tagline && <p className='mt-3 font-script text-2xl text-shell/70'>{tagline}</p>}
           </div>
 
-          <nav className='md:col-span-4' aria-label='Footer navigatie'>
+          <nav className='md:col-span-4' aria-label={navLabel}>
             <ul className='space-y-2 font-ui text-sm'>
-              {NAV.map((item) => (
+              {links.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className={link}>
                     {withAmp(item.label)}
@@ -35,36 +53,38 @@ export function SiteFooter() {
 
           <div className='space-y-2 font-ui text-sm md:col-span-3'>
             <p>
-              <a href={CONTACT.phoneHref} className={link}>
-                {CONTACT.phone}
+              <a href={telHref(site.phone)} className={link}>
+                {site.phone}
               </a>
             </p>
             <p>
-              <a href={CONTACT.emailHref} className={link}>
-                {CONTACT.email}
+              <a href={mailtoHref(site.email)} className={link}>
+                {site.email}
               </a>
             </p>
-            <p className='space-x-4 pt-3'>
-              <a href={CONTACT.linkedin} className={link}>
-                LinkedIn
-              </a>
-              <a href={CONTACT.spotify} className={link}>
-                Spotify
-              </a>
-            </p>
+            {social.length > 0 && (
+              <p className='space-x-4 pt-3'>
+                {social.map((item) => (
+                  <a key={item.label} href={item.url} className={link}>
+                    {item.label}
+                  </a>
+                ))}
+              </p>
+            )}
           </div>
         </div>
 
         <div className='flex flex-col gap-4 pt-8 font-ui text-xs text-shell/55 sm:flex-row sm:items-center sm:justify-between'>
-          <p>&copy; 2026 &amp;Jonk</p>
-          <p className='space-x-6'>
-            <a href='#' className='transition-colors hover:text-shell'>
-              Privacyverklaring
-            </a>
-            <a href='#' className='transition-colors hover:text-shell'>
-              Algemene voorwaarden
-            </a>
-          </p>
+          <p>{copyright ? withAmp(copyright) : `© ${new Date().getFullYear()} ${site.name}`}</p>
+          {legalLinks.length > 0 && (
+            <p className='space-x-6'>
+              {legalLinks.map((item) => (
+                <a key={item.label} href={item.href} className='transition-colors hover:text-shell'>
+                  {item.label}
+                </a>
+              ))}
+            </p>
+          )}
         </div>
       </Container>
     </footer>

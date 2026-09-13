@@ -188,39 +188,6 @@ export function faqQuestions(faqs: readonly FaqInput[] | null | undefined): Json
     }));
 }
 
-/** One page-builder block, seen from the outside. */
-type ContentBlock = { _type?: string } & Record<string, unknown>;
-
-/**
- * The questions on a page, from the `faqs` blocks in the page builder. The FAQ
- * entries are references and `PAGE_QUERY` already resolves them, so what
- * arrives here is the question (`title`) with its answer.
- */
-export function pageFaqs(
-  content: readonly ContentBlock[] | null | undefined,
-): FaqInput[] {
-  return (content ?? [])
-    .filter((block) => block?._type === 'faqs')
-    .flatMap((block) => (Array.isArray(block.faqs) ? block.faqs : []))
-    .filter((faq): faq is { title?: string; answer?: string } => Boolean(faq))
-    .map((faq) => ({ question: faq.title, answer: faq.answer }));
-}
-
-/**
- * The label the `pageHero` block shows in its visible breadcrumb.
- *
- * Structured data should describe what is on the page, so the breadcrumb in
- * the graph follows the one the visitor sees; the page title is the fallback
- * for pages without a `pageHero`.
- */
-export function pageBreadcrumbLabel(
-  content: readonly ContentBlock[] | null | undefined,
-): string | undefined {
-  const hero = (content ?? []).find((block) => block?._type === 'pageHero');
-  const label = hero?.breadcrumbLabel;
-  return typeof label === 'string' && label.trim() ? label.trim() : undefined;
-}
-
 export type PageInput = {
   path: string;
   title?: string | null;

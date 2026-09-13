@@ -1,38 +1,54 @@
-# STATUS — &Jonk site (app/)
+# STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-09-10
+> Last updated: 2026-09-12
 
 ---
 
 ## ✅ Done
 
-- Converted every page in `app/designs/` (except `onepager-ignore.html`) into static Next.js App Router routes with Tailwind v4:
-  `/`, `/wat-we-doen`, `/wat-anderen-zeggen`, `/hoe-wij-kijken` (+ `/ik`, `/jij-en-ik`, `/ik-en-wij`), `/over-jonk`, `/cases`, `/podcast`, `/contact`.
-- Design tokens in `src/app/globals.css` `@theme`; brand fonts via next/font/local (`src/app/fonts`), Spectral + Jost via next/font/google.
-- Shared chrome: `components/layout/SiteHeader` (fixed bar + full-screen menu), `SiteFooter`. Nav + contact data in `src/lib/nav.ts`.
-- Design components in `src/components/site/` (Reveal, Frame, Section, PageHero, Kennismaken, ThreeLevels venn, Timeline, Marquee, Article helpers…).
-- Images → `public/images`, logos → `public/logos`, logo SVG → `public/jonk-logo.svg`.
-- All Sanity usage commented out (see cerebrum Decision Log). `npm run build` passes; all pages static.
+- Static Next.js site for &Jonk (11 routes), approved by user.
+- **Sanity wiring (branch `feat/wire-sanity`, 2026-09-12):**
+  - Studio: page builder with 26 blocks mirroring `components/site/*`; `testimonial`, `case`, `podcastEpisode` docs; navigation → `links[]`; footer → tagline/legalLinks/copyright; socialLinks allow `#`. English labels.
+  - App: `[...slug]` catch-all + home via `components/CmsPage.tsx`; typed `PageBuilder` + `components/blocks/{shared,sections,collections,article}.tsx`; `rich()` text marks (`&`, `*em*`, `**b**`, `[tbd]`, line breaks); header/footer/site info from CMS; contact form = CMS form + `/api/submit-form`, restyled to design; sitemap from CMS; old template blocks/ui/demo-content/static routes deleted.
+  - Seed: `scripts/seed/{pages,documents,forms,navigation,site-information}.ts`, one-time overwrite with fixed ids; all design placeholders seeded published; social URLs `#`. Dataset rjioz4di/production seeded 2026-09-12.
+  - Interface text (2026-09-13): all visitor-facing strings moved to Sanity — `interfaceText` singleton (header, footer, contact lines, kennismaken defaults, forms, 404), new block fields (articleHero eyebrow, articleOutcome title, layerNav labels, level titles, cases eyebrow, podcast listenLabel, contact labels), social link labels, Form settings mailFooter. Submit route restored (was still a stub) and verified by POST.
+  - Verified: studio + app typecheck, lint, check:jsonld, check:form, `sanity documents validate` (27 valid), `next build` (11 pages SSG), all routes 200 with Sanity images, visual check of home / ik / contact.
 
 ---
 
-## 🚀 Next phase
+## 🚀 Next phase — go live with real content
 
-**Goal:** Visual parity review of the Next pages against `app/designs`, then hook up Sanity (wire-sanity skill).
+1. Add Mailjet keys to `app/.env` (MAILJET_API_KEY/SECRET/FROM_EMAIL) and send a real test message (route verified up to the mail step).
+2. Replace `#` social URLs (LinkedIn, Spotify, Apple Podcasts) in Studio → Site information.
+3. Client fills placeholders in Studio: stats ([naam leergang], [cijfer]), 3 testimonials, 2 cases, podcast episodes, legal links.
+4. Deploy studio (workflow exists) and the app; set `NEXT_PUBLIC_SITE_URL`.
+5. Merge `feat/wire-sanity` → main. For prod prefer `node .next/standalone/server.js` (`next start` warns with output: standalone).
 
 ### Open decisions
-- Delete the unused template blocks (`src/components/blocks`, old `ui/*`, `PageBuilder`, `form/*`, `demo-content`) or keep them for the Sanity wiring?
-- Webfont licences for Cardillac (Hoftype) and Rameau (Linotype) before go-live.
-- Real content for `tbd` placeholders (stats, cases, quotes, podcast episodes) and the `#` social/platform links in `src/lib/nav.ts`.
-- Contact form still posts via `mailto:`; `/api/submit-form` returns 503 until Sanity forms are wired.
+- Podcast episodes: keep manual documents or import from the podcast RSS feed?
 
 ---
 
-## 🔧 Useful commands
+## 📁 Active architecture
 
+- **Stack:** Next.js 16 (App Router, React 19, Tailwind v4) in `app/`, Sanity Studio v3 in `studio/`, Node 22 (nvm v22.18.0; shell default is Node 17).
+- **Key modules:** `app/src/sanity/queries.ts` (PAGE_QUERY), `app/src/components/PageBuilder.tsx`, `app/src/components/blocks/*`, `app/src/components/site/*` (design), `studio/schemaTypes/blocks/*`, `app/scripts/seed/*`.
+- **Patterns:** blocks typed via `BlockOf<'type'>` from typegen; text through `rich()`; photos as `photo` type rendered by `Frame`; `background` field → `bgClass()`.
+
+---
+
+## ⚠️ External blockers
+- Mailjet keys (MAILJET_API_KEY/SECRET/FROM_EMAIL) empty in app/.env — form submit errors until set.
+- Real LinkedIn / Spotify / Apple Podcasts URLs pending.
+
+## 🔧 Useful commands
 ```bash
-npm --prefix app run dev      # Next app on :3000
-npm --prefix app run build
-python3 -m http.server 8765 --directory app/designs   # original designs
+export PATH="$HOME/.nvm/versions/node/v22.18.0/bin:$PATH"
+cd app && npm run seed && npm run typegen && npm run typecheck && npm run build
+cd studio && npm run dev
 ```
+
+## 📚 References
+- `.wolf/cerebrum.md` — preferences + decisions
+- `README.md` — template docs (forms, seeding, typegen)

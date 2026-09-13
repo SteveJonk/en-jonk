@@ -1,5 +1,6 @@
 import {CogIcon} from '@sanity/icons/Cog'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {urlRule} from './objects/fields'
 
 /**
  * Who the site belongs to: the details that appear in the header, the footer
@@ -47,7 +48,7 @@ export const siteInformationType = defineType({
       name: 'language',
       type: 'string',
       group: 'identity',
-      initialValue: 'en',
+      initialValue: 'nl',
       description: 'BCP 47 language tag, e.g. en, en-GB, nl. Sets the page language.',
     }),
     defineField({name: 'phone', type: 'string', group: 'contact'}),
@@ -73,7 +74,7 @@ export const siteInformationType = defineType({
       title: 'Social links',
       type: 'array',
       group: 'elsewhere',
-      description: 'Profiles elsewhere. Tells search engines these accounts are the same company.',
+      description: 'Profiles elsewhere. Real (https) links also tell search engines these accounts are the same company.',
       of: [
         defineArrayMember({
           type: 'object',
@@ -82,16 +83,33 @@ export const siteInformationType = defineType({
             defineField({
               name: 'platform',
               type: 'string',
+              description: 'LinkedIn, Spotify and Apple Podcasts also drive the buttons on the site.',
+              options: {
+                list: [
+                  {title: 'LinkedIn', value: 'linkedin'},
+                  {title: 'Spotify', value: 'spotify'},
+                  {title: 'Apple Podcasts', value: 'applePodcasts'},
+                  {title: 'Instagram', value: 'instagram'},
+                  {title: 'YouTube', value: 'youtube'},
+                ],
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'label',
+              type: 'string',
+              description: 'Button text, e.g. Apple Podcasts.',
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'url',
-              type: 'url',
-              validation: (rule) => rule.required().uri({scheme: ['http', 'https']}),
+              type: 'string',
+              description: 'Leave empty to hide the button; # is a placeholder.',
+              validation: urlRule,
             }),
           ],
           preview: {
-            select: {title: 'platform', subtitle: 'url'},
+            select: {title: 'label', subtitle: 'url'},
           },
         }),
       ],

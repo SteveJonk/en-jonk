@@ -1,3 +1,14 @@
 {
-  "last_heartbeat": "2026-09-10T17:48:31.824Z"
+  "last_heartbeat": "2026-09-13T11:17:41.150Z",
+  "engine_status": "initialized",
+  "execution_log": [
+    {
+      "task_id": "memory-consolidation",
+      "status": "success",
+      "timestamp": "2026-09-13T00:00:00.058Z",
+      "duration_ms": 5
+    }
+  ],
+  "dead_letter_queue": [],
+  "upcoming": []
 }

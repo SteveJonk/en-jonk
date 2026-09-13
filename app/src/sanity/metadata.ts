@@ -35,11 +35,21 @@ type Options = {
    * an unset `seo.title` falls through to the layout default instead.
    */
   isHome?: boolean;
+  /**
+   * A title that already names the site ("Over &Jonk") is used as-is instead
+   * of going through the layout's "&Jonk — %s" template.
+   */
+  siteName?: string;
+  /** Title for a missing page, from the interface text. */
+  notFoundTitle?: string;
 };
 
 export function pageMetadata(page: SanityPage, options?: Options): Metadata {
   if (!page) {
-    return { title: 'Page not found', robots: { index: false } };
+    return {
+      ...(options?.notFoundTitle ? { title: options.notFoundTitle } : {}),
+      robots: { index: false },
+    };
   }
 
   const seo = page.seo ?? {};
@@ -49,7 +59,9 @@ export function pageMetadata(page: SanityPage, options?: Options): Metadata {
 
   return {
     // The root layout's `title.template` appends the site name.
-    ...(title ? { title } : {}),
+    ...(title
+      ? { title: options?.siteName && title.includes(options.siteName) ? { absolute: title } : title }
+      : {}),
     ...(description ? { description } : {}),
     ...(seo.noIndex ? { robots: { index: false, follow: false } } : {}),
     ...(title || description || image

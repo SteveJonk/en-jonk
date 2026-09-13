@@ -11,15 +11,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  // SANITY — Sanity CDN images; re-enable when wiring the CMS.
-  //   images: {
-  //     remotePatterns: [
-  //       {
-  //         protocol: 'https',
-  //         hostname: 'cdn.sanity.io',
-  //       },
-  //     ],
-  //   },
+  // Photos come from the Sanity CDN.
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 };
 
 // No DSN, no Sentry: the build plugin is skipped entirely, so nothing is

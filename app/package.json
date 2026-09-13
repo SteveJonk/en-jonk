@@ -13,10 +13,11 @@
     "check:form": "tsx scripts/check-form.ts",
     "seed": "tsx --env-file=.env scripts/seed.ts",
     "seed:site": "tsx --env-file=.env scripts/seed.ts site",
+    "seed:interface": "tsx --env-file=.env scripts/seed.ts interface",
     "seed:forms": "tsx --env-file=.env scripts/seed.ts forms",
-    "seed:home": "tsx --env-file=.env scripts/seed.ts home",
-    "seed:about": "tsx --env-file=.env scripts/seed.ts about",
-    "seed:contact": "tsx --env-file=.env scripts/seed.ts contact",
+    "seed:documents": "tsx --env-file=.env scripts/seed.ts documents",
+    "seed:pages": "tsx --env-file=.env scripts/seed.ts pages",
+    "seed:page": "tsx --env-file=.env scripts/seed.ts",
     "seed:nav": "tsx --env-file=.env scripts/seed.ts nav"
   },
   "dependencies": {

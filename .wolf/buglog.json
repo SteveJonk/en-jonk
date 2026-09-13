@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-09-12T13:58:34",
+      "error_message": "sanity schema extract: 'Node.js version >=22.12 required. You are running v17.8.0'; then tsc 'Module \"sanity\" has no exported member defineType' and cli-spinners/spinners.json 'Unterminated string in JSON'",
+      "file": "studio/node_modules",
+      "root_cause": "Shell defaults to nvm Node 17; studio node_modules was partially installed/corrupt (truncated files, missing sanity types).",
+      "fix": "Prefix commands with PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH and run `npm ci` in studio/.",
+      "tags": [
+        "node",
+        "nvm",
+        "sanity",
+        "node_modules",
+        "tooling"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-12T13:58:34"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-09-12T14:18:16",
+      "error_message": "Seed failed: read ECONNRESET (during Sanity image uploads)",
+      "file": "app/scripts/seed/shared.ts",
+      "root_cause": "Transient network reset from the Sanity asset API mid-run.",
+      "fix": "Re-run `npm run seed -- pages nav`; uploads are reused by originalFilename and docs use createOrReplace with fixed ids, so re-runs are safe.",
+      "tags": [
+        "sanity",
+        "seed",
+        "network",
+        "upload"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-12T14:18:16"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-09-13T13:19:24",
+      "error_message": "Contact form always answers 'Formulieren zijn nog niet gekoppeld.' (503)",
+      "file": "app/src/app/api/submit-form/route.ts",
+      "root_cause": "The static-phase stub was left in place; the real route was still commented out under a 'SANITY \u2014' marker. The wiring pass grepped for disabled pages/layout but not API routes, and the verification never submitted the form.",
+      "fix": "Restored the real route (Mailjet, allow-list via FORM_QUERY, reCAPTCHA) with visitor messages from Interface text \u2192 Forms. Verified by POST: missing field \u2192 \u201eNaam\u201d is verplicht., unknown form \u2192 invalid, complete \u2192 notConfigured (no Mailjet keys).",
+      "tags": [
+        "sanity",
+        "forms",
+        "api",
+        "leftover-stub",
+        "verification-gap"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-13T13:29:16"
+    }
+  ]
+}

@@ -6,31 +6,27 @@ import type { FormFieldDefinition } from '@/lib/form-fields';
 /** `stacked` is the roomy page form, `compact` fits a narrow card or sidebar. */
 export type FormFieldVariant = 'stacked' | 'compact';
 
-const controlBase = cn(
-  'w-full rounded-[3px] border border-fg/16 bg-surface text-fg',
-  'transition-[border-color,box-shadow] duration-250 ease-brand placeholder:text-subtle',
-  'focus:border-accent-strong focus:ring-[3px] focus:ring-accent-strong/20 focus:outline-none',
-);
+const controlBase = 'w-full text-ink transition-colors outline-none placeholder:text-muted/70';
 
 const VARIANTS = {
+  // The design's page form: small caps labels over an underlined field.
   stacked: {
-    wrapper: 'mb-5',
-    label: 'mb-[9px] block text-[0.78rem] font-semibold tracking-[0.1em] text-muted uppercase',
-    control: 'px-[18px] py-4 text-[0.97rem]',
-    caretY: '24px',
-    checkboxWrapper: 'my-1.5 mb-[26px] flex items-start gap-3 max-sm:gap-3.5',
-    checkboxInput:
-      'mt-px size-[22px] shrink-0 cursor-pointer accent-accent-strong max-sm:size-[26px]',
-    checkboxLabel: 'cursor-pointer text-[0.88rem] leading-[1.6] text-muted',
+    wrapper: 'mb-6',
+    label: 'block font-ui text-xs tracking-[.14em] text-muted uppercase',
+    control: 'mt-2 border-b border-ink/25 bg-transparent py-3 font-body text-lg focus:border-ink',
+    caretY: '28px',
+    checkboxWrapper: 'my-1.5 mb-6 flex items-start gap-3',
+    checkboxInput: 'mt-px size-5 shrink-0 cursor-pointer accent-steel',
+    checkboxLabel: 'cursor-pointer text-sm leading-[1.6] text-muted',
   },
   compact: {
     wrapper: 'mb-4',
-    label: 'mb-2 block text-[0.86rem] font-medium text-fg',
-    control: 'px-[18px] py-[15px] text-[0.95rem]',
+    label: 'mb-2 block font-ui text-sm text-ink',
+    control: 'border border-ink/15 bg-paper px-4 py-3 focus:border-ink',
     caretY: '22px',
     checkboxWrapper: 'my-1 mb-5 flex items-start gap-3',
-    checkboxInput: 'mt-[3px] size-[20px] shrink-0 cursor-pointer accent-accent-strong',
-    checkboxLabel: 'cursor-pointer text-[0.85rem] leading-[1.6] text-muted',
+    checkboxInput: 'mt-[3px] size-5 shrink-0 cursor-pointer accent-steel',
+    checkboxLabel: 'cursor-pointer text-sm leading-[1.6] text-muted',
   },
 } as const satisfies Record<FormFieldVariant, Record<string, string>>;
 
@@ -61,7 +57,7 @@ export function linkify(text: string): ReactNode {
         <Link
           key={i}
           href={parts[i + 2]}
-          className='text-accent-strong underline underline-offset-[3px]'
+          className='text-steel underline underline-offset-[3px]'
         >
           {parts[i + 1]}
         </Link>,
@@ -123,7 +119,7 @@ export function FormField({
           name={field.name}
           required={field.isRequired}
           placeholder={field.placeholder}
-          className={cn(controlClass, 'min-h-[150px] resize-y leading-[1.6]')}
+          className={cn(controlClass, 'min-h-32 resize-none leading-[1.6]')}
         />
       ) : field.type === 'select' ? (
         <select
@@ -154,7 +150,7 @@ export function FormField({
                 name={field.name}
                 value={option}
                 required={field.isRequired}
-                className='size-[18px] cursor-pointer accent-accent-strong'
+                className='size-[18px] cursor-pointer accent-steel'
               />
               {option}
             </label>
@@ -172,7 +168,7 @@ export function FormField({
       )}
 
       {field.helpText ? (
-        <p className='mt-2 text-[0.82rem] text-subtle'>{linkify(field.helpText)}</p>
+        <p className='mt-2 text-sm text-muted'>{linkify(field.helpText)}</p>
       ) : null}
     </div>
   );

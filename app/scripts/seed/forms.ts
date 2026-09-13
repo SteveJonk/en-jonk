@@ -1,16 +1,15 @@
 /**
- * Seeds the shared form settings and one working contact form.
+ * Seeds the shared form settings and the contact form.
  *
- * The form is a document with a fixed `_id`, so the block that references it
- * (see `about.ts`) can point at it without looking anything up, and re-running
- * the seed updates it in place.
+ * The form is a document with a fixed `_id`, so the contact page's block can
+ * point at it without looking anything up.
  *
  * The mail credentials are deliberately NOT seeded: they belong in `app/.env`
  * as MAILJET_API_KEY / MAILJET_API_SECRET, which the submit route prefers over
  * anything stored in the dataset.
  */
-import {CONTACT_FORM_FIELDS} from '../../src/lib/demo-content'
 import {SITE_DEFAULTS} from '../../src/lib/site'
+import {CONTACT_FORM_FIELDS} from './contact-form-fields'
 import {client, key} from './shared'
 
 export const CONTACT_FORM_ID = 'form-contact'
@@ -21,10 +20,11 @@ async function upsertFormSettings() {
     _type: 'formGeneralSettings' as const,
     adminEmail: SITE_DEFAULTS.email,
     fromName: SITE_DEFAULTS.name,
-    confirmationSubject: 'New message from the website',
-    confirmationMessage: 'A new message came in through the website.',
-    primaryColor: '#0f172a',
-    textColor: '#0f172a',
+    confirmationSubject: 'Nieuw bericht via de website',
+    confirmationMessage: 'Er is een nieuw bericht binnengekomen via het contactformulier.',
+    mailFooter: 'Verstuurd via het formulier „{form}” op de website van {site}.',
+    primaryColor: '#bd7875',
+    textColor: '#162029',
     recaptchaEnabled: false,
   })
 
@@ -43,10 +43,9 @@ async function upsertContactForm() {
       _type: 'formField' as const,
       _key: key(field.name),
     })),
-    submitButtonText: 'Send message',
-    successTitle: 'Thank you — we have it',
-    successBody:
-      'We read every message ourselves and answer within two working days. Check your spam folder if you do not hear from us.',
+    submitButtonText: 'Versturen',
+    successTitle: 'Bedankt voor je bericht',
+    successBody: 'We nemen zo snel mogelijk contact met je op.',
     redirectAfterSubmit: false,
     sendCopyToSubmitter: false,
   })

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
-import { CONTACT } from '@/lib/nav';
+import { mailtoHref, telHref } from '@/lib/site';
 
 const btnBase =
   'inline-flex items-center py-4 font-ui text-sm tracking-[.14em] uppercase transition-colors duration-300';
@@ -44,19 +44,34 @@ export function ArrowLink({ href, children, className = 'text-steel', back }: Ar
 }
 
 /** "Bel … of mail …" */
-export function ContactLines({ className, style }: { className?: string; style?: CSSProperties }) {
+export function ContactLines({
+  phone,
+  email,
+  callPrefix,
+  mailPrefix,
+  className,
+  style,
+}: {
+  phone: string;
+  email: string;
+  /** "Bel" and "of mail", from the interface text. */
+  callPrefix: string;
+  mailPrefix: string;
+  className?: string;
+  style?: CSSProperties;
+}) {
   const link = 'text-ink transition-colors hover:text-rose';
 
   return (
     <p className={cn('font-ui text-sm text-muted', className)} style={style}>
-      Bel{' '}
-      <a href={CONTACT.phoneHref} className={link}>
-        {CONTACT.phone}
+      {callPrefix}{' '}
+      <a href={telHref(phone)} className={link}>
+        {phone}
       </a>
       <br />
-      of mail{' '}
-      <a href={CONTACT.emailHref} className={link}>
-        {CONTACT.email}
+      {mailPrefix}{' '}
+      <a href={mailtoHref(email)} className={link}>
+        {email}
       </a>
     </p>
   );

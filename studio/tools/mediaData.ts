@@ -102,11 +102,14 @@ export type MediaUsage = {
  */
 const TYPE_LABELS: Record<string, string> = {
   page: 'Page',
-  faq: 'FAQ',
+  testimonial: 'Testimonial',
+  case: 'Case',
+  podcastEpisode: 'Podcast episode',
   form: 'Form',
   navigation: 'Navigation',
   footer: 'Footer',
   siteInformation: 'Site information',
+  interfaceText: 'Interface text',
   formGeneralSettings: 'Form settings',
 }
 

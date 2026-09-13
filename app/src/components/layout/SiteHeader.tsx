@@ -7,7 +7,7 @@ import { withAmp } from '@/components/site/Amp';
 import { ContactLines } from '@/components/site/Links';
 import { useStickyTopbar } from '@/hooks/useStickyTopbar';
 import { cn } from '@/lib/cn';
-import { NAV } from '@/lib/nav';
+import type { InterfaceText } from '@/lib/interface-text';
 
 const bar = 'mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:h-24 md:px-10';
 const toggle = 'flex cursor-pointer items-center gap-3 px-1 py-3 font-ui text-sm tracking-[.18em] uppercase';
@@ -18,8 +18,18 @@ function Logo(props: { alt: string }) {
   return <img src='/jonk-logo.svg' alt={props.alt} className='h-7 w-auto md:h-8' />;
 }
 
+type SiteHeaderProps = {
+  /** Main navigation, from the `navigation` document. `&` renders as the brand ampersand. */
+  links: { label: string; href: string }[];
+  phone: string;
+  email: string;
+  /** Button texts and screen-reader labels, from the interface text. */
+  labels: InterfaceText['header'];
+  contact: InterfaceText['contact'];
+};
+
 /** Fixed top bar + full-screen menu overlay (used at every width). */
-export function SiteHeader() {
+export function SiteHeader({ links, phone, email, labels, contact }: SiteHeaderProps) {
   const scrolled = useStickyTopbar();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -52,8 +62,8 @@ export function SiteHeader() {
         )}
       >
         <div className={bar}>
-          <Link href='/' aria-label='&Jonk, naar home' className='block'>
-            <Logo alt='&Jonk — talent, leiderschap, teams' />
+          <Link href='/' aria-label={labels.homeLabel} className='block'>
+            <Logo alt={labels.logoAlt} />
           </Link>
           <button
             ref={openButton}
@@ -63,7 +73,7 @@ export function SiteHeader() {
             onClick={() => setOpen(true)}
             className={cn(toggle, 'group')}
           >
-            <span>Menu</span>
+            <span>{labels.menu}</span>
             <span className='flex w-6 flex-col gap-[5px]' aria-hidden>
               <span className='block h-px w-6 bg-ink transition-transform duration-300 group-hover:translate-x-1' />
               <span className='block h-px w-6 bg-ink transition-transform duration-300 group-hover:-translate-x-1' />
@@ -78,7 +88,7 @@ export function SiteHeader() {
         id='site-menu'
         role='dialog'
         aria-modal='true'
-        aria-label='Hoofdmenu'
+        aria-label={labels.menuLabel}
         className={cn(
           'fixed inset-0 z-50 bg-shell duration-200 ease-out',
           // Visible at once on open so the close button can take focus; hidden only after the fade on close.
@@ -91,7 +101,7 @@ export function SiteHeader() {
           <div className='flex h-20 items-center justify-between md:h-24'>
             <Logo alt='' />
             <button ref={closeButton} type='button' onClick={close} className={toggle}>
-              <span>Sluiten</span>
+              <span>{labels.close}</span>
               <span className='relative block size-6' aria-hidden>
                 <span className='absolute top-1/2 left-0 h-px w-6 rotate-45 bg-ink' />
                 <span className='absolute top-1/2 left-0 h-px w-6 -rotate-45 bg-ink' />
@@ -99,9 +109,9 @@ export function SiteHeader() {
             </button>
           </div>
 
-          <nav className='mt-10 md:mt-16' aria-label='Hoofdnavigatie'>
+          <nav className='mt-10 md:mt-16' aria-label={labels.navLabel}>
             <ul className='space-y-2 md:space-y-3'>
-              {NAV.map((link, i) => (
+              {links.map((link, i) => (
                 <li
                   key={link.href}
                   className={cn(rise, open ? 'translate-y-0 opacity-100' : 'translate-y-[18px] opacity-0')}
@@ -125,6 +135,10 @@ export function SiteHeader() {
           </nav>
 
           <ContactLines
+            phone={phone}
+            email={email}
+            callPrefix={contact.callPrefix}
+            mailPrefix={contact.mailPrefix}
             className={cn(
               'mt-12 md:mt-16',
               rise,

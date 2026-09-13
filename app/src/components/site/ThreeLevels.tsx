@@ -5,16 +5,16 @@ import { Reveal } from '@/components/site/Reveal';
 import { cn } from '@/lib/cn';
 
 const LOBES = [
-  { key: 'individueel', title: 'Individueel', fill: '#bd7875', bar: 'bg-rose', cx: 235, cy: 160, tx: 180, ty: 130 },
-  { key: 'team', title: 'Team', fill: '#4a6b50', bar: 'bg-green', cx: 385, cy: 160, tx: 444, ty: 130 },
-  { key: 'organisatie', title: 'Organisatie', fill: '#2c5a7a', bar: 'bg-steel', cx: 310, cy: 272, tx: 310, ty: 338 },
+  { key: 'individueel', fill: '#bd7875', bar: 'bg-rose', cx: 235, cy: 160, tx: 180, ty: 130 },
+  { key: 'team', fill: '#4a6b50', bar: 'bg-green', cx: 385, cy: 160, tx: 444, ty: 130 },
+  { key: 'organisatie', fill: '#2c5a7a', bar: 'bg-steel', cx: 310, cy: 272, tx: 310, ty: 338 },
 ];
 
-export type Level = { text: ReactNode; items?: string[] };
+export type Level = { title: string; text: ReactNode; items?: string[] | null };
 
 type ThreeLevelsProps = {
   /** Individueel, team, organisatie — in that order. */
-  levels: [Level, Level, Level];
+  levels: Level[];
   /** Bordered cards (wat-we-doen) instead of open columns (home). */
   cards?: boolean;
 };
@@ -25,6 +25,8 @@ type ThreeLevelsProps = {
  */
 export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
   const [active, setActive] = useState<string | null>(null);
+  // Positions and colours are the drawing's; the titles come from the CMS.
+  const lobes = LOBES.map((lobe, i) => ({ ...lobe, title: levels[i]?.title ?? '' }));
 
   const highlight = (key: string) => ({
     onMouseEnter: () => setActive(key),
@@ -42,7 +44,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
           role='img'
           aria-label='Drie overlappende cirkels: individueel, team en organisatie, die elkaar in het midden overlappen'
         >
-          {LOBES.map((lobe) => (
+          {lobes.map((lobe) => (
             <g
               key={lobe.key}
               tabIndex={0}
@@ -87,8 +89,9 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
             : 'mt-10 gap-10 md:mt-14 lg:gap-12',
         )}
       >
-        {LOBES.map((lobe, i) => {
+        {lobes.map((lobe, i) => {
           const level = levels[i];
+          if (!level) return null;
           return (
             <Reveal
               as='article'
@@ -105,7 +108,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
                 <span className={cn('block h-px w-10', lobe.bar)} />
                 <h3 className='t-h3 mt-5'>{lobe.title}</h3>
                 <p className='mt-3 text-muted'>{level.text}</p>
-                {level.items && (
+                {level.items?.length ? (
                   <ul className='mt-5 space-y-2 font-ui text-sm text-muted'>
                     {level.items.map((item) => (
                       <li key={item} className='border-l border-ink/15 pl-4'>
@@ -113,7 +116,7 @@ export function ThreeLevels({ levels, cards }: ThreeLevelsProps) {
                       </li>
                     ))}
                   </ul>
-                )}
+                ) : null}
               </div>
             </Reveal>
           );

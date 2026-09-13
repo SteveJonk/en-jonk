@@ -53,7 +53,7 @@ import {
  */
 
 /** Pinned, so a new API version cannot quietly change these queries. */
-const API_VERSION = '2025-02-19'
+const API_VERSION = '2026-09-10'
 
 /** Cards per batch, with a "show more" underneath. */
 const PAGE_SIZE = 60

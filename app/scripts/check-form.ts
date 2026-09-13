@@ -16,7 +16,7 @@
  */
 import assert from 'node:assert/strict';
 import { evaluate, parse } from 'groq-js';
-import { CONTACT_FORM_FIELDS } from '@/lib/demo-content';
+import { CONTACT_FORM_FIELDS } from './seed/contact-form-fields';
 import {
   fillTokens,
   toFieldRows,
@@ -148,7 +148,7 @@ async function checkAllowList() {
 const demo = toFormDefinition({
   _id: 'form-contact',
   mode: 'simple',
-  fields: CONTACT_FORM_FIELDS,
+  fields: [...CONTACT_FORM_FIELDS],
 });
 assert.ok(demo, 'the seeded demo form must render');
 const demoNames = new Set(CONTACT_FORM_FIELDS.map((item) => item.name));

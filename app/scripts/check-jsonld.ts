@@ -21,8 +21,6 @@ import {
   faqQuestions,
   jsonLdGraph,
   organizationJsonLd,
-  pageBreadcrumbLabel,
-  pageFaqs,
   pageJsonLd,
   postalAddress,
   prune,
@@ -105,7 +103,12 @@ const merged = resolveSiteInformation({
   phone: '  +31 (0)20 000 0000  ',
   description: '   ',
   address: ['Chausseestrasse 1', '10115 Berlin', null],
-  socialLinks: ['https://example.com/profile', null, ''],
+  socialLinks: [
+    { platform: 'linkedin', label: 'LinkedIn', url: 'https://example.com/profile' },
+    { platform: 'spotify', label: 'Spotify', url: '#' },
+    { platform: 'youtube', url: '' },
+    null,
+  ],
   language: 'de',
 });
 assert.equal(merged.name, 'Other Co');
@@ -113,7 +116,9 @@ assert.equal(merged.phone, '+31 (0)20 000 0000', 'values are trimmed');
 assert.equal(merged.description, SITE_DEFAULTS.description, 'a blank field falls back');
 assert.equal(merged.email, SITE_DEFAULTS.email, 'a missing field falls back');
 assert.deepEqual(merged.address, ['Chausseestrasse 1', '10115 Berlin']);
-assert.deepEqual(merged.socialLinks, ['https://example.com/profile']);
+assert.deepEqual(merged.socialLinks, ['https://example.com/profile'], 'only real links become sameAs');
+assert.deepEqual(merged.social.spotify, { url: '#', label: 'Spotify' }, 'a # placeholder still drives the button');
+assert.equal(merged.social.youtube, undefined, 'an empty URL hides the button');
 assert.deepEqual(
   resolveSiteInformation({ address: [], badges: [null, ''] }).address,
   [...SITE_DEFAULTS.address],
@@ -142,39 +147,20 @@ assert.equal(node(site, 'Organization')['@id'], ORGANIZATION_ID);
 assert.equal(node(site, 'WebSite')['@id'], WEBSITE_ID);
 
 // 3. A page with questions is also an FAQPage, with exactly those questions.
-const content = [
-  { _type: 'pageHero', breadcrumbLabel: 'About' },
-  { _type: 'intro', title: 'Not a question' },
-  {
-    _type: 'faqs',
-    faqs: [
-      { title: 'What do you do?', answer: 'Design and engineering.' },
-      { title: 'Where are you?', answer: 'Amsterdam.' },
-      { title: 'Half filled', answer: null },
-    ],
-  },
-];
-
-assert.deepEqual(pageFaqs(content), [
+const faqs = [
   { question: 'What do you do?', answer: 'Design and engineering.' },
   { question: 'Where are you?', answer: 'Amsterdam.' },
   { question: 'Half filled', answer: null },
-]);
-assert.equal(faqQuestions(pageFaqs(content)).length, 2, 'an answerless question is dropped');
-assert.equal(pageFaqs([]).length, 0);
-assert.equal(pageFaqs(null).length, 0);
-
-assert.equal(pageBreadcrumbLabel(content), 'About');
-assert.equal(pageBreadcrumbLabel([{ _type: 'pageHero' }]), undefined);
-assert.equal(pageBreadcrumbLabel([{ _type: 'intro' }]), undefined);
+];
+assert.equal(faqQuestions(faqs).length, 2, 'an answerless question is dropped');
 
 const about = pageJsonLd({
   path: '/about',
   title: 'About',
   description: 'Who we are.',
   language: defaults.language,
-  faqs: pageFaqs(content),
-  trail: [{ name: pageBreadcrumbLabel(content)!, path: '/about' }],
+  faqs,
+  trail: [{ name: 'About', path: '/about' }],
 });
 const aboutPage = node(about, 'WebPage');
 assert.deepEqual(aboutPage['@type'], ['WebPage', 'FAQPage']);
