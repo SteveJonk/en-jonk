@@ -730,7 +730,6 @@ export type SiteInformation = {
     _type: "socialLink";
     _key: string;
   }>;
-  badges?: Array<string>;
 };
 
 export type Footer = {
@@ -1707,7 +1706,7 @@ export type NAVIGATION_QUERY_RESULT =
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: SITE_INFORMATION_QUERY
-// Query: *[_id == "siteInformation"][0]{    name,    description,    language,    phone,    email,    address,    addressCountry,    badges,    socialLinks[]{      platform,      label,      url    },    "logoUrl": logo.asset->url  }
+// Query: *[_id == "siteInformation"][0]{    name,    description,    language,    phone,    email,    address,    addressCountry,    socialLinks[]{      platform,      label,      url    },    "logoUrl": logo.asset->url  }
 export type SITE_INFORMATION_QUERY_RESULT =
   | {
       name: null;
@@ -1717,7 +1716,6 @@ export type SITE_INFORMATION_QUERY_RESULT =
       email: null;
       address: null;
       addressCountry: null;
-      badges: null;
       socialLinks: null;
       logoUrl: null;
     }
@@ -1729,7 +1727,6 @@ export type SITE_INFORMATION_QUERY_RESULT =
       email: null;
       address: null;
       addressCountry: null;
-      badges: null;
       socialLinks: null;
       logoUrl: null;
     }
@@ -1741,7 +1738,6 @@ export type SITE_INFORMATION_QUERY_RESULT =
       email: null;
       address: null;
       addressCountry: null;
-      badges: null;
       socialLinks: null;
       logoUrl: null;
     }
@@ -1753,7 +1749,6 @@ export type SITE_INFORMATION_QUERY_RESULT =
       email: string | null;
       address: Array<string> | null;
       addressCountry: string | null;
-      badges: Array<string> | null;
       socialLinks: Array<{
         platform:
           "applePodcasts" | "instagram" | "linkedin" | "spotify" | "youtube";
@@ -1909,7 +1904,7 @@ declare global {
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    seo,\n    content[]{\n      ...,\n      link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      backLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      ctas[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      items[]{\n        ...,\n        link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n      },\n      testimonial->{\n  _id,\n  quote,\n  name,\n  role\n},\n      testimonials[]->{\n  _id,\n  quote,\n  name,\n  role\n},\n      cases[]->{\n        _id,\n        client,\n        type,\n        summary,\n        image,\n        testimonial->{\n  _id,\n  quote,\n  name,\n  role\n}\n      },\n      layers[]->{\n        _id,\n        title,\n        "slug": slug.current\n      },\n      _type == "podcastEpisodes" => {\n        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){\n          _id,\n          number,\n          title,\n          description,\n          url\n        }\n      },\n      // The form lives in its own document so several pages can share it, and\n      // the public half of the reCAPTCHA settings rides along \u2014 the secret\n      // stays server-side, in the submit route.\n      _type == "contactForm" => {\n        form->{\n  _id,\n  title,\n  showTitle,\n  mode,\n  fields[],\n  steps[]{\n    title,\n    fields[]\n  },\n  submitButtonText,\n  nextButtonText,\n  backButtonText,\n  successTitle,\n  successBody,\n  redirectAfterSubmit,\n  redirectLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n},\n        "recaptcha": *[_type == "formGeneralSettings"][0]{\n          recaptchaEnabled,\n          recaptchaSiteKey\n        }\n      }\n    }\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  }\n': PAGE_SLUGS_QUERY_RESULT;
     '\n  *[_id == "navigation"][0]{\n    links[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n  }\n': NAVIGATION_QUERY_RESULT;
-    '\n  *[_id == "siteInformation"][0]{\n    name,\n    description,\n    language,\n    phone,\n    email,\n    address,\n    addressCountry,\n    badges,\n    socialLinks[]{\n      platform,\n      label,\n      url\n    },\n    "logoUrl": logo.asset->url\n  }\n': SITE_INFORMATION_QUERY_RESULT;
+    '\n  *[_id == "siteInformation"][0]{\n    name,\n    description,\n    language,\n    phone,\n    email,\n    address,\n    addressCountry,\n    socialLinks[]{\n      platform,\n      label,\n      url\n    },\n    "logoUrl": logo.asset->url\n  }\n': SITE_INFORMATION_QUERY_RESULT;
     '\n  *[_id == "interfaceText"][0]{\n    header,\n    footer,\n    contact,\n    kennismaken,\n    forms,\n    notFound\n  }\n': INTERFACE_TEXT_QUERY_RESULT;
     '\n  *[_id == "footer"][0]{\n    tagline,\n    legalLinks[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n    copyright\n  }\n': FOOTER_QUERY_RESULT;
     '\n  *[_id == $formId && _type == "form"][0]{\n    _id,\n    title,\n    mailRecipients,\n    mailSubject,\n    mailMessage,\n    sendCopyToSubmitter,\n    copySubject,\n    copyMessage,\n    "fields": select(\n      mode == "steps" => steps[].fields[]{label, name, type, isRequired},\n      fields[]{label, name, type, isRequired}\n    )\n  }\n': FORM_QUERY_RESULT;

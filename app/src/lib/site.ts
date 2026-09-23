@@ -22,8 +22,6 @@ export const SITE_DEFAULTS = {
   address: [] as string[],
   /** ISO 3166-1 alpha-2 code for the address above. Structured data only. */
   addressCountry: 'NL',
-  /** Memberships, certifications, awards. */
-  badges: [] as string[],
 } as const;
 
 /**
@@ -49,7 +47,6 @@ export type SiteInformation = {
   email: string;
   address: string[];
   addressCountry: string;
-  badges: string[];
   /** Real (http) profile URLs, for `sameAs` in the structured data. */
   socialLinks: string[];
   /**
@@ -69,7 +66,6 @@ export type SiteInformationDocument = {
   email?: string | null;
   address?: Array<string | null> | null;
   addressCountry?: string | null;
-  badges?: Array<string | null> | null;
   socialLinks?: Array<{
     platform?: string | null;
     label?: string | null;
@@ -114,7 +110,6 @@ export function resolveSiteInformation(doc: SiteInformationDocument): SiteInform
     email: text(doc?.email, SITE_DEFAULTS.email),
     address: list(doc?.address, SITE_DEFAULTS.address),
     addressCountry: text(doc?.addressCountry, SITE_DEFAULTS.addressCountry),
-    badges: list(doc?.badges, SITE_DEFAULTS.badges),
     socialLinks: Object.values(social)
       .map((link) => link.url)
       .filter((url) => /^https?:\/\//.test(url)),
@@ -136,8 +131,3 @@ export type NavLink = { href: string; label: string };
 
 /** A profile elsewhere, as a button: the label is editable in the studio. */
 export type SocialLink = { url: string; label: string };
-
-export type FooterLinkGroup = {
-  title: string;
-  links: NavLink[];
-};

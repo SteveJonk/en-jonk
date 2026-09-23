@@ -1,7 +1,5 @@
-import {BulbOutlineIcon} from '@sanity/icons/BulbOutline'
 import {ChartUpwardIcon} from '@sanity/icons/ChartUpward'
 import {CommentIcon} from '@sanity/icons/Comment'
-import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 import {HeartIcon} from '@sanity/icons/Heart'
 import {ImagesIcon} from '@sanity/icons/Images'
 import {LinkIcon} from '@sanity/icons/Link'

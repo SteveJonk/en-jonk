@@ -138,7 +138,6 @@ export const SITE_INFORMATION_QUERY = defineQuery(`
     email,
     address,
     addressCountry,
-    badges,
     socialLinks[]{
       platform,
       label,

@@ -28,16 +28,6 @@ export function imageSrc(
   return builder?.url() ?? null;
 }
 
-export function toImage(
-  source: SanityImage | undefined | null,
-  width: number,
-  height?: number,
-): { src: string; alt: string } | undefined {
-  const src = imageSrc(source, width, height);
-  if (!src) return undefined;
-  return { src, alt: source?.alt ?? '' };
-}
-
 /** A `photo` from the studio: an image with its alt text and crop focus. */
 export type Photo = {
   asset?: { _ref: string } | null;

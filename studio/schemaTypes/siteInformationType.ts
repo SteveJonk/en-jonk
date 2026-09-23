@@ -114,14 +114,6 @@ export const siteInformationType = defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'badges',
-      title: 'Footer badges',
-      type: 'array',
-      group: 'elsewhere',
-      of: [defineArrayMember({type: 'string'})],
-      description: 'Memberships, certifications, awards. Leave empty to hide the row.',
-    }),
   ],
   preview: {
     select: {title: 'name'},

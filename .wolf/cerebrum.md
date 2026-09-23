@@ -46,3 +46,5 @@
 - [2026-09-23] Video support = optional `video` file field ON the `photo` image type (no data migration; photo doubles as poster), not a new photo|video union.
 
 - [2026-09-12] &Jonk CMS = page builder with blocks mirroring `components/site/*` sections; old template blocks (hero, intro, services, ...) get deleted. Chosen by user over singleton-per-page for editor flexibility.
+
+- (2026-09-23) In this shell `grep` is a ugrep shell function and zsh does not word-split `$VAR` — multi-file grep loops hang/misbehave. Use a small Node 22 script (fs.readdirSync recursive) for code-wide searches; `npx sanity documents query --api-version 2025-08-15` from studio/ works for dataset queries.

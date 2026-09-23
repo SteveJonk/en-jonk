@@ -340,5 +340,3 @@ export const DIAGRAMS = {
   dramaTriangle: DramaTriangle,
   ikInDeWij: IkInDeWij,
 } as const;
-
-export type DiagramKey = keyof typeof DIAGRAMS;

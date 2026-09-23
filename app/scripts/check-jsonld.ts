@@ -120,7 +120,7 @@ assert.deepEqual(merged.socialLinks, ['https://example.com/profile'], 'only real
 assert.deepEqual(merged.social.spotify, { url: '#', label: 'Spotify' }, 'a # placeholder still drives the button');
 assert.equal(merged.social.youtube, undefined, 'an empty URL hides the button');
 assert.deepEqual(
-  resolveSiteInformation({ address: [], badges: [null, ''] }).address,
+  resolveSiteInformation({ address: [] }).address,
   [...SITE_DEFAULTS.address],
   'an emptied list falls back too',
 );

@@ -4425,16 +4425,6 @@
           }
         },
         "optional": true
-      },
-      "badges": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "string"
-          }
-        },
-        "optional": true
       }
     }
   },

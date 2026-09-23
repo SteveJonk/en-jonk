@@ -41,8 +41,8 @@
       "timestamp": "2026-09-13T13:19:24",
       "error_message": "Contact form always answers 'Formulieren zijn nog niet gekoppeld.' (503)",
       "file": "app/src/app/api/submit-form/route.ts",
-      "root_cause": "The static-phase stub was left in place; the real route was still commented out under a 'SANITY \u2014' marker. The wiring pass grepped for disabled pages/layout but not API routes, and the verification never submitted the form.",
-      "fix": "Restored the real route (Mailjet, allow-list via FORM_QUERY, reCAPTCHA) with visitor messages from Interface text \u2192 Forms. Verified by POST: missing field \u2192 \u201eNaam\u201d is verplicht., unknown form \u2192 invalid, complete \u2192 notConfigured (no Mailjet keys).",
+      "root_cause": "The static-phase stub was left in place; the real route was still commented out under a 'SANITY —' marker. The wiring pass grepped for disabled pages/layout but not API routes, and the verification never submitted the form.",
+      "fix": "Restored the real route (Mailjet, allow-list via FORM_QUERY, reCAPTCHA) with visitor messages from Interface text → Forms. Verified by POST: missing field → „Naam” is verplicht., unknown form → invalid, complete → notConfigured (no Mailjet keys).",
       "tags": [
         "sanity",
         "forms",
@@ -60,7 +60,7 @@
       "error_message": "Deploy Sanity Studio workflow: 'Failed to resolve deploy target: You must login first - run \"sanity login\"'",
       "file": ".github/workflows/deploy-sanity-studio.yml",
       "root_cause": "SANITY_AUTH_TOKEN was never created as a GitHub Actions secret (only the SANITY_STUDIO_* Variables existed). An unset secret expands to an empty string, so sanity deploy ran unauthenticated. Run log showed 'SANITY_AUTH_TOKEN: ' (a set secret prints '***').",
-      "fix": "No code change: add a repo-level Actions secret SANITY_AUTH_TOKEN (Sanity deploy-studio token). Not an environment secret \u2014 the job declares no environment.",
+      "fix": "No code change: add a repo-level Actions secret SANITY_AUTH_TOKEN (Sanity deploy-studio token). Not an environment secret — the job declares no environment.",
       "tags": [
         "ci",
         "github-actions",
@@ -71,6 +71,22 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-09-13T14:00:00"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-09-23T09:35:39.423Z",
+      "error_message": "TS2353: badges does not exist in resolveSiteInformation input (scripts/check-jsonld.ts:123)",
+      "file": "app/scripts/check-jsonld.ts",
+      "root_cause": "Removed siteInformation.badges; usage search only covered app/src, not app/scripts",
+      "fix": "Dropped badges from the fallback assertion input",
+      "tags": [
+        "cleanup",
+        "typecheck",
+        "scripts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-09-23T09:35:39.424Z"
     }
   ]
 }

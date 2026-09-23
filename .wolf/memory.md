@@ -10,3 +10,5 @@
 | 13:29 | interface text: all hardcoded strings → Sanity (singleton + block fields), submit route restored + verified | studio/schemaTypes/*, app/src/**, app/scripts/seed/*, README | done, verified build/validate/POST | ~70k |
 | 14:00 | diagnosed studio deploy CI failure: SANITY_AUTH_TOKEN secret missing (config, not code) | .github/workflows/deploy-sanity-studio.yml | user must add secret | ~5k |
 | 10:49 | MP4 video support on photo type + Frame/Clip | studio/schemaTypes/objects/contentObjects.ts, app/src/components/site/{Frame,Clip}.tsx, app/src/sanity/image.ts | typecheck+lint+build ok | ~15k |
+| 11:25 | Cleanup audit: schema types/fields vs dataset + app, unused Next exports (report only) | studio/schemaTypes, app/src | all types/blocks/components used; dead: siteInformation.badges, form.steps?, toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey | ~25k |
+| 11:35 | Removed siteInformation.badges + dead exports (toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey) + 2 unused icon imports; typegen, typecheck, lint, check:jsonld green | studio+app | done | ~8k |
