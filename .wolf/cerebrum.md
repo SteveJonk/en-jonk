@@ -26,6 +26,8 @@
 - **Project:** en-jonk
 - **Description:** A block-based website scaffold: Next.js 16 (App Router, React 19, Tailwind v4)
 
+- [2026-09-23] Photos arrive raw (spread `...`) from PAGE_QUERY — file/video urls are built from the asset ref client-side (`fileUrl`), not dereferenced in GROQ. Logos, SEO/og image, mail logo, siteInformation.logo stay image-only on purpose.
+
 ## Do-Not-Repeat
 
 - [2026-09-13] When re-enabling a disabled CMS integration, grep the WHOLE app for the disable marker (`SANITY —`), API routes included, and exercise every interactive path (submit the form) before calling it done.
@@ -40,5 +42,7 @@
 - [2026-09-13] Hardcoded strings: site-wide labels live in ONE `interfaceText` singleton (groups header/footer/contact/kennismaken/forms/notFound) with code defaults in `app/src/lib/interface-text.ts` (same pattern as SITE_DEFAULTS). Section copy = block fields. Social button labels = siteInformation.socialLinks[].label. Diagram labels + Venn aria + global-error stay in code (user chose: drawings break with long text; crash page must not depend on CMS).
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
+
+- [2026-09-23] Video support = optional `video` file field ON the `photo` image type (no data migration; photo doubles as poster), not a new photo|video union.
 
 - [2026-09-12] &Jonk CMS = page builder with blocks mirroring `components/site/*` sections; old template blocks (hero, intro, services, ...) get deleted. Chosen by user over singleton-per-page for editor flexibility.

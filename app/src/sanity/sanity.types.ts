@@ -518,6 +518,13 @@ export type Item = {
   text?: string;
 };
 
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
 export type Photo = {
   _type: "photo";
   asset?: SanityImageAssetReference;
@@ -525,6 +532,11 @@ export type Photo = {
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   alt: string;
+  video?: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+  };
 };
 
 export type Cta = {
@@ -945,6 +957,7 @@ export type AllSanitySchemaTypes =
   | FormField
   | Stat
   | Item
+  | SanityFileAssetReference
   | Photo
   | Cta
   | Link

@@ -9,3 +9,4 @@
 | 15:28 | seed per page: PAGES map, page names as seed targets, weak refs for missing docs | app/scripts/seed.ts, seed/pages.ts, seed/shared.ts, seed/navigation.ts, README | verified tsc/lint/dry-run | ~10k |
 | 13:29 | interface text: all hardcoded strings → Sanity (singleton + block fields), submit route restored + verified | studio/schemaTypes/*, app/src/**, app/scripts/seed/*, README | done, verified build/validate/POST | ~70k |
 | 14:00 | diagnosed studio deploy CI failure: SANITY_AUTH_TOKEN secret missing (config, not code) | .github/workflows/deploy-sanity-studio.yml | user must add secret | ~5k |
+| 10:49 | MP4 video support on photo type + Frame/Clip | studio/schemaTypes/objects/contentObjects.ts, app/src/components/site/{Frame,Clip}.tsx, app/src/sanity/image.ts | typecheck+lint+build ok | ~15k |

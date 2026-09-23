@@ -44,4 +44,13 @@ export type Photo = {
   alt?: string | null;
   hotspot?: { x?: number | null; y?: number | null } | null;
   crop?: unknown;
+  video?: { asset?: { _ref: string } | null } | null;
 };
+
+/** CDN url of an uploaded file, from its ref: `file-<id>-<ext>`. */
+export function fileUrl(ref?: string | null): string | null {
+  const m = ref?.match(/^file-(\w+)-(\w+)$/);
+  return m && projectId && dataset
+    ? `https://cdn.sanity.io/files/${projectId}/${dataset}/${m[1]}.${m[2]}`
+    : null;
+}

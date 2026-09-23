@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-09-13T11:29:16.882Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-09-22T10:00:00.296Z
 > Files: 231 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -104,7 +104,7 @@
 
 ## app/
 
-- `.DS_Store` (~2732 tok)
+- `.DS_Store` (~3824 tok)
 - `.gitignore` — Git ignore rules (~147 tok)
 - `Dockerfile` — Docker container definition (~294 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~152 tok)
@@ -289,15 +289,15 @@
 - `.DS_Store` (~1640 tok)
 - `global-error.tsx` — Last-resort error boundary: it replaces the root layout, so it renders its (~239 tok)
 - `globals.css` — Styles: 14 rules, 17 vars, 1 media queries, 1 animations, 1 layers (~1174 tok)
-- `layout.tsx` — Resolved `{ label, href }` pairs; links that resolve to nothing are dropped. (~1175 tok)
+- `layout.tsx` — Resolved `{ label, href }` pairs; links that resolve to nothing are dropped. (~1177 tok)
   - fn `generateMetadata` L55-67 (~129 tok)
   - fn `toLinks` L68-75 (~76 tok)
-  - fn `RootLayout` L76-127 (~481 tok)
+  - fn `RootLayout` L76-127 (~483 tok)
 - `manifest.json` (~124 tok)
 - `not-found.tsx` — NotFound (~238 tok)
 - `page.tsx` — generateMetadata (~73 tok)
 - `robots.ts` — Served at `/robots.txt`. (~150 tok)
-- `sitemap.ts` — Served at `/sitemap.xml`; `robots.ts` points at it. Every published page. (~200 tok)
+- `sitemap.ts` — Served at `/sitemap.xml`; `robots.ts` points at it. Every published page. (~189 tok)
 
 ## app/src/app/[...slug]/
 
@@ -492,7 +492,7 @@
 
 - `.gitignore` — Git ignore rules (~143 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~21 tok)
-- `package-lock.json` — npm lock file (~178152 tok)
+- `package-lock.json` — npm lock file (~171738 tok)
 - `package.json` — Node.js package manifest (~301 tok)
 - `README.md` — Project documentation (~427 tok)
 - `sanity.cli.ts` — Typegen runs from the studio — the CLI needs a studio project root — but (~270 tok)
@@ -503,7 +503,7 @@
 
 ## studio/.sanity/runtime/
 
-- `app.js` — This file is auto-generated on 'sanity dev' (~88 tok)
+- `app.js` — This file is auto-generated on 'sanity dev' (~87 tok)
 - `index.html` — Sanity Studio (~2316 tok)
 
 ## studio/schemaTypes/

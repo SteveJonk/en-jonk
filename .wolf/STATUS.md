@@ -1,7 +1,7 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-09-12
+> Last updated: 2026-09-23
 
 ---
 
@@ -14,6 +14,7 @@
   - Seed: `scripts/seed/{pages,documents,forms,navigation,site-information}.ts`, one-time overwrite with fixed ids; all design placeholders seeded published; social URLs `#`. Dataset rjioz4di/production seeded 2026-09-12.
   - Interface text (2026-09-13): all visitor-facing strings moved to Sanity — `interfaceText` singleton (header, footer, contact lines, kennismaken defaults, forms, 404), new block fields (articleHero eyebrow, articleOutcome title, layerNav labels, level titles, cases eyebrow, podcast listenLabel, contact labels), social link labels, Form settings mailFooter. Submit route restored (was still a stub) and verified by POST.
   - Verified: studio + app typecheck, lint, check:jsonld, check:form, `sanity documents validate` (27 valid), `next build` (11 pages SSG), all routes 200 with Sanity images, visual check of home / ik / contact.
+  - Video (2026-09-23, uncommitted): `photo` type has optional `video` (MP4, ≤20 MB, validated via asset size/mimeType); `Frame` renders `Clip` (muted, loop, no controls, plays in view, poster = photo, paused under reduced motion). URL built from ref by `fileUrl()` in `sanity/image.ts`. Not yet tested with a real uploaded video.
 
 ---
 
