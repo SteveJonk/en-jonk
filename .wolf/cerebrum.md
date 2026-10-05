@@ -17,6 +17,8 @@
 
 ## Key Learnings
 
+- [2026-10-05] en-jonk tracks the nextjs-sanity-starter template: starter PRs can be ported. Only `site/Frame.tsx` uses next/image here (blocks render through Frame); studio/tools/Media* are near-identical to the starter's, so starter diffs apply with `git apply`.
+
 - [2026-09-12] Page model: every page is a Sanity `page` doc (slug may contain `/`, e.g. `hoe-wij-kijken/ik`) rendered by `app/[...slug]` / home via `CmsPage`. Blocks typed with `BlockOf<'x'>` from `PAGE_QUERY_RESULT` — rerun `npm run typegen` after schema/query edits.
 - [2026-09-12] CMS text marks via `rich()` (Rich.tsx): `&` brand amp, `*x*` display em, `**x**` bold, `[x]` tbd placeholder, newline = br.
 - [2026-09-12] Seed is one-time overwrite with fixed ids (`page-<slug-with-dashes>`).
@@ -29,6 +31,8 @@
 - [2026-09-23] Photos arrive raw (spread `...`) from PAGE_QUERY — file/video urls are built from the asset ref client-side (`fileUrl`), not dereferenced in GROQ. Logos, SEO/og image, mail logo, siteInformation.logo stay image-only on purpose.
 
 ## Do-Not-Repeat
+
+- [2026-10-05] app/package-lock.json is out of sync with package.json (`npm ci` fails: missing @emnapi/*). Use `npm install` then `git checkout package-lock.json` unless fixing the lockfile is the task. Cloud sandbox can't reach *.api.sanity.io, so `next build` fails there — verify via typecheck/lint + unit-level checks.
 
 - [2026-09-13] When re-enabling a disabled CMS integration, grep the WHOLE app for the disable marker (`SANITY —`), API routes included, and exercise every interactive path (submit the form) before calling it done.
 
