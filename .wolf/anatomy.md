@@ -382,6 +382,10 @@
   - fn `Logo` L17-31 (~156 tok)
   - fn `SiteHeader` L32-154 (~1326 tok)
 
+## app/src/components/ui/
+
+- `Image.tsx` — Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /_next/image. (~180 tok)
+
 ## app/src/components/site/
 
 - `Amp.tsx` — "Over &Jonk" -> Over <Amp />Jonk (~91 tok)
@@ -478,6 +482,7 @@
 ## app/src/sanity/
 
 - `client.ts` — Fetch that degrades instead of throwing. (~301 tok)
+- `image-loader.ts` — next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local. (~420 tok)
 - `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~362 tok)
 - `interface-text.ts` — The interface text, with defaults filled in where the CMS is empty. (~225 tok)
 - `metadata.ts` — The OG image for a page's `seo` object, sized for social cards. (~753 tok)
@@ -560,7 +565,7 @@
   - fn `dedupeUsage` L205-220 (~165 tok)
   - fn `thumbnailUrl` L221-224 (~36 tok)
 - `mediaStyles.ts` — The Media panel's own styles, on top of `panelStyles.ts`. Same approach — (~1416 tok)
-- `MediaTool.tsx` — The media library in the studio: every upload in one place, searchable, with (~4572 tok)
+- `MediaTool.tsx` — The media library in the studio (incl. "Delete unused images" bulk cleanup): every upload in one place, searchable, with (~4572 tok)
   - fn `MediaLibrary` L63-313 (~2237 tok)
   - fn `MediaCard` L314-349 (~284 tok)
   - fn `MediaDetail` L350-521 (~1435 tok)

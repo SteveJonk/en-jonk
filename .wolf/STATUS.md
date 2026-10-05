@@ -1,7 +1,7 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-09-23
+> Last updated: 2026-10-05
 
 ---
 
@@ -16,6 +16,7 @@
   - Verified: studio + app typecheck, lint, check:jsonld, check:form, `sanity documents validate` (27 valid), `next build` (11 pages SSG), all routes 200 with Sanity images, visual check of home / ik / contact.
   - Cleanup (2026-09-23): audit found all blocks/types/components used; removed `siteInformation.badges`, dead exports `toImage`, `FooterLinkGroup`, `MOBILE_NAV_BREAKPOINT`, `DiagramKey`. Kept all optional form/SEO features, public assets, designs and seed scripts on purpose.
   - Video (2026-09-23): `photo` type has optional `video` (MP4, ≤20 MB, validated via asset size/mimeType); `Frame` renders `Clip` (muted, loop, no controls, plays in view, poster = photo, paused under reduced motion). URL built from ref by `fileUrl()` in `sanity/image.ts`. Not yet tested with a real uploaded video.
+  - Images + media cleanup (2026-10-05, branch `claude/sanity-image-quality`, ported from nextjs-sanity-starter PR #8): `Frame` uses `components/ui/Image` → `sanityLoader` (Sanity CDN renders every srcset width from the original, q=85, auto=format, crop kept). Studio Media panel has "Delete unused images (n)" (confirm, re-fetch, transactions of 50, per-id retry; files kept). Typecheck/lint green; not yet tested in a browser / running Studio.
 
 ---
 
