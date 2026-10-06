@@ -1,11 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-09-25T10:00:00.269Z
-> Files: 232 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-10-06T06:55:18.520Z
+> Files: 241 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
-- `.DS_Store` (~2732 tok)
+- `.DS_Store` (~3278 tok)
 - `AGENTS.md` — OpenWolf (~68 tok)
 - `CLAUDE.md` — OpenWolf (~57 tok)
 - `README.md` — Project documentation (~8029 tok)
@@ -105,10 +105,10 @@
 ## app/
 
 - `.DS_Store` (~3824 tok)
-- `.gitignore` — Git ignore rules (~147 tok)
+- `.gitignore` — Git ignore rules (~179 tok)
 - `Dockerfile` — Docker container definition (~294 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~152 tok)
-- `next-env.d.ts` — / <reference types="next" /> (~71 tok)
+- `next-env.d.ts` — / <reference types="next" /> (~72 tok)
 - `next.config.ts` — Next.js configuration (~537 tok)
 - `package-lock.json` — npm lock file (~208491 tok)
 - `package.json` — Node.js package manifest (~415 tok)
@@ -117,7 +117,7 @@
 - `sentry.options.ts` — One source of Sentry settings for the client, the server and the edge (~281 tok)
 - `sentry.server.config.ts` — Sentry for the Node.js server runtime. Imported by `src/instrumentation.ts`, (~69 tok)
 - `tsconfig.json` — TypeScript configuration (~192 tok)
-- `tsconfig.tsbuildinfo` (~83365 tok)
+- `tsconfig.tsbuildinfo` (~84165 tok)
 
 ## app/designs/
 
@@ -229,54 +229,67 @@
   - fn `checkAllowList` L122-209 (~972 tok)
 - `check-jsonld.ts` — The smallest thing that fails when the structured data quietly changes. (~2512 tok)
   - fn `node` L35-216 (~2173 tok)
-- `seed.ts` — Seed Sanity content. Runs everything, or only the targets and pages you name. (~770 tok)
-  - fn `isTarget` L37-40 (~24 tok)
-  - fn `main` L41-76 (~347 tok)
+- `seed.ts` — Seed Sanity content. Runs everything, or only the targets and pages you name. (~835 tok)
+  - fn `isTarget` L40-43 (~24 tok)
+  - fn `main` L44-81 (~356 tok)
 
 ## app/scripts/seed/
 
 - `contact-form-fields.ts` — The fields of the seeded contact form, as in the design: naam and (~293 tok)
 - `documents.ts` — Testimonials, cases and podcast episodes — the documents blocks reference. (~750 tok)
   - fn `seedDocuments` L16-75 (~546 tok)
-- `forms.ts` — Seeds the shared form settings and the contact form. (~536 tok)
-  - fn `upsertFormSettings` L17-33 (~170 tok)
-  - fn `upsertContactForm` L34-55 (~168 tok)
-  - fn `seedForms` L56-61 (~34 tok)
+- `forms.ts` — Seeds the shared form settings and the contact form. (~894 tok)
+  - fn `upsertFormSettings` L18-34 (~170 tok)
+  - fn `upsertContactForm` L35-57 (~194 tok)
+  - fn `upsertDownloadForm` L58-83 (~310 tok)
+  - fn `seedForms` L84-90 (~42 tok)
 - `interface-text.ts` — The `interfaceText` singleton, filled from the defaults in (~144 tok)
-- `navigation.ts` — Seeds the navigation and footer singletons. (~447 tok)
-- `pages.ts` — Every page of the site, as page-builder blocks, with the copy and photos of (~13120 tok)
-  - fn `kennismaken` L66-70 (~64 tok)
-  - fn `layerNav` L71-82 (~90 tok)
-  - fn `home` L83-222 (~2188 tok)
-  - fn `watWeDoen` L223-316 (~1156 tok)
-  - fn `logoRow` L317-330 (~88 tok)
-  - fn `watAnderenZeggen` L331-373 (~468 tok)
-  - fn `hoeWijKijken` L374-486 (~1979 tok)
-  - fn `ik` L487-553 (~1302 tok)
-  - fn `jijEnIk` L554-628 (~1479 tok)
-  - fn `ikEnWij` L629-687 (~1372 tok)
-  - fn `overJonk` L688-753 (~776 tok)
-  - fn `cases` L754-784 (~316 tok)
-  - fn `podcast` L785-834 (~557 tok)
-  - fn `contact` L835-887 (~385 tok)
-  - fn `isPageName` L888-892 (~37 tok)
-  - fn `seedPages` L893-911 (~179 tok)
-- `shared.ts` — Shared Sanity write helpers for the seed scripts in this folder. (~1935 tok)
-  - fn `key` L45-59 (~120 tok)
-  - fn `assetId` L60-89 (~261 tok)
-  - fn `ref` L90-94 (~40 tok)
-  - fn `refItem` L95-99 (~39 tok)
-  - fn `photo` L100-104 (~53 tok)
-  - fn `photoItem` L105-109 (~55 tok)
-  - fn `image` L110-114 (~61 tok)
-  - fn `pageId` L115-119 (~36 tok)
-  - fn `pageLink` L120-129 (~68 tok)
-  - fn `urlLink` L130-134 (~53 tok)
-  - fn `item` L135-139 (~67 tok)
-  - fn `entry` L140-150 (~160 tok)
-  - fn `weakenMissingReferences` L151-184 (~353 tok)
-  - fn `pageDoc` L185-200 (~114 tok)
-- `site-information.ts` — The `siteInformation` singleton, filled from the defaults in (~329 tok)
+- `kennisbank.ts` — Seeds the Kennisbank from the client's files in `content/kennisbank/`: (~2552 tok)
+  - fn `decode` L93-96 (~70 tok)
+  - fn `isOn` L97-98 (~31 tok)
+  - fn `fileIn` L99-104 (~65 tok)
+  - fn `docxToArticle` L105-152 (~564 tok)
+  - fn `uploadPdf` L153-163 (~116 tok)
+  - fn `seedKennisbank` L164-195 (~288 tok)
+- `navigation.ts` — Seeds the navigation and footer singletons. (~446 tok)
+- `pages.ts` — Every page of the site, as page-builder blocks, with the copy and photos of (~12769 tok)
+  - fn `kennismaken` L72-76 (~64 tok)
+  - fn `layerNav` L77-88 (~90 tok)
+  - fn `home` L89-248 (~2424 tok)
+  - fn `logoRow` L249-262 (~88 tok)
+  - fn `watAnderenZeggen` L263-305 (~446 tok)
+  - fn `hoeWijKijken` L306-418 (~1956 tok)
+  - fn `ik` L419-485 (~1302 tok)
+  - fn `jijEnIk` L486-560 (~1479 tok)
+  - fn `ikEnWij` L561-619 (~1372 tok)
+  - fn `overJonk` L620-673 (~727 tok)
+  - fn `cases` L674-704 (~316 tok)
+  - fn `podcast` L705-754 (~557 tok)
+  - fn `contact` L755-795 (~356 tok)
+  - fn `articleList` L796-799 (~39 tok)
+  - fn `downloadList` L800-803 (~48 tok)
+  - fn `kennisbank` L804-834 (~264 tok)
+  - fn `artikelen` L835-847 (~84 tok)
+  - fn `naslagwerk` L848-879 (~193 tok)
+  - fn `isPageName` L880-884 (~37 tok)
+  - fn `seedPages` L885-903 (~179 tok)
+- `shared.ts` — Shared Sanity write helpers for the seed scripts in this folder. (~2317 tok)
+  - fn `key` L47-61 (~126 tok)
+  - fn `assetId` L62-91 (~255 tok)
+  - fn `ref` L92-96 (~40 tok)
+  - fn `refItem` L97-101 (~56 tok)
+  - fn `photo` L102-111 (~128 tok)
+  - fn `deleteReplacedAssets` L112-134 (~230 tok)
+  - fn `photoItem` L135-139 (~55 tok)
+  - fn `image` L140-144 (~61 tok)
+  - fn `pageId` L145-149 (~36 tok)
+  - fn `pageLink` L150-159 (~68 tok)
+  - fn `urlLink` L160-164 (~53 tok)
+  - fn `item` L165-169 (~67 tok)
+  - fn `entry` L170-180 (~160 tok)
+  - fn `weakenMissingReferences` L181-214 (~353 tok)
+  - fn `pageDoc` L215-230 (~114 tok)
+- `site-information.ts` — The `siteInformation` singleton, filled from the defaults in (~365 tok)
 
 ## app/src/
 
@@ -288,7 +301,7 @@
 
 - `.DS_Store` (~1640 tok)
 - `global-error.tsx` — Last-resort error boundary: it replaces the root layout, so it renders its (~239 tok)
-- `globals.css` — Styles: 14 rules, 17 vars, 1 media queries, 1 animations, 1 layers (~1174 tok)
+- `globals.css` — Styles: 15 rules, 17 vars, 1 media queries, 1 animations, 1 layers (~1239 tok)
 - `layout.tsx` — Resolved `{ label, href }` pairs; links that resolve to nothing are dropped. (~1177 tok)
   - fn `generateMetadata` L55-67 (~129 tok)
   - fn `toLinks` L68-75 (~76 tok)
@@ -297,7 +310,7 @@
 - `not-found.tsx` — NotFound (~238 tok)
 - `page.tsx` — generateMetadata (~73 tok)
 - `robots.ts` — Served at `/robots.txt`. (~150 tok)
-- `sitemap.ts` — Served at `/sitemap.xml`; `robots.ts` points at it. Every published page. (~189 tok)
+- `sitemap.ts` — Served at `/sitemap.xml`; `robots.ts` points at it. Every published page and article. (~290 tok)
 
 ## app/src/app/[...slug]/
 
@@ -305,12 +318,19 @@
 
 ## app/src/app/api/submit-form/
 
-- `route.ts` — Bigger uploads are rejected rather than silently dropped from the mail. (~2606 tok)
+- `route.ts` — Bigger uploads are rejected rather than silently dropped from the mail. (~2876 tok)
   - fn `verifyRecaptcha` L16-31 (~180 tok)
   - fn `fail` L32-36 (~57 tok)
   - fn `splitEmails` L37-49 (~109 tok)
   - fn `sendViaMailjet` L50-95 (~396 tok)
-  - fn `POST` L96-260 (~1675 tok)
+  - fn `POST` L96-272 (~1940 tok)
+
+## app/src/app/kennisbank/artikelen/[slug]/
+
+- `page.tsx` — The body as the layer articles set it: one reading column, display headings. (~1483 tok)
+  - fn `generateStaticParams` L25-28 (~27 tok)
+  - fn `generateMetadata` L29-63 (~398 tok)
+  - fn `ArticlePage` L64-141 (~730 tok)
 
 ## app/src/components/
 
@@ -318,9 +338,9 @@
   - fn `cmsMetadata` L19-32 (~148 tok)
   - fn `CmsPage` L33-55 (~180 tok)
 - `JsonLd.tsx` — Put one graph into the page. (~98 tok)
-- `PageBuilder.tsx` — Map one Sanity block onto its component. (~1257 tok)
-  - fn `renderBlock` L49-101 (~569 tok)
-  - fn `PageBuilder` L102-143 (~298 tok)
+- `PageBuilder.tsx` — Map one Sanity block onto its component. (~1329 tok)
+  - fn `renderBlock` L50-106 (~617 tok)
+  - fn `PageBuilder` L107-148 (~298 tok)
 - `TrackingScripts.tsx` — Google Tag Manager and the Meta (Facebook) pixel, both opt-in. (~866 tok)
   - fn `TrackingScriptsHead` L21-62 (~399 tok)
   - fn `TrackingScriptsBody` L63-92 (~222 tok)
@@ -341,22 +361,29 @@
   - fn `PodcastTeaserBlock` L123-165 (~484 tok)
   - fn `PodcastEpisodesBlock` L166-202 (~450 tok)
   - fn `ContactFormBlock` L203-269 (~732 tok)
-- `sections.tsx` — BARS (~5260 tok)
+- `kennisbank.tsx` — Hairline-ruled cards. Each card draws its own border (overlapping by a pixel) (~1468 tok)
+  - fn `readingTime` L31-35 (~59 tok)
+  - fn `fileMeta` L36-43 (~108 tok)
+  - fn `ArticleCards` L44-69 (~356 tok)
+  - fn `ListSection` L70-93 (~170 tok)
+  - fn `ArticleListBlock` L94-107 (~123 tok)
+  - fn `DownloadListBlock` L108-142 (~333 tok)
+- `sections.tsx` — BARS (~5455 tok)
   - fn `timelineItems` L20-23 (~56 tok)
   - fn `PageHeroBlock` L24-79 (~499 tok)
   - fn `CardGridBlock` L80-134 (~575 tok)
   - fn `KenmerkenBlock` L135-164 (~328 tok)
-  - fn `ThreeLevelsBlock` L165-198 (~315 tok)
-  - fn `TimelineBlock` L199-216 (~152 tok)
-  - fn `StatsBlock` L217-239 (~251 tok)
-  - fn `ValuesBlock` L240-322 (~883 tok)
-  - fn `MediaTextBlock` L323-374 (~552 tok)
-  - fn `TextSplitBlock` L375-401 (~263 tok)
-  - fn `QuoteBlock` L402-417 (~141 tok)
-  - fn `GalleryBlock` L418-447 (~275 tok)
-  - fn `StepsBlock` L448-476 (~340 tok)
-  - fn `LinkBandBlock` L477-498 (~261 tok)
-  - fn `KennismakenBlock` L499-509 (~77 tok)
+  - fn `ThreeLevelsBlock` L165-203 (~368 tok)
+  - fn `TimelineBlock` L204-221 (~152 tok)
+  - fn `StatsBlock` L222-244 (~251 tok)
+  - fn `ValuesBlock` L245-331 (~944 tok)
+  - fn `MediaTextBlock` L332-383 (~552 tok)
+  - fn `TextSplitBlock` L384-413 (~330 tok)
+  - fn `QuoteBlock` L414-429 (~154 tok)
+  - fn `GalleryBlock` L430-459 (~275 tok)
+  - fn `StepsBlock` L460-488 (~340 tok)
+  - fn `LinkBandBlock` L489-510 (~261 tok)
+  - fn `KennismakenBlock` L511-521 (~77 tok)
 - `shared.tsx` — One page-builder block as `PAGE_QUERY` returns it. (~584 tok)
   - fn `toLink` L18-22 (~51 tok)
   - fn `paras` L23-27 (~55 tok)
@@ -369,10 +396,10 @@
   - fn `selectCaret` L37-47 (~128 tok)
   - fn `linkify` L48-69 (~150 tok)
   - fn `FormField` L70-176 (~960 tok)
-- `FormRenderer.tsx` — Public half of the reCAPTCHA settings — the secret stays server-side. (~3286 tok)
-  - fn `IconArrowRight` L62-69 (~66 tok)
-  - fn `SuccessPanel` L70-113 (~447 tok)
-  - fn `FormRenderer` L114-333 (~2151 tok)
+- `FormRenderer.tsx` — Public half of the reCAPTCHA settings — the secret stays server-side. (~3448 tok)
+  - fn `IconArrowRight` L68-75 (~66 tok)
+  - fn `SuccessPanel` L76-119 (~447 tok)
+  - fn `FormRenderer` L120-349 (~2218 tok)
 
 ## app/src/components/layout/
 
@@ -381,10 +408,6 @@
 - `SiteHeader.tsx` — Main navigation, from the `navigation` document. `&` renders as the brand ampersand. (~1694 tok)
   - fn `Logo` L17-31 (~156 tok)
   - fn `SiteHeader` L32-154 (~1326 tok)
-
-## app/src/components/ui/
-
-- `Image.tsx` — Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /\_next/image. (~180 tok)
 
 ## app/src/components/site/
 
@@ -415,7 +438,9 @@
   - fn `DramaTriangle` L238-263 (~248 tok)
   - fn `IkInDeWij` L264-291 (~308 tok)
   - fn `ValuesIllustration` L292-343 (~523 tok)
-- `Frame.tsx` — Aspect ratio and layout, e.g. `aspect-[4/5]`. (~399 tok)
+- `DownloadCard.tsx` — A PDF card. The button opens a dialog with the download form; once that is (~936 tok)
+  - fn `DownloadCard` L16-99 (~753 tok)
+- `Frame.tsx` — Aspect ratio and layout, e.g. `aspect-[4/5]`. (~402 tok)
 - `Kenmerken.tsx` — The three things clients name, in their own words. (~182 tok)
 - `Kennismaken.tsx` — Empty falls back to the default title in the interface text. (~557 tok)
   - fn `Kennismaken` L20-51 (~347 tok)
@@ -427,12 +452,17 @@
 - `PageHero.tsx` — Rendered under the lead (buttons, contact lines). (~320 tok)
 - `Reveal.tsx` — Transition delay in ms. (~267 tok)
 - `Rich.tsx` — Editor text to JSX, so CMS copy can carry the few marks the design uses: (~409 tok)
-- `Section.tsx` — The `background` choice on a block, as section classes. (~454 tok)
+- `Section.tsx` — The `background` choice on a block, as section classes. (~499 tok)
 - `Stats.tsx` — Stats (~281 tok)
 - `ThreeLevels.tsx` — Individueel, team, organisatie — in that order. (~1216 tok)
   - fn `ThreeLevels` L26-128 (~964 tok)
-- `Timeline.tsx` — Dots on a line (horizontal from lg, vertical rule below that). (~506 tok)
-  - fn `Timeline` L13-53 (~375 tok)
+- `Timeline.tsx` — Two small dots: the options that lie between two big ones. (~768 tok)
+  - fn `Between` L15-24 (~102 tok)
+  - fn `Timeline` L25-74 (~502 tok)
+
+## app/src/components/ui/
+
+- `Image.tsx` — Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /\_next/image. (~196 tok)
 
 ## app/src/hooks/
 
@@ -456,9 +486,9 @@
   - fn `tint` L33-50 (~156 tok)
   - fn `renderText` L51-82 (~230 tok)
   - fn `renderFormMail` L83-169 (~990 tok)
-- `interface-text.ts` — The site's interface text, and the defaults it falls back to. (~875 tok)
-  - fn `resolveInterfaceText` L67-79 (~145 tok)
-  - fn `fillTemplate` L80-85 (~60 tok)
+- `interface-text.ts` — The site's interface text, and the defaults it falls back to. (~1004 tok)
+  - fn `resolveInterfaceText` L79-91 (~145 tok)
+  - fn `fillTemplate` L92-97 (~60 tok)
 - `json-ld.ts` — Structured data (schema.org JSON-LD), built from what is in the CMS. (~2578 tok)
   - fn `absoluteUrl` L32-42 (~123 tok)
   - fn `prune` L43-67 (~295 tok)
@@ -472,8 +502,13 @@
   - fn `faqQuestions` L181-209 (~262 tok)
   - fn `webPageJsonLd` L210-236 (~341 tok)
   - fn `pageJsonLd` L237-243 (~59 tok)
-- `links.ts` — The slug of the page that renders at `/`. (~446 tok)
-- `site.ts` — Site-wide details, and the defaults they fall back to. (~1354 tok)
+- `links.ts` — The slug of the page that renders at `/`. (~511 tok)
+  - fn `pathForSlug` L12-26 (~111 tok)
+  - fn `resolveHref` L27-38 (~121 tok)
+  - fn `isInternalHref` L39-42 (~26 tok)
+  - fn `toLabeledHref` L43-53 (~110 tok)
+  - fn `articlePath` L54-57 (~26 tok)
+- `site.ts` — Site-wide details, and the defaults they fall back to. (~1353 tok)
   - fn `text` L77-80 (~33 tok)
   - fn `list` L81-95 (~154 tok)
   - fn `resolveSiteInformation` L96-121 (~285 tok)
@@ -483,16 +518,24 @@
 ## app/src/sanity/
 
 - `client.ts` — Fetch that degrades instead of throwing. (~301 tok)
-- `image-loader.ts` — next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local. (~420 tok)
-- `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~386 tok)
+- `image-loader.ts` — next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local. (~426 tok)
+- `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~390 tok)
 - `interface-text.ts` — The interface text, with defaults filled in where the CMS is empty. (~225 tok)
 - `metadata.ts` — The OG image for a page's `seo` object, sized for social cards. (~753 tok)
   - fn `seoImageUrl` L18-46 (~301 tok)
   - fn `pageMetadata` L47-80 (~325 tok)
-- `queries.ts` — Resolve internal page references on link/cta objects. (~1440 tok)
-- `sanity.types.ts` — --------------------------------------------------------------------------------- (~13302 tok)
-- `schema.json` (~36163 tok)
+- `queries.ts` — Resolve internal page references on link/cta objects. (~2014 tok)
+- `sanity.types.ts` — --------------------------------------------------------------------------------- (~16301 tok)
+- `schema.json` (~40984 tok)
 - `site-information.ts` — The site's details, with defaults filled in where the CMS is empty. (~308 tok)
+
+## content/
+
+- `.DS_Store` (~2186 tok)
+
+## content/kennisbank/
+
+- `.DS_Store` (~1640 tok)
 
 ## studio/
 
@@ -503,9 +546,9 @@
 - `README.md` — Project documentation (~427 tok)
 - `sanity.cli.ts` — Typegen runs from the studio — the CLI needs a studio project root — but (~270 tok)
 - `sanity.config.ts` — Project id and dataset come from the environment so the studio and the app (~267 tok)
-- `structure.ts` — Documents that exist exactly once. They get a fixed `_id` and a top-level (~855 tok)
+- `structure.ts` — Documents that exist exactly once. They get a fixed `_id` and a top-level (~896 tok)
 - `tsconfig.json` — TypeScript configuration (~120 tok)
-- `tsconfig.tsbuildinfo` (~41788 tok)
+- `tsconfig.tsbuildinfo` (~42004 tok)
 
 ## studio/.sanity/runtime/
 
@@ -519,11 +562,12 @@
 - `formGeneralSettingsType.ts` — Mail and spam settings shared by every `form`. A singleton. (~1513 tok)
 - `formType.ts` — Multi-step forms keep their fields under `steps`, simple ones under `fields`. (~2578 tok)
   - fn `isSteps` L5-274 (~2520 tok)
-- `index.ts` — Every schema type the studio knows about. (~714 tok)
-- `interfaceTextType.ts` — The site's own interface text: labels that appear on every page (header, (~1034 tok)
-  - fn `group` L14-87 (~878 tok)
+- `index.ts` — Every schema type the studio knows about. (~760 tok)
+- `interfaceTextType.ts` — The site's own interface text: labels that appear on every page (header, (~1244 tok)
+  - fn `group` L14-99 (~1088 tok)
+- `kennisbank.ts` — The Kennisbank: articles (each on its own page at /kennisbank/artikelen/<slug>) (~1407 tok)
 - `navigationType.ts` — A label + internal page or URL. Shared by the navigation and the footer. (~380 tok)
-- `pageBuilderType.ts` — The block list editors can insert on a page. (~444 tok)
+- `pageBuilderType.ts` — The block list editors can insert on a page. (~476 tok)
 - `pageType.ts` — Exports pageType (~213 tok)
 - `siteInformationType.ts` — Who the site belongs to: the details that appear in the header, the footer (~1167 tok)
 
@@ -533,7 +577,7 @@
 - `collectionBlocks.ts` — Exports testimonialsType, casesType, logosType, podcastTeaserType, podcastEpisodesType (~1277 tok)
 - `contactFormType.ts` — Direct contact details (from Site information) beside a form from Forms. (~339 tok)
 - `pageHeroType.ts` — Page opener: heading left, lead right, optional photo or stats underneath. (~446 tok)
-- `sectionBlocks.ts` — The three things clients name, beside a photo, optionally with a quote. (~2732 tok)
+- `sectionBlocks.ts` — The three things clients name, beside a photo, optionally with a quote. (~2775 tok)
 
 ## studio/schemaTypes/objects/
 
@@ -553,21 +597,22 @@
 
 ## studio/tools/
 
-- `mediaData.ts` — Queries, types and formatting helpers for the Media panel (`MediaTool.tsx`). (~2035 tok)
-  - fn `typeLabel` L116-119 (~25 tok)
-  - fn `isImage` L120-124 (~71 tok)
-  - fn `uploadKind` L125-128 (~38 tok)
-  - fn `formatBytes` L129-137 (~103 tok)
-  - fn `formatDate` L138-144 (~74 tok)
-  - fn `formatDimensions` L145-150 (~70 tok)
-  - fn `displayName` L151-162 (~95 tok)
-  - fn `matchesSearch` L163-188 (~213 tok)
-  - fn `matchesFilter` L189-204 (~136 tok)
-  - fn `dedupeUsage` L205-220 (~165 tok)
-  - fn `thumbnailUrl` L221-224 (~36 tok)
+- `mediaData.ts` — Queries, types and formatting helpers for the Media panel (`MediaTool.tsx`). (~2220 tok)
+  - fn `chunk` L61-132 (~546 tok)
+  - fn `typeLabel` L133-136 (~25 tok)
+  - fn `isImage` L137-141 (~71 tok)
+  - fn `uploadKind` L142-145 (~38 tok)
+  - fn `formatBytes` L146-154 (~103 tok)
+  - fn `formatDate` L155-161 (~74 tok)
+  - fn `formatDimensions` L162-167 (~70 tok)
+  - fn `displayName` L168-179 (~95 tok)
+  - fn `matchesSearch` L180-205 (~213 tok)
+  - fn `matchesFilter` L206-221 (~136 tok)
+  - fn `dedupeUsage` L222-237 (~165 tok)
+  - fn `thumbnailUrl` L238-241 (~36 tok)
 - `mediaStyles.ts` — The Media panel's own styles, on top of `panelStyles.ts`. Same approach — (~1416 tok)
-- `MediaTool.tsx` — The media library in the studio (incl. "Delete unused images" bulk cleanup): every upload in one place, searchable, with (~4572 tok)
-  - fn `MediaLibrary` L63-313 (~2237 tok)
-  - fn `MediaCard` L314-349 (~284 tok)
-  - fn `MediaDetail` L350-521 (~1435 tok)
+- `MediaTool.tsx` — The media library in the studio (incl. "Delete unused images" bulk cleanup): every upload in one place, searchable, with (~5698 tok)
+  - fn `MediaLibrary` L78-421 (~3196 tok)
+  - fn `MediaCard` L422-457 (~284 tok)
+  - fn `MediaDetail` L458-629 (~1435 tok)
 - `panelStyles.ts` — Shared inline styles for custom studio panels — the parts that any panel (~335 tok)

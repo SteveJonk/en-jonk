@@ -1,12 +1,12 @@
 {
   "version": 1,
   "meta": {
-    "lastScanned": "2026-09-25T10:00:00.269Z",
-    "fileCount": 232,
+    "lastScanned": "2026-10-06T06:55:18.520Z",
+    "fileCount": 241,
     "hits": 0,
     "misses": 0,
-    "renderedHash": "6e1d82d76bf11ec03fe6a6f889945b86b2cb7aa67ef6ddca271d190e4aec093e",
-    "storeUpdatedAt": "2026-09-25T10:00:00.270Z"
+    "renderedHash": "95a78b27989e61422d761a25c526a39ad0beacea84d0d4c46843d4bcc4284276",
+    "storeUpdatedAt": "2026-10-06T06:55:18.521Z"
   },
   "files": {
     ".claude/commands/reframe.md": {
@@ -15,7 +15,7 @@
       "hash": "17a75695be5d4629",
       "size": 2221,
       "mtimeMs": 1789212494812.0354,
-      "updatedAt": "2026-09-25T10:00:00.065Z",
+      "updatedAt": "2026-10-06T06:55:18.334Z",
       "source": "scan"
     },
     ".claude/commands/security-audit.md": {
@@ -24,7 +24,7 @@
       "hash": "e6f7e0b7337c9c86",
       "size": 2060,
       "mtimeMs": 1789212494811.714,
-      "updatedAt": "2026-09-25T10:00:00.066Z",
+      "updatedAt": "2026-10-06T06:55:18.334Z",
       "source": "scan"
     },
     ".claude/rules/openwolf.md": {
@@ -33,7 +33,7 @@
       "hash": "6d735b2c1c54a916",
       "size": 1323,
       "mtimeMs": 1789212494561.7664,
-      "updatedAt": "2026-09-25T10:00:00.067Z",
+      "updatedAt": "2026-10-06T06:55:18.335Z",
       "source": "scan"
     },
     ".claude/settings.json": {
@@ -42,7 +42,7 @@
       "hash": "f68759bb50af5ee4",
       "size": 1799,
       "mtimeMs": 1789212494561.315,
-      "updatedAt": "2026-09-25T10:00:00.068Z",
+      "updatedAt": "2026-10-06T06:55:18.335Z",
       "source": "scan"
     },
     ".cursor/rules/openwolf.mdc": {
@@ -51,16 +51,16 @@
       "hash": "25a895da2047ef4d",
       "size": 323,
       "mtimeMs": 1789212494810.9492,
-      "updatedAt": "2026-09-25T10:00:00.070Z",
+      "updatedAt": "2026-10-06T06:55:18.336Z",
       "source": "scan"
     },
     ".DS_Store": {
       "description": "",
-      "tokens": 2732,
-      "hash": "495eb68355bb24c5",
-      "size": 10244,
-      "mtimeMs": 1789299775959.2593,
-      "updatedAt": "2026-09-25T10:00:00.071Z",
+      "tokens": 3278,
+      "hash": "3dfef7bf4e8f262a",
+      "size": 12292,
+      "mtimeMs": 1791268948228.4697,
+      "updatedAt": "2026-10-06T06:55:18.336Z",
       "source": "scan"
     },
     ".github/workflows/build-app-image.yml": {
@@ -69,7 +69,7 @@
       "hash": "bf84c04ea3934b66",
       "size": 3110,
       "mtimeMs": 1789026069566.6785,
-      "updatedAt": "2026-09-25T10:00:00.072Z",
+      "updatedAt": "2026-10-06T06:55:18.337Z",
       "source": "scan"
     },
     ".github/workflows/deploy-sanity-studio.yml": {
@@ -78,7 +78,7 @@
       "hash": "0f6355d3b127c4ce",
       "size": 2620,
       "mtimeMs": 1789026069566.956,
-      "updatedAt": "2026-09-25T10:00:00.072Z",
+      "updatedAt": "2026-10-06T06:55:18.337Z",
       "source": "scan"
     },
     ".opencode/command/reframe.md": {
@@ -87,7 +87,7 @@
       "hash": "17a75695be5d4629",
       "size": 2221,
       "mtimeMs": 1789212494812.4888,
-      "updatedAt": "2026-09-25T10:00:00.073Z",
+      "updatedAt": "2026-10-06T06:55:18.338Z",
       "source": "scan"
     },
     ".opencode/command/security-audit.md": {
@@ -96,7 +96,7 @@
       "hash": "e6f7e0b7337c9c86",
       "size": 2060,
       "mtimeMs": 1789212494812.2935,
-      "updatedAt": "2026-09-25T10:00:00.073Z",
+      "updatedAt": "2026-10-06T06:55:18.338Z",
       "source": "scan"
     },
     ".opencode/plugin/openwolf/anatomy.ts": {
@@ -105,7 +105,7 @@
       "hash": "de2a14445289179f",
       "size": 10257,
       "mtimeMs": 1789212494802.5615,
-      "updatedAt": "2026-09-25T10:00:00.074Z",
+      "updatedAt": "2026-10-06T06:55:18.340Z",
       "source": "scan",
       "symbols": [
         {
@@ -221,7 +221,7 @@
       "hash": "0193b1022c8e098b",
       "size": 1881,
       "mtimeMs": 1789212494802.9985,
-      "updatedAt": "2026-09-25T10:00:00.075Z",
+      "updatedAt": "2026-10-06T06:55:18.341Z",
       "source": "scan",
       "symbols": [
         {
@@ -302,7 +302,7 @@
       "hash": "5044a1f76c74f535",
       "size": 3782,
       "mtimeMs": 1789212494803.4753,
-      "updatedAt": "2026-09-25T10:00:00.075Z",
+      "updatedAt": "2026-10-06T06:55:18.341Z",
       "source": "scan"
     },
     ".opencode/plugin/openwolf/post-read.ts": {
@@ -311,7 +311,7 @@
       "hash": "1bc80c56ad0cfd32",
       "size": 2200,
       "mtimeMs": 1789212494804.0183,
-      "updatedAt": "2026-09-25T10:00:00.075Z",
+      "updatedAt": "2026-10-06T06:55:18.341Z",
       "source": "scan",
       "symbols": [
         {
@@ -329,7 +329,7 @@
       "hash": "02ba6ccd8d82475c",
       "size": 11300,
       "mtimeMs": 1789212494808.3667,
-      "updatedAt": "2026-09-25T10:00:00.076Z",
+      "updatedAt": "2026-10-06T06:55:18.342Z",
       "source": "scan",
       "symbols": [
         {
@@ -396,7 +396,7 @@
       "hash": "88c051b64b073c6a",
       "size": 2401,
       "mtimeMs": 1789212494808.6748,
-      "updatedAt": "2026-09-25T10:00:00.078Z",
+      "updatedAt": "2026-10-06T06:55:18.342Z",
       "source": "scan",
       "symbols": [
         {
@@ -414,7 +414,7 @@
       "hash": "c3b34d216601e76f",
       "size": 4092,
       "mtimeMs": 1789212494808.8882,
-      "updatedAt": "2026-09-25T10:00:00.079Z",
+      "updatedAt": "2026-10-06T06:55:18.343Z",
       "source": "scan",
       "symbols": [
         {
@@ -460,7 +460,7 @@
       "hash": "dda2df097f6d5874",
       "size": 3340,
       "mtimeMs": 1789212494809.085,
-      "updatedAt": "2026-09-25T10:00:00.079Z",
+      "updatedAt": "2026-10-06T06:55:18.343Z",
       "source": "scan",
       "symbols": [
         {
@@ -499,7 +499,7 @@
       "hash": "5f8633a3904ee5ce",
       "size": 5057,
       "mtimeMs": 1789212494809.5117,
-      "updatedAt": "2026-09-25T10:00:00.080Z",
+      "updatedAt": "2026-10-06T06:55:18.343Z",
       "source": "scan",
       "symbols": [
         {
@@ -538,7 +538,7 @@
       "hash": "47f4dfb03abf55f9",
       "size": 757,
       "mtimeMs": 1789212494809.724,
-      "updatedAt": "2026-09-25T10:00:00.081Z",
+      "updatedAt": "2026-10-06T06:55:18.344Z",
       "source": "scan"
     },
     ".opencode/plugin/openwolf.ts": {
@@ -547,7 +547,7 @@
       "hash": "a29f91aadb9a324d",
       "size": 261,
       "mtimeMs": 1789212494809.8457,
-      "updatedAt": "2026-09-25T10:00:00.082Z",
+      "updatedAt": "2026-10-06T06:55:18.344Z",
       "source": "scan"
     },
     "AGENTS.md": {
@@ -556,7 +556,7 @@
       "hash": "8c90778623bf50ac",
       "size": 271,
       "mtimeMs": 1789212494810.2405,
-      "updatedAt": "2026-09-25T10:00:00.082Z",
+      "updatedAt": "2026-10-06T06:55:18.344Z",
       "source": "scan"
     },
     "app/.DS_Store": {
@@ -564,17 +564,17 @@
       "tokens": 3824,
       "hash": "0473cc2139cbc1be",
       "size": 14340,
-      "mtimeMs": 1789300544012.9956,
-      "updatedAt": "2026-09-25T10:00:00.083Z",
+      "mtimeMs": 1791268948231.5461,
+      "updatedAt": "2026-10-06T06:55:18.345Z",
       "source": "scan"
     },
     "app/.gitignore": {
       "description": "Git ignore rules",
-      "tokens": 147,
-      "hash": "468399b2c7fcbe78",
-      "size": 552,
-      "mtimeMs": 1789026069567.6,
-      "updatedAt": "2026-09-25T10:00:00.084Z",
+      "tokens": 179,
+      "hash": "d787f9f614629d27",
+      "size": 672,
+      "mtimeMs": 1791266822619.2517,
+      "updatedAt": "2026-10-06T06:55:18.345Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6832-800.webp": {
@@ -583,7 +583,7 @@
       "hash": "c1420befcf918175",
       "size": 36356,
       "mtimeMs": 1789026263033.2341,
-      "updatedAt": "2026-09-25T10:00:00.087Z",
+      "updatedAt": "2026-10-06T06:55:18.346Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6832.webp": {
@@ -592,7 +592,7 @@
       "hash": "c59b635fbdbd72d6",
       "size": 88446,
       "mtimeMs": 1789026263974.9077,
-      "updatedAt": "2026-09-25T10:00:00.092Z",
+      "updatedAt": "2026-10-06T06:55:18.349Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6842-800.webp": {
@@ -601,7 +601,7 @@
       "hash": "5222124855844c03",
       "size": 17424,
       "mtimeMs": 1789026263342.8047,
-      "updatedAt": "2026-09-25T10:00:00.094Z",
+      "updatedAt": "2026-10-06T06:55:18.350Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6842.webp": {
@@ -610,7 +610,7 @@
       "hash": "c8dcf93ff6a3e8dc",
       "size": 40432,
       "mtimeMs": 1789026262781.8865,
-      "updatedAt": "2026-09-25T10:00:00.096Z",
+      "updatedAt": "2026-10-06T06:55:18.351Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6894-800.webp": {
@@ -619,7 +619,7 @@
       "hash": "3ae0e7abd0eace19",
       "size": 33312,
       "mtimeMs": 1789026264753.9763,
-      "updatedAt": "2026-09-25T10:00:00.099Z",
+      "updatedAt": "2026-10-06T06:55:18.352Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-6894.webp": {
@@ -628,7 +628,7 @@
       "hash": "385bef0f25871926",
       "size": 79398,
       "mtimeMs": 1789026264929.986,
-      "updatedAt": "2026-09-25T10:00:00.103Z",
+      "updatedAt": "2026-10-06T06:55:18.355Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7038-800.webp": {
@@ -637,7 +637,7 @@
       "hash": "4f980725c447f932",
       "size": 15136,
       "mtimeMs": 1789026264586.8604,
-      "updatedAt": "2026-09-25T10:00:00.104Z",
+      "updatedAt": "2026-10-06T06:55:18.355Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7038.webp": {
@@ -646,7 +646,7 @@
       "hash": "072f8b7598310edf",
       "size": 37972,
       "mtimeMs": 1789026262655.0862,
-      "updatedAt": "2026-09-25T10:00:00.106Z",
+      "updatedAt": "2026-10-06T06:55:18.356Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7196-800.webp": {
@@ -655,7 +655,7 @@
       "hash": "84f0baa778286f6e",
       "size": 43906,
       "mtimeMs": 1789026264097.0078,
-      "updatedAt": "2026-09-25T10:00:00.108Z",
+      "updatedAt": "2026-10-06T06:55:18.358Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7196.webp": {
@@ -664,7 +664,7 @@
       "hash": "868cf99aab7d25ac",
       "size": 101054,
       "mtimeMs": 1789026262996.4727,
-      "updatedAt": "2026-09-25T10:00:00.111Z",
+      "updatedAt": "2026-10-06T06:55:18.360Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7214-800.webp": {
@@ -673,7 +673,7 @@
       "hash": "4989bc2f3e99a63d",
       "size": 30730,
       "mtimeMs": 1789026264048.8984,
-      "updatedAt": "2026-09-25T10:00:00.114Z",
+      "updatedAt": "2026-10-06T06:55:18.361Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7214.webp": {
@@ -682,7 +682,7 @@
       "hash": "9ef90e02b47023b2",
       "size": 74078,
       "mtimeMs": 1789026263805.0513,
-      "updatedAt": "2026-09-25T10:00:00.118Z",
+      "updatedAt": "2026-10-06T06:55:18.364Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7305-800.webp": {
@@ -691,7 +691,7 @@
       "hash": "5a9b89cd8435a5dd",
       "size": 26098,
       "mtimeMs": 1789026262532.4219,
-      "updatedAt": "2026-09-25T10:00:00.120Z",
+      "updatedAt": "2026-10-06T06:55:18.365Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7305.webp": {
@@ -700,7 +700,7 @@
       "hash": "fb292ec11739f524",
       "size": 63144,
       "mtimeMs": 1789026263730.0854,
-      "updatedAt": "2026-09-25T10:00:00.129Z",
+      "updatedAt": "2026-10-06T06:55:18.367Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7317-800.webp": {
@@ -709,7 +709,7 @@
       "hash": "d74b3150cbce8e7e",
       "size": 18156,
       "mtimeMs": 1789026264544.6458,
-      "updatedAt": "2026-09-25T10:00:00.132Z",
+      "updatedAt": "2026-10-06T06:55:18.368Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7317.webp": {
@@ -718,7 +718,7 @@
       "hash": "83eb4621ff6d7302",
       "size": 41732,
       "mtimeMs": 1789026265021.3318,
-      "updatedAt": "2026-09-25T10:00:00.138Z",
+      "updatedAt": "2026-10-06T06:55:18.369Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7398-800.webp": {
@@ -727,7 +727,7 @@
       "hash": "95dd77f56dc28c6d",
       "size": 39766,
       "mtimeMs": 1789026262873.2715,
-      "updatedAt": "2026-09-25T10:00:00.140Z",
+      "updatedAt": "2026-10-06T06:55:18.370Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7398.webp": {
@@ -736,7 +736,7 @@
       "hash": "8001dedd4873be65",
       "size": 93636,
       "mtimeMs": 1789026264453.633,
-      "updatedAt": "2026-09-25T10:00:00.144Z",
+      "updatedAt": "2026-10-06T06:55:18.373Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7467-800.webp": {
@@ -745,7 +745,7 @@
       "hash": "c24ae335099f7cd7",
       "size": 19126,
       "mtimeMs": 1789026264282.6848,
-      "updatedAt": "2026-09-25T10:00:00.145Z",
+      "updatedAt": "2026-10-06T06:55:18.374Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7467.webp": {
@@ -754,7 +754,7 @@
       "hash": "b1bf8b0c0de8d056",
       "size": 55962,
       "mtimeMs": 1789026263395.3547,
-      "updatedAt": "2026-09-25T10:00:00.147Z",
+      "updatedAt": "2026-10-06T06:55:18.376Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7483-800.webp": {
@@ -763,7 +763,7 @@
       "hash": "4c5e1339ac203391",
       "size": 18868,
       "mtimeMs": 1789026265151.8462,
-      "updatedAt": "2026-09-25T10:00:00.148Z",
+      "updatedAt": "2026-10-06T06:55:18.377Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-7483.webp": {
@@ -772,7 +772,7 @@
       "hash": "3745e061292d2fca",
       "size": 53290,
       "mtimeMs": 1789026264797.4531,
-      "updatedAt": "2026-09-25T10:00:00.150Z",
+      "updatedAt": "2026-10-06T06:55:18.379Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-clip-1-poster.webp": {
@@ -781,7 +781,7 @@
       "hash": "6898d2a5569bd32f",
       "size": 18590,
       "mtimeMs": 1789026263853.0464,
-      "updatedAt": "2026-09-25T10:00:00.151Z",
+      "updatedAt": "2026-10-06T06:55:18.380Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-clip-2-poster.webp": {
@@ -790,7 +790,7 @@
       "hash": "954c6ce278c435cd",
       "size": 32446,
       "mtimeMs": 1789026263592.032,
-      "updatedAt": "2026-09-25T10:00:00.152Z",
+      "updatedAt": "2026-10-06T06:55:18.381Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-clip-3-poster.webp": {
@@ -799,7 +799,7 @@
       "hash": "46bf11fcbc777f2f",
       "size": 37308,
       "mtimeMs": 1789026263515.3293,
-      "updatedAt": "2026-09-25T10:00:00.154Z",
+      "updatedAt": "2026-10-06T06:55:18.383Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-hero-800.webp": {
@@ -808,7 +808,7 @@
       "hash": "c95de82bbd7ca5e2",
       "size": 17300,
       "mtimeMs": 1789026263465.3308,
-      "updatedAt": "2026-09-25T10:00:00.154Z",
+      "updatedAt": "2026-10-06T06:55:18.384Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-hero.webp": {
@@ -817,7 +817,7 @@
       "hash": "972e491b805adeba",
       "size": 43620,
       "mtimeMs": 1789026265062.5417,
-      "updatedAt": "2026-09-25T10:00:00.156Z",
+      "updatedAt": "2026-10-06T06:55:18.385Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-hoe-klanten-800.webp": {
@@ -826,7 +826,7 @@
       "hash": "f26998aaca363354",
       "size": 40760,
       "mtimeMs": 1789026263213.5488,
-      "updatedAt": "2026-09-25T10:00:00.157Z",
+      "updatedAt": "2026-10-06T06:55:18.387Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-hoe-klanten.webp": {
@@ -835,7 +835,7 @@
       "hash": "41bd9632cd026345",
       "size": 102698,
       "mtimeMs": 1789026262741.0408,
-      "updatedAt": "2026-09-25T10:00:00.160Z",
+      "updatedAt": "2026-10-06T06:55:18.390Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-1-800.webp": {
@@ -844,7 +844,7 @@
       "hash": "96c4cb604ea6c0b8",
       "size": 38062,
       "mtimeMs": 1789026264327.0032,
-      "updatedAt": "2026-09-25T10:00:00.162Z",
+      "updatedAt": "2026-10-06T06:55:18.391Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-1.webp": {
@@ -853,7 +853,7 @@
       "hash": "a486cc0eaf739a64",
       "size": 92820,
       "mtimeMs": 1789026263928.6848,
-      "updatedAt": "2026-09-25T10:00:00.164Z",
+      "updatedAt": "2026-10-06T06:55:18.394Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-2-800.webp": {
@@ -862,7 +862,7 @@
       "hash": "f7c68a4a119eea57",
       "size": 34566,
       "mtimeMs": 1789026262911.1438,
-      "updatedAt": "2026-09-25T10:00:00.165Z",
+      "updatedAt": "2026-10-06T06:55:18.395Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-2.webp": {
@@ -871,7 +871,7 @@
       "hash": "0bbde6265139836d",
       "size": 84304,
       "mtimeMs": 1789026264882.6365,
-      "updatedAt": "2026-09-25T10:00:00.168Z",
+      "updatedAt": "2026-10-06T06:55:18.397Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-3-800.webp": {
@@ -880,7 +880,7 @@
       "hash": "6f2a678f4c5e2c51",
       "size": 31498,
       "mtimeMs": 1789026263259.3623,
-      "updatedAt": "2026-09-25T10:00:00.169Z",
+      "updatedAt": "2026-10-06T06:55:18.398Z",
       "source": "scan"
     },
     "app/designs/assets/img/jonk-vakmensen-3.webp": {
@@ -889,7 +889,7 @@
       "hash": "5eaa115fc15f42b3",
       "size": 74510,
       "mtimeMs": 1789026264416.2534,
-      "updatedAt": "2026-09-25T10:00:00.171Z",
+      "updatedAt": "2026-10-06T06:55:18.401Z",
       "source": "scan"
     },
     "app/designs/assets/logos/leiden.webp": {
@@ -898,7 +898,7 @@
       "hash": "d4ba66cde86e9b4b",
       "size": 1650,
       "mtimeMs": 1789041997466.2642,
-      "updatedAt": "2026-09-25T10:00:00.172Z",
+      "updatedAt": "2026-10-06T06:55:18.401Z",
       "source": "scan"
     },
     "app/designs/cases.html": {
@@ -907,7 +907,7 @@
       "hash": "da7682f80e639e8f",
       "size": 23129,
       "mtimeMs": 1789041460934.73,
-      "updatedAt": "2026-09-25T10:00:00.173Z",
+      "updatedAt": "2026-10-06T06:55:18.402Z",
       "source": "scan"
     },
     "app/designs/contact.html": {
@@ -916,7 +916,7 @@
       "hash": "3b24cab4517ffb0c",
       "size": 22375,
       "mtimeMs": 1789041464101.6094,
-      "updatedAt": "2026-09-25T10:00:00.173Z",
+      "updatedAt": "2026-10-06T06:55:18.402Z",
       "source": "scan"
     },
     "app/designs/hoe-wij-kijken/ik-en-wij.html": {
@@ -925,7 +925,7 @@
       "hash": "4091f90d61cafe55",
       "size": 28263,
       "mtimeMs": 1789041460983.7412,
-      "updatedAt": "2026-09-25T10:00:00.174Z",
+      "updatedAt": "2026-10-06T06:55:18.402Z",
       "source": "scan"
     },
     "app/designs/hoe-wij-kijken/ik.html": {
@@ -934,7 +934,7 @@
       "hash": "acb0c8c491735cd5",
       "size": 42274,
       "mtimeMs": 1789041460988.387,
-      "updatedAt": "2026-09-25T10:00:00.174Z",
+      "updatedAt": "2026-10-06T06:55:18.402Z",
       "source": "scan"
     },
     "app/designs/hoe-wij-kijken/jij-en-ik.html": {
@@ -943,7 +943,7 @@
       "hash": "55826953ac9ccaf3",
       "size": 28932,
       "mtimeMs": 1789041460993.182,
-      "updatedAt": "2026-09-25T10:00:00.175Z",
+      "updatedAt": "2026-10-06T06:55:18.403Z",
       "source": "scan"
     },
     "app/designs/hoe-wij-kijken.html": {
@@ -952,7 +952,7 @@
       "hash": "de22a214e9fcc15b",
       "size": 33824,
       "mtimeMs": 1789041460945.7998,
-      "updatedAt": "2026-09-25T10:00:00.175Z",
+      "updatedAt": "2026-10-06T06:55:18.403Z",
       "source": "scan"
     },
     "app/designs/index.html": {
@@ -961,7 +961,7 @@
       "hash": "2b3adbc648dec214",
       "size": 41741,
       "mtimeMs": 1789041460951.6206,
-      "updatedAt": "2026-09-25T10:00:00.176Z",
+      "updatedAt": "2026-10-06T06:55:18.403Z",
       "source": "scan"
     },
     "app/designs/onepager-ignore.html": {
@@ -970,7 +970,7 @@
       "hash": "1d21aa3559e84dda",
       "size": 37060,
       "mtimeMs": 1789041460957.707,
-      "updatedAt": "2026-09-25T10:00:00.176Z",
+      "updatedAt": "2026-10-06T06:55:18.403Z",
       "source": "scan"
     },
     "app/designs/over-jonk.html": {
@@ -979,7 +979,7 @@
       "hash": "5540f8d80f52b571",
       "size": 25054,
       "mtimeMs": 1789041460963.1833,
-      "updatedAt": "2026-09-25T10:00:00.176Z",
+      "updatedAt": "2026-10-06T06:55:18.403Z",
       "source": "scan"
     },
     "app/designs/podcast.html": {
@@ -988,7 +988,7 @@
       "hash": "92c739f6d5b0496a",
       "size": 24454,
       "mtimeMs": 1789041460967.9932,
-      "updatedAt": "2026-09-25T10:00:00.177Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/designs/wat-anderen-zeggen.html": {
@@ -997,7 +997,7 @@
       "hash": "d3c3fb71b920299a",
       "size": 30089,
       "mtimeMs": 1789043020035.1055,
-      "updatedAt": "2026-09-25T10:00:00.177Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/designs/wat-we-doen.html": {
@@ -1006,7 +1006,7 @@
       "hash": "943251d4dc1fac6a",
       "size": 28626,
       "mtimeMs": 1789041460978.8137,
-      "updatedAt": "2026-09-25T10:00:00.178Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/Dockerfile": {
@@ -1015,7 +1015,7 @@
       "hash": "c8a0488797cac4e8",
       "size": 1100,
       "mtimeMs": 1789026069567.7278,
-      "updatedAt": "2026-09-25T10:00:00.178Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/eslint.config.mjs": {
@@ -1024,16 +1024,16 @@
       "hash": "0aba82a5d1b1debe",
       "size": 570,
       "mtimeMs": 1789299776740.1748,
-      "updatedAt": "2026-09-25T10:00:00.178Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/next-env.d.ts": {
       "description": "/ <reference types=\"next\" />",
-      "tokens": 71,
-      "hash": "7b550dda9686c16f",
-      "size": 247,
-      "mtimeMs": 1789300276248.393,
-      "updatedAt": "2026-09-25T10:00:00.179Z",
+      "tokens": 72,
+      "hash": "7ad303e40d4fddf4",
+      "size": 251,
+      "mtimeMs": 1791265905965.5193,
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/next.config.ts": {
@@ -1042,7 +1042,7 @@
       "hash": "223f01e0c4d35450",
       "size": 1878,
       "mtimeMs": 1789299776741.361,
-      "updatedAt": "2026-09-25T10:00:00.179Z",
+      "updatedAt": "2026-10-06T06:55:18.404Z",
       "source": "scan"
     },
     "app/package-lock.json": {
@@ -1051,7 +1051,7 @@
       "hash": "d9585d8e01a25eb5",
       "size": 729717,
       "mtimeMs": 1789026234615.3064,
-      "updatedAt": "2026-09-25T10:00:00.181Z",
+      "updatedAt": "2026-10-06T06:55:18.406Z",
       "source": "scan"
     },
     "app/package.json": {
@@ -1060,7 +1060,7 @@
       "hash": "e4db8d440efc723e",
       "size": 1452,
       "mtimeMs": 1789299776743.7754,
-      "updatedAt": "2026-09-25T10:00:00.181Z",
+      "updatedAt": "2026-10-06T06:55:18.406Z",
       "source": "scan"
     },
     "app/postcss.config.mjs": {
@@ -1069,7 +1069,7 @@
       "hash": "dfac7ac2d86d326a",
       "size": 94,
       "mtimeMs": 1789026069570.101,
-      "updatedAt": "2026-09-25T10:00:00.182Z",
+      "updatedAt": "2026-10-06T06:55:18.406Z",
       "source": "scan"
     },
     "app/public/images/jonk-6832-800.webp": {
@@ -1078,7 +1078,7 @@
       "hash": "c1420befcf918175",
       "size": 36356,
       "mtimeMs": 1789062068579.3362,
-      "updatedAt": "2026-09-25T10:00:00.183Z",
+      "updatedAt": "2026-10-06T06:55:18.408Z",
       "source": "scan"
     },
     "app/public/images/jonk-6832.webp": {
@@ -1087,7 +1087,7 @@
       "hash": "c59b635fbdbd72d6",
       "size": 88446,
       "mtimeMs": 1789062068580.5623,
-      "updatedAt": "2026-09-25T10:00:00.185Z",
+      "updatedAt": "2026-10-06T06:55:18.410Z",
       "source": "scan"
     },
     "app/public/images/jonk-6842-800.webp": {
@@ -1096,7 +1096,7 @@
       "hash": "5222124855844c03",
       "size": 17424,
       "mtimeMs": 1789062068581.2495,
-      "updatedAt": "2026-09-25T10:00:00.186Z",
+      "updatedAt": "2026-10-06T06:55:18.411Z",
       "source": "scan"
     },
     "app/public/images/jonk-6842.webp": {
@@ -1105,7 +1105,7 @@
       "hash": "c8dcf93ff6a3e8dc",
       "size": 40432,
       "mtimeMs": 1789062068581.8523,
-      "updatedAt": "2026-09-25T10:00:00.188Z",
+      "updatedAt": "2026-10-06T06:55:18.412Z",
       "source": "scan"
     },
     "app/public/images/jonk-6894-800.webp": {
@@ -1114,7 +1114,7 @@
       "hash": "3ae0e7abd0eace19",
       "size": 33312,
       "mtimeMs": 1789062068582.4727,
-      "updatedAt": "2026-09-25T10:00:00.189Z",
+      "updatedAt": "2026-10-06T06:55:18.413Z",
       "source": "scan"
     },
     "app/public/images/jonk-6894.webp": {
@@ -1123,7 +1123,7 @@
       "hash": "385bef0f25871926",
       "size": 79398,
       "mtimeMs": 1789062068583.2432,
-      "updatedAt": "2026-09-25T10:00:00.191Z",
+      "updatedAt": "2026-10-06T06:55:18.416Z",
       "source": "scan"
     },
     "app/public/images/jonk-7038-800.webp": {
@@ -1132,7 +1132,7 @@
       "hash": "4f980725c447f932",
       "size": 15136,
       "mtimeMs": 1789062068583.865,
-      "updatedAt": "2026-09-25T10:00:00.192Z",
+      "updatedAt": "2026-10-06T06:55:18.417Z",
       "source": "scan"
     },
     "app/public/images/jonk-7038.webp": {
@@ -1141,7 +1141,7 @@
       "hash": "072f8b7598310edf",
       "size": 37972,
       "mtimeMs": 1789062068584.4397,
-      "updatedAt": "2026-09-25T10:00:00.192Z",
+      "updatedAt": "2026-10-06T06:55:18.418Z",
       "source": "scan"
     },
     "app/public/images/jonk-7196-800.webp": {
@@ -1150,7 +1150,7 @@
       "hash": "84f0baa778286f6e",
       "size": 43906,
       "mtimeMs": 1789062068584.9744,
-      "updatedAt": "2026-09-25T10:00:00.194Z",
+      "updatedAt": "2026-10-06T06:55:18.419Z",
       "source": "scan"
     },
     "app/public/images/jonk-7196.webp": {
@@ -1159,7 +1159,7 @@
       "hash": "868cf99aab7d25ac",
       "size": 101054,
       "mtimeMs": 1789062068585.7322,
-      "updatedAt": "2026-09-25T10:00:00.196Z",
+      "updatedAt": "2026-10-06T06:55:18.422Z",
       "source": "scan"
     },
     "app/public/images/jonk-7214-800.webp": {
@@ -1168,7 +1168,7 @@
       "hash": "4989bc2f3e99a63d",
       "size": 30730,
       "mtimeMs": 1789062068586.3115,
-      "updatedAt": "2026-09-25T10:00:00.197Z",
+      "updatedAt": "2026-10-06T06:55:18.423Z",
       "source": "scan"
     },
     "app/public/images/jonk-7214.webp": {
@@ -1177,7 +1177,7 @@
       "hash": "9ef90e02b47023b2",
       "size": 74078,
       "mtimeMs": 1789062068586.9011,
-      "updatedAt": "2026-09-25T10:00:00.199Z",
+      "updatedAt": "2026-10-06T06:55:18.425Z",
       "source": "scan"
     },
     "app/public/images/jonk-7305-800.webp": {
@@ -1186,7 +1186,7 @@
       "hash": "5a9b89cd8435a5dd",
       "size": 26098,
       "mtimeMs": 1789062068587.406,
-      "updatedAt": "2026-09-25T10:00:00.200Z",
+      "updatedAt": "2026-10-06T06:55:18.426Z",
       "source": "scan"
     },
     "app/public/images/jonk-7305.webp": {
@@ -1195,7 +1195,7 @@
       "hash": "fb292ec11739f524",
       "size": 63144,
       "mtimeMs": 1789062068587.859,
-      "updatedAt": "2026-09-25T10:00:00.202Z",
+      "updatedAt": "2026-10-06T06:55:18.427Z",
       "source": "scan"
     },
     "app/public/images/jonk-7317-800.webp": {
@@ -1204,7 +1204,7 @@
       "hash": "d74b3150cbce8e7e",
       "size": 18156,
       "mtimeMs": 1789062068588.4138,
-      "updatedAt": "2026-09-25T10:00:00.203Z",
+      "updatedAt": "2026-10-06T06:55:18.428Z",
       "source": "scan"
     },
     "app/public/images/jonk-7317.webp": {
@@ -1213,7 +1213,7 @@
       "hash": "83eb4621ff6d7302",
       "size": 41732,
       "mtimeMs": 1789062068588.897,
-      "updatedAt": "2026-09-25T10:00:00.204Z",
+      "updatedAt": "2026-10-06T06:55:18.429Z",
       "source": "scan"
     },
     "app/public/images/jonk-7398-800.webp": {
@@ -1222,7 +1222,7 @@
       "hash": "95dd77f56dc28c6d",
       "size": 39766,
       "mtimeMs": 1789062068589.3748,
-      "updatedAt": "2026-09-25T10:00:00.205Z",
+      "updatedAt": "2026-10-06T06:55:18.431Z",
       "source": "scan"
     },
     "app/public/images/jonk-7398.webp": {
@@ -1231,7 +1231,7 @@
       "hash": "8001dedd4873be65",
       "size": 93636,
       "mtimeMs": 1789062068590.1057,
-      "updatedAt": "2026-09-25T10:00:00.208Z",
+      "updatedAt": "2026-10-06T06:55:18.433Z",
       "source": "scan"
     },
     "app/public/images/jonk-7467-800.webp": {
@@ -1240,7 +1240,7 @@
       "hash": "c24ae335099f7cd7",
       "size": 19126,
       "mtimeMs": 1789062068590.5813,
-      "updatedAt": "2026-09-25T10:00:00.209Z",
+      "updatedAt": "2026-10-06T06:55:18.434Z",
       "source": "scan"
     },
     "app/public/images/jonk-7467.webp": {
@@ -1249,7 +1249,7 @@
       "hash": "b1bf8b0c0de8d056",
       "size": 55962,
       "mtimeMs": 1789062068591.0212,
-      "updatedAt": "2026-09-25T10:00:00.210Z",
+      "updatedAt": "2026-10-06T06:55:18.435Z",
       "source": "scan"
     },
     "app/public/images/jonk-7483-800.webp": {
@@ -1258,7 +1258,7 @@
       "hash": "4c5e1339ac203391",
       "size": 18868,
       "mtimeMs": 1789062068591.4856,
-      "updatedAt": "2026-09-25T10:00:00.211Z",
+      "updatedAt": "2026-10-06T06:55:18.436Z",
       "source": "scan"
     },
     "app/public/images/jonk-7483.webp": {
@@ -1267,7 +1267,7 @@
       "hash": "3745e061292d2fca",
       "size": 53290,
       "mtimeMs": 1789062068591.9597,
-      "updatedAt": "2026-09-25T10:00:00.212Z",
+      "updatedAt": "2026-10-06T06:55:18.438Z",
       "source": "scan"
     },
     "app/public/images/jonk-clip-1-poster.webp": {
@@ -1276,7 +1276,7 @@
       "hash": "6898d2a5569bd32f",
       "size": 18590,
       "mtimeMs": 1789062068592.4272,
-      "updatedAt": "2026-09-25T10:00:00.213Z",
+      "updatedAt": "2026-10-06T06:55:18.439Z",
       "source": "scan"
     },
     "app/public/images/jonk-clip-2-poster.webp": {
@@ -1285,7 +1285,7 @@
       "hash": "954c6ce278c435cd",
       "size": 32446,
       "mtimeMs": 1789062068592.9,
-      "updatedAt": "2026-09-25T10:00:00.215Z",
+      "updatedAt": "2026-10-06T06:55:18.440Z",
       "source": "scan"
     },
     "app/public/images/jonk-clip-3-poster.webp": {
@@ -1294,7 +1294,7 @@
       "hash": "46bf11fcbc777f2f",
       "size": 37308,
       "mtimeMs": 1789062068593.3787,
-      "updatedAt": "2026-09-25T10:00:00.216Z",
+      "updatedAt": "2026-10-06T06:55:18.442Z",
       "source": "scan"
     },
     "app/public/images/jonk-hero-800.webp": {
@@ -1303,7 +1303,7 @@
       "hash": "c95de82bbd7ca5e2",
       "size": 17300,
       "mtimeMs": 1789062068593.836,
-      "updatedAt": "2026-09-25T10:00:00.217Z",
+      "updatedAt": "2026-10-06T06:55:18.443Z",
       "source": "scan"
     },
     "app/public/images/jonk-hero.webp": {
@@ -1312,7 +1312,7 @@
       "hash": "972e491b805adeba",
       "size": 43620,
       "mtimeMs": 1789062068594.2874,
-      "updatedAt": "2026-09-25T10:00:00.218Z",
+      "updatedAt": "2026-10-06T06:55:18.444Z",
       "source": "scan"
     },
     "app/public/images/jonk-hoe-klanten-800.webp": {
@@ -1321,7 +1321,7 @@
       "hash": "f26998aaca363354",
       "size": 40760,
       "mtimeMs": 1789062068594.7485,
-      "updatedAt": "2026-09-25T10:00:00.219Z",
+      "updatedAt": "2026-10-06T06:55:18.445Z",
       "source": "scan"
     },
     "app/public/images/jonk-hoe-klanten.webp": {
@@ -1330,7 +1330,7 @@
       "hash": "41bd9632cd026345",
       "size": 102698,
       "mtimeMs": 1789062068595.4395,
-      "updatedAt": "2026-09-25T10:00:00.221Z",
+      "updatedAt": "2026-10-06T06:55:18.447Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-1-800.webp": {
@@ -1339,7 +1339,7 @@
       "hash": "96c4cb604ea6c0b8",
       "size": 38062,
       "mtimeMs": 1789062068595.9587,
-      "updatedAt": "2026-09-25T10:00:00.222Z",
+      "updatedAt": "2026-10-06T06:55:18.448Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-1.webp": {
@@ -1348,7 +1348,7 @@
       "hash": "a486cc0eaf739a64",
       "size": 92820,
       "mtimeMs": 1789062068596.5427,
-      "updatedAt": "2026-09-25T10:00:00.224Z",
+      "updatedAt": "2026-10-06T06:55:18.450Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-2-800.webp": {
@@ -1357,7 +1357,7 @@
       "hash": "f7c68a4a119eea57",
       "size": 34566,
       "mtimeMs": 1789062068597.0664,
-      "updatedAt": "2026-09-25T10:00:00.225Z",
+      "updatedAt": "2026-10-06T06:55:18.451Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-2.webp": {
@@ -1366,7 +1366,7 @@
       "hash": "0bbde6265139836d",
       "size": 84304,
       "mtimeMs": 1789062068597.8503,
-      "updatedAt": "2026-09-25T10:00:00.228Z",
+      "updatedAt": "2026-10-06T06:55:18.454Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-3-800.webp": {
@@ -1375,7 +1375,7 @@
       "hash": "6f2a678f4c5e2c51",
       "size": 31498,
       "mtimeMs": 1789062068598.3813,
-      "updatedAt": "2026-09-25T10:00:00.229Z",
+      "updatedAt": "2026-10-06T06:55:18.455Z",
       "source": "scan"
     },
     "app/public/images/jonk-vakmensen-3.webp": {
@@ -1384,7 +1384,7 @@
       "hash": "5eaa115fc15f42b3",
       "size": 74510,
       "mtimeMs": 1789062068599.053,
-      "updatedAt": "2026-09-25T10:00:00.230Z",
+      "updatedAt": "2026-10-06T06:55:18.456Z",
       "source": "scan"
     },
     "app/public/logos/leiden.webp": {
@@ -1393,7 +1393,7 @@
       "hash": "d4ba66cde86e9b4b",
       "size": 1650,
       "mtimeMs": 1789062068614.509,
-      "updatedAt": "2026-09-25T10:00:00.231Z",
+      "updatedAt": "2026-10-06T06:55:18.457Z",
       "source": "scan"
     },
     "app/scripts/check-form.ts": {
@@ -1402,7 +1402,7 @@
       "hash": "bc66afefaa6465ed",
       "size": 7617,
       "mtimeMs": 1789299776744.6577,
-      "updatedAt": "2026-09-25T10:00:00.231Z",
+      "updatedAt": "2026-10-06T06:55:18.457Z",
       "source": "scan",
       "symbols": [
         {
@@ -1434,7 +1434,7 @@
       "hash": "0b4d3b40d1cc7020",
       "size": 8800,
       "mtimeMs": 1790156120949.6584,
-      "updatedAt": "2026-09-25T10:00:00.232Z",
+      "updatedAt": "2026-10-06T06:55:18.457Z",
       "source": "scan",
       "symbols": [
         {
@@ -1452,7 +1452,7 @@
       "hash": "68c6719944fe085b",
       "size": 1024,
       "mtimeMs": 1789299776746.887,
-      "updatedAt": "2026-09-25T10:00:00.232Z",
+      "updatedAt": "2026-10-06T06:55:18.457Z",
       "source": "scan"
     },
     "app/scripts/seed/documents.ts": {
@@ -1461,7 +1461,7 @@
       "hash": "16c0fe5abb0dab48",
       "size": 2634,
       "mtimeMs": 1789299776747.4443,
-      "updatedAt": "2026-09-25T10:00:00.232Z",
+      "updatedAt": "2026-10-06T06:55:18.458Z",
       "source": "scan",
       "symbols": [
         {
@@ -1475,33 +1475,40 @@
     },
     "app/scripts/seed/forms.ts": {
       "description": "Seeds the shared form settings and the contact form.",
-      "tokens": 536,
-      "hash": "7d57ff86c1933ba4",
-      "size": 1883,
-      "mtimeMs": 1789299776747.9282,
-      "updatedAt": "2026-09-25T10:00:00.232Z",
+      "tokens": 894,
+      "hash": "8515753d5e550f54",
+      "size": 3138,
+      "mtimeMs": 1791268182219.7874,
+      "updatedAt": "2026-10-06T06:55:18.458Z",
       "source": "scan",
       "symbols": [
         {
           "name": "upsertFormSettings",
           "kind": "fn",
-          "startLine": 17,
-          "endLine": 33,
+          "startLine": 18,
+          "endLine": 34,
           "tokens": 170
         },
         {
           "name": "upsertContactForm",
           "kind": "fn",
-          "startLine": 34,
-          "endLine": 55,
-          "tokens": 168
+          "startLine": 35,
+          "endLine": 57,
+          "tokens": 194
+        },
+        {
+          "name": "upsertDownloadForm",
+          "kind": "fn",
+          "startLine": 58,
+          "endLine": 83,
+          "tokens": 310
         },
         {
           "name": "seedForms",
           "kind": "fn",
-          "startLine": 56,
-          "endLine": 61,
-          "tokens": 34
+          "startLine": 84,
+          "endLine": 90,
+          "tokens": 42
         }
       ]
     },
@@ -1511,281 +1518,369 @@
       "hash": "3c8dce8a8dc09af2",
       "size": 508,
       "mtimeMs": 1789299776748.3237,
-      "updatedAt": "2026-09-25T10:00:00.232Z",
+      "updatedAt": "2026-10-06T06:55:18.458Z",
       "source": "scan"
+    },
+    "app/scripts/seed/kennisbank.ts": {
+      "description": "Seeds the Kennisbank from the client's files in `content/kennisbank/`:",
+      "tokens": 2552,
+      "hash": "f727987a1020092a",
+      "size": 8941,
+      "mtimeMs": 1791269604578.2876,
+      "updatedAt": "2026-10-06T06:55:18.458Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "decode",
+          "kind": "fn",
+          "startLine": 93,
+          "endLine": 96,
+          "tokens": 70
+        },
+        {
+          "name": "isOn",
+          "kind": "fn",
+          "startLine": 97,
+          "endLine": 98,
+          "tokens": 31
+        },
+        {
+          "name": "fileIn",
+          "kind": "fn",
+          "startLine": 99,
+          "endLine": 104,
+          "tokens": 65
+        },
+        {
+          "name": "docxToArticle",
+          "kind": "fn",
+          "startLine": 105,
+          "endLine": 152,
+          "tokens": 564
+        },
+        {
+          "name": "uploadPdf",
+          "kind": "fn",
+          "startLine": 153,
+          "endLine": 163,
+          "tokens": 116
+        },
+        {
+          "name": "seedKennisbank",
+          "kind": "fn",
+          "startLine": 164,
+          "endLine": 195,
+          "tokens": 288
+        }
+      ]
     },
     "app/scripts/seed/navigation.ts": {
       "description": "Seeds the navigation and footer singletons.",
-      "tokens": 447,
-      "hash": "070a5947286105d1",
-      "size": 1570,
-      "mtimeMs": 1789299776749.1948,
-      "updatedAt": "2026-09-25T10:00:00.233Z",
+      "tokens": 446,
+      "hash": "975c766db10b448a",
+      "size": 1568,
+      "mtimeMs": 1791268182220.4268,
+      "updatedAt": "2026-10-06T06:55:18.458Z",
       "source": "scan"
     },
     "app/scripts/seed/pages.ts": {
       "description": "Every page of the site, as page-builder blocks, with the copy and photos of",
-      "tokens": 13120,
-      "hash": "63f4021d20377705",
-      "size": 46005,
-      "mtimeMs": 1789299776749.6895,
-      "updatedAt": "2026-09-25T10:00:00.233Z",
+      "tokens": 12769,
+      "hash": "81f57c91c085ecac",
+      "size": 44766,
+      "mtimeMs": 1791268182220.2383,
+      "updatedAt": "2026-10-06T06:55:18.458Z",
       "source": "scan",
       "symbols": [
         {
           "name": "kennismaken",
           "kind": "fn",
-          "startLine": 66,
-          "endLine": 70,
+          "startLine": 72,
+          "endLine": 76,
           "tokens": 64
         },
         {
           "name": "layerNav",
           "kind": "fn",
-          "startLine": 71,
-          "endLine": 82,
+          "startLine": 77,
+          "endLine": 88,
           "tokens": 90
         },
         {
           "name": "home",
           "kind": "fn",
-          "startLine": 83,
-          "endLine": 222,
-          "tokens": 2188
-        },
-        {
-          "name": "watWeDoen",
-          "kind": "fn",
-          "startLine": 223,
-          "endLine": 316,
-          "tokens": 1156
+          "startLine": 89,
+          "endLine": 248,
+          "tokens": 2424
         },
         {
           "name": "logoRow",
           "kind": "fn",
-          "startLine": 317,
-          "endLine": 330,
+          "startLine": 249,
+          "endLine": 262,
           "tokens": 88
         },
         {
           "name": "watAnderenZeggen",
           "kind": "fn",
-          "startLine": 331,
-          "endLine": 373,
-          "tokens": 468
+          "startLine": 263,
+          "endLine": 305,
+          "tokens": 446
         },
         {
           "name": "hoeWijKijken",
           "kind": "fn",
-          "startLine": 374,
-          "endLine": 486,
-          "tokens": 1979
+          "startLine": 306,
+          "endLine": 418,
+          "tokens": 1956
         },
         {
           "name": "ik",
           "kind": "fn",
-          "startLine": 487,
-          "endLine": 553,
+          "startLine": 419,
+          "endLine": 485,
           "tokens": 1302
         },
         {
           "name": "jijEnIk",
           "kind": "fn",
-          "startLine": 554,
-          "endLine": 628,
+          "startLine": 486,
+          "endLine": 560,
           "tokens": 1479
         },
         {
           "name": "ikEnWij",
           "kind": "fn",
-          "startLine": 629,
-          "endLine": 687,
+          "startLine": 561,
+          "endLine": 619,
           "tokens": 1372
         },
         {
           "name": "overJonk",
           "kind": "fn",
-          "startLine": 688,
-          "endLine": 753,
-          "tokens": 776
+          "startLine": 620,
+          "endLine": 673,
+          "tokens": 727
         },
         {
           "name": "cases",
           "kind": "fn",
-          "startLine": 754,
-          "endLine": 784,
+          "startLine": 674,
+          "endLine": 704,
           "tokens": 316
         },
         {
           "name": "podcast",
           "kind": "fn",
-          "startLine": 785,
-          "endLine": 834,
+          "startLine": 705,
+          "endLine": 754,
           "tokens": 557
         },
         {
           "name": "contact",
           "kind": "fn",
+          "startLine": 755,
+          "endLine": 795,
+          "tokens": 356
+        },
+        {
+          "name": "articleList",
+          "kind": "fn",
+          "startLine": 796,
+          "endLine": 799,
+          "tokens": 39
+        },
+        {
+          "name": "downloadList",
+          "kind": "fn",
+          "startLine": 800,
+          "endLine": 803,
+          "tokens": 48
+        },
+        {
+          "name": "kennisbank",
+          "kind": "fn",
+          "startLine": 804,
+          "endLine": 834,
+          "tokens": 264
+        },
+        {
+          "name": "artikelen",
+          "kind": "fn",
           "startLine": 835,
-          "endLine": 887,
-          "tokens": 385
+          "endLine": 847,
+          "tokens": 84
+        },
+        {
+          "name": "naslagwerk",
+          "kind": "fn",
+          "startLine": 848,
+          "endLine": 879,
+          "tokens": 193
         },
         {
           "name": "isPageName",
           "kind": "fn",
-          "startLine": 888,
-          "endLine": 892,
+          "startLine": 880,
+          "endLine": 884,
           "tokens": 37
         },
         {
           "name": "seedPages",
           "kind": "fn",
-          "startLine": 893,
-          "endLine": 911,
+          "startLine": 885,
+          "endLine": 903,
           "tokens": 179
         }
       ]
     },
     "app/scripts/seed/shared.ts": {
       "description": "Shared Sanity write helpers for the seed scripts in this folder.",
-      "tokens": 1935,
-      "hash": "7ea6a3f9ac33ddb3",
-      "size": 6774,
-      "mtimeMs": 1789299776750.2249,
-      "updatedAt": "2026-09-25T10:00:00.234Z",
+      "tokens": 2317,
+      "hash": "93ba27f4b9fc1059",
+      "size": 8115,
+      "mtimeMs": 1791266822622.499,
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan",
       "symbols": [
         {
           "name": "key",
           "kind": "fn",
-          "startLine": 45,
-          "endLine": 59,
-          "tokens": 120
+          "startLine": 47,
+          "endLine": 61,
+          "tokens": 126
         },
         {
           "name": "assetId",
           "kind": "fn",
-          "startLine": 60,
-          "endLine": 89,
-          "tokens": 261
+          "startLine": 62,
+          "endLine": 91,
+          "tokens": 255
         },
         {
           "name": "ref",
           "kind": "fn",
-          "startLine": 90,
-          "endLine": 94,
+          "startLine": 92,
+          "endLine": 96,
           "tokens": 40
         },
         {
           "name": "refItem",
           "kind": "fn",
-          "startLine": 95,
-          "endLine": 99,
-          "tokens": 39
+          "startLine": 97,
+          "endLine": 101,
+          "tokens": 56
         },
         {
           "name": "photo",
           "kind": "fn",
-          "startLine": 100,
-          "endLine": 104,
-          "tokens": 53
+          "startLine": 102,
+          "endLine": 111,
+          "tokens": 128
+        },
+        {
+          "name": "deleteReplacedAssets",
+          "kind": "fn",
+          "startLine": 112,
+          "endLine": 134,
+          "tokens": 230
         },
         {
           "name": "photoItem",
           "kind": "fn",
-          "startLine": 105,
-          "endLine": 109,
+          "startLine": 135,
+          "endLine": 139,
           "tokens": 55
         },
         {
           "name": "image",
           "kind": "fn",
-          "startLine": 110,
-          "endLine": 114,
+          "startLine": 140,
+          "endLine": 144,
           "tokens": 61
         },
         {
           "name": "pageId",
           "kind": "fn",
-          "startLine": 115,
-          "endLine": 119,
+          "startLine": 145,
+          "endLine": 149,
           "tokens": 36
         },
         {
           "name": "pageLink",
           "kind": "fn",
-          "startLine": 120,
-          "endLine": 129,
+          "startLine": 150,
+          "endLine": 159,
           "tokens": 68
         },
         {
           "name": "urlLink",
           "kind": "fn",
-          "startLine": 130,
-          "endLine": 134,
+          "startLine": 160,
+          "endLine": 164,
           "tokens": 53
         },
         {
           "name": "item",
           "kind": "fn",
-          "startLine": 135,
-          "endLine": 139,
+          "startLine": 165,
+          "endLine": 169,
           "tokens": 67
         },
         {
           "name": "entry",
           "kind": "fn",
-          "startLine": 140,
-          "endLine": 150,
+          "startLine": 170,
+          "endLine": 180,
           "tokens": 160
         },
         {
           "name": "weakenMissingReferences",
           "kind": "fn",
-          "startLine": 151,
-          "endLine": 184,
+          "startLine": 181,
+          "endLine": 214,
           "tokens": 353
         },
         {
           "name": "pageDoc",
           "kind": "fn",
-          "startLine": 185,
-          "endLine": 200,
+          "startLine": 215,
+          "endLine": 230,
           "tokens": 114
         }
       ]
     },
     "app/scripts/seed/site-information.ts": {
       "description": "The `siteInformation` singleton, filled from the defaults in",
-      "tokens": 329,
-      "hash": "221cf47431832f2d",
-      "size": 1153,
-      "mtimeMs": 1789299776751.1497,
-      "updatedAt": "2026-09-25T10:00:00.234Z",
+      "tokens": 365,
+      "hash": "9f5d1b84d2c64eb0",
+      "size": 1277,
+      "mtimeMs": 1791266822622.9944,
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan"
     },
     "app/scripts/seed.ts": {
       "description": "Seed Sanity content. Runs everything, or only the targets and pages you name.",
-      "tokens": 770,
-      "hash": "ad77d98cb82151df",
-      "size": 2697,
-      "mtimeMs": 1789299776746.3774,
-      "updatedAt": "2026-09-25T10:00:00.234Z",
+      "tokens": 835,
+      "hash": "d22b06935f609acf",
+      "size": 2923,
+      "mtimeMs": 1791269661239.6123,
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan",
       "symbols": [
         {
           "name": "isTarget",
           "kind": "fn",
-          "startLine": 37,
-          "endLine": 40,
+          "startLine": 40,
+          "endLine": 43,
           "tokens": 24
         },
         {
           "name": "main",
           "kind": "fn",
-          "startLine": 41,
-          "endLine": 76,
-          "tokens": 347
+          "startLine": 44,
+          "endLine": 81,
+          "tokens": 356
         }
       ]
     },
@@ -1795,7 +1890,7 @@
       "hash": "a1c8602a5143bb25",
       "size": 256,
       "mtimeMs": 1789026069573.0535,
-      "updatedAt": "2026-09-25T10:00:00.235Z",
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan"
     },
     "app/sentry.options.ts": {
@@ -1804,7 +1899,7 @@
       "hash": "b89936601be8277c",
       "size": 985,
       "mtimeMs": 1789026069573.1748,
-      "updatedAt": "2026-09-25T10:00:00.235Z",
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan"
     },
     "app/sentry.server.config.ts": {
@@ -1813,7 +1908,7 @@
       "hash": "cd70f1e833d830dd",
       "size": 240,
       "mtimeMs": 1789026069573.2869,
-      "updatedAt": "2026-09-25T10:00:00.235Z",
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan"
     },
     "app/src/.DS_Store": {
@@ -1822,7 +1917,7 @@
       "hash": "f355e3f321bc5b50",
       "size": 8196,
       "mtimeMs": 1789297912941.593,
-      "updatedAt": "2026-09-25T10:00:00.236Z",
+      "updatedAt": "2026-10-06T06:55:18.459Z",
       "source": "scan"
     },
     "app/src/app/.DS_Store": {
@@ -1831,7 +1926,7 @@
       "hash": "27d694b2f35516b2",
       "size": 6148,
       "mtimeMs": 1789297892653.418,
-      "updatedAt": "2026-09-25T10:00:00.236Z",
+      "updatedAt": "2026-10-06T06:55:18.460Z",
       "source": "scan"
     },
     "app/src/app/[...slug]/page.tsx": {
@@ -1840,16 +1935,16 @@
       "hash": "86b1ff375e8c94d6",
       "size": 1089,
       "mtimeMs": 1789299776751.858,
-      "updatedAt": "2026-09-25T10:00:00.236Z",
+      "updatedAt": "2026-10-06T06:55:18.460Z",
       "source": "scan"
     },
     "app/src/app/api/submit-form/route.ts": {
       "description": "Bigger uploads are rejected rather than silently dropped from the mail.",
-      "tokens": 2606,
-      "hash": "ee3f511f4576fecd",
-      "size": 9125,
-      "mtimeMs": 1789299776753.1875,
-      "updatedAt": "2026-09-25T10:00:00.237Z",
+      "tokens": 2876,
+      "hash": "cd4b4f680f9d8afd",
+      "size": 10069,
+      "mtimeMs": 1791268041427.9705,
+      "updatedAt": "2026-10-06T06:55:18.460Z",
       "source": "scan",
       "symbols": [
         {
@@ -1884,8 +1979,8 @@
           "name": "POST",
           "kind": "fn",
           "startLine": 96,
-          "endLine": 260,
-          "tokens": 1675
+          "endLine": 272,
+          "tokens": 1940
         }
       ]
     },
@@ -1895,17 +1990,49 @@
       "hash": "43ef850981c27370",
       "size": 836,
       "mtimeMs": 1789026069574.3225,
-      "updatedAt": "2026-09-25T10:00:00.237Z",
+      "updatedAt": "2026-10-06T06:55:18.460Z",
       "source": "scan"
     },
     "app/src/app/globals.css": {
-      "description": "Styles: 14 rules, 17 vars, 1 media queries, 1 animations, 1 layers",
-      "tokens": 1174,
-      "hash": "fa1b7afc27c02f1a",
-      "size": 4119,
-      "mtimeMs": 1789062447110.9202,
-      "updatedAt": "2026-09-25T10:00:00.237Z",
+      "description": "Styles: 15 rules, 17 vars, 1 media queries, 1 animations, 1 layers",
+      "tokens": 1239,
+      "hash": "6902022b6d8d90a2",
+      "size": 4347,
+      "mtimeMs": 1791266822623.7034,
+      "updatedAt": "2026-10-06T06:55:18.461Z",
       "source": "scan"
+    },
+    "app/src/app/kennisbank/artikelen/[slug]/page.tsx": {
+      "description": "The body as the layer articles set it: one reading column, display headings.",
+      "tokens": 1483,
+      "hash": "b1ba87a81677a79f",
+      "size": 5190,
+      "mtimeMs": 1791268141119.9792,
+      "updatedAt": "2026-10-06T06:55:18.461Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "generateStaticParams",
+          "kind": "fn",
+          "startLine": 25,
+          "endLine": 28,
+          "tokens": 27
+        },
+        {
+          "name": "generateMetadata",
+          "kind": "fn",
+          "startLine": 29,
+          "endLine": 63,
+          "tokens": 398
+        },
+        {
+          "name": "ArticlePage",
+          "kind": "fn",
+          "startLine": 64,
+          "endLine": 141,
+          "tokens": 730
+        }
+      ]
     },
     "app/src/app/layout.tsx": {
       "description": "Resolved `{ label, href }` pairs; links that resolve to nothing are dropped.",
@@ -1913,7 +2040,7 @@
       "hash": "52ede5a8f44ea769",
       "size": 4121,
       "mtimeMs": 1789300524948.5425,
-      "updatedAt": "2026-09-25T10:00:00.238Z",
+      "updatedAt": "2026-10-06T06:55:18.461Z",
       "source": "scan",
       "symbols": [
         {
@@ -1945,7 +2072,7 @@
       "hash": "9a8ebcac254e6a9a",
       "size": 434,
       "mtimeMs": 1789300580581.9653,
-      "updatedAt": "2026-09-25T10:00:00.238Z",
+      "updatedAt": "2026-10-06T06:55:18.461Z",
       "source": "scan"
     },
     "app/src/app/not-found.tsx": {
@@ -1954,7 +2081,7 @@
       "hash": "523be277a7023df4",
       "size": 833,
       "mtimeMs": 1789299776755.5764,
-      "updatedAt": "2026-09-25T10:00:00.238Z",
+      "updatedAt": "2026-10-06T06:55:18.461Z",
       "source": "scan"
     },
     "app/src/app/page.tsx": {
@@ -1963,7 +2090,7 @@
       "hash": "b26a7ea23686da0f",
       "size": 254,
       "mtimeMs": 1789299776756.6394,
-      "updatedAt": "2026-09-25T10:00:00.238Z",
+      "updatedAt": "2026-10-06T06:55:18.462Z",
       "source": "scan"
     },
     "app/src/app/robots.ts": {
@@ -1972,16 +2099,16 @@
       "hash": "32a9a14000924349",
       "size": 526,
       "mtimeMs": 1789026069575.4377,
-      "updatedAt": "2026-09-25T10:00:00.238Z",
+      "updatedAt": "2026-10-06T06:55:18.462Z",
       "source": "scan"
     },
     "app/src/app/sitemap.ts": {
-      "description": "Served at `/sitemap.xml`; `robots.ts` points at it. Every published page.",
-      "tokens": 189,
-      "hash": "05939923cf73b37a",
-      "size": 659,
-      "mtimeMs": 1789299784228.2075,
-      "updatedAt": "2026-09-25T10:00:00.239Z",
+      "description": "Served at `/sitemap.xml`; `robots.ts` points at it. Every published page and article.",
+      "tokens": 290,
+      "hash": "f2b828d0dd9b8720",
+      "size": 1013,
+      "mtimeMs": 1791268141421.89,
+      "updatedAt": "2026-10-06T06:55:18.462Z",
       "source": "scan"
     },
     "app/src/components/blocks/article.tsx": {
@@ -1990,7 +2117,7 @@
       "hash": "b866f5df20dea663",
       "size": 3283,
       "mtimeMs": 1789299776758.5237,
-      "updatedAt": "2026-09-25T10:00:00.239Z",
+      "updatedAt": "2026-10-06T06:55:18.462Z",
       "source": "scan",
       "symbols": [
         {
@@ -2029,7 +2156,7 @@
       "hash": "0341a7c3ea19d14b",
       "size": 10944,
       "mtimeMs": 1789299776758.904,
-      "updatedAt": "2026-09-25T10:00:00.240Z",
+      "updatedAt": "2026-10-06T06:55:18.462Z",
       "source": "scan",
       "symbols": [
         {
@@ -2090,13 +2217,66 @@
         }
       ]
     },
+    "app/src/components/blocks/kennisbank.tsx": {
+      "description": "Hairline-ruled cards. Each card draws its own border (overlapping by a pixel)",
+      "tokens": 1468,
+      "hash": "d531c42d84fde414",
+      "size": 5140,
+      "mtimeMs": 1791268379606.895,
+      "updatedAt": "2026-10-06T06:55:18.462Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "readingTime",
+          "kind": "fn",
+          "startLine": 31,
+          "endLine": 35,
+          "tokens": 59
+        },
+        {
+          "name": "fileMeta",
+          "kind": "fn",
+          "startLine": 36,
+          "endLine": 43,
+          "tokens": 108
+        },
+        {
+          "name": "ArticleCards",
+          "kind": "fn",
+          "startLine": 44,
+          "endLine": 69,
+          "tokens": 356
+        },
+        {
+          "name": "ListSection",
+          "kind": "fn",
+          "startLine": 70,
+          "endLine": 93,
+          "tokens": 170
+        },
+        {
+          "name": "ArticleListBlock",
+          "kind": "fn",
+          "startLine": 94,
+          "endLine": 107,
+          "tokens": 123
+        },
+        {
+          "name": "DownloadListBlock",
+          "kind": "fn",
+          "startLine": 108,
+          "endLine": 142,
+          "tokens": 333
+        }
+      ]
+    },
     "app/src/components/blocks/sections.tsx": {
       "description": "BARS",
-      "tokens": 5260,
-      "hash": "1384e5d588e467c5",
-      "size": 18409,
-      "mtimeMs": 1789299776759.2725,
-      "updatedAt": "2026-09-25T10:00:00.240Z",
+      "tokens": 5455,
+      "hash": "90cadb25d6c7bb38",
+      "size": 19090,
+      "mtimeMs": 1791266822624.3564,
+      "updatedAt": "2026-10-06T06:55:18.463Z",
       "source": "scan",
       "symbols": [
         {
@@ -2131,77 +2311,77 @@
           "name": "ThreeLevelsBlock",
           "kind": "fn",
           "startLine": 165,
-          "endLine": 198,
-          "tokens": 315
+          "endLine": 203,
+          "tokens": 368
         },
         {
           "name": "TimelineBlock",
           "kind": "fn",
-          "startLine": 199,
-          "endLine": 216,
+          "startLine": 204,
+          "endLine": 221,
           "tokens": 152
         },
         {
           "name": "StatsBlock",
           "kind": "fn",
-          "startLine": 217,
-          "endLine": 239,
+          "startLine": 222,
+          "endLine": 244,
           "tokens": 251
         },
         {
           "name": "ValuesBlock",
           "kind": "fn",
-          "startLine": 240,
-          "endLine": 322,
-          "tokens": 883
+          "startLine": 245,
+          "endLine": 331,
+          "tokens": 944
         },
         {
           "name": "MediaTextBlock",
           "kind": "fn",
-          "startLine": 323,
-          "endLine": 374,
+          "startLine": 332,
+          "endLine": 383,
           "tokens": 552
         },
         {
           "name": "TextSplitBlock",
           "kind": "fn",
-          "startLine": 375,
-          "endLine": 401,
-          "tokens": 263
+          "startLine": 384,
+          "endLine": 413,
+          "tokens": 330
         },
         {
           "name": "QuoteBlock",
           "kind": "fn",
-          "startLine": 402,
-          "endLine": 417,
-          "tokens": 141
+          "startLine": 414,
+          "endLine": 429,
+          "tokens": 154
         },
         {
           "name": "GalleryBlock",
           "kind": "fn",
-          "startLine": 418,
-          "endLine": 447,
+          "startLine": 430,
+          "endLine": 459,
           "tokens": 275
         },
         {
           "name": "StepsBlock",
           "kind": "fn",
-          "startLine": 448,
-          "endLine": 476,
+          "startLine": 460,
+          "endLine": 488,
           "tokens": 340
         },
         {
           "name": "LinkBandBlock",
           "kind": "fn",
-          "startLine": 477,
-          "endLine": 498,
+          "startLine": 489,
+          "endLine": 510,
           "tokens": 261
         },
         {
           "name": "KennismakenBlock",
           "kind": "fn",
-          "startLine": 499,
-          "endLine": 509,
+          "startLine": 511,
+          "endLine": 521,
           "tokens": 77
         }
       ]
@@ -2212,7 +2392,7 @@
       "hash": "45801dcb5b13c687",
       "size": 2044,
       "mtimeMs": 1789299776759.6382,
-      "updatedAt": "2026-09-25T10:00:00.240Z",
+      "updatedAt": "2026-10-06T06:55:18.463Z",
       "source": "scan",
       "symbols": [
         {
@@ -2251,7 +2431,7 @@
       "hash": "74d0d713a05000e2",
       "size": 1943,
       "mtimeMs": 1789299776757.6208,
-      "updatedAt": "2026-09-25T10:00:00.241Z",
+      "updatedAt": "2026-10-06T06:55:18.463Z",
       "source": "scan",
       "symbols": [
         {
@@ -2276,7 +2456,7 @@
       "hash": "7e11abcee815b1ee",
       "size": 5873,
       "mtimeMs": 1789299776760.4438,
-      "updatedAt": "2026-09-25T10:00:00.241Z",
+      "updatedAt": "2026-10-06T06:55:18.463Z",
       "source": "scan",
       "symbols": [
         {
@@ -2304,33 +2484,33 @@
     },
     "app/src/components/form/FormRenderer.tsx": {
       "description": "Public half of the reCAPTCHA settings — the secret stays server-side.",
-      "tokens": 3286,
-      "hash": "38c24c27be07d602",
-      "size": 11520,
-      "mtimeMs": 1789299776760.064,
-      "updatedAt": "2026-09-25T10:00:00.242Z",
+      "tokens": 3448,
+      "hash": "64a7c49324ee0a05",
+      "size": 12089,
+      "mtimeMs": 1791268028934.8867,
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan",
       "symbols": [
         {
           "name": "IconArrowRight",
           "kind": "fn",
-          "startLine": 62,
-          "endLine": 69,
+          "startLine": 68,
+          "endLine": 75,
           "tokens": 66
         },
         {
           "name": "SuccessPanel",
           "kind": "fn",
-          "startLine": 70,
-          "endLine": 113,
+          "startLine": 76,
+          "endLine": 119,
           "tokens": 447
         },
         {
           "name": "FormRenderer",
           "kind": "fn",
-          "startLine": 114,
-          "endLine": 333,
-          "tokens": 2151
+          "startLine": 120,
+          "endLine": 349,
+          "tokens": 2218
         }
       ]
     },
@@ -2340,7 +2520,7 @@
       "hash": "2f919953f124cec0",
       "size": 342,
       "mtimeMs": 1789026069575.895,
-      "updatedAt": "2026-09-25T10:00:00.242Z",
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan"
     },
     "app/src/components/layout/SiteFooter.tsx": {
@@ -2349,7 +2529,7 @@
       "hash": "3d021c5986474eb8",
       "size": 3183,
       "mtimeMs": 1789299776760.7864,
-      "updatedAt": "2026-09-25T10:00:00.242Z",
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan",
       "symbols": [
         {
@@ -2367,7 +2547,7 @@
       "hash": "2d3efaba24344217",
       "size": 5926,
       "mtimeMs": 1789299776761.1663,
-      "updatedAt": "2026-09-25T10:00:00.242Z",
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan",
       "symbols": [
         {
@@ -2388,25 +2568,25 @@
     },
     "app/src/components/PageBuilder.tsx": {
       "description": "Map one Sanity block onto its component.",
-      "tokens": 1257,
-      "hash": "6919b2a79e51fc31",
-      "size": 4405,
-      "mtimeMs": 1789299776758.0706,
-      "updatedAt": "2026-09-25T10:00:00.243Z",
+      "tokens": 1329,
+      "hash": "bc130483eecfbff7",
+      "size": 4659,
+      "mtimeMs": 1791268098060.5662,
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan",
       "symbols": [
         {
           "name": "renderBlock",
           "kind": "fn",
-          "startLine": 49,
-          "endLine": 101,
-          "tokens": 569
+          "startLine": 50,
+          "endLine": 106,
+          "tokens": 617
         },
         {
           "name": "PageBuilder",
           "kind": "fn",
-          "startLine": 102,
-          "endLine": 143,
+          "startLine": 107,
+          "endLine": 148,
           "tokens": 298
         }
       ]
@@ -2417,7 +2597,7 @@
       "hash": "c815d3ee476bfb6f",
       "size": 316,
       "mtimeMs": 1789062467749.7869,
-      "updatedAt": "2026-09-25T10:00:00.243Z",
+      "updatedAt": "2026-10-06T06:55:18.464Z",
       "source": "scan"
     },
     "app/src/components/site/Article.tsx": {
@@ -2426,7 +2606,7 @@
       "hash": "7e771241798f6650",
       "size": 7485,
       "mtimeMs": 1789299776761.7424,
-      "updatedAt": "2026-09-25T10:00:00.243Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan",
       "symbols": [
         {
@@ -2521,7 +2701,7 @@
       "hash": "95c414f80b11aac8",
       "size": 1013,
       "mtimeMs": 1790153303933.351,
-      "updatedAt": "2026-09-25T10:00:00.244Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan"
     },
     "app/src/components/site/Diagrams.tsx": {
@@ -2530,7 +2710,7 @@
       "hash": "bf96f13947b6cbdf",
       "size": 11968,
       "mtimeMs": 1790156120950.072,
-      "updatedAt": "2026-09-25T10:00:00.244Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan",
       "symbols": [
         {
@@ -2612,13 +2792,31 @@
         }
       ]
     },
+    "app/src/components/site/DownloadCard.tsx": {
+      "description": "A PDF card. The button opens a dialog with the download form; once that is",
+      "tokens": 936,
+      "hash": "0c489ffbb76cc8d0",
+      "size": 3275,
+      "mtimeMs": 1791268354580.654,
+      "updatedAt": "2026-10-06T06:55:18.465Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "DownloadCard",
+          "kind": "fn",
+          "startLine": 16,
+          "endLine": 99,
+          "tokens": 753
+        }
+      ]
+    },
     "app/src/components/site/Frame.tsx": {
       "description": "Aspect ratio and layout, e.g. `aspect-[4/5]`.",
-      "tokens": 399,
-      "hash": "46bf29c402805aba",
-      "size": 1394,
-      "mtimeMs": 1790153309227.0654,
-      "updatedAt": "2026-09-25T10:00:00.244Z",
+      "tokens": 402,
+      "hash": "bd54e050a612b7b3",
+      "size": 1405,
+      "mtimeMs": 1791266822587.511,
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan"
     },
     "app/src/components/site/Kenmerken.tsx": {
@@ -2627,7 +2825,7 @@
       "hash": "2f5a15e66b2c45da",
       "size": 635,
       "mtimeMs": 1789299776762.7957,
-      "updatedAt": "2026-09-25T10:00:00.244Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan"
     },
     "app/src/components/site/Kennismaken.tsx": {
@@ -2636,7 +2834,7 @@
       "hash": "bb693efdd2d3a3a9",
       "size": 1949,
       "mtimeMs": 1789299776763.2424,
-      "updatedAt": "2026-09-25T10:00:00.245Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan",
       "symbols": [
         {
@@ -2654,7 +2852,7 @@
       "hash": "55d6103359419cf2",
       "size": 2106,
       "mtimeMs": 1789299776764.6948,
-      "updatedAt": "2026-09-25T10:00:00.245Z",
+      "updatedAt": "2026-10-06T06:55:18.465Z",
       "source": "scan",
       "symbols": [
         {
@@ -2679,7 +2877,7 @@
       "hash": "e01103db01b77280",
       "size": 2124,
       "mtimeMs": 1789299776765.7627,
-      "updatedAt": "2026-09-25T10:00:00.245Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan",
       "symbols": [
         {
@@ -2697,7 +2895,7 @@
       "hash": "9640e8be9a9d7c0e",
       "size": 1120,
       "mtimeMs": 1789063185458.4958,
-      "updatedAt": "2026-09-25T10:00:00.245Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan"
     },
     "app/src/components/site/Reveal.tsx": {
@@ -2706,7 +2904,7 @@
       "hash": "c201716cb5f488c9",
       "size": 932,
       "mtimeMs": 1789062471983.574,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan"
     },
     "app/src/components/site/Rich.tsx": {
@@ -2715,16 +2913,16 @@
       "hash": "8af8faf06978b03f",
       "size": 1433,
       "mtimeMs": 1789299776766.3257,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan"
     },
     "app/src/components/site/Section.tsx": {
       "description": "The `background` choice on a block, as section classes.",
-      "tokens": 454,
-      "hash": "d1fd92821fb5202d",
-      "size": 1586,
-      "mtimeMs": 1789299776766.8108,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "tokens": 499,
+      "hash": "2c24ce781831d473",
+      "size": 1746,
+      "mtimeMs": 1791268354580.8223,
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan"
     },
     "app/src/components/site/Stats.tsx": {
@@ -2733,7 +2931,7 @@
       "hash": "5b08a426a055dfbf",
       "size": 982,
       "mtimeMs": 1789299776767.5808,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan"
     },
     "app/src/components/site/ThreeLevels.tsx": {
@@ -2742,7 +2940,7 @@
       "hash": "6c15c148c7500fc1",
       "size": 4258,
       "mtimeMs": 1789299776768.392,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan",
       "symbols": [
         {
@@ -2755,20 +2953,27 @@
       ]
     },
     "app/src/components/site/Timeline.tsx": {
-      "description": "Dots on a line (horizontal from lg, vertical rule below that).",
-      "tokens": 506,
-      "hash": "3d458a42b7b10cd7",
-      "size": 1769,
-      "mtimeMs": 1789299776768.9407,
-      "updatedAt": "2026-09-25T10:00:00.246Z",
+      "description": "Two small dots: the options that lie between two big ones.",
+      "tokens": 768,
+      "hash": "c6e917f2518dcfa2",
+      "size": 2688,
+      "mtimeMs": 1791266822625.4028,
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan",
       "symbols": [
         {
+          "name": "Between",
+          "kind": "fn",
+          "startLine": 15,
+          "endLine": 24,
+          "tokens": 102
+        },
+        {
           "name": "Timeline",
           "kind": "fn",
-          "startLine": 13,
-          "endLine": 53,
-          "tokens": 375
+          "startLine": 25,
+          "endLine": 74,
+          "tokens": 502
         }
       ]
     },
@@ -2778,7 +2983,7 @@
       "hash": "0a7755b4be8a0b61",
       "size": 3032,
       "mtimeMs": 1789026069576.3958,
-      "updatedAt": "2026-09-25T10:00:00.247Z",
+      "updatedAt": "2026-10-06T06:55:18.466Z",
       "source": "scan",
       "symbols": [
         {
@@ -2797,13 +3002,22 @@
         }
       ]
     },
+    "app/src/components/ui/Image.tsx": {
+      "description": "Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /\\_next/image.",
+      "tokens": 196,
+      "hash": "7967e17c1164a358",
+      "size": 686,
+      "mtimeMs": 1791266822588.203,
+      "updatedAt": "2026-10-06T06:55:18.466Z",
+      "source": "scan"
+    },
     "app/src/hooks/useRevealOnScroll.ts": {
       "description": "Exports useRevealOnScroll",
       "tokens": 259,
       "hash": "25979c543bcba0ae",
       "size": 904,
       "mtimeMs": 1789063157804.0833,
-      "updatedAt": "2026-09-25T10:00:00.247Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/hooks/useStickyTopbar.ts": {
@@ -2812,7 +3026,7 @@
       "hash": "e9e5ab97944164eb",
       "size": 826,
       "mtimeMs": 1789026069581.5012,
-      "updatedAt": "2026-09-25T10:00:00.247Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/instrumentation-client.ts": {
@@ -2821,7 +3035,7 @@
       "hash": "fd8bd47a20347fe6",
       "size": 976,
       "mtimeMs": 1789026069581.611,
-      "updatedAt": "2026-09-25T10:00:00.247Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/instrumentation.ts": {
@@ -2830,7 +3044,7 @@
       "hash": "a53714662dd6eff4",
       "size": 722,
       "mtimeMs": 1789026069581.715,
-      "updatedAt": "2026-09-25T10:00:00.247Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/lib/chrome.ts": {
@@ -2839,7 +3053,7 @@
       "hash": "11c7ef79ac0c07c3",
       "size": 108,
       "mtimeMs": 1790156120950.4102,
-      "updatedAt": "2026-09-25T10:00:00.248Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/lib/cn.ts": {
@@ -2848,7 +3062,7 @@
       "hash": "ec1499e69cf8ab14",
       "size": 129,
       "mtimeMs": 1789026069581.9688,
-      "updatedAt": "2026-09-25T10:00:00.248Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/lib/env.ts": {
@@ -2857,7 +3071,7 @@
       "hash": "8e87940b279b29c7",
       "size": 1336,
       "mtimeMs": 1789026069582.5168,
-      "updatedAt": "2026-09-25T10:00:00.248Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan"
     },
     "app/src/lib/form-fields.ts": {
@@ -2866,7 +3080,7 @@
       "hash": "ef1de2fc32c0e9cc",
       "size": 5842,
       "mtimeMs": 1789026069582.7053,
-      "updatedAt": "2026-09-25T10:00:00.248Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan",
       "symbols": [
         {
@@ -2912,7 +3126,7 @@
       "hash": "b537639e4583d7d2",
       "size": 5910,
       "mtimeMs": 1789026069582.896,
-      "updatedAt": "2026-09-25T10:00:00.249Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan",
       "symbols": [
         {
@@ -2954,25 +3168,25 @@
     },
     "app/src/lib/interface-text.ts": {
       "description": "The site's interface text, and the defaults it falls back to.",
-      "tokens": 875,
-      "hash": "8b1cc1763258eed2",
-      "size": 3075,
-      "mtimeMs": 1789299776769.4246,
-      "updatedAt": "2026-09-25T10:00:00.249Z",
+      "tokens": 1004,
+      "hash": "60d9450bc9395592",
+      "size": 3525,
+      "mtimeMs": 1791267952763.2397,
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan",
       "symbols": [
         {
           "name": "resolveInterfaceText",
           "kind": "fn",
-          "startLine": 67,
-          "endLine": 79,
+          "startLine": 79,
+          "endLine": 91,
           "tokens": 145
         },
         {
           "name": "fillTemplate",
           "kind": "fn",
-          "startLine": 80,
-          "endLine": 85,
+          "startLine": 92,
+          "endLine": 97,
           "tokens": 60
         }
       ]
@@ -2983,7 +3197,7 @@
       "hash": "51c94adaaafdc236",
       "size": 9037,
       "mtimeMs": 1789299776769.9744,
-      "updatedAt": "2026-09-25T10:00:00.249Z",
+      "updatedAt": "2026-10-06T06:55:18.467Z",
       "source": "scan",
       "symbols": [
         {
@@ -3074,20 +3288,57 @@
     },
     "app/src/lib/links.ts": {
       "description": "The slug of the page that renders at `/`.",
-      "tokens": 446,
-      "hash": "3a4fd193d899c506",
-      "size": 1563,
-      "mtimeMs": 1789026069583.3684,
-      "updatedAt": "2026-09-25T10:00:00.249Z",
-      "source": "scan"
+      "tokens": 511,
+      "hash": "298c095875fb98f5",
+      "size": 1791,
+      "mtimeMs": 1791268077180.419,
+      "updatedAt": "2026-10-06T06:55:18.468Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "pathForSlug",
+          "kind": "fn",
+          "startLine": 12,
+          "endLine": 26,
+          "tokens": 111
+        },
+        {
+          "name": "resolveHref",
+          "kind": "fn",
+          "startLine": 27,
+          "endLine": 38,
+          "tokens": 121
+        },
+        {
+          "name": "isInternalHref",
+          "kind": "fn",
+          "startLine": 39,
+          "endLine": 42,
+          "tokens": 26
+        },
+        {
+          "name": "toLabeledHref",
+          "kind": "fn",
+          "startLine": 43,
+          "endLine": 53,
+          "tokens": 110
+        },
+        {
+          "name": "articlePath",
+          "kind": "fn",
+          "startLine": 54,
+          "endLine": 57,
+          "tokens": 26
+        }
+      ]
     },
     "app/src/lib/site.ts": {
       "description": "Site-wide details, and the defaults they fall back to.",
-      "tokens": 1354,
-      "hash": "33bb5de4286ae0f8",
-      "size": 4748,
-      "mtimeMs": 1790156120950.832,
-      "updatedAt": "2026-09-25T10:00:00.249Z",
+      "tokens": 1353,
+      "hash": "fbbdd94414312b4f",
+      "size": 4746,
+      "mtimeMs": 1791266822626.2776,
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan",
       "symbols": [
         {
@@ -3133,16 +3384,25 @@
       "hash": "3224719ec2ccece7",
       "size": 1055,
       "mtimeMs": 1789026069583.7273,
-      "updatedAt": "2026-09-25T10:00:00.250Z",
+      "updatedAt": "2026-10-06T06:55:18.468Z",
+      "source": "scan"
+    },
+    "app/src/sanity/image-loader.ts": {
+      "description": "next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local.",
+      "tokens": 426,
+      "hash": "7582a22c511ca176",
+      "size": 1488,
+      "mtimeMs": 1791266822588.8145,
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan"
     },
     "app/src/sanity/image.ts": {
       "description": "A `photo` from the studio: an image with its alt text and crop focus.",
-      "tokens": 386,
-      "hash": "ce6224c32254c145",
-      "size": 1350,
-      "mtimeMs": 1790156120951.2478,
-      "updatedAt": "2026-09-25T10:00:00.250Z",
+      "tokens": 390,
+      "hash": "15f2c40f509d129b",
+      "size": 1362,
+      "mtimeMs": 1791266822627.1653,
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan"
     },
     "app/src/sanity/interface-text.ts": {
@@ -3151,7 +3411,7 @@
       "hash": "1c2e9f5d064fca7c",
       "size": 786,
       "mtimeMs": 1789299776771.0852,
-      "updatedAt": "2026-09-25T10:00:00.250Z",
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan"
     },
     "app/src/sanity/metadata.ts": {
@@ -3160,7 +3420,7 @@
       "hash": "60e6affd8d75dfaf",
       "size": 2638,
       "mtimeMs": 1789299776772.8833,
-      "updatedAt": "2026-09-25T10:00:00.250Z",
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan",
       "symbols": [
         {
@@ -3181,29 +3441,29 @@
     },
     "app/src/sanity/queries.ts": {
       "description": "Resolve internal page references on link/cta objects.",
-      "tokens": 1440,
-      "hash": "4fd830ab965627ab",
-      "size": 5051,
-      "mtimeMs": 1790156120951.617,
-      "updatedAt": "2026-09-25T10:00:00.250Z",
+      "tokens": 2014,
+      "hash": "3e47d89750e3e471",
+      "size": 7062,
+      "mtimeMs": 1791267989465.5696,
+      "updatedAt": "2026-10-06T06:55:18.468Z",
       "source": "scan"
     },
     "app/src/sanity/sanity.types.ts": {
       "description": "---------------------------------------------------------------------------------",
-      "tokens": 13302,
-      "hash": "eb39e425f996d517",
-      "size": 46558,
-      "mtimeMs": 1790156120952.0728,
-      "updatedAt": "2026-09-25T10:00:00.251Z",
+      "tokens": 16301,
+      "hash": "8e409bc273846c4c",
+      "size": 57055,
+      "mtimeMs": 1791267991564.9263,
+      "updatedAt": "2026-10-06T06:55:18.469Z",
       "source": "scan"
     },
     "app/src/sanity/schema.json": {
       "description": "",
-      "tokens": 36163,
-      "hash": "61895f62285a47c2",
-      "size": 126568,
-      "mtimeMs": 1790156120952.5984,
-      "updatedAt": "2026-09-25T10:00:00.252Z",
+      "tokens": 40984,
+      "hash": "33ae6c0b1047837d",
+      "size": 143444,
+      "mtimeMs": 1791267976201.41,
+      "updatedAt": "2026-10-06T06:55:18.469Z",
       "source": "scan"
     },
     "app/src/sanity/site-information.ts": {
@@ -3212,7 +3472,7 @@
       "hash": "ece6072bc41e7ce8",
       "size": 1081,
       "mtimeMs": 1789026069584.788,
-      "updatedAt": "2026-09-25T10:00:00.252Z",
+      "updatedAt": "2026-10-06T06:55:18.469Z",
       "source": "scan"
     },
     "app/tsconfig.json": {
@@ -3221,16 +3481,16 @@
       "hash": "5c51df4c59f4510d",
       "size": 670,
       "mtimeMs": 1789026069584.8926,
-      "updatedAt": "2026-09-25T10:00:00.252Z",
+      "updatedAt": "2026-10-06T06:55:18.469Z",
       "source": "scan"
     },
     "app/tsconfig.tsbuildinfo": {
       "description": "",
-      "tokens": 83365,
-      "hash": "82b3180f73e195f0",
-      "size": 312618,
-      "mtimeMs": 1790156108089.036,
-      "updatedAt": "2026-09-25T10:00:00.254Z",
+      "tokens": 84165,
+      "hash": "f72915a91e89f293",
+      "size": 315617,
+      "mtimeMs": 1791269662983.875,
+      "updatedAt": "2026-10-06T06:55:18.471Z",
       "source": "scan"
     },
     "CLAUDE.md": {
@@ -3239,7 +3499,25 @@
       "hash": "b1ca356fa9d5f3a6",
       "size": 225,
       "mtimeMs": 1789212494562.0635,
-      "updatedAt": "2026-09-25T10:00:00.254Z",
+      "updatedAt": "2026-10-06T06:55:18.471Z",
+      "source": "scan"
+    },
+    "content/.DS_Store": {
+      "description": "",
+      "tokens": 2186,
+      "hash": "e663c0c40633d66a",
+      "size": 8196,
+      "mtimeMs": 1791269405556.9358,
+      "updatedAt": "2026-10-06T06:55:18.485Z",
+      "source": "scan"
+    },
+    "content/kennisbank/.DS_Store": {
+      "description": "",
+      "tokens": 1640,
+      "hash": "9cb27ccbdd923b67",
+      "size": 6148,
+      "mtimeMs": 1791269411431.6477,
+      "updatedAt": "2026-10-06T06:55:18.486Z",
       "source": "scan"
     },
     "README.md": {
@@ -3248,7 +3526,7 @@
       "hash": "38480e3d255dc28e",
       "size": 32290,
       "mtimeMs": 1789299776739.577,
-      "updatedAt": "2026-09-25T10:00:00.255Z",
+      "updatedAt": "2026-10-06T06:55:18.488Z",
       "source": "scan"
     },
     "studio/.gitignore": {
@@ -3257,7 +3535,7 @@
       "hash": "b07fe2b926636cc1",
       "size": 537,
       "mtimeMs": 1789026069585.377,
-      "updatedAt": "2026-09-25T10:00:00.255Z",
+      "updatedAt": "2026-10-06T06:55:18.488Z",
       "source": "scan"
     },
     "studio/.sanity/runtime/app.js": {
@@ -3266,7 +3544,7 @@
       "hash": "8efdad20830ad340",
       "size": 303,
       "mtimeMs": 1789300315533.2236,
-      "updatedAt": "2026-09-25T10:00:00.255Z",
+      "updatedAt": "2026-10-06T06:55:18.489Z",
       "source": "scan"
     },
     "studio/.sanity/runtime/index.html": {
@@ -3275,7 +3553,7 @@
       "hash": "2d9e304bcfe67fce",
       "size": 8688,
       "mtimeMs": 1789300315532.5051,
-      "updatedAt": "2026-09-25T10:00:00.255Z",
+      "updatedAt": "2026-10-06T06:55:18.490Z",
       "source": "scan"
     },
     "studio/eslint.config.mjs": {
@@ -3284,7 +3562,7 @@
       "hash": "c5807d719bd7e7fe",
       "size": 78,
       "mtimeMs": 1789026069585.7456,
-      "updatedAt": "2026-09-25T10:00:00.256Z",
+      "updatedAt": "2026-10-06T06:55:18.490Z",
       "source": "scan"
     },
     "studio/package-lock.json": {
@@ -3293,7 +3571,7 @@
       "hash": "6b8df2182ca68269",
       "size": 601081,
       "mtimeMs": 1789299775992.409,
-      "updatedAt": "2026-09-25T10:00:00.257Z",
+      "updatedAt": "2026-10-06T06:55:18.492Z",
       "source": "scan"
     },
     "studio/package.json": {
@@ -3302,7 +3580,7 @@
       "hash": "be311e0cb10e6e95",
       "size": 1051,
       "mtimeMs": 1789299775992.8396,
-      "updatedAt": "2026-09-25T10:00:00.258Z",
+      "updatedAt": "2026-10-06T06:55:18.492Z",
       "source": "scan"
     },
     "studio/README.md": {
@@ -3311,7 +3589,7 @@
       "hash": "d3159c161d527ba6",
       "size": 1721,
       "mtimeMs": 1789299820800.7751,
-      "updatedAt": "2026-09-25T10:00:00.258Z",
+      "updatedAt": "2026-10-06T06:55:18.493Z",
       "source": "scan"
     },
     "studio/sanity.cli.ts": {
@@ -3320,7 +3598,7 @@
       "hash": "0d56f29c93d9de3c",
       "size": 946,
       "mtimeMs": 1789064103665.5066,
-      "updatedAt": "2026-09-25T10:00:00.258Z",
+      "updatedAt": "2026-10-06T06:55:18.494Z",
       "source": "scan"
     },
     "studio/sanity.config.ts": {
@@ -3329,7 +3607,7 @@
       "hash": "b7edd634723c05c1",
       "size": 934,
       "mtimeMs": 1789026069587.8123,
-      "updatedAt": "2026-09-25T10:00:00.258Z",
+      "updatedAt": "2026-10-06T06:55:18.495Z",
       "source": "scan"
     },
     "studio/schemaTypes/blocks/articleBlocks.ts": {
@@ -3338,7 +3616,7 @@
       "hash": "0922bcad706069ea",
       "size": 4564,
       "mtimeMs": 1789299776775.8699,
-      "updatedAt": "2026-09-25T10:00:00.259Z",
+      "updatedAt": "2026-10-06T06:55:18.499Z",
       "source": "scan"
     },
     "studio/schemaTypes/blocks/collectionBlocks.ts": {
@@ -3347,7 +3625,7 @@
       "hash": "0068872477dda932",
       "size": 4476,
       "mtimeMs": 1789299776776.5908,
-      "updatedAt": "2026-09-25T10:00:00.259Z",
+      "updatedAt": "2026-10-06T06:55:18.501Z",
       "source": "scan"
     },
     "studio/schemaTypes/blocks/contactFormType.ts": {
@@ -3356,7 +3634,7 @@
       "hash": "c00889ae33e6cdbc",
       "size": 1186,
       "mtimeMs": 1789299776777.4458,
-      "updatedAt": "2026-09-25T10:00:00.259Z",
+      "updatedAt": "2026-10-06T06:55:18.508Z",
       "source": "scan"
     },
     "studio/schemaTypes/blocks/pageHeroType.ts": {
@@ -3365,16 +3643,16 @@
       "hash": "d6fb10be1627a17d",
       "size": 1563,
       "mtimeMs": 1789299776779.4355,
-      "updatedAt": "2026-09-25T10:00:00.260Z",
+      "updatedAt": "2026-10-06T06:55:18.509Z",
       "source": "scan"
     },
     "studio/schemaTypes/blocks/sectionBlocks.ts": {
       "description": "The three things clients name, beside a photo, optionally with a quote.",
-      "tokens": 2732,
-      "hash": "ff4d5b7fe792ee70",
-      "size": 9568,
-      "mtimeMs": 1790156127343.3735,
-      "updatedAt": "2026-09-25T10:00:00.260Z",
+      "tokens": 2775,
+      "hash": "1191d524ee559e27",
+      "size": 9718,
+      "mtimeMs": 1791266822630.9927,
+      "updatedAt": "2026-10-06T06:55:18.509Z",
       "source": "scan"
     },
     "studio/schemaTypes/documents.ts": {
@@ -3383,7 +3661,7 @@
       "hash": "9e624393dc6536d3",
       "size": 2515,
       "mtimeMs": 1789299776781.6208,
-      "updatedAt": "2026-09-25T10:00:00.260Z",
+      "updatedAt": "2026-10-06T06:55:18.510Z",
       "source": "scan"
     },
     "studio/schemaTypes/footerType.ts": {
@@ -3392,7 +3670,7 @@
       "hash": "5b84ebd6feba4d9a",
       "size": 863,
       "mtimeMs": 1789299776782.1113,
-      "updatedAt": "2026-09-25T10:00:00.260Z",
+      "updatedAt": "2026-10-06T06:55:18.510Z",
       "source": "scan"
     },
     "studio/schemaTypes/formGeneralSettingsType.ts": {
@@ -3401,7 +3679,7 @@
       "hash": "4d0e8af3418f44f4",
       "size": 5303,
       "mtimeMs": 1789299776782.8586,
-      "updatedAt": "2026-09-25T10:00:00.261Z",
+      "updatedAt": "2026-10-06T06:55:18.510Z",
       "source": "scan"
     },
     "studio/schemaTypes/formType.ts": {
@@ -3410,7 +3688,7 @@
       "hash": "dccc82fe3141c082",
       "size": 9026,
       "mtimeMs": 1789026069591.0444,
-      "updatedAt": "2026-09-25T10:00:00.261Z",
+      "updatedAt": "2026-10-06T06:55:18.511Z",
       "source": "scan",
       "symbols": [
         {
@@ -3424,30 +3702,39 @@
     },
     "studio/schemaTypes/index.ts": {
       "description": "Every schema type the studio knows about.",
-      "tokens": 714,
-      "hash": "c97c5773f307c268",
-      "size": 2499,
-      "mtimeMs": 1789299776783.7048,
-      "updatedAt": "2026-09-25T10:00:00.261Z",
+      "tokens": 760,
+      "hash": "193e00e02d2aabfd",
+      "size": 2659,
+      "mtimeMs": 1791267915253.089,
+      "updatedAt": "2026-10-06T06:55:18.511Z",
       "source": "scan"
     },
     "studio/schemaTypes/interfaceTextType.ts": {
       "description": "The site's own interface text: labels that appear on every page (header,",
-      "tokens": 1034,
-      "hash": "dc4749da5083ac61",
-      "size": 3622,
-      "mtimeMs": 1789299776784.3313,
-      "updatedAt": "2026-09-25T10:00:00.261Z",
+      "tokens": 1244,
+      "hash": "3fc153381ecfc5b1",
+      "size": 4358,
+      "mtimeMs": 1791267943240.51,
+      "updatedAt": "2026-10-06T06:55:18.511Z",
       "source": "scan",
       "symbols": [
         {
           "name": "group",
           "kind": "fn",
           "startLine": 14,
-          "endLine": 87,
-          "tokens": 878
+          "endLine": 99,
+          "tokens": 1088
         }
       ]
+    },
+    "studio/schemaTypes/kennisbank.ts": {
+      "description": "The Kennisbank: articles (each on its own page at /kennisbank/artikelen/<slug>)",
+      "tokens": 1407,
+      "hash": "f47bd568bc74722c",
+      "size": 4922,
+      "mtimeMs": 1791267902447.902,
+      "updatedAt": "2026-10-06T06:55:18.512Z",
+      "source": "scan"
     },
     "studio/schemaTypes/navigationType.ts": {
       "description": "A label + internal page or URL. Shared by the navigation and the footer.",
@@ -3455,7 +3742,7 @@
       "hash": "f1ad3029c3c4194d",
       "size": 1330,
       "mtimeMs": 1789299776785.0156,
-      "updatedAt": "2026-09-25T10:00:00.261Z",
+      "updatedAt": "2026-10-06T06:55:18.512Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/contentObjects.ts": {
@@ -3464,7 +3751,7 @@
       "hash": "aec9735f0bb00a75",
       "size": 2494,
       "mtimeMs": 1790153271518.1301,
-      "updatedAt": "2026-09-25T10:00:00.262Z",
+      "updatedAt": "2026-10-06T06:55:18.512Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/ctaType.ts": {
@@ -3473,7 +3760,7 @@
       "hash": "d016fc7939d21106",
       "size": 326,
       "mtimeMs": 1789026069591.4968,
-      "updatedAt": "2026-09-25T10:00:00.262Z",
+      "updatedAt": "2026-10-06T06:55:18.512Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/fields.ts": {
@@ -3482,7 +3769,7 @@
       "hash": "fc592a68a9189e32",
       "size": 2566,
       "mtimeMs": 1789299776786.0017,
-      "updatedAt": "2026-09-25T10:00:00.262Z",
+      "updatedAt": "2026-10-06T06:55:18.513Z",
       "source": "scan",
       "symbols": [
         {
@@ -3535,7 +3822,7 @@
       "hash": "2cb8c42eae5fee0a",
       "size": 4571,
       "mtimeMs": 1789026069591.704,
-      "updatedAt": "2026-09-25T10:00:00.262Z",
+      "updatedAt": "2026-10-06T06:55:18.513Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/linkFields.ts": {
@@ -3544,7 +3831,7 @@
       "hash": "bdc930395402f7a6",
       "size": 1422,
       "mtimeMs": 1789026069591.83,
-      "updatedAt": "2026-09-25T10:00:00.263Z",
+      "updatedAt": "2026-10-06T06:55:18.513Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/linkType.ts": {
@@ -3553,7 +3840,7 @@
       "hash": "4a6dec2e72655f28",
       "size": 188,
       "mtimeMs": 1789026069592.0688,
-      "updatedAt": "2026-09-25T10:00:00.263Z",
+      "updatedAt": "2026-10-06T06:55:18.514Z",
       "source": "scan"
     },
     "studio/schemaTypes/objects/seoType.ts": {
@@ -3562,16 +3849,16 @@
       "hash": "c3937d54e6fc72e3",
       "size": 806,
       "mtimeMs": 1789026069592.2083,
-      "updatedAt": "2026-09-25T10:00:00.263Z",
+      "updatedAt": "2026-10-06T06:55:18.514Z",
       "source": "scan"
     },
     "studio/schemaTypes/pageBuilderType.ts": {
       "description": "The block list editors can insert on a page.",
-      "tokens": 444,
-      "hash": "0c216e1337ad98e8",
-      "size": 1553,
-      "mtimeMs": 1789299776786.3887,
-      "updatedAt": "2026-09-25T10:00:00.263Z",
+      "tokens": 476,
+      "hash": "5a9819547b1be52a",
+      "size": 1664,
+      "mtimeMs": 1791267915253.463,
+      "updatedAt": "2026-10-06T06:55:18.514Z",
       "source": "scan"
     },
     "studio/schemaTypes/pageType.ts": {
@@ -3580,7 +3867,7 @@
       "hash": "302e9947730ed839",
       "size": 744,
       "mtimeMs": 1789026069592.645,
-      "updatedAt": "2026-09-25T10:00:00.263Z",
+      "updatedAt": "2026-10-06T06:55:18.514Z",
       "source": "scan"
     },
     "studio/schemaTypes/siteInformationType.ts": {
@@ -3589,102 +3876,109 @@
       "hash": "34cf657dfb5c247c",
       "size": 4086,
       "mtimeMs": 1790156120952.9421,
-      "updatedAt": "2026-09-25T10:00:00.264Z",
+      "updatedAt": "2026-10-06T06:55:18.515Z",
       "source": "scan"
     },
     "studio/structure.ts": {
       "description": "Documents that exist exactly once. They get a fixed `_id` and a top-level",
-      "tokens": 855,
-      "hash": "8a55b690ec4de490",
-      "size": 2992,
-      "mtimeMs": 1789299776787.356,
-      "updatedAt": "2026-09-25T10:00:00.264Z",
+      "tokens": 896,
+      "hash": "49bdcb2bfd6a2cf3",
+      "size": 3135,
+      "mtimeMs": 1791267915253.826,
+      "updatedAt": "2026-10-06T06:55:18.515Z",
       "source": "scan"
     },
     "studio/tools/mediaData.ts": {
       "description": "Queries, types and formatting helpers for the Media panel (`MediaTool.tsx`).",
-      "tokens": 2035,
-      "hash": "8c3ec38506a8674d",
-      "size": 7145,
-      "mtimeMs": 1789299776788.2078,
-      "updatedAt": "2026-09-25T10:00:00.264Z",
+      "tokens": 2220,
+      "hash": "333e59ba9942e9f3",
+      "size": 7791,
+      "mtimeMs": 1791266822591.236,
+      "updatedAt": "2026-10-06T06:55:18.515Z",
       "source": "scan",
       "symbols": [
         {
+          "name": "chunk",
+          "kind": "fn",
+          "startLine": 61,
+          "endLine": 132,
+          "tokens": 546
+        },
+        {
           "name": "typeLabel",
           "kind": "fn",
-          "startLine": 116,
-          "endLine": 119,
+          "startLine": 133,
+          "endLine": 136,
           "tokens": 25
         },
         {
           "name": "isImage",
           "kind": "fn",
-          "startLine": 120,
-          "endLine": 124,
+          "startLine": 137,
+          "endLine": 141,
           "tokens": 71
         },
         {
           "name": "uploadKind",
           "kind": "fn",
-          "startLine": 125,
-          "endLine": 128,
+          "startLine": 142,
+          "endLine": 145,
           "tokens": 38
         },
         {
           "name": "formatBytes",
           "kind": "fn",
-          "startLine": 129,
-          "endLine": 137,
+          "startLine": 146,
+          "endLine": 154,
           "tokens": 103
         },
         {
           "name": "formatDate",
           "kind": "fn",
-          "startLine": 138,
-          "endLine": 144,
+          "startLine": 155,
+          "endLine": 161,
           "tokens": 74
         },
         {
           "name": "formatDimensions",
           "kind": "fn",
-          "startLine": 145,
-          "endLine": 150,
+          "startLine": 162,
+          "endLine": 167,
           "tokens": 70
         },
         {
           "name": "displayName",
           "kind": "fn",
-          "startLine": 151,
-          "endLine": 162,
+          "startLine": 168,
+          "endLine": 179,
           "tokens": 95
         },
         {
           "name": "matchesSearch",
           "kind": "fn",
-          "startLine": 163,
-          "endLine": 188,
+          "startLine": 180,
+          "endLine": 205,
           "tokens": 213
         },
         {
           "name": "matchesFilter",
           "kind": "fn",
-          "startLine": 189,
-          "endLine": 204,
+          "startLine": 206,
+          "endLine": 221,
           "tokens": 136
         },
         {
           "name": "dedupeUsage",
           "kind": "fn",
-          "startLine": 205,
-          "endLine": 220,
+          "startLine": 222,
+          "endLine": 237,
           "tokens": 165
         },
         {
           "name": "thumbnailUrl",
           "kind": "fn",
-          "startLine": 221,
-          "endLine": 224,
+          "startLine": 238,
+          "endLine": 241,
           "tokens": 36
         }
       ]
@@ -3695,37 +3989,37 @@
       "hash": "9c537d6dbd51c896",
       "size": 4958,
       "mtimeMs": 1789026069593.7686,
-      "updatedAt": "2026-09-25T10:00:00.264Z",
+      "updatedAt": "2026-10-06T06:55:18.515Z",
       "source": "scan"
     },
     "studio/tools/MediaTool.tsx": {
-      "description": "The media library in the studio: every upload in one place, searchable, with",
-      "tokens": 4572,
-      "hash": "fd6b4b9cefb1ad93",
-      "size": 16044,
-      "mtimeMs": 1789064048555.3848,
-      "updatedAt": "2026-09-25T10:00:00.265Z",
+      "description": "The media library in the studio (incl. \"Delete unused images\" bulk cleanup): every upload in one place, searchable, with",
+      "tokens": 5698,
+      "hash": "2a00d1d67eb4004b",
+      "size": 19992,
+      "mtimeMs": 1791266822590.6716,
+      "updatedAt": "2026-10-06T06:55:18.516Z",
       "source": "scan",
       "symbols": [
         {
           "name": "MediaLibrary",
           "kind": "fn",
-          "startLine": 63,
-          "endLine": 313,
-          "tokens": 2237
+          "startLine": 78,
+          "endLine": 421,
+          "tokens": 3196
         },
         {
           "name": "MediaCard",
           "kind": "fn",
-          "startLine": 314,
-          "endLine": 349,
+          "startLine": 422,
+          "endLine": 457,
           "tokens": 284
         },
         {
           "name": "MediaDetail",
           "kind": "fn",
-          "startLine": 350,
-          "endLine": 521,
+          "startLine": 458,
+          "endLine": 629,
           "tokens": 1435
         }
       ]
@@ -3736,7 +4030,7 @@
       "hash": "e809be7d33595a60",
       "size": 1174,
       "mtimeMs": 1789026069593.9011,
-      "updatedAt": "2026-09-25T10:00:00.265Z",
+      "updatedAt": "2026-10-06T06:55:18.516Z",
       "source": "scan"
     },
     "studio/tsconfig.json": {
@@ -3745,16 +4039,16 @@
       "hash": "e5a67d7d8cdee156",
       "size": 417,
       "mtimeMs": 1789026069594.043,
-      "updatedAt": "2026-09-25T10:00:00.265Z",
+      "updatedAt": "2026-10-06T06:55:18.516Z",
       "source": "scan"
     },
     "studio/tsconfig.tsbuildinfo": {
       "description": "",
-      "tokens": 41788,
-      "hash": "2bdbd9230ffab741",
-      "size": 156703,
-      "mtimeMs": 1790156130218.806,
-      "updatedAt": "2026-09-25T10:00:00.266Z",
+      "tokens": 42004,
+      "hash": "efa54062b3baee00",
+      "size": 157513,
+      "mtimeMs": 1791268146850.1028,
+      "updatedAt": "2026-10-06T06:55:18.517Z",
       "source": "scan"
     }
   }

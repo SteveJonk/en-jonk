@@ -26,3 +26,11 @@
 | Time       | Action                                                                                                                                             | File(s)                                                                                                        | Outcome                                                                         | ~Tokens |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------- |
 | 2026-10-06 | Implemented feedback 11 sept (copy, timeline dots, textSplit/quote/values tweaks, removed wat-we-doen, podcast rename) and reseeded site/pages/nav | app/scripts/seed/\*, app/src/components/{blocks/sections,site/Timeline}.tsx, globals.css, studio sectionBlocks | typecheck+lint ok, dev visual ok; dataset delete + build blocked by permissions | ~60k    |
+
+## Session: 2026-10-06 08:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:00 | Resolved merge-conflict markers in STATUS.md | .wolf/STATUS.md | ok | ~300 |
+| 12:30 | Kennisbank: schemas, list blocks, article route, gated downloads, seed (pages/form/nav/texts) | studio/schemaTypes/kennisbank.ts, app/src/components/blocks/kennisbank.tsx, app/src/components/site/DownloadCard.tsx, app/src/app/kennisbank/artikelen/[slug]/page.tsx, submit-form route | typecheck+lint green, browser-verified with temp content (deleted) | ~60k |
+| 13:00 | Kennisbank content import: 10 docx → articles, 7 PDFs → downloads (seed target kennisbank-content) | app/scripts/seed/kennisbank.ts, app/scripts/seed.ts | imported + browser-verified | ~40k |

@@ -31,6 +31,9 @@ export const pageBuilderType = defineType({
     defineArrayMember({type: 'podcastTeaser'}),
     defineArrayMember({type: 'podcastEpisodes'}),
     defineArrayMember({type: 'contactForm'}),
+    // Kennisbank
+    defineArrayMember({type: 'articleList'}),
+    defineArrayMember({type: 'downloadList'}),
     // Article (the three layers)
     defineArrayMember({type: 'articleSplit'}),
     defineArrayMember({type: 'articleAside'}),

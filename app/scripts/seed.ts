@@ -6,6 +6,7 @@
  *   npm run seed:pages                # every page
  *   npm run seed:page -- cases        # one page (any name from PAGES in seed/pages.ts)
  *   npm run seed -- documents home podcast
+ *   npm run seed -- kennisbank-content  # articles + PDFs from content/kennisbank
  *
  * ONE-TIME: every document has a fixed id and is overwritten on a re-run, so
  * edits made in the studio are lost. Seed at the start, then edit in the studio.
@@ -17,6 +18,7 @@
 import {seedDocuments} from './seed/documents'
 import {seedForms} from './seed/forms'
 import {seedInterfaceText} from './seed/interface-text'
+import {seedKennisbank} from './seed/kennisbank'
 import {seedNavigation} from './seed/navigation'
 import {isPageName, PAGES, seedPages, type PageName} from './seed/pages'
 import {deleteReplacedAssets, projectRef} from './seed/shared'
@@ -28,6 +30,7 @@ const TARGETS = {
   interface: seedInterfaceText,
   forms: seedForms,
   documents: seedDocuments,
+  'kennisbank-content': seedKennisbank,
   pages: () => seedPages(),
   nav: seedNavigation,
 } as const

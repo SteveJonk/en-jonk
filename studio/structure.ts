@@ -52,6 +52,8 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.documentTypeListItem('case').title('Cases'),
       S.documentTypeListItem('podcastEpisode').title('Podcast episodes'),
+      S.documentTypeListItem('article').title('Articles'),
+      S.documentTypeListItem('download').title('Downloads'),
       S.divider(),
       // Not a document type but a panel of its own: Sanity's asset browser only
       // opens from a field on a document, so without this the media library as
@@ -76,6 +78,6 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
-          item.getId() && !['page', 'testimonial', 'case', 'podcastEpisode', 'form', ...SINGLETONS].includes(item.getId()!),
+          item.getId() && !['page', 'testimonial', 'case', 'podcastEpisode', 'article', 'download', 'form', ...SINGLETONS].includes(item.getId()!),
       ),
     ])

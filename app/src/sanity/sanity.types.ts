@@ -108,11 +108,56 @@ export type ArticleSplit = {
   paragraphs?: Array<string>;
 };
 
+export type DownloadReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "download";
+};
+
 export type FormReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "form";
+};
+
+export type DownloadList = {
+  _type: "downloadList";
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  downloads?: Array<
+    {
+      _key: string;
+    } & DownloadReference
+  >;
+  limit?: number;
+  form: FormReference;
+  link?: Cta;
+  background?: "default" | "paper" | "dark";
+};
+
+export type ArticleReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "article";
+};
+
+export type ArticleList = {
+  _type: "articleList";
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  articles?: Array<
+    {
+      _key: string;
+    } & ArticleReference
+  >;
+  limit?: number;
+  link?: Cta;
+  background?: "default" | "paper" | "dark";
 };
 
 export type ContactForm = {
@@ -460,6 +505,12 @@ export type PageBuilder = Array<
     } & ContactForm)
   | ({
       _key: string;
+    } & ArticleList)
+  | ({
+      _key: string;
+    } & DownloadList)
+  | ({
+      _key: string;
     } & ArticleSplit)
   | ({
       _key: string;
@@ -695,6 +746,18 @@ export type InterfaceText = {
     sendError?: string;
     noForm?: string;
   };
+  kennisbank?: {
+    eyebrow?: string;
+    readingTime?: string;
+    readMore?: string;
+    backLabel?: string;
+    relatedTitle?: string;
+    downloadButton?: string;
+    downloadReady?: string;
+    downloadPrivacy?: string;
+    downloadMailLabel?: string;
+    close?: string;
+  };
   notFound?: {
     eyebrow?: string;
     title?: string;
@@ -767,6 +830,57 @@ export type Navigation = {
   }>;
 };
 
+export type Download = {
+  _id: string;
+  _type: "download";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description?: string;
+  file: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+  };
+};
+
+export type Article = {
+  _id: string;
+  _type: "article";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  excerpt: string;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  seo?: Seo;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type PodcastEpisode = {
   _id: string;
   _type: "podcastEpisode";
@@ -814,12 +928,6 @@ export type Page = {
   slug: Slug;
   seo?: Seo;
   content?: PageBuilder;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -931,7 +1039,11 @@ export type AllSanitySchemaTypes =
   | ArticleFigure
   | ArticleAside
   | ArticleSplit
+  | DownloadReference
   | FormReference
+  | DownloadList
+  | ArticleReference
+  | ArticleList
   | ContactForm
   | PodcastEpisodes
   | PodcastTeaser
@@ -970,11 +1082,13 @@ export type AllSanitySchemaTypes =
   | SiteInformation
   | Footer
   | Navigation
+  | Download
+  | Article
+  | Slug
   | PodcastEpisode
   | Case
   | Testimonial
   | Page
-  | Slug
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -986,7 +1100,7 @@ export type AllSanitySchemaTypes =
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    _id,    title,    slug,    seo,    content[]{      ...,      link{  ...,  internalLink->{    "slug": slug.current  }},      backLink{  ...,  internalLink->{    "slug": slug.current  }},      ctas[]{  ...,  internalLink->{    "slug": slug.current  }},      items[]{        ...,        link{  ...,  internalLink->{    "slug": slug.current  }}      },      testimonial->{  _id,  quote,  name,  role},      testimonials[]->{  _id,  quote,  name,  role},      cases[]->{        _id,        client,        type,        summary,        image,        testimonial->{  _id,  quote,  name,  role}      },      layers[]->{        _id,        title,        "slug": slug.current      },      _type == "podcastEpisodes" => {        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){          _id,          number,          title,          description,          url        }      },      // The form lives in its own document so several pages can share it, and      // the public half of the reCAPTCHA settings rides along — the secret      // stays server-side, in the submit route.      _type == "contactForm" => {        form->{  _id,  title,  showTitle,  mode,  fields[],  steps[]{    title,    fields[]  },  submitButtonText,  nextButtonText,  backButtonText,  successTitle,  successBody,  redirectAfterSubmit,  redirectLink{  ...,  internalLink->{    "slug": slug.current  }}},        "recaptcha": *[_type == "formGeneralSettings"][0]{          recaptchaEnabled,          recaptchaSiteKey        }      }    }  }
+// Query: *[_type == "page" && slug.current == $slug][0]{    _id,    title,    slug,    seo,    content[]{      ...,      link{  ...,  internalLink->{    "slug": slug.current  }},      backLink{  ...,  internalLink->{    "slug": slug.current  }},      ctas[]{  ...,  internalLink->{    "slug": slug.current  }},      items[]{        ...,        link{  ...,  internalLink->{    "slug": slug.current  }}      },      testimonial->{  _id,  quote,  name,  role},      testimonials[]->{  _id,  quote,  name,  role},      cases[]->{        _id,        client,        type,        summary,        image,        testimonial->{  _id,  quote,  name,  role}      },      layers[]->{        _id,        title,        "slug": slug.current      },      _type == "podcastEpisodes" => {        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){          _id,          number,          title,          description,          url        }      },      // Picked items in their order, otherwise the newest. The limit is applied      // by the renderer.      _type == "articleList" => {        "articles": select(          count(articles) > 0 => articles[]->{  _id,  title,  "slug": slug.current,  excerpt,  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)},          *[_type == "article" && defined(slug.current)] | order(_createdAt desc) {  _id,  title,  "slug": slug.current,  excerpt,  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)}        )      },      _type == "downloadList" => {        "downloads": select(          count(downloads) > 0 => downloads[]->{  _id,  title,  description,  "size": file.asset->size},          *[_type == "download" && defined(file.asset)] | order(_createdAt desc) {  _id,  title,  description,  "size": file.asset->size}        ),        form->{  _id,  title,  showTitle,  mode,  fields[],  steps[]{    title,    fields[]  },  submitButtonText,  nextButtonText,  backButtonText,  successTitle,  successBody,  redirectAfterSubmit,  redirectLink{  ...,  internalLink->{    "slug": slug.current  }}},        "recaptcha": *[_type == "formGeneralSettings"][0]{          recaptchaEnabled,          recaptchaSiteKey        }      },      // The form lives in its own document so several pages can share it, and      // the public half of the reCAPTCHA settings rides along — the secret      // stays server-side, in the submit route.      _type == "contactForm" => {        form->{  _id,  title,  showTitle,  mode,  fields[],  steps[]{    title,    fields[]  },  submitButtonText,  nextButtonText,  backButtonText,  successTitle,  successBody,  redirectAfterSubmit,  redirectLink{  ...,  internalLink->{    "slug": slug.current  }}},        "recaptcha": *[_type == "formGeneralSettings"][0]{          recaptchaEnabled,          recaptchaSiteKey        }      }    }  }
 export type PAGE_QUERY_RESULT = {
   _id: string;
   title: string;
@@ -1044,6 +1158,38 @@ export type PAGE_QUERY_RESULT = {
           href?: string;
         } | null;
         link: null;
+        ctas: null;
+        items: null;
+        testimonial: null;
+        testimonials: null;
+        cases: null;
+        layers: null;
+      }
+    | {
+        _key: string;
+        _type: "articleList";
+        eyebrow?: string;
+        title?: string;
+        lead?: string;
+        articles: Array<{
+          _id: string;
+          title: string;
+          slug: string;
+          excerpt: string;
+          minutes: number;
+        }> | null;
+        limit?: number;
+        link: {
+          _type: "cta";
+          label: string;
+          linkType: "external" | "internal";
+          internalLink: {
+            slug: string;
+          } | null;
+          href?: string;
+        } | null;
+        background?: "dark" | "default" | "paper";
+        backLink: null;
         ctas: null;
         items: null;
         testimonial: null;
@@ -1199,6 +1345,82 @@ export type PAGE_QUERY_RESULT = {
         };
         background?: "dark" | "default" | "paper";
         link: null;
+        backLink: null;
+        ctas: null;
+        items: null;
+        testimonial: null;
+        testimonials: null;
+        cases: null;
+        layers: null;
+        recaptcha: {
+          recaptchaEnabled: boolean | null;
+          recaptchaSiteKey: string | null;
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: "downloadList";
+        eyebrow?: string;
+        title?: string;
+        lead?: string;
+        downloads:
+          | Array<{
+              _id: string;
+              title: string;
+              description: string | null;
+              size: number;
+            }>
+          | Array<{
+              _id: string;
+              title: string;
+              description: string | null;
+              size: number | null;
+            }>
+          | null;
+        limit?: number;
+        form: {
+          _id: string;
+          title: string;
+          showTitle: boolean | null;
+          mode: "simple" | "steps";
+          fields: Array<
+            {
+              _key: string;
+            } & FormField
+          > | null;
+          steps: Array<{
+            title: string | null;
+            fields: Array<
+              {
+                _key: string;
+              } & FormField
+            >;
+          }> | null;
+          submitButtonText: string;
+          nextButtonText: string | null;
+          backButtonText: string | null;
+          successTitle: string | null;
+          successBody: string | null;
+          redirectAfterSubmit: boolean | null;
+          redirectLink: {
+            _type: "link";
+            linkType: "external" | "internal";
+            internalLink: {
+              slug: string;
+            } | null;
+            href?: string;
+          } | null;
+        };
+        link: {
+          _type: "cta";
+          label: string;
+          linkType: "external" | "internal";
+          internalLink: {
+            slug: string;
+          } | null;
+          href?: string;
+        } | null;
+        background?: "dark" | "default" | "paper";
         backLink: null;
         ctas: null;
         items: null;
@@ -1685,6 +1907,59 @@ export type PAGE_SLUGS_QUERY_RESULT = Array<{
 }>;
 
 // Source: ../app/src/sanity/queries.ts
+// Variable: ARTICLE_QUERY
+// Query: *[_type == "article" && slug.current == $slug][0]{    ...{  _id,  title,  "slug": slug.current,  excerpt,  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)},    body,    seo,    "related": *[_type == "article" && defined(slug.current) && slug.current != $slug]      | order(_createdAt desc)[0...3]{  _id,  title,  "slug": slug.current,  excerpt,  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)}  }
+export type ARTICLE_QUERY_RESULT = {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  minutes: number;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h2" | "h3" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  seo: Seo | null;
+  related: Array<{
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    minutes: number;
+  }>;
+} | null;
+
+// Source: ../app/src/sanity/queries.ts
+// Variable: ARTICLE_SLUGS_QUERY
+// Query: *[_type == "article" && defined(slug.current)]{    "slug": slug.current,    _updatedAt  }
+export type ARTICLE_SLUGS_QUERY_RESULT = Array<{
+  slug: string;
+  _updatedAt: string;
+}>;
+
+// Source: ../app/src/sanity/queries.ts
+// Variable: DOWNLOAD_QUERY
+// Query: *[_type == "download" && _id == $downloadId][0]{    title,    "url": file.asset->url  }
+export type DOWNLOAD_QUERY_RESULT = {
+  title: string;
+  url: string | null;
+} | null;
+
+// Source: ../app/src/sanity/queries.ts
 // Variable: NAVIGATION_QUERY
 // Query: *[_id == "navigation"][0]{    links[]{  ...,  internalLink->{    "slug": slug.current  }}  }
 export type NAVIGATION_QUERY_RESULT =
@@ -1762,7 +2037,7 @@ export type SITE_INFORMATION_QUERY_RESULT =
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: INTERFACE_TEXT_QUERY
-// Query: *[_id == "interfaceText"][0]{    header,    footer,    contact,    kennismaken,    forms,    notFound  }
+// Query: *[_id == "interfaceText"][0]{    header,    footer,    contact,    kennismaken,    forms,    kennisbank,    notFound  }
 export type INTERFACE_TEXT_QUERY_RESULT =
   | {
       header: null;
@@ -1770,6 +2045,7 @@ export type INTERFACE_TEXT_QUERY_RESULT =
       contact: null;
       kennismaken: null;
       forms: null;
+      kennisbank: null;
       notFound: null;
     }
   | {
@@ -1809,6 +2085,18 @@ export type INTERFACE_TEXT_QUERY_RESULT =
         notConfigured?: string;
         sendError?: string;
         noForm?: string;
+      } | null;
+      kennisbank: {
+        eyebrow?: string;
+        readingTime?: string;
+        readMore?: string;
+        backLabel?: string;
+        relatedTitle?: string;
+        downloadButton?: string;
+        downloadReady?: string;
+        downloadPrivacy?: string;
+        downloadMailLabel?: string;
+        close?: string;
       } | null;
       notFound: {
         eyebrow?: string;
@@ -1902,11 +2190,14 @@ export type FORM_SETTINGS_QUERY_RESULT = {
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    seo,\n    content[]{\n      ...,\n      link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      backLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      ctas[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      items[]{\n        ...,\n        link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n      },\n      testimonial->{\n  _id,\n  quote,\n  name,\n  role\n},\n      testimonials[]->{\n  _id,\n  quote,\n  name,\n  role\n},\n      cases[]->{\n        _id,\n        client,\n        type,\n        summary,\n        image,\n        testimonial->{\n  _id,\n  quote,\n  name,\n  role\n}\n      },\n      layers[]->{\n        _id,\n        title,\n        "slug": slug.current\n      },\n      _type == "podcastEpisodes" => {\n        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){\n          _id,\n          number,\n          title,\n          description,\n          url\n        }\n      },\n      // The form lives in its own document so several pages can share it, and\n      // the public half of the reCAPTCHA settings rides along \u2014 the secret\n      // stays server-side, in the submit route.\n      _type == "contactForm" => {\n        form->{\n  _id,\n  title,\n  showTitle,\n  mode,\n  fields[],\n  steps[]{\n    title,\n    fields[]\n  },\n  submitButtonText,\n  nextButtonText,\n  backButtonText,\n  successTitle,\n  successBody,\n  redirectAfterSubmit,\n  redirectLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n},\n        "recaptcha": *[_type == "formGeneralSettings"][0]{\n          recaptchaEnabled,\n          recaptchaSiteKey\n        }\n      }\n    }\n  }\n': PAGE_QUERY_RESULT;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    seo,\n    content[]{\n      ...,\n      link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      backLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      ctas[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n      items[]{\n        ...,\n        link{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n      },\n      testimonial->{\n  _id,\n  quote,\n  name,\n  role\n},\n      testimonials[]->{\n  _id,\n  quote,\n  name,\n  role\n},\n      cases[]->{\n        _id,\n        client,\n        type,\n        summary,\n        image,\n        testimonial->{\n  _id,\n  quote,\n  name,\n  role\n}\n      },\n      layers[]->{\n        _id,\n        title,\n        "slug": slug.current\n      },\n      _type == "podcastEpisodes" => {\n        "episodes": *[_type == "podcastEpisode"] | order(publishedAt desc, _createdAt asc){\n          _id,\n          number,\n          title,\n          description,\n          url\n        }\n      },\n      // Picked items in their order, otherwise the newest. The limit is applied\n      // by the renderer.\n      _type == "articleList" => {\n        "articles": select(\n          count(articles) > 0 => articles[]->{\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)\n},\n          *[_type == "article" && defined(slug.current)] | order(_createdAt desc) {\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)\n}\n        )\n      },\n      _type == "downloadList" => {\n        "downloads": select(\n          count(downloads) > 0 => downloads[]->{\n  _id,\n  title,\n  description,\n  "size": file.asset->size\n},\n          *[_type == "download" && defined(file.asset)] | order(_createdAt desc) {\n  _id,\n  title,\n  description,\n  "size": file.asset->size\n}\n        ),\n        form->{\n  _id,\n  title,\n  showTitle,\n  mode,\n  fields[],\n  steps[]{\n    title,\n    fields[]\n  },\n  submitButtonText,\n  nextButtonText,\n  backButtonText,\n  successTitle,\n  successBody,\n  redirectAfterSubmit,\n  redirectLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n},\n        "recaptcha": *[_type == "formGeneralSettings"][0]{\n          recaptchaEnabled,\n          recaptchaSiteKey\n        }\n      },\n      // The form lives in its own document so several pages can share it, and\n      // the public half of the reCAPTCHA settings rides along \u2014 the secret\n      // stays server-side, in the submit route.\n      _type == "contactForm" => {\n        form->{\n  _id,\n  title,\n  showTitle,\n  mode,\n  fields[],\n  steps[]{\n    title,\n    fields[]\n  },\n  submitButtonText,\n  nextButtonText,\n  backButtonText,\n  successTitle,\n  successBody,\n  redirectAfterSubmit,\n  redirectLink{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n},\n        "recaptcha": *[_type == "formGeneralSettings"][0]{\n          recaptchaEnabled,\n          recaptchaSiteKey\n        }\n      }\n    }\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  }\n': PAGE_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "article" && slug.current == $slug][0]{\n    ...{\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)\n},\n    body,\n    seo,\n    "related": *[_type == "article" && defined(slug.current) && slug.current != $slug]\n      | order(_createdAt desc)[0...3]{\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)\n}\n  }\n': ARTICLE_QUERY_RESULT;
+    '\n  *[_type == "article" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  }\n': ARTICLE_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "download" && _id == $downloadId][0]{\n    title,\n    "url": file.asset->url\n  }\n': DOWNLOAD_QUERY_RESULT;
     '\n  *[_id == "navigation"][0]{\n    links[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n}\n  }\n': NAVIGATION_QUERY_RESULT;
     '\n  *[_id == "siteInformation"][0]{\n    name,\n    description,\n    language,\n    phone,\n    email,\n    address,\n    addressCountry,\n    socialLinks[]{\n      platform,\n      label,\n      url\n    },\n    "logoUrl": logo.asset->url\n  }\n': SITE_INFORMATION_QUERY_RESULT;
-    '\n  *[_id == "interfaceText"][0]{\n    header,\n    footer,\n    contact,\n    kennismaken,\n    forms,\n    notFound\n  }\n': INTERFACE_TEXT_QUERY_RESULT;
+    '\n  *[_id == "interfaceText"][0]{\n    header,\n    footer,\n    contact,\n    kennismaken,\n    forms,\n    kennisbank,\n    notFound\n  }\n': INTERFACE_TEXT_QUERY_RESULT;
     '\n  *[_id == "footer"][0]{\n    tagline,\n    legalLinks[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n    copyright\n  }\n': FOOTER_QUERY_RESULT;
     '\n  *[_id == $formId && _type == "form"][0]{\n    _id,\n    title,\n    mailRecipients,\n    mailSubject,\n    mailMessage,\n    sendCopyToSubmitter,\n    copySubject,\n    copyMessage,\n    "fields": select(\n      mode == "steps" => steps[].fields[]{label, name, type, isRequired},\n      fields[]{label, name, type, isRequired}\n    )\n  }\n': FORM_QUERY_RESULT;
     '\n  *[_type == "formGeneralSettings"][0]{\n    adminEmail,\n    fromEmail,\n    fromName,\n    mailLogo,\n    primaryColor,\n    textColor,\n    mailjetApiKey,\n    mailjetApiSecret,\n    confirmationSubject,\n    confirmationMessage,\n    mailFooter,\n    recaptchaEnabled,\n    recaptchaSecretKey\n  }\n': FORM_SETTINGS_QUERY_RESULT;

@@ -48,6 +48,18 @@ export const INTERFACE_DEFAULTS = {
     sendError: 'Versturen is niet gelukt. Probeer het later nog eens, of mail ons direct.',
     noForm: 'Er is nog geen formulier gekoppeld aan dit blok.',
   },
+  kennisbank: {
+    eyebrow: 'Kennisbank',
+    readingTime: '{minutes} min leestijd',
+    readMore: 'Lees het artikel',
+    backLabel: 'Alle artikelen',
+    relatedTitle: 'Verder lezen',
+    downloadButton: 'Download de PDF',
+    downloadReady: 'Open de PDF',
+    downloadPrivacy: 'We gebruiken je gegevens om je de PDF te sturen en nemen mogelijk contact met je op over dit onderwerp.',
+    downloadMailLabel: 'Download',
+    close: 'Sluiten',
+  },
   notFound: {
     eyebrow: '404',
     title: 'Deze pagina bestaat niet.',

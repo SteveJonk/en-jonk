@@ -47,3 +47,10 @@ export function toLabeledHref(
   if (!link?.label || !href) return undefined;
   return { label: link.label, href };
 }
+
+/** Articles are documents of their own, not pages: their path is fixed here. */
+export const ARTICLES_PATH = '/kennisbank/artikelen';
+
+export function articlePath(slug: string): string {
+  return `${ARTICLES_PATH}/${slug}`;
+}

@@ -17,6 +17,9 @@ export function bgClass(background?: string | null) {
   return BACKGROUNDS[(background ?? 'default') as keyof typeof BACKGROUNDS] ?? BACKGROUNDS.default;
 }
 
+/** One card in a hairline-ruled grid that may leave its last row unfilled (Kennisbank). */
+export const CARD = '-mt-px -ml-px border border-ink/10 bg-shell';
+
 /** Standard content band: vertical rhythm + container. */
 export function Section({
   id,

@@ -33,7 +33,13 @@ export type FormRendererProps = {
    * `{{token}}`.
    */
   context?: Record<string, string>;
+  /** Posted along with the answers — e.g. which download the form unlocks. */
+  extra?: Record<string, string>;
+  /** Drawn under the confirmation, with whatever the submit route returned. */
+  afterSuccess?: (result: SubmitResult) => ReactNode;
 };
+
+export type SubmitResult = { success?: boolean; message?: string; fileUrl?: string };
 
 type Control = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
@@ -120,11 +126,14 @@ export function FormRenderer({
   labels,
   variant = 'compact',
   context,
+  extra,
+  afterSuccess,
 }: FormRendererProps) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [status, setStatus] = useState<'idle' | 'sending' | 'done'>('idle');
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<SubmitResult>({});
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
@@ -177,6 +186,7 @@ export function FormRenderer({
 
     const body = new FormData(event.currentTarget);
     body.set('formId', form.id);
+    for (const [name, value] of Object.entries(extra ?? {})) body.set(name, value);
 
     if (usesRecaptcha) {
       const token = recaptchaRef.current?.getValue();
@@ -191,10 +201,11 @@ export function FormRenderer({
     setError(null);
     try {
       const response = await fetch('/api/submit-form', { method: 'POST', body });
-      const result = (await response.json()) as { success?: boolean; message?: string };
+      const result = (await response.json()) as SubmitResult;
       if (!response.ok || !result.success) {
         throw new Error(result.message || labels.sendError);
       }
+      setResult(result);
       if (form.redirect) {
         // Stay on 'sending' so the button keeps its disabled state until the
         // new page takes over — a second submit would mail the same answers.
@@ -216,7 +227,12 @@ export function FormRenderer({
   }
 
   if (status === 'done') {
-    return <SuccessPanel variant={variant} title={form.successTitle} body={form.successBody} />;
+    return (
+      <>
+        <SuccessPanel variant={variant} title={form.successTitle} body={form.successBody} />
+        {afterSuccess?.(result)}
+      </>
+    );
   }
 
   return (

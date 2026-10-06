@@ -22,6 +22,26 @@ const testimonialProjection = /* groq */ `{
 }`;
 
 /**
+ * An article as a card. Reading time at ~200 words a minute, rounded up — the
+ * renderer keeps it at one minute or more.
+ */
+const articleCardProjection = /* groq */ `{
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  "minutes": round(length(string::split(pt::text(body), " ")) / 200 + 0.49)
+}`;
+
+/** The file URL is left out on purpose: the submit route hands it out. */
+const downloadCardProjection = /* groq */ `{
+  _id,
+  title,
+  description,
+  "size": file.asset->size
+}`;
+
+/**
  * Everything the renderer needs to draw a form.
  *
  * `fields[]` and `steps[]` are spread wholesale — a form field is a flat object
@@ -94,6 +114,25 @@ export const PAGE_QUERY = defineQuery(`
           url
         }
       },
+      // Picked items in their order, otherwise the newest. The limit is applied
+      // by the renderer.
+      _type == "articleList" => {
+        "articles": select(
+          count(articles) > 0 => articles[]->${articleCardProjection},
+          *[_type == "article" && defined(slug.current)] | order(_createdAt desc) ${articleCardProjection}
+        )
+      },
+      _type == "downloadList" => {
+        "downloads": select(
+          count(downloads) > 0 => downloads[]->${downloadCardProjection},
+          *[_type == "download" && defined(file.asset)] | order(_createdAt desc) ${downloadCardProjection}
+        ),
+        form->${formProjection},
+        "recaptcha": *[_type == "formGeneralSettings"][0]{
+          recaptchaEnabled,
+          recaptchaSiteKey
+        }
+      },
       // The form lives in its own document so several pages can share it, and
       // the public half of the reCAPTCHA settings rides along — the secret
       // stays server-side, in the submit route.
@@ -113,6 +152,32 @@ export const PAGE_SLUGS_QUERY = defineQuery(`
   *[_type == "page" && defined(slug.current)]{
     "slug": slug.current,
     _updatedAt
+  }
+`);
+
+/** One article, plus the newest others to read next. */
+export const ARTICLE_QUERY = defineQuery(`
+  *[_type == "article" && slug.current == $slug][0]{
+    ...${articleCardProjection},
+    body,
+    seo,
+    "related": *[_type == "article" && defined(slug.current) && slug.current != $slug]
+      | order(_createdAt desc)[0...3]${articleCardProjection}
+  }
+`);
+
+export const ARTICLE_SLUGS_QUERY = defineQuery(`
+  *[_type == "article" && defined(slug.current)]{
+    "slug": slug.current,
+    _updatedAt
+  }
+`);
+
+/** The PDF behind a download card, for the submit route. */
+export const DOWNLOAD_QUERY = defineQuery(`
+  *[_type == "download" && _id == $downloadId][0]{
+    title,
+    "url": file.asset->url
   }
 `);
 
@@ -155,6 +220,7 @@ export const INTERFACE_TEXT_QUERY = defineQuery(`
     contact,
     kennismaken,
     forms,
+    kennisbank,
     notFound
   }
 `);

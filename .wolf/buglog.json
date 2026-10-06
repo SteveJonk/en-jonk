@@ -87,6 +87,101 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-09-23T09:35:39.424Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-10-06T12:00:00Z",
+      "error_message": "sanity typegen: Unexpected token, expected ',' — 0 queries found",
+      "file": "app/src/sanity/queries.ts",
+      "root_cause": "A GROQ // comment inside a defineQuery template literal contained backticks (`limit`), which closed the template string",
+      "fix": "No backticks inside GROQ comments in queries.ts",
+      "tags": [
+        "typegen",
+        "groq",
+        "queries"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T12:00:00Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-10-06T12:00:00Z",
+      "error_message": "tsx: ERR_REQUIRE_ASYNC_MODULE (TransformError) running a one-off seed script",
+      "file": "app/scripts/*.ts",
+      "root_cause": "Top-level await is not supported by tsx in this CJS-resolved setup",
+      "fix": "Wrap the script in async function main() { ... }; main()",
+      "tags": [
+        "tsx",
+        "seed",
+        "top-level-await"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T12:00:00Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-10-06T12:00:00Z",
+      "error_message": "Client component DownloadCard imported a constant from the server block file kennisbank.tsx",
+      "file": "app/src/components/site/DownloadCard.tsx",
+      "root_cause": "Would pull server-only code (getInterfaceText) into the client bundle; and constants exported from 'use client' files become client references on the server",
+      "fix": "Shared class string CARD moved to plain module components/site/Section.tsx",
+      "tags": [
+        "rsc",
+        "use-client",
+        "imports"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T12:00:00Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-10-06T12:00:00Z",
+      "error_message": "Kennisbank card grid showed a grey block for unfilled cells",
+      "file": "app/src/components/blocks/kennisbank.tsx",
+      "root_cause": "gap-px on a bg-ink/10 grid tints empty cells when the last row is not full",
+      "fix": "Per-card borders overlapping 1px (-mt-px -ml-px border) on a pt-px pl-px grid",
+      "tags": [
+        "css",
+        "grid",
+        "kennisbank"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T12:00:00Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-10-06T13:00:00Z",
+      "error_message": "`npm run seed -- kennisbank` also re-seeded page /kennisbank",
+      "file": "app/scripts/seed.ts",
+      "root_cause": "seed.ts treats every arg as a target AND a page name; target 'kennisbank' collided with PAGES.kennisbank",
+      "fix": "Renamed target to 'kennisbank-content'. Seed target names must not equal page names in seed/pages.ts",
+      "tags": [
+        "seed",
+        "naming"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T13:00:00Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-10-06T13:00:00Z",
+      "error_message": "Hub /kennisbank still showed deleted test articles after a dev-server restart",
+      "file": "app/.next/cache",
+      "root_cause": "Next's fetch cache (revalidate 30) persists on disk across dev-server restarts; first request serves stale data",
+      "fix": "No code change: request again after revalidate window",
+      "tags": [
+        "next",
+        "cache",
+        "revalidate"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-06T13:00:00Z"
     }
   ]
 }

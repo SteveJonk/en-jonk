@@ -11,6 +11,7 @@ const MENU: [label: string, slug: string][] = [
   ['Hoe wij kijken', 'hoe-wij-kijken'],
   ['Over &Jonk', 'over-jonk'],
   ['Cases', 'cases'],
+  ['Kennisbank', 'kennisbank'],
   ['Podcast', 'podcast'],
   ['Contact', 'contact'],
 ]

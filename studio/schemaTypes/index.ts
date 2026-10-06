@@ -35,6 +35,7 @@ import {footerType} from './footerType'
 import {formGeneralSettingsType} from './formGeneralSettingsType'
 import {formType} from './formType'
 import {interfaceTextType} from './interfaceTextType'
+import {articleListType, articleType, downloadListType, downloadType} from './kennisbank'
 import {navigationType} from './navigationType'
 import {itemType, photoType, statType} from './objects/contentObjects'
 import {ctaType} from './objects/ctaType'
@@ -59,6 +60,8 @@ export const schemaTypes = [
   testimonialType,
   caseType,
   podcastEpisodeType,
+  articleType,
+  downloadType,
   navigationType,
   footerType,
   siteInformationType,
@@ -94,6 +97,8 @@ export const schemaTypes = [
   podcastTeaserType,
   podcastEpisodesType,
   contactFormType,
+  articleListType,
+  downloadListType,
   articleSplitType,
   articleAsideType,
   articleFigureType,

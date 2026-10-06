@@ -13,7 +13,7 @@ import {
   EDO_RIDDER,
   TESTIMONIAL_PLACEHOLDERS,
 } from './documents'
-import {CONTACT_FORM_ID} from './forms'
+import {CONTACT_FORM_ID, DOWNLOAD_FORM_ID} from './forms'
 import {
   client,
   entry,
@@ -788,6 +788,76 @@ async function contact() {
   )
 }
 
+const ARTICLES_INTRO =
+  'Artikelen over talent, leiderschap en teams: wat we zien in organisaties, en wat je ermee kunt.'
+const NASLAG_INTRO =
+  'Modellen, overzichten en werkvormen om te bewaren, te delen en mee aan de slag te gaan. Laat je e-mailadres achter en de PDF is van jou.'
+
+function articleList(fields: Record<string, unknown> = {}): Block {
+  return {_type: 'articleList', background: 'default', ...fields}
+}
+
+function downloadList(fields: Record<string, unknown> = {}): Block {
+  return {_type: 'downloadList', form: ref(DOWNLOAD_FORM_ID), background: 'paper', ...fields}
+}
+
+async function kennisbank() {
+  return pageDoc(
+    'kennisbank',
+    'Kennisbank',
+    {description: 'De Kennisbank van &Jonk: artikelen om te lezen en naslagwerk om te downloaden.'},
+    [
+      {
+        _type: 'pageHero',
+        eyebrow: 'Kennisbank',
+        title: 'Kennis om mee\nverder te gaan.',
+        lead: 'Wat we leren in ons werk met mensen en organisaties, delen we graag. Lees een artikel of download naslagwerk om zelf mee aan de slag te gaan.',
+      },
+      articleList({
+        eyebrow: 'Artikelen',
+        title: 'Om te lezen',
+        lead: ARTICLES_INTRO,
+        limit: 3,
+        link: pageLink('Alle artikelen', 'kennisbank/artikelen'),
+      }),
+      downloadList({
+        eyebrow: 'Naslagwerk',
+        title: 'Om te bewaren',
+        lead: NASLAG_INTRO,
+        limit: 3,
+        link: pageLink('Al het naslagwerk', 'kennisbank/naslagwerk'),
+      }),
+      kennismaken(),
+    ],
+  )
+}
+
+async function artikelen() {
+  return pageDoc(
+    'kennisbank/artikelen',
+    'Artikelen',
+    {description: ARTICLES_INTRO},
+    [
+      {_type: 'pageHero', eyebrow: 'Kennisbank', title: 'Artikelen', lead: ARTICLES_INTRO},
+      articleList(),
+      kennismaken({paper: true}),
+    ],
+  )
+}
+
+async function naslagwerk() {
+  return pageDoc(
+    'kennisbank/naslagwerk',
+    'Naslagwerk',
+    {description: NASLAG_INTRO},
+    [
+      {_type: 'pageHero', eyebrow: 'Kennisbank', title: 'Naslagwerk', lead: NASLAG_INTRO},
+      downloadList(),
+      kennismaken(),
+    ],
+  )
+}
+
 /** Every page by seed target name, in menu order. `npm run seed -- <name>` seeds one. */
 export const PAGES = {
   home,
@@ -798,6 +868,9 @@ export const PAGES = {
   'ik-en-wij': ikEnWij,
   'over-jonk': overJonk,
   cases,
+  kennisbank,
+  artikelen,
+  naslagwerk,
   podcast,
   contact,
 }

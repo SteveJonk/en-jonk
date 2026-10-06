@@ -71,6 +71,18 @@ export const interfaceTextType = defineType({
       ['sendError', 'Sending failed', undefined, 2],
       ['noForm', 'No form picked', 'Shown in a contact form block that has no form selected.'],
     ]),
+    group('kennisbank', 'Kennisbank', 'Article pages, article cards and the PDF downloads.', [
+      ['eyebrow', 'Article eyebrow', 'Above the title of every article.'],
+      ['readingTime', 'Reading time', 'Use {minutes}, e.g. "{minutes} min leestijd".'],
+      ['readMore', 'Article card link'],
+      ['backLabel', 'Back link on an article'],
+      ['relatedTitle', 'Related articles heading'],
+      ['downloadButton', 'Download button'],
+      ['downloadReady', 'Button once the form is sent'],
+      ['downloadPrivacy', 'Small print under the download form', undefined, 2],
+      ['downloadMailLabel', 'Label in the mail', 'Before the PDF title in the mail you receive.'],
+      ['close', 'Close button', SCREEN_READER],
+    ]),
     group('notFound', '404 page', 'Shown for an address that does not exist. The title is also the page title.', [
       ['eyebrow', 'Eyebrow'],
       ['title', 'Title'],

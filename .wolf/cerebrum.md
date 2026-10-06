@@ -2,9 +2,11 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-09-12
+> Last updated: 2026-10-06
 
 ## User Preferences
+
+- [2026-10-06] Kennisbank choices: gated PDF downloads (email), typographic cards (no images), featured = picked in Sanity else newest, nav in header+footer, no author/date on articles, no filters, reading time ("Leestijd") on articles.
 
 - [2026-10-06] Client feedback arrives as Dutch PDF docs (deel 1 bouw, deel 2 teksten). User answers open questions with "go with defaults" — always propose a concrete default per question.
 
@@ -18,6 +20,11 @@
 - [2026-09-12] OK to delete the old Fieldnote template blocks/demo-content once replaced.
 
 ## Key Learnings
+
+- [2026-10-06] Kennisbank content lives in `content/kennisbank/{Artikelen/*.docx,Naslagwerk/*.pdf}`; `npm run seed -- kennisbank-content` (scripts/seed/kennisbank.ts) converts Word → Portable Text via `unzip -p word/document.xml` (Heading1 = title, all-bold para = h2, numPr = bullet, "Bronnen:" = h3) and uploads PDFs (reused by filename). Slugs/excerpts/PDF titles+descriptions are hand-written tables in that file; list order = newest-first order on the site.
+
+- [2026-10-06] Kennisbank: `article` + `download` documents (studio/schemaTypes/kennisbank.ts); hub + overviews are ordinary pages using `articleList` / `downloadList` blocks (picked refs, else newest by _createdAt; `limit` empty = all). Single article = own route `app/kennisbank/artikelen/[slug]` (not a page doc), path via `articlePath()`. Reading time computed in GROQ (`pt::text` word count / 200). Gated downloads reuse `/api/submit-form` with an extra `downloadId` (FormRenderer `extra` + `afterSuccess`): route requires an email answer, adds the PDF title to the mail, returns `fileUrl` (?dl=). PDF url never sent to the page.
+- [2026-10-06] Writing to the dataset for a single feature: use targeted patches (`setIfMissing`, `insert after`) instead of re-running `seed forms/interface/nav`, which overwrite editor changes. Deleting temp docs through the API client (`client.transaction().delete`) worked; the CLI delete was what got blocked.
 
 - [2026-10-05] en-jonk tracks the nextjs-sanity-starter template: starter PRs can be ported. Only `site/Frame.tsx` uses next/image here (blocks render through Frame); studio/tools/Media\* are near-identical to the starter's, so starter diffs apply with `git apply`.
 
@@ -33,6 +40,13 @@
 - [2026-09-23] Photos arrive raw (spread `...`) from PAGE_QUERY — file/video urls are built from the asset ref client-side (`fileUrl`), not dereferenced in GROQ. Logos, SEO/og image, mail logo, siteInformation.logo stay image-only on purpose.
 
 ## Do-Not-Repeat
+
+- [2026-10-06] Seed target names must differ from page names in seed/pages.ts — `npm run seed -- <name>` runs both (kennisbank target re-seeded the /kennisbank page).
+- [2026-10-06] Copying files from a sibling project (../hart-huis) is blocked by the auto-mode classifier — ask the user to move them.
+
+- [2026-10-06] No backticks inside GROQ `//` comments in queries.ts — they end the template literal and typegen silently finds 0 queries.
+- [2026-10-06] One-off tsx scripts: no top-level await (ERR_REQUIRE_ASYNC_MODULE); wrap in main().
+- [2026-10-06] Google Drive folder links from the client are private: ask for "anyone with link" or local download before planning content import.
 
 - [2026-10-05] app/package-lock.json is out of sync with package.json (`npm ci` fails: missing @emnapi/_). Use `npm install` then `git checkout package-lock.json` unless fixing the lockfile is the task. Cloud sandbox can't reach _.api.sanity.io, so `next build` fails there — verify via typecheck/lint + unit-level checks.
 

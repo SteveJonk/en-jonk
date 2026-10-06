@@ -30,6 +30,7 @@ import {
   TimelineBlock,
   ValuesBlock,
 } from '@/components/blocks/sections';
+import { ArticleListBlock, DownloadListBlock } from '@/components/blocks/kennisbank';
 import type { Block } from '@/components/blocks/shared';
 import { ArticleBody } from '@/components/site/Article';
 
@@ -87,6 +88,10 @@ function renderBlock(block: Block, path?: string): ReactNode {
       return <PodcastEpisodesBlock key={key} block={block} />;
     case 'contactForm':
       return <ContactFormBlock key={key} block={block} path={path} />;
+    case 'articleList':
+      return <ArticleListBlock key={key} block={block} />;
+    case 'downloadList':
+      return <DownloadListBlock key={key} block={block} />;
     case 'layerNav':
       return <LayerNavBlock key={key} block={block} path={path} />;
     case 'linkBand':

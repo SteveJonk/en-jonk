@@ -4,7 +4,7 @@ import { fillTemplate } from '@/lib/interface-text';
 import { client } from '@/sanity/client';
 import { imageSrc } from '@/sanity/image';
 import { getInterfaceText } from '@/sanity/interface-text';
-import { FORM_QUERY, FORM_SETTINGS_QUERY } from '@/sanity/queries';
+import { DOWNLOAD_QUERY, FORM_QUERY, FORM_SETTINGS_QUERY } from '@/sanity/queries';
 import { getSiteInformation } from '@/sanity/site-information';
 
 export const runtime = 'nodejs';
@@ -94,7 +94,7 @@ async function sendViaMailjet(
 }
 
 export async function POST(request: Request) {
-  const { forms: text } = await getInterfaceText();
+  const { forms: text, kennisbank } = await getInterfaceText();
 
   let body: FormData;
   try {
@@ -105,15 +105,19 @@ export async function POST(request: Request) {
 
   const formId = String(body.get('formId') ?? '');
   if (!formId) return fail(text.invalid, 400);
+  // Set by a Kennisbank download card: the PDF this form unlocks.
+  const downloadId = String(body.get('downloadId') ?? '');
 
   // The form definition is the allow-list: a key the document does not declare
   // never reaches the mail, whatever the browser posted.
-  const [form, settings, site] = await Promise.all([
+  const [form, settings, site, download] = await Promise.all([
     client.fetch(FORM_QUERY, { formId }, { cache: 'no-store' }),
     client.fetch(FORM_SETTINGS_QUERY, {}, { cache: 'no-store' }),
     getSiteInformation(),
+    downloadId ? client.fetch(DOWNLOAD_QUERY, { downloadId }, { cache: 'no-store' }) : null,
   ]);
   if (!form) return fail(text.invalid, 404);
+  if (downloadId && !download?.url) return fail(text.invalid, 404);
 
   // Spam gate before any real work. The secret belongs in the environment: a
   // Sanity dataset is world-readable, so the studio value is only a fallback.
@@ -174,6 +178,12 @@ export async function POST(request: Request) {
   }
 
   if (answers.length === 0) return fail(text.empty, 400);
+
+  // The gate: no address, no PDF — whatever the form in the studio asks for.
+  if (download) {
+    if (!submitterEmail) return fail(fillTemplate(text.required, { label: 'E-mail' }), 400);
+    answers.push({ label: kennisbank.downloadMailLabel, value: download.title ?? download.url! });
+  }
 
   // Env wins over the studio settings: a dataset is readable by anyone with the
   // project id, so credentials belong in the environment.
@@ -245,7 +255,8 @@ export async function POST(request: Request) {
         ...renderFormMail({
           title: form.copySubject || subject,
           intro: form.copyMessage || '',
-          answers,
+          // The visitor's copy carries the link, so the PDF is in their inbox too.
+          answers: download ? [...answers.slice(0, -1), { label: download.title ?? '', value: download.url! }] : answers,
           branding,
         }),
         attachments: [],
@@ -255,5 +266,6 @@ export async function POST(request: Request) {
     }
   }
 
-  return NextResponse.json({ success: true });
+  // `?dl=` makes Sanity's CDN serve the PDF as a download, under its own name.
+  return NextResponse.json({ success: true, ...(download ? { fileUrl: `${download.url}?dl=` } : {}) });
 }
