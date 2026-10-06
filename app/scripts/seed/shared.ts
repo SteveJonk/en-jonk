@@ -10,13 +10,15 @@
  * Assets are reused by filename, so re-running never uploads a photo twice.
  */
 import {createHash} from 'node:crypto'
-import {createReadStream, existsSync} from 'node:fs'
+import {createReadStream, existsSync, readdirSync} from 'node:fs'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 import {createClient, type SanityClient} from '@sanity/client'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PUBLIC_DIR = path.join(__dirname, '../../public')
+/** Full-size camera originals (`jonk-<n>.jpg`). A photo found here wins over its compressed `public/images` webp. */
+const ORIGINALS_DIR = path.join(__dirname, '../../designs/assets/img-originals')
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const token = process.env.SANITY_API_WRITE_TOKEN
@@ -56,13 +58,13 @@ const CONTENT_TYPES: Record<string, string> = {
 
 const uploads = new Map<string, Promise<string>>()
 
-/** Upload a file from `public/` once per run (and once per dataset), by filename. */
-function assetId(publicPath: string): Promise<string> {
-  const cached = uploads.get(publicPath)
+/** Upload a file (absolute path, or relative to `public/`) once per run and per dataset, by filename. */
+function assetId(file: string): Promise<string> {
+  const cached = uploads.get(file)
   if (cached) return cached
 
   const promise = (async () => {
-    const absolute = path.join(PUBLIC_DIR, publicPath)
+    const absolute = path.resolve(PUBLIC_DIR, file)
     if (!existsSync(absolute)) throw new Error(`Image not found: ${absolute}`)
 
     const filename = path.basename(absolute)
@@ -83,7 +85,7 @@ function assetId(publicPath: string): Promise<string> {
     return asset._id
   })()
 
-  uploads.set(publicPath, promise)
+  uploads.set(file, promise)
   return promise
 }
 
@@ -96,9 +98,37 @@ export function refItem(id: string) {
   return {...ref(id), _key: key(id)}
 }
 
-/** A `photo` field, from `public/images/<name>.webp`. */
+/** A `photo` field: the original in `designs/assets/img-originals/<name>.jpg`, else `public/images/<name>.webp`. */
 export async function photo(name: string, alt: string) {
-  return {_type: 'photo' as const, asset: ref(await assetId(`images/${name}.webp`)), alt}
+  const original = path.join(ORIGINALS_DIR, `${name}.jpg`)
+  const file = existsSync(original) ? original : path.join(PUBLIC_DIR, `images/${name}.webp`)
+  return {_type: 'photo' as const, asset: ref(await assetId(file)), alt}
+}
+
+/**
+ * Delete the compressed `<name>.webp` assets that an original has replaced,
+ * once nothing references them any more. Assets still in use are left alone.
+ */
+export async function deleteReplacedAssets() {
+  if (!existsSync(ORIGINALS_DIR)) return
+  const filenames = readdirSync(ORIGINALS_DIR)
+    .filter((file) => file.endsWith('.jpg'))
+    .map((file) => file.replace(/\.jpg$/, '.webp'))
+
+  const stale = await client.fetch<{_id: string; originalFilename: string; used: number}[]>(
+    `*[_type == "sanity.imageAsset" && originalFilename in $filenames]{
+      _id, originalFilename, "used": count(*[references(^._id)])
+    }`,
+    {filenames},
+  )
+  for (const asset of stale) {
+    if (asset.used > 0) {
+      console.log(`  ! kept ${asset.originalFilename}: still used by ${asset.used} document(s)`)
+      continue
+    }
+    await client.delete(asset._id)
+    console.log(`  ✗ removed old ${asset.originalFilename}`)
+  }
 }
 
 /** A `photo` inside an array. */

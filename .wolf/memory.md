@@ -2,14 +2,27 @@
 
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
-| 13:44 | wire-sanity: content map + schema proposal; user chose page builder, English labels, delete old blocks | .wolf/cerebrum.md | proposal v2 pending approval | ~40k |
-| 13:48 | wire-sanity: schema v2 approved; placeholders seeded published, URLs '#' | .wolf/cerebrum.md | planning final questions | ~5k |
-| 14:18 | wire-sanity phase 3: seed scripts rewritten + seeded 11 pages, docs, nav | app/scripts/seed/* | seeded OK after 1 ECONNRESET retry | ~60k |
-| 14:23 | wire-sanity verified (build, validate, routes, visual) + README/STATUS updated | README.md, .wolf/* | done | ~30k |
-| 15:28 | seed per page: PAGES map, page names as seed targets, weak refs for missing docs | app/scripts/seed.ts, seed/pages.ts, seed/shared.ts, seed/navigation.ts, README | verified tsc/lint/dry-run | ~10k |
-| 13:29 | interface text: all hardcoded strings → Sanity (singleton + block fields), submit route restored + verified | studio/schemaTypes/*, app/src/**, app/scripts/seed/*, README | done, verified build/validate/POST | ~70k |
-| 14:00 | diagnosed studio deploy CI failure: SANITY_AUTH_TOKEN secret missing (config, not code) | .github/workflows/deploy-sanity-studio.yml | user must add secret | ~5k |
-| 10:49 | MP4 video support on photo type + Frame/Clip | studio/schemaTypes/objects/contentObjects.ts, app/src/components/site/{Frame,Clip}.tsx, app/src/sanity/image.ts | typecheck+lint+build ok | ~15k |
-| 11:25 | Cleanup audit: schema types/fields vs dataset + app, unused Next exports (report only) | studio/schemaTypes, app/src | all types/blocks/components used; dead: siteInformation.badges, form.steps?, toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey | ~25k |
-| 11:35 | Removed siteInformation.badges + dead exports (toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey) + 2 unused icon imports; typegen, typecheck, lint, check:jsonld green | studio+app | done | ~8k |
-| 19:35 | Ported starter PR #8: sanityLoader + ui/Image wrapper (Frame), Media panel "Delete unused images" | app/src/sanity/image-loader.ts, app/src/components/ui/Image.tsx, app/src/components/site/Frame.tsx, studio/tools/{MediaTool.tsx,mediaData.ts} | typecheck+lint ok; build blocked by sandbox egress | ~20k |
+> | 13:44 | wire-sanity: content map + schema proposal; user chose page builder, English labels, delete old blocks | .wolf/cerebrum.md | proposal v2 pending approval | ~40k |
+> | 13:48 | wire-sanity: schema v2 approved; placeholders seeded published, URLs '#' | .wolf/cerebrum.md | planning final questions | ~5k |
+> | 14:18 | wire-sanity phase 3: seed scripts rewritten + seeded 11 pages, docs, nav | app/scripts/seed/_ | seeded OK after 1 ECONNRESET retry | ~60k |
+> | 14:23 | wire-sanity verified (build, validate, routes, visual) + README/STATUS updated | README.md, .wolf/_ | done | ~30k |
+> | 15:28 | seed per page: PAGES map, page names as seed targets, weak refs for missing docs | app/scripts/seed.ts, seed/pages.ts, seed/shared.ts, seed/navigation.ts, README | verified tsc/lint/dry-run | ~10k |
+> | 13:29 | interface text: all hardcoded strings → Sanity (singleton + block fields), submit route restored + verified | studio/schemaTypes/_, app/src/\*\*, app/scripts/seed/_, README | done, verified build/validate/POST | ~70k |
+> | 14:00 | diagnosed studio deploy CI failure: SANITY_AUTH_TOKEN secret missing (config, not code) | .github/workflows/deploy-sanity-studio.yml | user must add secret | ~5k |
+> | 10:49 | MP4 video support on photo type + Frame/Clip | studio/schemaTypes/objects/contentObjects.ts, app/src/components/site/{Frame,Clip}.tsx, app/src/sanity/image.ts | typecheck+lint+build ok | ~15k |
+> | 11:25 | Cleanup audit: schema types/fields vs dataset + app, unused Next exports (report only) | studio/schemaTypes, app/src | all types/blocks/components used; dead: siteInformation.badges, form.steps?, toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey | ~25k |
+> | 11:35 | Removed siteInformation.badges + dead exports (toImage, FooterLinkGroup, MOBILE_NAV_BREAKPOINT, DiagramKey) + 2 unused icon imports; typegen, typecheck, lint, check:jsonld green | studio+app | done | ~8k |
+> | 19:35 | Ported starter PR #8: sanityLoader + ui/Image wrapper (Frame), Media panel "Delete unused images" | app/src/sanity/image-loader.ts, app/src/components/ui/Image.tsx, app/src/components/site/Frame.tsx, studio/tools/{MediaTool.tsx,mediaData.ts} | typecheck+lint ok; build blocked by sandbox egress | ~20k |
+
+## Session: 2026-09-29 13:08
+
+| Time  | Action                                                                                                                                                                               | File(s)                                                              | Outcome         | ~Tokens |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | --------------- | ------- |
+| 13:18 | Replaced 11 compressed photos in Sanity with Drive originals (img-originals/, gitignored); seed photo() prefers originals, deleteReplacedAssets() cleans old webp; urlFor quality 85 | app/scripts/seed/shared.ts, seed.ts, src/sanity/image.ts, .gitignore | done, tsc clean | ~9000   |
+| 13:30 | Replaced hero + hoe-klanten with Drive originals (Marketing/Aanvullende foto's); hoe-klanten is a NEW photo, alt updated; old webp assets deleted                                    | app/scripts/seed/pages.ts                                            | done            | ~4000   |
+
+## Session: 2026-10-06 07:42
+
+| Time       | Action                                                                                                                                             | File(s)                                                                                                        | Outcome                                                                         | ~Tokens |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------- |
+| 2026-10-06 | Implemented feedback 11 sept (copy, timeline dots, textSplit/quote/values tweaks, removed wat-we-doen, podcast rename) and reseeded site/pages/nav | app/scripts/seed/\*, app/src/components/{blocks/sections,site/Timeline}.tsx, globals.css, studio sectionBlocks | typecheck+lint ok, dev visual ok; dataset delete + build blocked by permissions | ~60k    |

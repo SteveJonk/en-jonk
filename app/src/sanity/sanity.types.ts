@@ -22,6 +22,7 @@ export type ThreeLevelsTimeline = {
       _key: string;
     } & Item
   >;
+  text?: string;
   note?: string;
 };
 

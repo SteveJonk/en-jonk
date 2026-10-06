@@ -2,12 +2,13 @@
  * The `siteInformation` singleton, filled from the defaults in
  * `src/lib/site.ts`.
  *
- * The social links are `#` placeholders until the real profiles exist: the
+ * Spotify points at the podcast; the other social links are `#` placeholders until the real profiles exist: the
  * buttons show (as in the design), and `sameAs` in the structured data only
  * takes real http(s) links, so nothing fake reaches search engines. Clear a
  * URL in the studio and its button disappears.
  */
 import {SITE_DEFAULTS} from '../../src/lib/site'
+import {PODCAST_URL} from './pages'
 import {client, entry} from './shared'
 
 export async function seedSiteInformation() {
@@ -26,7 +27,9 @@ export async function seedSiteInformation() {
       ['linkedin', 'LinkedIn'],
       ['spotify', 'Spotify'],
       ['applePodcasts', 'Apple Podcasts'],
-    ].map(([platform, label]) => entry('socialLink', {platform, label, url: '#'}, platform)),
+    ].map(([platform, label]) =>
+      entry('socialLink', {platform, label, url: platform === 'spotify' ? PODCAST_URL : '#'}, platform),
+    ),
   })
 
   console.log('✓ siteInformation singleton upserted')

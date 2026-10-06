@@ -44,3 +44,6 @@ next-env.d.ts
 # sentry
 .env.sentry-build-plugin
 .sentryclirc
+
+# Full-size photo originals (31 MB); seed falls back to public/images webp without them
+/designs/assets/img-originals/

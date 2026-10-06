@@ -113,7 +113,12 @@ export const threeLevelsType = defineType({
       description: 'Optional programme lengths under the levels.',
       type: 'object',
       options: {collapsible: true, collapsed: true},
-      fields: [eyebrowField, itemsField(), defineField({name: 'note', type: 'text', rows: 2})],
+      fields: [
+        eyebrowField,
+        itemsField(),
+        defineField({name: 'text', type: 'text', rows: 3, description: `Explanation under the line. ${TEXT_HINT}`}),
+        defineField({name: 'note', type: 'text', rows: 2}),
+      ],
     }),
     backgroundField(),
   ],

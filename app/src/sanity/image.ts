@@ -14,7 +14,7 @@ export type SanityImage = SanityImageSource & {
 };
 
 export function urlFor(source: SanityImageSource) {
-  return builder?.image(source) ?? null;
+  return builder?.image(source).quality(85) ?? null;
 }
 
 export function imageSrc(

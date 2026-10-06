@@ -14,7 +14,7 @@
 export const SITE_DEFAULTS = {
   name: '&Jonk',
   description:
-    '&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel je de mens, je ontwikkelt de organisatie.',
+    '&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel de mens & je ontwikkelt de organisatie.',
   /** BCP 47 language tag. Sets `<html lang>` and `inLanguage` in the graph. */
   language: 'nl',
   phone: '+31 6 10582180',

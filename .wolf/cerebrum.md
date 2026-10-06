@@ -6,6 +6,8 @@
 
 ## User Preferences
 
+- [2026-10-06] Client feedback arrives as Dutch PDF docs (deel 1 bouw, deel 2 teksten). User answers open questions with "go with defaults" — always propose a concrete default per question.
+
 <!-- How the user likes things done. Code style, tools, patterns, communication. -->
 
 - [2026-09-12] Sanity model: user wants a reorderable PAGE BUILDER (blocks on a generic `page` doc), not a singleton-per-page model.
@@ -17,13 +19,13 @@
 
 ## Key Learnings
 
-- [2026-10-05] en-jonk tracks the nextjs-sanity-starter template: starter PRs can be ported. Only `site/Frame.tsx` uses next/image here (blocks render through Frame); studio/tools/Media* are near-identical to the starter's, so starter diffs apply with `git apply`.
+- [2026-10-05] en-jonk tracks the nextjs-sanity-starter template: starter PRs can be ported. Only `site/Frame.tsx` uses next/image here (blocks render through Frame); studio/tools/Media\* are near-identical to the starter's, so starter diffs apply with `git apply`.
 
 - [2026-09-12] Page model: every page is a Sanity `page` doc (slug may contain `/`, e.g. `hoe-wij-kijken/ik`) rendered by `app/[...slug]` / home via `CmsPage`. Blocks typed with `BlockOf<'x'>` from `PAGE_QUERY_RESULT` — rerun `npm run typegen` after schema/query edits.
 - [2026-09-12] CMS text marks via `rich()` (Rich.tsx): `&` brand amp, `*x*` display em, `**x**` bold, `[x]` tbd placeholder, newline = br.
 - [2026-09-12] Seed is one-time overwrite with fixed ids (`page-<slug-with-dashes>`).
 - [2026-09-12] Browser checks: html has scroll-behavior smooth → use `scrollTo({behavior:'instant'})`; preview_start via launch.json with an nvm node path never came up — start `npx next start -p 3001` via Bash background instead.
-- [2026-09-13] Studio deploy CI (`deploy-sanity-studio.yml`) needs `SANITY_AUTH_TOKEN` as a **repo-level Actions secret**; SANITY_STUDIO_* are Actions Variables. The Preview/Production GitHub environments are Vercel's — the job uses neither. An unset secret shows as `SANITY_AUTH_TOKEN: ` (empty) in the run log and the CLI errors "You must login first".
+- [2026-09-13] Studio deploy CI (`deploy-sanity-studio.yml`) needs `SANITY_AUTH_TOKEN` as a **repo-level Actions secret**; SANITY*STUDIO*\* are Actions Variables. The Preview/Production GitHub environments are Vercel's — the job uses neither. An unset secret shows as `SANITY_AUTH_TOKEN: ` (empty) in the run log and the CLI errors "You must login first".
 
 - **Project:** en-jonk
 - **Description:** A block-based website scaffold: Next.js 16 (App Router, React 19, Tailwind v4)
@@ -32,7 +34,10 @@
 
 ## Do-Not-Repeat
 
-- [2026-10-05] app/package-lock.json is out of sync with package.json (`npm ci` fails: missing @emnapi/*). Use `npm install` then `git checkout package-lock.json` unless fixing the lockfile is the task. Cloud sandbox can't reach *.api.sanity.io, so `next build` fails there — verify via typecheck/lint + unit-level checks.
+- [2026-10-05] app/package-lock.json is out of sync with package.json (`npm ci` fails: missing @emnapi/_). Use `npm install` then `git checkout package-lock.json` unless fixing the lockfile is the task. Cloud sandbox can't reach _.api.sanity.io, so `next build` fails there — verify via typecheck/lint + unit-level checks.
+
+- [2026-10-06] Reading PDFs: Read tool needs pdftoppm (not installed) and system python is 3.7 (pypdf fails). Use pdfjs-dist in a scratchpad npm project with Node 22 (`getDocument({data: Uint8Array})`).
+- [2026-10-06] Deleting Sanity docs (`sanity documents delete`) and even `npm run build` right after got blocked by the auto-mode classifier: leave dataset deletes to the user.
 
 - [2026-09-13] When re-enabling a disabled CMS integration, grep the WHOLE app for the disable marker (`SANITY —`), API routes included, and exercise every interactive path (submit the form) before calling it done.
 
@@ -52,3 +57,6 @@
 - [2026-09-12] &Jonk CMS = page builder with blocks mirroring `components/site/*` sections; old template blocks (hero, intro, services, ...) get deleted. Chosen by user over singleton-per-page for editor flexibility.
 
 - (2026-09-23) In this shell `grep` is a ugrep shell function and zsh does not word-split `$VAR` — multi-file grep loops hang/misbehave. Use a small Node 22 script (fs.readdirSync recursive) for code-wide searches; `npx sanity documents query --api-version 2025-08-15` from studio/ works for dataset queries.
+
+- [2026-09-29] Photos: full-size originals live in `app/designs/assets/img-originals/jonk-<n>.jpg` (gitignored, 31 MB, from the client's Drive "Groot" folder). Seed `photo()` prefers them over `public/images/*.webp`; the webp copies in public/ and designs/ are only fallbacks. Sanity CDN handles resizing/format; `urlFor` sets quality 85. hero/hoe-klanten/vakmensen-\* and video posters still come from webp (no originals mapped yet).
+- [2026-09-29] jonk-hero.jpg is byte-identical to jonk-7038.jpg (same Sanity asset, hash-deduped, so its originalFilename may flip between the two names; harmless). Only the vakmensen-1..3 and video posters still use webp.

@@ -2,16 +2,190 @@
   "version": 1,
   "created_at": "2026-09-12T11:28:14.557Z",
   "lifetime": {
-    "total_tokens_estimated": 0,
-    "total_reads": 0,
+    "total_tokens_estimated": 26240,
+    "total_reads": 12,
     "total_writes": 0,
-    "total_sessions": 0,
-    "anatomy_hits": 0,
-    "anatomy_misses": 0,
+    "total_sessions": 2,
+    "anatomy_hits": 2,
+    "anatomy_misses": 7,
     "repeated_reads_blocked": 0,
-    "estimated_savings_vs_bare_cli": 0
+    "estimated_savings_vs_bare_cli": 400,
+    "real_input_tokens": 282,
+    "real_output_tokens": 74386,
+    "real_cache_read_tokens": 16293642,
+    "real_cache_creation_tokens": 453499,
+    "real_api_calls": 141
   },
-  "sessions": [],
+  "sessions": [
+    {
+      "id": "session-2026-09-29-1308",
+      "agent": "claude",
+      "started": "2026-09-29T11:08:20.810Z",
+      "ended": "2026-09-29T11:25:30.681Z",
+      "reads": [
+        {
+          "file": "/tmp/k.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/h.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 68,
+        "output_tokens": 14498,
+        "cache_read_input_tokens": 3488716,
+        "cache_creation_input_tokens": 107232,
+        "api_calls": 34
+      }
+    },
+    {
+      "id": "session-2026-09-29-1308",
+      "agent": "claude",
+      "started": "2026-09-29T11:08:20.810Z",
+      "ended": "2026-09-29T11:30:14.596Z",
+      "reads": [
+        {
+          "file": "/tmp/k.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/h.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/oh.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/ok.jpg",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 96,
+        "output_tokens": 19971,
+        "cache_read_input_tokens": 5685237,
+        "cache_creation_input_tokens": 124846,
+        "api_calls": 48
+      }
+    },
+    {
+      "id": "session-2026-10-06-0742",
+      "agent": "claude",
+      "started": "2026-10-06T05:42:04.149Z",
+      "ended": "2026-10-06T05:43:50.915Z",
+      "reads": [
+        {
+          "file": "/Users/stevejonk/Downloads/Feedback website 11 sept- bouw en teksten.docx.pdf",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/62a39804-9ec5-4c41-8432-97ea6c1dc000/scratchpad/fb.txt",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/stevejonk/Documents/Prive Projecten/en-jonk/app/scripts/seed/pages.ts",
+          "tokens_estimated": 13120,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13120,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 28,
+        "output_tokens": 7425,
+        "cache_read_input_tokens": 1213415,
+        "cache_creation_input_tokens": 83964,
+        "api_calls": 14
+      }
+    },
+    {
+      "id": "session-2026-10-06-0742",
+      "agent": "claude",
+      "started": "2026-10-06T05:42:04.149Z",
+      "ended": "2026-10-06T05:53:15.195Z",
+      "reads": [
+        {
+          "file": "/Users/stevejonk/Downloads/Feedback website 11 sept- bouw en teksten.docx.pdf",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/62a39804-9ec5-4c41-8432-97ea6c1dc000/scratchpad/fb.txt",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/stevejonk/Documents/Prive Projecten/en-jonk/app/scripts/seed/pages.ts",
+          "tokens_estimated": 13120,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13120,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 90,
+        "output_tokens": 32492,
+        "cache_read_input_tokens": 5906274,
+        "cache_creation_input_tokens": 137457,
+        "api_calls": 45
+      }
+    }
+  ],
   "daemon_usage": [],
   "waste_flags": [],
   "optimization_report": {

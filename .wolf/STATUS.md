@@ -1,7 +1,7 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-05
+> Last updated: 2026-10-06
 
 ---
 
@@ -16,7 +16,12 @@
   - Verified: studio + app typecheck, lint, check:jsonld, check:form, `sanity documents validate` (27 valid), `next build` (11 pages SSG), all routes 200 with Sanity images, visual check of home / ik / contact.
   - Cleanup (2026-09-23): audit found all blocks/types/components used; removed `siteInformation.badges`, dead exports `toImage`, `FooterLinkGroup`, `MOBILE_NAV_BREAKPOINT`, `DiagramKey`. Kept all optional form/SEO features, public assets, designs and seed scripts on purpose.
   - Video (2026-09-23): `photo` type has optional `video` (MP4, ≤20 MB, validated via asset size/mimeType); `Frame` renders `Clip` (muted, loop, no controls, plays in view, poster = photo, paused under reduced motion). URL built from ref by `fileUrl()` in `sanity/image.ts`. Not yet tested with a real uploaded video.
+    <<<<<<< HEAD
   - Images + media cleanup (2026-10-05, branch `claude/sanity-image-quality`, ported from nextjs-sanity-starter PR #8): `Frame` uses `components/ui/Image` → `sanityLoader` (Sanity CDN renders every srcset width from the original, q=85, auto=format, crop kept). Studio Media panel has "Delete unused images (n)" (confirm, re-fetch, transactions of 50, per-id retry; files kept). Typecheck/lint green; not yet tested in a browser / running Studio.
+    ||||||| parent of 88b0fd7 (feat: feedback)
+    =======
+- Feedback 11 sept (2026-10-06): new slogan everywhere; home hero/doelgroepen/Talent dat blijft; kenmerken lead dropped; timeline 4th point "Meerjarig partnerschap" + small in-between dots + new `timeline.text` field on threeLevels; stats → "Cijfers uit de praktijk" (9e / 100+ / 120, also on Cases hero); values compact shows ValuesIllustration on lg; podcast renamed "&Jonk de podcast", home teaser links to Spotify, Spotify social URL set; Hoe wij kijken reordered (& on dark, Wat wij zien heading above text, bigger `t-quote-lg` quote, smaller values heading); Wat anderen zeggen photo jonk-7196, KLM logo removed; Over &Jonk timeline removed, "Wie je aan tafel krijgt", values link band retitled; Wat we doen removed from seed + nav. Seeded site/pages/nav.
+  > > > > > > > 88b0fd7 (feat: feedback)
 
 ---
 
@@ -28,7 +33,13 @@
 4. Deploy studio (workflow exists) and the app; set `NEXT_PUBLIC_SITE_URL`.
 5. Merge `feat/wire-sanity` → main. For prod prefer `node .next/standalone/server.js` (`next start` warns with output: standalone).
 
+6. **Delete `page-wat-we-doen` from the dataset** (blocked for Claude by permissions; user runs `npx sanity documents delete page-wat-we-doen` in studio/). Until then /wat-we-doen still renders.
+7. Run `npm run build` (was blocked this session; typecheck + lint pass, dev server checked).
+8. Copy pending from Eric: Waar je ons voor belt, Hoe klanten ons beschrijven (tekst 4), stats intro (tekst 5), values heading Hoe wij kijken (interim "Ons kompas in de complexiteit"), Gekkigheid long text, Eric bio, 3 cases, 3 layer articles, 10 quotes.
+9. Podcast: fetch Spotify episodes automatically (user will add).
+
 ### Open decisions
+
 - Podcast episodes: keep manual documents or import from the podcast RSS feed?
 
 ---
@@ -42,10 +53,12 @@
 ---
 
 ## ⚠️ External blockers
+
 - Mailjet keys (MAILJET_API_KEY/SECRET/FROM_EMAIL) empty in app/.env — form submit errors until set.
 - Real LinkedIn / Spotify / Apple Podcasts URLs pending.
 
 ## 🔧 Useful commands
+
 ```bash
 export PATH="$HOME/.nvm/versions/node/v22.18.0/bin:$PATH"
 cd app && npm run seed && npm run typegen && npm run typecheck && npm run build
@@ -53,5 +66,6 @@ cd studio && npm run dev
 ```
 
 ## 📚 References
+
 - `.wolf/cerebrum.md` — preferences + decisions
 - `README.md` — template docs (forms, seeding, typegen)

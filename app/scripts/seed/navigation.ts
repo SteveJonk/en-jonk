@@ -7,7 +7,6 @@
 import {client, entry, pageId, ref, weakenMissingReferences} from './shared'
 
 const MENU: [label: string, slug: string][] = [
-  ['Wat we doen', 'wat-we-doen'],
   ['Wat anderen zeggen', 'wat-anderen-zeggen'],
   ['Hoe wij kijken', 'hoe-wij-kijken'],
   ['Over &Jonk', 'over-jonk'],

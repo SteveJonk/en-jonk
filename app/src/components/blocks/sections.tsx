@@ -185,6 +185,11 @@ export function ThreeLevelsBlock({ block }: { block: BlockOf<'threeLevels'> }) {
             </Reveal>
           )}
           <Timeline items={timelineItems(timeline.items)} className='mt-8' />
+          {timeline.text && (
+            <Reveal as='p' delay={600} className='t-lead mt-12 max-w-3xl text-muted'>
+              {rich(timeline.text)}
+            </Reveal>
+          )}
           {timeline.note && (
             <Reveal as='p' delay={700} className='mt-10 text-sm text-muted md:text-base'>
               {rich(timeline.note)}
@@ -270,6 +275,10 @@ export function ValuesBlock({ block }: { block: BlockOf<'values'> }) {
                 </Reveal>
               ))}
             </dl>
+            {/* Fills the empty space next to the long intro on wide screens; phones read on. */}
+            <Reveal className='mt-14 hidden lg:block'>
+              <ValuesIllustration />
+            </Reveal>
           </div>
         </div>
       </Section>
@@ -284,7 +293,7 @@ export function ValuesBlock({ block }: { block: BlockOf<'values'> }) {
         <div className='grid items-end gap-10 lg:grid-cols-12 lg:gap-16'>
           <Reveal className='lg:col-span-7'>
             {block.eyebrow && <p className='eyebrow'>{rich(block.eyebrow)}</p>}
-            <h2 className='t-h2 mt-4'>{rich(block.title)}</h2>
+            <h2 className='t-quote mt-4'>{rich(block.title)}</h2>
           </Reveal>
           <Reveal className='lg:col-span-5'>
             <ValuesIllustration />
@@ -373,23 +382,26 @@ export function MediaTextBlock({ block }: { block: BlockOf<'mediaText'> }) {
 }
 
 export function TextSplitBlock({ block }: { block: BlockOf<'textSplit'> }) {
+  const muted = block.background === 'dark' ? 'text-shell/85' : 'text-muted';
+  // With a photo, the photo takes the left column and the heading sits above the text.
+  const photo = block.image?.asset ? block.image : null;
+  const title = <h2 className={cn('t-h2', photo && 'mb-8')}>{rich(block.title)}</h2>;
+
   return (
     <Section className={bgClass(block.background)}>
       <div className='grid gap-8 lg:grid-cols-12 lg:gap-16'>
         <Reveal className='lg:col-span-4'>
-          <h2 className='t-h2'>{rich(block.title)}</h2>
-          {block.image?.asset && (
-            <Frame
-              image={block.image}
-              sizes='(min-width:1024px) 33vw, 100vw'
-              className='mt-10 aspect-[4/5]'
-            />
+          {photo ? (
+            <Frame image={photo} sizes='(min-width:1024px) 33vw, 100vw' className='aspect-[4/5]' />
+          ) : (
+            title
           )}
         </Reveal>
         <Reveal className='lg:col-span-8'>
-          {block.lead && <p className='t-lead max-w-prose text-muted'>{rich(block.lead)}</p>}
+          {photo && title}
+          {block.lead && <p className={cn('t-lead max-w-prose', muted)}>{rich(block.lead)}</p>}
           {paras(block.paragraphs).map((p, i) => (
-            <p key={i} className={cn('max-w-prose text-muted', (block.lead || i > 0) && 'mt-6')}>
+            <p key={i} className={cn('max-w-prose', muted, (block.lead || i > 0) && 'mt-6')}>
               {p}
             </p>
           ))}
@@ -404,11 +416,11 @@ export function QuoteBlock({ block }: { block: BlockOf<'quote'> }) {
 
   return (
     <Section className={bgClass(block.background)}>
-      <Reveal as='blockquote' className='max-w-4xl'>
+      <Reveal as='blockquote' className={block.testimonial?.quote ? 'max-w-4xl' : 'max-w-5xl'}>
         {block.testimonial?.quote ? (
           <TestimonialQuote testimonial={block.testimonial} dark={dark} />
         ) : (
-          <p className={cn('t-quote', dark && 'text-shell/95')}>{rich(block.text)}</p>
+          <p className={cn('t-quote-lg', dark && 'text-shell/95')}>{rich(block.text)}</p>
         )}
       </Reveal>
     </Section>

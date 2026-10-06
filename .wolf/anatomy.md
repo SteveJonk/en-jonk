@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-09-22T10:00:00.296Z
-> Files: 231 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-09-25T10:00:00.269Z
+> Files: 232 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -117,7 +117,7 @@
 - `sentry.options.ts` — One source of Sentry settings for the client, the server and the edge (~281 tok)
 - `sentry.server.config.ts` — Sentry for the Node.js server runtime. Imported by `src/instrumentation.ts`, (~69 tok)
 - `tsconfig.json` — TypeScript configuration (~192 tok)
-- `tsconfig.tsbuildinfo` (~84085 tok)
+- `tsconfig.tsbuildinfo` (~83365 tok)
 
 ## app/designs/
 
@@ -227,8 +227,8 @@
   - fn `names` L31-111 (~746 tok)
   - fn `runFormQuery` L112-121 (~110 tok)
   - fn `checkAllowList` L122-209 (~972 tok)
-- `check-jsonld.ts` — The smallest thing that fails when the structured data quietly changes. (~2518 tok)
-  - fn `node` L35-216 (~2178 tok)
+- `check-jsonld.ts` — The smallest thing that fails when the structured data quietly changes. (~2512 tok)
+  - fn `node` L35-216 (~2173 tok)
 - `seed.ts` — Seed Sanity content. Runs everything, or only the targets and pages you name. (~770 tok)
   - fn `isTarget` L37-40 (~24 tok)
   - fn `main` L41-76 (~347 tok)
@@ -384,7 +384,7 @@
 
 ## app/src/components/ui/
 
-- `Image.tsx` — Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /_next/image. (~180 tok)
+- `Image.tsx` — Client wrapper around next/image applying `sanityLoader` to Sanity images only; local images still use /\_next/image. (~180 tok)
 
 ## app/src/components/site/
 
@@ -402,7 +402,8 @@
   - fn `ArticleFigure` L183-199 (~103 tok)
   - fn `ArticleOutcome` L200-221 (~136 tok)
   - fn `LayerNav` L222-280 (~541 tok)
-- `Diagrams.tsx` — The diagrams editors can place on a page. They are drawn in code, not (~3433 tok)
+- `Clip.tsx` — Muted looping clip: plays only while in view, never with reduced motion (the poster stays). (~290 tok)
+- `Diagrams.tsx` — The diagrams editors can place on a page. They are drawn in code, not (~3419 tok)
   - fn `Labels` L17-36 (~162 tok)
   - fn `Lobes` L37-64 (~209 tok)
   - fn `Tangle` L65-90 (~176 tok)
@@ -413,8 +414,8 @@
   - fn `LensDiagram` L198-237 (~555 tok)
   - fn `DramaTriangle` L238-263 (~248 tok)
   - fn `IkInDeWij` L264-291 (~308 tok)
-  - fn `ValuesIllustration` L292-345 (~537 tok)
-- `Frame.tsx` — Aspect ratio and layout, e.g. `aspect-[4/5]`. (~314 tok)
+  - fn `ValuesIllustration` L292-343 (~523 tok)
+- `Frame.tsx` — Aspect ratio and layout, e.g. `aspect-[4/5]`. (~399 tok)
 - `Kenmerken.tsx` — The three things clients name, in their own words. (~182 tok)
 - `Kennismaken.tsx` — Empty falls back to the default title in the interface text. (~557 tok)
   - fn `Kennismaken` L20-51 (~347 tok)
@@ -440,7 +441,7 @@
 
 ## app/src/lib/
 
-- `chrome.ts` — Scroll threshold (px) before the topbar gets the stuck state. (~62 tok)
+- `chrome.ts` — Scroll threshold (px) before the topbar gets the stuck state. (~31 tok)
 - `cn.ts` — Exports cn (~37 tok)
 - `env.ts` — Sanity connection details and analytics ids, read from the environment. (~380 tok)
 - `form-fields.ts` — Shape and layout rules for CMS-authored forms. No React in here, so the (~1668 tok)
@@ -472,25 +473,25 @@
   - fn `webPageJsonLd` L210-236 (~341 tok)
   - fn `pageJsonLd` L237-243 (~59 tok)
 - `links.ts` — The slug of the page that renders at `/`. (~446 tok)
-- `site.ts` — Site-wide details, and the defaults they fall back to. (~1427 tok)
-  - fn `text` L81-84 (~33 tok)
-  - fn `list` L85-99 (~154 tok)
-  - fn `resolveSiteInformation` L100-126 (~300 tok)
-  - fn `telHref` L127-130 (~29 tok)
-  - fn `mailtoHref` L131-144 (~102 tok)
+- `site.ts` — Site-wide details, and the defaults they fall back to. (~1354 tok)
+  - fn `text` L77-80 (~33 tok)
+  - fn `list` L81-95 (~154 tok)
+  - fn `resolveSiteInformation` L96-121 (~285 tok)
+  - fn `telHref` L122-125 (~29 tok)
+  - fn `mailtoHref` L126-134 (~81 tok)
 
 ## app/src/sanity/
 
 - `client.ts` — Fetch that degrades instead of throwing. (~301 tok)
 - `image-loader.ts` — next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local. (~420 tok)
-- `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~362 tok)
+- `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~386 tok)
 - `interface-text.ts` — The interface text, with defaults filled in where the CMS is empty. (~225 tok)
 - `metadata.ts` — The OG image for a page's `seo` object, sized for social cards. (~753 tok)
   - fn `seoImageUrl` L18-46 (~301 tok)
   - fn `pageMetadata` L47-80 (~325 tok)
-- `queries.ts` — Resolve internal page references on link/cta objects. (~1443 tok)
-- `sanity.types.ts` — --------------------------------------------------------------------------------- (~13264 tok)
-- `schema.json` (~35794 tok)
+- `queries.ts` — Resolve internal page references on link/cta objects. (~1440 tok)
+- `sanity.types.ts` — --------------------------------------------------------------------------------- (~13302 tok)
+- `schema.json` (~36163 tok)
 - `site-information.ts` — The site's details, with defaults filled in where the CMS is empty. (~308 tok)
 
 ## studio/
@@ -504,7 +505,7 @@
 - `sanity.config.ts` — Project id and dataset come from the environment so the studio and the app (~267 tok)
 - `structure.ts` — Documents that exist exactly once. They get a fixed `_id` and a top-level (~855 tok)
 - `tsconfig.json` — TypeScript configuration (~120 tok)
-- `tsconfig.tsbuildinfo` (~41881 tok)
+- `tsconfig.tsbuildinfo` (~41788 tok)
 
 ## studio/.sanity/runtime/
 
@@ -524,7 +525,7 @@
 - `navigationType.ts` — A label + internal page or URL. Shared by the navigation and the footer. (~380 tok)
 - `pageBuilderType.ts` — The block list editors can insert on a page. (~444 tok)
 - `pageType.ts` — Exports pageType (~213 tok)
-- `siteInformationType.ts` — Who the site belongs to: the details that appear in the header, the footer (~1242 tok)
+- `siteInformationType.ts` — Who the site belongs to: the details that appear in the header, the footer (~1167 tok)
 
 ## studio/schemaTypes/blocks/
 
@@ -532,11 +533,11 @@
 - `collectionBlocks.ts` — Exports testimonialsType, casesType, logosType, podcastTeaserType, podcastEpisodesType (~1277 tok)
 - `contactFormType.ts` — Direct contact details (from Site information) beside a form from Forms. (~339 tok)
 - `pageHeroType.ts` — Page opener: heading left, lead right, optional photo or stats underneath. (~446 tok)
-- `sectionBlocks.ts` — The three things clients name, beside a photo, optionally with a quote. (~2766 tok)
+- `sectionBlocks.ts` — The three things clients name, beside a photo, optionally with a quote. (~2732 tok)
 
 ## studio/schemaTypes/objects/
 
-- `contentObjects.ts` — A photo with its alt text; hotspot so editors choose the crop focus. (~399 tok)
+- `contentObjects.ts` — A photo with its alt text; hotspot so editors choose the crop focus. (~712 tok)
 - `ctaType.ts` — Exports ctaType (~94 tok)
 - `fields.ts` — Field building blocks the page-builder blocks share. (~733 tok)
   - fn `titleField` L14-35 (~182 tok)

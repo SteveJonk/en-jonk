@@ -53,12 +53,18 @@ const TRAJECTEN = [
   item('Drie bijeenkomsten', 'Een korte instap, waarin patronen zichtbaar worden en een volgende stap ontstaat.'),
   item('Een half jaar', 'Trajecten waarin het geleerde meebeweegt met het werk zelf.'),
   item('Tot twee jaar', 'Traineeships en jaartrajecten, van intake tot overdracht.'),
+  item(
+    'Meerjarig partnerschap',
+    'Meedenken en -werken met meerdere of herhalende trajecten op individueel, team- en organisatieniveau.',
+  ),
 ]
 
+export const PODCAST_URL = 'https://open.spotify.com/show/6Y7eCFCfMleVpsqtb99DYh'
+
 const STATS = [
-  entry('stat', {value: '7', suffix: 'e', text: 'keer dat de leergang [naam leergang] dit jaar draait.'}),
-  entry('stat', {value: '2018', text: 'het jaar waarin we de eerste traineeships gingen begeleiden.'}),
-  entry('stat', {value: '[cijfer]', text: 'doorstroom bij een gemeente van ruim 500 medewerkers.'}),
+  entry('stat', {value: '9', suffix: 'e', text: 'persoonlijk leiderschapstraject bij de gemeente Vlaardingen.'}),
+  entry('stat', {value: '100+', text: 'adviseurs opgeleid van medior naar senior bij BMC.'}),
+  entry('stat', {value: '120', text: 'traineeships begeleid sinds 2016.'}),
 ]
 
 const LAYERS = ['hoe-wij-kijken/ik', 'hoe-wij-kijken/jij-en-ik', 'hoe-wij-kijken/ik-en-wij']
@@ -87,13 +93,13 @@ async function home() {
     {
       title: '&Jonk — talent, leiderschap, teams',
       description:
-        '&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel je de mens, je ontwikkelt de organisatie.',
+        '&Jonk is ontwikkelpartner voor organisaties in het publieke domein. Ontwikkel de mens & je ontwikkelt de organisatie.',
     },
     [
       {
         _type: 'pageHero',
-        title: 'Ontwikkel je de mens &\nje ontwikkelt de organisatie.',
-        lead: 'Een organisatie is voor ons een groep mensen die samen het werk doet: een complex sociaal systeem. Ontwikkeling begint daarom bij die mensen: bij wat er in ze omgaat en wat er tussen ze gebeurt. De organisatie ontwikkelt mee. Wij stappen daarvoor zelf in en staan naast je.',
+        title: 'Ontwikkel de mens &\nje ontwikkelt de organisatie.',
+        lead: 'Een organisatie is voor ons een groep mensen die samen het werk doet: een complex sociaal systeem. Ontwikkeling begint dan bij die mensen: bij wat er in ze omgaat en wat er tussen hen gebeurt. De organisatie ontwikkelt mee. Wij stappen daarvoor zelf in en staan naast je in die complexiteit.',
         ctas: [{...urlLink('Kennismaken', '#kennismaken'), _key: 'kennismaken'}],
         showContactLines: true,
         image: await photo('jonk-hero', 'Eric Jonk lachend in gesprek tijdens een bijeenkomst'),
@@ -103,11 +109,11 @@ async function home() {
         _type: 'cardGrid',
         eyebrow: 'Waar je ons voor belt',
         title: 'Ontwikkelpartner voor het publieke domein',
-        lead: "Wij werken voor organisaties die zich inzetten voor het publieke domein: gemeenten, waterschappen, zbo's, zorg en onderwijs, en bureaus die met hen meewerken.",
+        lead: "Wij werken voor organisaties die zich inzetten voor het publieke domein: gemeenten, waterschappen, zorg, onderwijs en ZBO's, en bureaus die met hen meewerken.",
         splitHeader: true,
         items: [
           entry('card', {
-            title: 'Jong talent dat blijft',
+            title: 'Talent dat blijft',
             text: 'Nieuwe medewerkers komen binnen met energie en ideeën. Wij zorgen dat hun ontwikkeling doorloopt en dat hun ideeën ergens landen. Zo vinden ze hun volgende stap bij jullie.',
           }),
           entry('card', {
@@ -119,17 +125,15 @@ async function home() {
             text: 'Elke vertrekker en elke zieke maakt het werk zwaarder voor wie blijft. Wij werken met teams aan wat er tussen mensen gebeurt: elkaar aanspreken, verantwoordelijkheid pakken en samen dragen wat er ligt.',
           }),
         ],
-        link: pageLink('Bekijk wat we doen', 'wat-we-doen'),
         background: 'default',
       },
       {
         _type: 'kenmerken',
         eyebrow: 'Wat anderen zeggen',
         title: 'Hoe klanten ons beschrijven',
-        lead: 'Opdrachtgevers die ons opnieuw bellen, noemen onafhankelijk van elkaar dezelfde drie dingen.',
         items: KENMERKEN,
         testimonial: ref(EDO_RIDDER),
-        image: await photo('jonk-hoe-klanten', 'Eric Jonk in gesprek met deelnemers bij de flipover'),
+        image: await photo('jonk-hoe-klanten', 'Eric Jonk luistert aandachtig naar een deelnemer die iets vertelt'),
         link: pageLink('Lees wat anderen zeggen', 'wat-anderen-zeggen'),
         background: 'paper',
       },
@@ -153,16 +157,16 @@ async function home() {
           }),
         ],
         timeline: {
-          eyebrow: 'Trajectlengtes',
+          eyebrow: 'Trajectlengtes · van drie bijeenkomsten tot partnerschap',
           items: TRAJECTEN,
+          text: 'Dit zijn geen vaste pakketten, maar punten op een lijn. Alles daartussen kan ook: een paar extra bijeenkomsten, een traject dat langer doorloopt of een nieuw traject dat aansluit op het vorige. De vorm volgt wat er nodig is.',
           note: 'Wie één losse workshop zoekt, verwijzen we graag door.',
         },
         background: 'default',
       },
       {
         _type: 'stats',
-        eyebrow: 'Uit de praktijk',
-        title: 'Wat er blijft staan als wij weg zijn',
+        title: 'Cijfers uit de praktijk',
         items: STATS,
         text: 'Bij meerdere organisaties draaien de jaartrajecten inmiddels voor de zevende keer of vaker. Een aantal daarvan is volledig overgedragen aan trainers uit de organisatie zelf.',
         link: pageLink('Naar de cases', 'cases'),
@@ -176,12 +180,12 @@ async function home() {
         lead: 'Mensen dragen van nature een drang tot ontwikkeling in zich, maar die ontwikkeling ontstaat pas in de interactie met anderen. Wij willen dat ontwikkelen in organisaties verschuift: van kennis zenden en competenties afvinken, naar leren vanuit ervaring, dialoog en het werk zelf.',
         quote:
           'De wereld is te complex om helemaal te snappen. Accepteer de complexiteit, hou vertrouwen en surf mee.',
-        link: pageLink('Hoe wij kijken & waar we op bouwen', 'hoe-wij-kijken'),
+        link: pageLink('Hoe wij kijken', 'hoe-wij-kijken'),
         itemsEyebrow: 'Vier waarden',
         items: [
           item('Vertrouwen', 'We gaan uit van het goede. De mensen kunnen het echt zelf.'),
           item('Verbinding', 'Niet jij of ik, maar jij & ik. Een traject beklijft pas als de context meedoet.'),
-          item('Beweging', 'We sluiten aan op het ritme van de groepsbeweging. Ervaring, reflectie en dan pas concept.'),
+          item('Beweging', 'We sluiten aan op het ritme van de groep. Ervaring, reflectie en dan pas concept.'),
           item('Gekkigheid', 'Een knipoog, bewust spel en momenten zonder strak doel. Juist dan ontstaan de mooiste inzichten.'),
         ],
         background: 'paper',
@@ -200,93 +204,22 @@ async function home() {
           await photoItem('jonk-vakmensen-3', 'Twee begeleiders van &Jonk tijdens een oefening'),
         ],
         imageAspect: '3/2',
-        link: pageLink('Wie we zijn & waar we vandaan komen', 'over-jonk'),
+        link: pageLink('Wie we zijn', 'over-jonk'),
         background: 'default',
       },
       {
         _type: 'podcastTeaser',
         eyebrow: 'Meeluisteren',
-        title: 'De podcast *In Gesprek*',
-        lead: 'Elke twee weken: één gesprek, één concreet dilemma uit het werk met mensen en organisaties.',
-        link: pageLink('Alle afleveringen', 'podcast'),
-        image: await photo('jonk-7483', 'Eric Jonk achter de microfoon tijdens een opname van de podcast In Gesprek'),
+        title: '&Jonk de podcast',
+        lead: 'We publiceren verschillende podcastlijnen rond leren, leiderschap en samenwerking.',
+        link: urlLink('Luister op Spotify', PODCAST_URL),
+        image: await photo('jonk-7483', 'Eric Jonk achter de microfoon tijdens een opname van &Jonk de podcast'),
         listenTitle: 'Luister mee',
         listenText:
-          '*In Gesprek* staat op Spotify en Apple Podcasts. Nieuwe afleveringen verschijnen automatisch ook hier op de site.',
+          '&Jonk de podcast staat op Spotify en Apple Podcasts. Nieuwe afleveringen verschijnen automatisch ook hier op de site.',
         background: 'paper',
       },
       kennismaken({text: KENNISMAKEN_TEXT_LONG}),
-    ],
-  )
-}
-
-async function watWeDoen() {
-  return pageDoc(
-    'wat-we-doen',
-    'Wat we doen',
-    {
-      description:
-        'Traineeships, teamcoaching en organisatieontwikkeling voor het publieke domein — op maat, op drie niveaus.',
-    },
-    [
-      {
-        _type: 'pageHero',
-        eyebrow: 'Wat we doen',
-        title: 'Ontwikkeling die past bij wat er speelt.',
-        lead: 'Traineeships, teamcoaching, leiderschapstrajecten en sparring voor directie: alles vertrekt vanuit hetzelfde gesprek. Wat speelt er bij de mens, tussen de mensen, en in de organisatie eromheen? Daar sluiten we op aan, niet op een vaste methodiek.',
-        image: await photo('jonk-7214', 'Eric Jonk in gesprek tijdens een begeleidingssessie'),
-        imageAspect: '16/9',
-      },
-      {
-        _type: 'threeLevels',
-        eyebrow: 'Drie niveaus, één gesprek',
-        title: 'Individu, team en organisatie lopen in elkaar over',
-        lead: 'We werken op drie niveaus tegelijk. Een medewerker die vastloopt, loopt zelden alleen vast: er speelt iets in het team of in hoe de organisatie is ingericht. Beweeg op één plek, en de andere twee bewegen mee.',
-        cards: true,
-        levels: [
-          entry('level', {
-            title: 'Individueel',
-            text: 'Voor medewerkers, professionals en leidinggevenden die een stap willen zetten.',
-            items: ['Traineeships', '(Persoonlijk) leiderschapstraject', 'Intervisiegroepen', 'Individuele coaching'],
-          }),
-          entry('level', {
-            title: 'Team',
-            text: 'Voor teams die beter willen samenwerken en verantwoordelijkheid willen pakken.',
-            items: ['Teamcoaching', 'Teamontwikkeling', 'Werken aan onderling aanspreken'],
-          }),
-          entry('level', {
-            title: 'Organisatie',
-            text: 'Voor directies en HR/L&O die aan ontwikkeling willen werken als complex sociaal systeem.',
-            items: ['Leerstrategie', 'Behoud & doorstroom van talent', 'Sparringpartner voor directie en MT'],
-          }),
-        ],
-        background: 'default',
-      },
-      {
-        _type: 'timeline',
-        eyebrow: 'Trajectlengtes',
-        title: 'Van losse instap tot jarenlang partnerschap',
-        items: TRAJECTEN,
-        note: 'Wie één losse workshop zoekt, verwijzen we graag door. Dat is niet waar wij goed in zijn.',
-        background: 'paper',
-      },
-      {
-        _type: 'steps',
-        eyebrow: 'Hoe het werkt',
-        title: 'Vier stappen, geen vast protocol',
-        lead: 'Elk traject is anders, maar de weg ernaartoe heeft steeds dezelfde vorm.',
-        items: [
-          item('Kennismaking', 'Wij komen kijken en stellen vragen, jij vertelt wat er speelt.'),
-          item('Intake', 'We brengen de context in kaart: de mensen, de opgave en wat er al geprobeerd is.'),
-          item('Traject', 'We stappen zelf in en stemmen onderweg steeds af op wat er nodig is.'),
-          item(
-            'Overdracht',
-            'Wat werkt, blijft. Een aantal trajecten dragen we volledig over aan trainers uit de organisatie zelf.',
-          ),
-        ],
-        background: 'default',
-      },
-      kennismaken({text: KENNISMAKEN_TEXT_LONG, paper: true}),
     ],
   )
 }
@@ -307,7 +240,6 @@ const OTHERS: [file: string, name: string][] = [
   ['radboud.png', 'Radboud Universiteit'],
   ['vo-academie.jpeg', 'VO-academie'],
   ['ncoi.png', 'NCOI Opleidingen'],
-  ['klm.jpeg', 'KLM'],
   ['bmc.png', 'BMC by Randstad'],
   ['van-berkel.svg', 'Van Berkel Professionals'],
   ['lybrae.png', 'Lybrae'],
@@ -341,12 +273,12 @@ async function watAnderenZeggen() {
         _type: 'pageHero',
         eyebrow: 'Wat anderen zeggen',
         title: 'Hoe klanten ons beschrijven.',
-        lead: 'Opdrachtgevers die ons opnieuw bellen, noemen onafhankelijk van elkaar dezelfde drie dingen. Niet omdat we het ze influisteren — het zijn hun eigen woorden.',
+        lead: 'Opdrachtgevers die ons opnieuw bellen, noemen onafhankelijk van elkaar dezelfde drie dingen.',
       },
       {
         _type: 'kenmerken',
         items: KENMERKEN,
-        image: await photo('jonk-6894', 'Deelnemers luisteren naar elkaar bij de flipover'),
+        image: await photo('jonk-7196', 'Eric Jonk in gesprek met een deelnemer'),
         background: 'paper',
       },
       {_type: 'quote', testimonial: ref(EDO_RIDDER), background: 'dark'},
@@ -377,28 +309,23 @@ async function hoeWijKijken() {
     'Hoe wij kijken',
     {
       description:
-        'Ontwikkel je de mens & dan ontwikkel je de organisatie. De visie, vier waarden en drie lagen achter het werk van &Jonk.',
+        'Ontwikkel de mens & je ontwikkelt de organisatie. De visie, vier waarden en drie lagen achter het werk van &Jonk.',
     },
     [
       {
         _type: 'pageHero',
         eyebrow: 'Hoe wij kijken',
-        title: 'Ontwikkel je de mens & dan ontwikkel je de organisatie.',
+        title: 'Ontwikkel de mens & je ontwikkelt de organisatie.',
         lead: 'Een organisatie is voor ons een groep mensen die samen het werk doet. Vol tegenstellingen, gevormd door hun omgeving en door wat er tussen hen gebeurt. Ontwikkeling begint daarom bij de mensen die het werk doen. De organisatie ontwikkelt met hen mee.',
       },
       {
         _type: 'gallery',
-        images: [await photoItem('jonk-6832', 'Een groep deelnemers in een kring in gesprek met Eric Jonk')],
+        images: [await photoItem('jonk-vakmensen-2', 'Eric Jonk in gesprek met een deelnemer')],
       },
       {
         _type: 'textSplit',
         title: 'Het &-teken',
         lead: 'Ontwikkeling wordt vaak aangepakt alsof de organisatie een machine is: zet de onderdelen goed neer, druk op een knop en dan gaat het draaien. Bij een machine kun je ernaast gaan staan en een onderdeel vervangen. In een organisatie ben je zelf onderdeel. Het &-teken in onze naam bindt wat in de praktijk snel los wordt gekoppeld: mens & organisatie, leren & werk.',
-        background: 'default',
-      },
-      {
-        _type: 'quote',
-        text: 'De wereld is te complex om helemaal te snappen. Accepteer de complexiteit, hou vertrouwen en surf mee.',
         background: 'dark',
       },
       {
@@ -412,10 +339,52 @@ async function hoeWijKijken() {
         background: 'default',
       },
       {
+        _type: 'cardGrid',
+        title: 'Drie lagen',
+        lead: 'In de ontwikkeling van mensen werken we op drie lagen die elkaar versterken.',
+        showBars: true,
+        items: [
+          entry('card', {
+            title: 'Ik',
+            text: 'Jezelf en je eigen patronen leren kennen, zonder een patroon meteen te lezen als een oordeel over wie je bent.',
+            link: pageLink('Lees meer', LAYERS[0]),
+          }),
+          entry('card', {
+            title: 'Jij & ik',
+            text: 'Elkaar werkelijk als mens zien, spanning uithouden en het gesprek voeren dat je liever vermijdt.',
+            link: pageLink('Lees meer', LAYERS[1]),
+          }),
+          entry('card', {
+            title: 'Ik & Wij',
+            text: 'Verandering zien als de constante en je eigen handelingsruimte vinden in een groep die altijd in beweging is.',
+            link: pageLink('Lees meer', LAYERS[2]),
+          }),
+        ],
+        note: 'Wanneer mensen zich in deze drie lagen ontwikkelen, ontstaat in organisaties meer ruimte voor creativiteit, diversiteit en het pakken van verantwoordelijkheid. Die beweging in gang brengen geeft ons energie en daar ligt ons vakmanschap.',
+        background: 'paper',
+      },
+      {
+        _type: 'quote',
+        text: 'De wereld is te complex om helemaal te snappen. Accepteer de complexiteit, hou vertrouwen en surf mee.',
+        background: 'dark',
+      },
+      {
+        _type: 'mediaText',
+        title: 'Wat wij willen',
+        lead: 'Wij willen dat ontwikkelen in organisaties verschuift: van kennis zenden, competenties afvinken en gedrag toetsen, naar leren vanuit ervaring, dialoog en het werk zelf. Kennis, structuur en competenties houden daarin hun plek. Het is en-en. De balans ligt nu te veel aan de sturende kant.',
+        paragraphs: [
+          "Voor onze programma's betekent dit dat ieder programma op maat wordt ontworpen voor een specifieke groep. Een vast kader met heldere doelen geeft houvast. Binnen dat kader is ruimte voor wat er in het contact met de groep ontstaat: meer sturing bij een beginnende groep, meer loslaten bij een gevorderde.",
+        ],
+        images: [await photoItem('jonk-7398', 'Eric Jonk in gesprek met een deelnemer, in aandacht')],
+        imageAspect: '4/5',
+        link: pageLink('Over &Jonk', 'over-jonk'),
+        background: 'default',
+      },
+      {
         _type: 'values',
         variant: 'full',
         eyebrow: 'Vier waarden',
-        title: 'Waar we op sturen, ook als het spannend is',
+        title: 'Ons kompas in de complexiteit',
         items: [
           item(
             'Vertrouwen',
@@ -440,44 +409,7 @@ async function hoeWijKijken() {
         ],
         background: 'paper',
       },
-      {
-        _type: 'cardGrid',
-        title: 'Drie lagen',
-        lead: 'In de ontwikkeling van mensen werken we op drie lagen die elkaar versterken.',
-        showBars: true,
-        items: [
-          entry('card', {
-            title: 'Ik',
-            text: 'Jezelf en je eigen patronen leren kennen, zonder een patroon meteen te lezen als een oordeel over wie je bent.',
-            link: pageLink('Lees meer', LAYERS[0]),
-          }),
-          entry('card', {
-            title: 'Jij & ik',
-            text: 'Elkaar werkelijk als mens zien, spanning uithouden en het gesprek voeren dat je liever vermijdt.',
-            link: pageLink('Lees meer', LAYERS[1]),
-          }),
-          entry('card', {
-            title: 'Ik & wij',
-            text: 'Verandering zien als de constante en je eigen handelingsruimte vinden in een groep die altijd in beweging is.',
-            link: pageLink('Lees meer', LAYERS[2]),
-          }),
-        ],
-        note: 'Wanneer mensen zich in deze drie lagen ontwikkelen, ontstaat in organisaties meer ruimte voor creativiteit, diversiteit en het pakken van verantwoordelijkheid. Die beweging in gang brengen geeft ons energie en daar ligt ons vakmanschap.',
-        background: 'default',
-      },
-      {
-        _type: 'mediaText',
-        title: 'Wat wij willen',
-        lead: 'Wij willen dat ontwikkelen in organisaties verschuift: van kennis zenden, competenties afvinken en gedrag toetsen, naar leren vanuit ervaring, dialoog en het werk zelf. Kennis, structuur en competenties houden daarin hun plek. Het is en-en. De balans ligt nu te veel aan de sturende kant.',
-        paragraphs: [
-          "Voor onze programma's betekent dit dat ieder programma op maat wordt ontworpen voor een specifieke groep. Een vast kader met heldere doelen geeft houvast. Binnen dat kader is ruimte voor wat er in het contact met de groep ontstaat: meer sturing bij een beginnende groep, meer loslaten bij een gevorderde.",
-        ],
-        images: [await photoItem('jonk-7398', 'Eric Jonk in gesprek met een deelnemer, in aandacht')],
-        imageAspect: '4/5',
-        link: pageLink('Wie we zijn & waar we vandaan komen', 'over-jonk'),
-        background: 'default',
-      },
-      kennismaken({paper: true}),
+      kennismaken(),
     ],
   )
 }
@@ -715,22 +647,10 @@ async function overJonk() {
         background: 'paper',
       },
       {
-        _type: 'timeline',
-        eyebrow: 'Waar het begon',
-        title: 'Sinds 2018 aan traineeships, teams en leiderschap',
-        items: [
-          item('2014', 'Eric start met werken in en rond de lokale overheid.'),
-          item('2016', 'De eerste teams en professionals worden begeleid.'),
-          item('2018', '&Jonk begeleidt de eerste traineeships.'),
-        ],
-        plainLine: true,
-        background: 'default',
-      },
-      {
         _type: 'gallery',
         eyebrow: 'De mensen van &Jonk',
-        title: 'We kennen elkaar en elkaars werk',
-        lead: 'Daardoor voelt een traject als één geheel, ook als er meerdere mensen op staan.',
+        title: 'Wie je aan tafel krijgt',
+        lead: 'Bij &Jonk zit je direct aan tafel met de mensen die voor de groep staan, van het eerste gesprek tot de laatste bijeenkomst. Dat kan omdat we klein zijn, en dat houden we zo. Eric wil een bureau met een eigen handtekening. Om hem heen staat een kring van senior vakmensen, ieder met een eigen specialiteit. Samen zijn we goed in één vak: ontwikkeling van mensen en teams in het publieke domein.',
         images: [
           await photoItem('jonk-vakmensen-2', 'Eric Jonk in gesprek met een deelnemer'),
           await photoItem('jonk-7317', 'Deelnemers in gesprek tijdens een sessie'),
@@ -741,8 +661,8 @@ async function overJonk() {
       {
         _type: 'linkBand',
         eyebrow: 'Hoe wij naar ontwikkeling kijken',
-        title: 'Vertrouwen, verbinding, beweging & gekkigheid',
-        lead: 'Vier waarden die bepalen hoe we werken, ook als het spannend wordt.',
+        title: 'Vier waarden richtinggevend in hoe wij werken',
+        lead: 'Vertrouwen, verbinding, beweging & gekkigheid.',
         link: pageLink('Hoe wij kijken', 'hoe-wij-kijken'),
         background: 'default',
       },
@@ -787,18 +707,18 @@ async function podcast() {
     'podcast',
     'Podcast',
     {
-      title: 'Podcast In Gesprek',
+      title: '&Jonk de podcast',
       description:
-        'In Gesprek: elke twee weken één gesprek, één concreet dilemma uit het werk met mensen en organisaties.',
+        '&Jonk de podcast: elke twee weken één gesprek, één concreet dilemma uit het werk met mensen en organisaties.',
     },
     [
       {
         _type: 'pageHero',
         eyebrow: 'Meeluisteren',
-        title: 'De podcast *In Gesprek*.',
+        title: '&Jonk de podcast.',
         lead: 'Elke twee weken: één gesprek, één concreet dilemma uit het werk met mensen en organisaties. Geen theorie om de theorie — steeds een echte situatie als vertrekpunt.',
         showPodcastLinks: true,
-        image: await photo('jonk-7483', 'Eric Jonk achter de microfoon tijdens een opname van de podcast In Gesprek'),
+        image: await photo('jonk-7483', 'Eric Jonk achter de microfoon tijdens een opname van &Jonk de podcast'),
         imageAspect: '21/9',
       },
       {
@@ -816,9 +736,9 @@ async function podcast() {
         title: 'Eén gesprek, één dilemma',
         lead: 'Elke aflevering vertrekt vanuit een concrete situatie uit het werk met mensen en organisaties — geen abstracte theorie, maar een dilemma waar een luisteraar zelf ook in kan zitten.',
         paragraphs: [
-          '*In Gesprek* staat op Spotify en Apple Podcasts. Nieuwe afleveringen verschijnen automatisch ook hier op de site.',
+          '&Jonk de podcast staat op Spotify en Apple Podcasts. Nieuwe afleveringen verschijnen automatisch ook hier op de site.',
         ],
-        images: [await photoItem('jonk-7196', 'Achter de schermen bij een opname van In Gesprek')],
+        images: [await photoItem('jonk-7196', 'Achter de schermen bij een opname van &Jonk de podcast')],
         imageAspect: '3/2',
         background: 'default',
       },
@@ -860,7 +780,7 @@ async function contact() {
         _type: 'linkBand',
         eyebrow: 'Op de hoogte blijven',
         title: 'Nieuwe podcastafleveringen in je inbox',
-        text: 'Liever gewoon meeluisteren? De podcast *In Gesprek* staat op Spotify en Apple Podcasts.',
+        text: 'Liever gewoon meeluisteren? &Jonk de podcast staat op Spotify en Apple Podcasts.',
         link: pageLink('Naar de podcast', 'podcast'),
         background: 'default',
       },
@@ -871,7 +791,6 @@ async function contact() {
 /** Every page by seed target name, in menu order. `npm run seed -- <name>` seeds one. */
 export const PAGES = {
   home,
-  'wat-we-doen': watWeDoen,
   'wat-anderen-zeggen': watAnderenZeggen,
   'hoe-wij-kijken': hoeWijKijken,
   ik,
