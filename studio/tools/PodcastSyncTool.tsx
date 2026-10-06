@@ -12,7 +12,9 @@ import {styles} from './panelStyles'
  * `loginMethod: 'token'`: with cookie login the studio has no token to send.
  */
 
-const SITE_URL = process.env.SANITY_STUDIO_SITE_URL
+// A trailing slash gives `//api/...`, which Vercel 308-redirects — and a
+// redirected CORS preflight fails in the browser.
+const SITE_URL = process.env.SANITY_STUDIO_SITE_URL?.replace(/\/+$/, '')
 
 type Result = {
   dryRun: boolean

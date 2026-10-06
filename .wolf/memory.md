@@ -42,3 +42,14 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 15:00 | Podcast Spotify sync: API route, studio panel, Netlify scheduled fn, README, env examples, workflow var | app/src/app/api/podcast-sync/route.ts, studio/tools/PodcastSyncTool.tsx, app/netlify/functions/podcast-sync.mts, studio/{structure,sanity.config}.ts, README.md | typecheck+lint ok, auth verified by curl; Spotify not exercised | ~25k |
+
+## Session: 2026-10-06 09:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-10-06 09:43
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 09:44 | Fix podcast-sync CORS: strip trailing slash from SANITY_STUDIO_SITE_URL | studio/tools/PodcastSyncTool.tsx | fixed | ~2k |
