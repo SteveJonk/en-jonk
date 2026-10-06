@@ -62,6 +62,8 @@
 
 ## Decision Log
 
+- [2026-10-06] Download form fails open: if mail is not configured or Mailjet fails, a valid download request (email given, PDF exists, reCAPTCHA ok) still gets `fileUrl` — the lead is lost (only logged), the visitor is not. Contact form stays fail-closed. Success text no longer claims "gemaild".
+
 - [2026-09-13] Hardcoded strings: site-wide labels live in ONE `interfaceText` singleton (groups header/footer/contact/kennismaken/forms/notFound) with code defaults in `app/src/lib/interface-text.ts` (same pattern as SITE_DEFAULTS). Section copy = block fields. Social button labels = siteInformation.socialLinks[].label. Diagram labels + Venn aria + global-error stay in code (user chose: drawings break with long text; crash page must not depend on CMS).
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->

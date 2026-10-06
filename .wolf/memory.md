@@ -34,3 +34,5 @@
 | 12:00 | Resolved merge-conflict markers in STATUS.md | .wolf/STATUS.md | ok | ~300 |
 | 12:30 | Kennisbank: schemas, list blocks, article route, gated downloads, seed (pages/form/nav/texts) | studio/schemaTypes/kennisbank.ts, app/src/components/blocks/kennisbank.tsx, app/src/components/site/DownloadCard.tsx, app/src/app/kennisbank/artikelen/[slug]/page.tsx, submit-form route | typecheck+lint green, browser-verified with temp content (deleted) | ~60k |
 | 13:00 | Kennisbank content import: 10 docx → articles, 7 PDFs → downloads (seed target kennisbank-content) | app/scripts/seed/kennisbank.ts, app/scripts/seed.ts | imported + browser-verified | ~40k |
+| 13:30 | Download form fail-open when mail missing/fails; success text no longer claims mail | app/src/app/api/submit-form/route.ts, app/scripts/seed/forms.ts | tested via curl | ~5k |
+| 13:45 | Article body column widened: centred max-w-3xl instead of max-w-prose at col 5-12 | app/src/app/kennisbank/artikelen/[slug]/page.tsx | 552→768px | ~2k |

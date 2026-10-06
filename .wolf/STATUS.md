@@ -35,7 +35,7 @@
 8. Copy pending from Eric: Waar je ons voor belt, Hoe klanten ons beschrijven (tekst 4), stats intro (tekst 5), values heading Hoe wij kijken (interim "Ons kompas in de complexiteit"), Gekkigheid long text, Eric bio, 3 cases, 3 layer articles, 10 quotes.
 9. Podcast: fetch Spotify episodes automatically (user will add).
 
-10. Kennisbank: `content/` is gitignored (client source files) — the `kennisbank-content` seed needs it locally. Client may want to rewrite the drafted excerpts/PDF descriptions in Studio. Downloads need Mailjet keys (item 1).
+10. Kennisbank: `content/` is gitignored (client source files) — the `kennisbank-content` seed needs it locally. Client may want to rewrite the drafted excerpts/PDF descriptions in Studio. Downloads work without Mailjet (fail-open, no lead mail); keys needed for lead mails (item 1).
 
 ### Open decisions
 

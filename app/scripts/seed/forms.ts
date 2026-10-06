@@ -69,7 +69,7 @@ export async function upsertDownloadForm() {
     ].map((field) => ({...field, _type: 'formField' as const, _key: key(`download:${field.name}`)})),
     submitButtonText: 'Naar de download',
     successTitle: 'Je download staat klaar',
-    successBody: 'We hebben de link ook naar je gemaild.',
+    successBody: 'Veel leesplezier.',
     redirectAfterSubmit: false,
     mailSubject: 'Nieuwe download via de Kennisbank',
     mailMessage: 'Iemand heeft een PDF uit de Kennisbank gedownload.',

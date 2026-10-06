@@ -117,8 +117,8 @@ export default async function ArticlePage({ params }: PageProps) {
 
       <article className='pb-20 md:pb-32'>
         <Container>
-          <div className='grid border-t border-ink/10 pt-14 md:pt-20 lg:grid-cols-12 lg:gap-16'>
-            <Reveal className='max-w-prose lg:col-span-8 lg:col-start-5'>
+          <div className='border-t border-ink/10 pt-14 md:pt-20'>
+            <Reveal className='mx-auto max-w-3xl'>
               <PortableText value={article.body ?? []} components={components} />
             </Reveal>
           </div>

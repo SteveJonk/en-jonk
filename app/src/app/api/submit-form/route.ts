@@ -33,6 +33,15 @@ function fail(message: string, status: number) {
   return NextResponse.json({ success: false, message }, { status });
 }
 
+/**
+ * A visitor who filled in the download form gets the PDF, even when the mail
+ * behind it is not set up or fails: the lead is lost (logged above), the
+ * visitor is not. `?dl=` makes Sanity's CDN serve it as a download.
+ */
+function downloadReady(url: string) {
+  return NextResponse.json({ success: true, fileUrl: `${url}?dl=` });
+}
+
 /** "a@x.com, b@x.com" -> ["a@x.com", "b@x.com"]. Semicolons separate too. */
 function splitEmails(value?: string | null) {
   return (value ?? '')
@@ -201,6 +210,7 @@ export async function POST(request: Request) {
 
   if (recipients.length === 0 || !fromEmail || !mailjetApiKey || !mailjetApiSecret) {
     console.error('submit-form: missing mail settings (env or formGeneralSettings)');
+    if (download) return downloadReady(download.url!);
     return fail(text.notConfigured, 500);
   }
 
@@ -240,6 +250,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('submit-form: sending failed', error);
+    if (download) return downloadReady(download.url!);
     return fail(text.sendError, 502);
   }
 
@@ -266,6 +277,5 @@ export async function POST(request: Request) {
     }
   }
 
-  // `?dl=` makes Sanity's CDN serve the PDF as a download, under its own name.
-  return NextResponse.json({ success: true, ...(download ? { fileUrl: `${download.url}?dl=` } : {}) });
+  return download ? downloadReady(download.url!) : NextResponse.json({ success: true });
 }
