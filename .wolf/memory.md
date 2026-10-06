@@ -36,3 +36,9 @@
 | 13:00 | Kennisbank content import: 10 docx → articles, 7 PDFs → downloads (seed target kennisbank-content) | app/scripts/seed/kennisbank.ts, app/scripts/seed.ts | imported + browser-verified | ~40k |
 | 13:30 | Download form fail-open when mail missing/fails; success text no longer claims mail | app/src/app/api/submit-form/route.ts, app/scripts/seed/forms.ts | tested via curl | ~5k |
 | 13:45 | Article body column widened: centred max-w-3xl instead of max-w-prose at col 5-12 | app/src/app/kennisbank/artikelen/[slug]/page.tsx | 552→768px | ~2k |
+
+## Session: 2026-10-06 09:12
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:00 | Podcast Spotify sync: API route, studio panel, Netlify scheduled fn, README, env examples, workflow var | app/src/app/api/podcast-sync/route.ts, studio/tools/PodcastSyncTool.tsx, app/netlify/functions/podcast-sync.mts, studio/{structure,sanity.config}.ts, README.md | typecheck+lint ok, auth verified by curl; Spotify not exercised | ~25k |

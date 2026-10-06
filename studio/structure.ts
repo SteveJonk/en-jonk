@@ -4,8 +4,10 @@ import {ComposeIcon} from '@sanity/icons/Compose'
 import {EnvelopeIcon} from '@sanity/icons/Envelope'
 import {ImagesIcon} from '@sanity/icons/Images'
 import {MenuIcon} from '@sanity/icons/Menu'
+import {SyncIcon} from '@sanity/icons/Sync'
 import type {StructureResolver} from 'sanity/structure'
 import {MediaLibrary} from './tools/MediaTool'
+import {PodcastSync} from './tools/PodcastSyncTool'
 
 /**
  * Documents that exist exactly once. They get a fixed `_id` and a top-level
@@ -52,6 +54,11 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.documentTypeListItem('case').title('Cases'),
       S.documentTypeListItem('podcastEpisode').title('Podcast episodes'),
+      S.listItem()
+        .title('Spotify sync')
+        .id('spotifySync')
+        .icon(SyncIcon)
+        .child(S.component(PodcastSync).title('Spotify sync').id('spotifySync')),
       S.documentTypeListItem('article').title('Articles'),
       S.documentTypeListItem('download').title('Downloads'),
       S.divider(),

@@ -35,6 +35,7 @@ jobs:
       SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
       SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
       SANITY_STUDIO_TITLE: ${{ vars.SANITY_STUDIO_TITLE }}
+      SANITY_STUDIO_SITE_URL: ${{ vars.SANITY_STUDIO_SITE_URL }}
 
     steps:
       - name: Checkout

@@ -19,6 +19,8 @@ studio and it is live.
 - **Generated sitemap and robots.txt** — driven by the CMS, nothing to maintain
 - **Structured data** — one schema.org graph per page, checked by a script
 - **Forms** — CMS-authored, one page or several steps, mailed and spam-gated
+- **Podcast sync** — new Spotify episodes imported daily (Netlify) or from a
+  studio button, with a dry run
 - **Media library** — a studio panel listing every upload, with search,
   usage per file and a delete button for the ones nothing points at
 - **Analytics** — GTM and the Meta pixel, both off until you set an id
@@ -593,6 +595,117 @@ studio/
                       (site information, navigation, footer)
 ```
 
+## Podcast sync
+
+New episodes of the podcast are imported from Spotify as **Podcast episode**
+documents: once a day automatically, or by hand from the studio.
+
+| Piece | File |
+| ----- | ---- |
+| API route | `app/src/app/api/podcast-sync/route.ts` |
+| Studio panel ("Spotify sync" in the left-hand menu) | `studio/tools/PodcastSyncTool.tsx` |
+| Daily trigger (Netlify scheduled function) | `app/netlify/functions/podcast-sync.mts` |
+
+### What it does
+
+`POST /api/podcast-sync` fetches every episode of the show from the Spotify Web
+API and creates a `podcastEpisode` for each one that is not in Sanity yet:
+
+| Field         | From Spotify                                         |
+| ------------- | ---------------------------------------------------- |
+| `title`       | episode name                                         |
+| `description` | first line of the description, cut at 200 characters |
+| `url`         | the episode's open.spotify.com link                  |
+| `publishedAt` | release date                                         |
+| `number`      | position by release date, oldest = `01` (Spotify has no episode numbers) |
+
+- **It only creates, never updates.** An episode that already exists — published
+  or as a draft — is skipped, so editors can rewrite a title or description in
+  the studio and the next run leaves it alone. To re-import one, delete it.
+- Documents get the id `podcastEpisode-spotify-<spotify id>`; that is how it
+  recognises what it already imported. Episodes made by hand (like the seeded
+  `[#]` placeholders) are not touched — delete those yourself.
+- `?dryRun=1` does all of the above except the write, and returns what it
+  would create.
+- The site picks new episodes up within 30 seconds (page revalidation).
+
+Response:
+
+```json
+{ "dryRun": true, "found": 12, "skipped": 10,
+  "created": [{ "number": "12", "title": "…", "publishedAt": "2026-10-01T00:00:00.000Z" }] }
+```
+
+### Who may call it
+
+The route wants `Authorization: Bearer <token>`, where the token is one of:
+
+- **`PODCAST_SYNC_SECRET`** — used by the Netlify function.
+- **A Sanity token of a project member with the Administrator, Editor or
+  Developer role** — used by the studio button. The route asks Sanity
+  (`/users/me`) whose token it is, so the studio bundle — which is public —
+  carries no secret.
+
+For that second path the studio uses token login (`auth: {loginMethod:
+'token'}` in `sanity.config.ts`): with cookie login the studio has no token to
+send. Editors who were logged in before this change log in once more.
+
+Since no cookies are involved, the route allows any origin (CORS `*`): it is
+called from `localhost:3333` and from `*.sanity.studio`.
+
+### Spotify setup
+
+1. Create an app at [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
+   (any redirect URI, e.g. `http://127.0.0.1:3000`; tick **Web API**).
+2. Copy its **Client ID** and **Client secret**.
+3. The show id is the last part of the show's URL:
+   `open.spotify.com/show/<show id>`.
+
+The route uses the client-credentials flow (no user login) with market `NL`
+(change `MARKET` in the route for another country — Spotify hides episodes
+not available in the market).
+
+### Environment variables
+
+**App** (`app/.env` locally, and in Netlify → Site configuration → Environment variables):
+
+| Name                     | What it is                                                                 |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `SPOTIFY_CLIENT_ID`      | From the Spotify app                                                       |
+| `SPOTIFY_CLIENT_SECRET`  | From the Spotify app. Secret                                               |
+| `SPOTIFY_SHOW_ID`        | The show id, see above                                                     |
+| `SANITY_API_WRITE_TOKEN` | Sanity token with Editor rights (the same one the seed uses). Secret       |
+| `PODCAST_SYNC_SECRET`    | Any long random string, e.g. `openssl rand -hex 32`. Secret                |
+
+The Netlify function reads `PODCAST_SYNC_SECRET` from the same Netlify env vars,
+and `URL`, which Netlify sets itself.
+
+**Studio** (`studio/.env`, and as an Actions *variable* for the deploy workflow):
+
+| Name                     | What it is                                                               |
+| ------------------------ | ------------------------------------------------------------------------ |
+| `SANITY_STUDIO_SITE_URL` | The app's origin, no trailing slash: `http://localhost:3000` locally, the Netlify URL in production. Not a secret |
+
+### Netlify
+
+`app/netlify/functions/podcast-sync.mts` is a
+[scheduled function](https://docs.netlify.com/build/functions/scheduled-functions/)
+(`@daily`, midnight UTC) that POSTs to the route with the secret. Netlify finds
+it when the site's **base directory** is `app` (functions live in
+`<base>/netlify/functions` by default). Scheduled functions only run on the
+published production deploy, not on previews; use **Run now** on the function
+in the Netlify UI to try it. A failed run throws, so it shows up as an error in
+the function's log.
+
+### Trying it locally
+
+```bash
+cd app && npm run dev
+curl -X POST -H "Authorization: Bearer $PODCAST_SYNC_SECRET" "http://localhost:3000/api/podcast-sync?dryRun=1"
+```
+
+Or open the studio (`npm run dev` in `studio/`) → **Spotify sync** → **Dry run**.
+
 ## Deploying the studio
 
 `.github/workflows/deploy-sanity-studio.yml` builds and deploys the studio on
@@ -608,6 +721,7 @@ Configure it once, under **Settings → Secrets and variables → Actions**:
 | Variables      | `SANITY_STUDIO_DATASET`    | optional | Defaults to `production`                                           |
 | Variables      | `SANITY_STUDIO_TITLE`      | optional | Defaults to `Studio`                                               |
 | Variables      | `SANITY_STUDIO_HOSTNAME`   | optional | Which `*.sanity.studio` to deploy to; unset reuses the existing one |
+| Variables      | `SANITY_STUDIO_SITE_URL`   | optional | The app's URL, for the Spotify sync panel (see [Podcast sync](#podcast-sync)) |
 
 None of the `SANITY_STUDIO_*` values is a secret — they ship inside the studio
 bundle, which is why they are *variables* and why they are set at job level:

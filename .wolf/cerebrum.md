@@ -21,6 +21,8 @@
 
 ## Key Learnings
 
+- [2026-10-06] Studio → app calls: the studio bundle is public, so no secrets in SANITY_STUDIO_*. Authenticate with the editor's Sanity token (`useClient().config().token`, needs `auth: {loginMethod: 'token'}` — default 'dual' may use cookies and leave token undefined) and verify server-side via `https://<projectId>.api.sanity.io/v2021-06-07/users/me` → `roles[].name`. Robot (API) tokens also return roles there (write token = editor).
+
 - [2026-10-06] Kennisbank content lives in `content/kennisbank/{Artikelen/*.docx,Naslagwerk/*.pdf}`; `npm run seed -- kennisbank-content` (scripts/seed/kennisbank.ts) converts Word → Portable Text via `unzip -p word/document.xml` (Heading1 = title, all-bold para = h2, numPr = bullet, "Bronnen:" = h3) and uploads PDFs (reused by filename). Slugs/excerpts/PDF titles+descriptions are hand-written tables in that file; list order = newest-first order on the site.
 
 - [2026-10-06] Kennisbank: `article` + `download` documents (studio/schemaTypes/kennisbank.ts); hub + overviews are ordinary pages using `articleList` / `downloadList` blocks (picked refs, else newest by _createdAt; `limit` empty = all). Single article = own route `app/kennisbank/artikelen/[slug]` (not a page doc), path via `articlePath()`. Reading time computed in GROQ (`pt::text` word count / 200). Gated downloads reuse `/api/submit-form` with an extra `downloadId` (FormRenderer `extra` + `afterSuccess`): route requires an email answer, adds the PDF title to the mail, returns `fileUrl` (?dl=). PDF url never sent to the page.
@@ -61,6 +63,8 @@
 - [2026-09-12] Default shell Node is v17 (nvm). Sanity CLI/Next need >=22.12: always run npm/npx with `PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH`. If studio tsc says `sanity` has no exported member defineType, node_modules is corrupt → `npm ci`.
 
 ## Decision Log
+
+- [2026-10-06] Podcast episodes come from the Spotify Web API (user's choice, not RSS), create-only so editor edits survive; daily via Netlify scheduled function (app to be hosted on Netlify).
 
 - [2026-10-06] Download form fails open: if mail is not configured or Mailjet fails, a valid download request (email given, PDF exists, reCAPTCHA ok) still gets `fileUrl` — the lead is lost (only logged), the visitor is not. Contact form stays fail-closed. Success text no longer claims "gemaild".
 

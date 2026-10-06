@@ -25,6 +25,10 @@ export default defineConfig({
   projectId,
   dataset,
 
+  // Token login, so the Spotify sync panel has a token to send to the app.
+  // See `tools/PodcastSyncTool.tsx`.
+  auth: {loginMethod: 'token'},
+
   plugins: [structureTool({structure}), visionTool()],
 
   schema: {

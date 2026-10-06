@@ -316,6 +316,14 @@
 
 - `page.tsx` — Every CMS page except the home page renders through this one route. A slug (~312 tok)
 
+## app/src/app/api/podcast-sync/
+
+- `route.ts` — POST imports Spotify show episodes as podcastEpisode docs (create-only, ?dryRun=1); Bearer PODCAST_SYNC_SECRET or Sanity member token. (~1500 tok)
+
+## app/netlify/functions/
+
+- `podcast-sync.mts` — Netlify scheduled function (@daily) POSTing /api/podcast-sync with the secret. (~150 tok)
+
 ## app/src/app/api/submit-form/
 
 - `route.ts` — Bigger uploads are rejected rather than silently dropped from the mail. (~2876 tok)
@@ -611,6 +619,7 @@
   - fn `dedupeUsage` L222-237 (~165 tok)
   - fn `thumbnailUrl` L238-241 (~36 tok)
 - `mediaStyles.ts` — The Media panel's own styles, on top of `panelStyles.ts`. Same approach — (~1416 tok)
+- `PodcastSyncTool.tsx` — Studio "Spotify sync" panel: Dry run / Sync now buttons calling the app route with the editor's Sanity token. (~800 tok)
 - `MediaTool.tsx` — The media library in the studio (incl. "Delete unused images" bulk cleanup): every upload in one place, searchable, with (~5698 tok)
   - fn `MediaLibrary` L78-421 (~3196 tok)
   - fn `MediaCard` L422-457 (~284 tok)

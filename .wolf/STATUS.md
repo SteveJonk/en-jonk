@@ -1,7 +1,7 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-06 (Kennisbank)
+> Last updated: 2026-10-06 (Podcast sync)
 
 ---
 
@@ -19,6 +19,7 @@
   - Images + media cleanup (2026-10-05, branch `claude/sanity-image-quality`, ported from nextjs-sanity-starter PR #8): `Frame` uses `components/ui/Image` → `sanityLoader` (Sanity CDN renders every srcset width from the original, q=85, auto=format, crop kept). Studio Media panel has "Delete unused images (n)" (confirm, re-fetch, transactions of 50, per-id retry; files kept). Typecheck/lint green; not yet tested in a browser / running Studio.
 - Feedback 11 sept (2026-10-06): new slogan everywhere; home hero/doelgroepen/Talent dat blijft; kenmerken lead dropped; timeline 4th point "Meerjarig partnerschap" + small in-between dots + new `timeline.text` field on threeLevels; stats → "Cijfers uit de praktijk" (9e / 100+ / 120, also on Cases hero); values compact shows ValuesIllustration on lg; podcast renamed "&Jonk de podcast", home teaser links to Spotify, Spotify social URL set; Hoe wij kijken reordered (& on dark, Wat wij zien heading above text, bigger `t-quote-lg` quote, smaller values heading); Wat anderen zeggen photo jonk-7196, KLM logo removed; Over &Jonk timeline removed, "Wie je aan tafel krijgt", values link band retitled; Wat we doen removed from seed + nav. Seeded site/pages/nav.
 - Kennisbank (2026-10-06): `article` + `download` docs, `articleList` / `downloadList` blocks (picked or newest, optional limit), pages /kennisbank (3+3), /kennisbank/artikelen, /kennisbank/naslagwerk seeded; single article route `app/kennisbank/artikelen/[slug]` (typographic hero, reading time, Portable Text body, "Verder lezen" 3 newest, Kennismaken, Article JSON-LD, sitemap). Gated PDFs: card → dialog with `form-download` (naam, e-mail, organisatie) → `/api/submit-form` with `downloadId` → mail to admin + copy with link to visitor → "Open de PDF". Nav item after Cases (header + footer). Interface text group `kennisbank`. Real content imported 2026-10-06: 10 articles + 7 PDFs via `npm run seed -- kennisbank-content`; hub shows Leiderschap gebeurt in contact / Contracteren / Wat er gebeurt als het spannend wordt + Model Contracteren / Persoonlijk leiderschap / Triggers en patronen.
+- Podcast sync (2026-10-06): `POST /api/podcast-sync[?dryRun=1]` imports Spotify show episodes as `podcastEpisode` (`podcastEpisode-spotify-<id>`, create-only, number = release order). Auth: Bearer `PODCAST_SYNC_SECRET` or a Sanity member token (admin/editor/developer, checked via /users/me). Studio panel "Spotify sync" (Dry run / Sync now), studio now `loginMethod: 'token'`. Netlify scheduled fn `app/netlify/functions/podcast-sync.mts` (@daily). README "Podcast sync". Verified: typecheck/lint, 401 on no/bad token, Sanity token passes auth. NOT yet run against Spotify (no creds).
 
 ---
 
@@ -33,13 +34,12 @@
 6. **Delete `page-wat-we-doen` from the dataset** (blocked for Claude by permissions; user runs `npx sanity documents delete page-wat-we-doen` in studio/). Until then /wat-we-doen still renders.
 7. Run `npm run build` (was blocked this session; typecheck + lint pass, dev server checked).
 8. Copy pending from Eric: Waar je ons voor belt, Hoe klanten ons beschrijven (tekst 4), stats intro (tekst 5), values heading Hoe wij kijken (interim "Ons kompas in de complexiteit"), Gekkigheid long text, Eric bio, 3 cases, 3 layer articles, 10 quotes.
-9. Podcast: fetch Spotify episodes automatically (user will add).
+9. Podcast sync: add SPOTIFY_CLIENT_ID/SECRET, SPOTIFY_SHOW_ID=6Y7eCFCfMleVpsqtb99DYh, PODCAST_SYNC_SECRET to app/.env + SANITY_STUDIO_SITE_URL to studio/.env; dry run from Studio; delete the `[#]` placeholder episodes. On Netlify: base dir `app`, same env vars, Actions var SANITY_STUDIO_SITE_URL.
 
 10. Kennisbank: `content/` is gitignored (client source files) — the `kennisbank-content` seed needs it locally. Client may want to rewrite the drafted excerpts/PDF descriptions in Studio. Downloads work without Mailjet (fail-open, no lead mail); keys needed for lead mails (item 1).
 
 ### Open decisions
 
-- Podcast episodes: keep manual documents or import from the podcast RSS feed?
 
 ---
 
