@@ -3,18 +3,18 @@
   "created_at": "2026-09-12T11:28:14.557Z",
   "lifetime": {
     "total_tokens_estimated": 26240,
-    "total_reads": 12,
+    "total_reads": 29,
     "total_writes": 0,
     "total_sessions": 6,
     "anatomy_hits": 2,
-    "anatomy_misses": 7,
-    "repeated_reads_blocked": 0,
+    "anatomy_misses": 24,
+    "repeated_reads_blocked": 2,
     "estimated_savings_vs_bare_cli": 400,
-    "real_input_tokens": 282,
-    "real_output_tokens": 74386,
-    "real_cache_read_tokens": 16293642,
-    "real_cache_creation_tokens": 453499,
-    "real_api_calls": 141
+    "real_input_tokens": 436,
+    "real_output_tokens": 147678,
+    "real_cache_read_tokens": 28676478,
+    "real_cache_creation_tokens": 652911,
+    "real_api_calls": 218
   },
   "sessions": [
     {
@@ -183,6 +183,132 @@
         "cache_read_input_tokens": 5906274,
         "cache_creation_input_tokens": 137457,
         "api_calls": 45
+      }
+    },
+    {
+      "id": "session-2026-10-06-0943",
+      "agent": "claude",
+      "started": "2026-10-06T07:43:38.269Z",
+      "ended": "2026-10-06T08:03:44.289Z",
+      "reads": [
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/sheetA.png",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/shots/dbg.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/sheetC.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/sheetD.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/sheetE.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-1-8.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-1-24.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-1-30.png",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-4-5.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-8-9.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-4-9.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/crop04.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-6-6.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/shots/04-publish-bar.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-10-15.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-10-27.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/private/tmp/claude-501/-Users-stevejonk-Documents-Prive-Projecten-en-jonk/755d36c6-d651-405c-a4bb-e76db05181e6/scratchpad/manual/view-11-16.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 17,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 154,
+        "output_tokens": 73292,
+        "cache_read_input_tokens": 12382836,
+        "cache_creation_input_tokens": 199412,
+        "api_calls": 77
       }
     }
   ],
