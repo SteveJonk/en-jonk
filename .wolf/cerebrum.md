@@ -2,7 +2,7 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-10-06
+> Last updated: 2026-10-07
 
 ## User Preferences
 
@@ -20,6 +20,8 @@
 - [2026-09-12] OK to delete the old Fieldnote template blocks/demo-content once replaced.
 
 ## Key Learnings
+
+- [2026-10-07] Sentry test: `/sentry-test` page + `/api/sentry-test` (identical across starter, schuijt, en-jonk). Next 16 GET route handlers are dynamic by default (no `force-dynamic` needed; only `force-static` opts into caching) — Next ships its docs in `node_modules/next/dist/docs/`. Client test error is thrown in a `setTimeout` so React doesn't catch it and Sentry's global handler must.
 
 - [2026-10-07] Caching (ported from starter): every cached Sanity read uses `sanityCache` from `app/src/sanity/fetch.ts` (tag `sanity`, revalidate 3600 as safety net). Freshness comes from the Sanity webhook → `/api/revalidate` (`revalidateTag(SANITY_TAG, { expire: 0 })` — not 'max', Netlify would re-cache the stale page for the rest of the hour). New Sanity fetches must pass `sanityCache`, never a hardcoded `revalidate` number. API routes keep `cache: 'no-store'`.
 
@@ -65,6 +67,8 @@
 - [2026-09-12] Default shell Node is v17 (nvm). Sanity CLI/Next need >=22.12: always run npm/npx with `PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH`. If studio tsc says `sanity` has no exported member defineType, node_modules is corrupt → `npm ci`.
 
 ## Decision Log
+
+- [2026-10-07] Test/utility pages are kept out of search with `metadata.robots` noindex/nofollow only, NOT a robots.txt Disallow: a disallowed URL is never crawled, so Google can't see the noindex and may still index the bare URL from links.
 
 - [2026-10-06] Podcast episodes come from the Spotify Web API (user's choice, not RSS), create-only so editor edits survive; daily via Netlify scheduled function (app to be hosted on Netlify).
 

@@ -1,11 +1,13 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-07 (Cache revalidation)
+> Last updated: 2026-10-07 (Sentry test page)
 
 ---
 
 ## ✅ Done
+
+- Sentry test page (2026-10-07, branch `claude/sentry-test-page-route-acohz1`): `/sentry-test` (noindex/nofollow, not in sitemap) with buttons for a client error and `/api/sentry-test` (always throws → onRequestError). Same in schuijt and the starter. README → Error tracking documents it.
 
 - Static Next.js site for &Jonk (11 routes), approved by user.
 - **Sanity wiring (branch `feat/wire-sanity`, 2026-09-12):**
@@ -41,6 +43,8 @@
 11. Revalidation webhook: set `SANITY_REVALIDATE_SECRET` on Netlify + app/.env, add webhook in sanity.io/manage → API → Webhooks (URL `<site>/api/revalidate`, dataset production, create/update/delete, projection `{_type}`, POST, same secret). Without it edits take up to an hour to show.
 
 10. Kennisbank: `content/` is gitignored (client source files) — the `kennisbank-content` seed needs it locally. Client may want to rewrite the drafted excerpts/PDF descriptions in Studio. Downloads work without Mailjet (fail-open, no lead mail); keys needed for lead mails (item 1).
+
+12. Sentry: once deployed with NEXT_PUBLIC_SENTRY_DSN, open `/sentry-test`, press both buttons, check both issues arrive in Sentry → Issues.
 
 ### Open decisions
 

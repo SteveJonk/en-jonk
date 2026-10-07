@@ -329,6 +329,10 @@
 
 - `podcast-sync.mts` — Netlify scheduled function (@daily) POSTing /api/podcast-sync with the secret. (~150 tok)
 
+## app/src/app/api/sentry-test/
+
+- `route.ts` — GET always throws "Sentry test: server error", reported via onRequestError. (~80 tok)
+
 ## app/src/app/api/submit-form/
 
 - `route.ts` — Bigger uploads are rejected rather than silently dropped from the mail. (~2876 tok)
@@ -345,6 +349,10 @@
   - fn `generateMetadata` L29-63 (~398 tok)
   - fn `ArticlePage` L64-141 (~730 tok)
 
+## app/src/app/sentry-test/
+
+- `page.tsx` — Sentry connection test page (/sentry-test): noindex/nofollow, buttons throw a client error and call /api/sentry-test (server error). (~180 tok)
+
 ## app/src/components/
 
 - `CmsPage.tsx` — One request per render, shared by the metadata and the page. (~554 tok)
@@ -354,6 +362,7 @@
 - `PageBuilder.tsx` — Map one Sanity block onto its component. (~1329 tok)
   - fn `renderBlock` L50-106 (~617 tok)
   - fn `PageBuilder` L107-148 (~298 tok)
+- `SentryTest.tsx` — Client buttons for /sentry-test: throw client error (setTimeout, uncaught) + fetch the failing API route; shows DSN on/off. (~520 tok)
 - `TrackingScripts.tsx` — Google Tag Manager and the Meta (Facebook) pixel, both opt-in. (~866 tok)
   - fn `TrackingScriptsHead` L21-62 (~399 tok)
   - fn `TrackingScriptsBody` L63-92 (~222 tok)
