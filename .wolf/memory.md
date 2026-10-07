@@ -53,3 +53,4 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 09:44 | Fix podcast-sync CORS: strip trailing slash from SANITY_STUDIO_SITE_URL | studio/tools/PodcastSyncTool.tsx | fixed | ~2k |
+| 18:13 | Sentry prep: Sentry DSN/sample rate/org/project added to Netlify SECRETS_SCAN_OMIT_KEYS (en-jonk: netlify.toml created) | app/netlify.toml | done, not committed | ~2k |
