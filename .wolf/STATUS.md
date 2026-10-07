@@ -1,7 +1,7 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-06 (Podcast sync)
+> Last updated: 2026-10-07 (Cache revalidation)
 
 ---
 
@@ -21,6 +21,8 @@
 - Kennisbank (2026-10-06): `article` + `download` docs, `articleList` / `downloadList` blocks (picked or newest, optional limit), pages /kennisbank (3+3), /kennisbank/artikelen, /kennisbank/naslagwerk seeded; single article route `app/kennisbank/artikelen/[slug]` (typographic hero, reading time, Portable Text body, "Verder lezen" 3 newest, Kennismaken, Article JSON-LD, sitemap). Gated PDFs: card → dialog with `form-download` (naam, e-mail, organisatie) → `/api/submit-form` with `downloadId` → mail to admin + copy with link to visitor → "Open de PDF". Nav item after Cases (header + footer). Interface text group `kennisbank`. Real content imported 2026-10-06: 10 articles + 7 PDFs via `npm run seed -- kennisbank-content`; hub shows Leiderschap gebeurt in contact / Contracteren / Wat er gebeurt als het spannend wordt + Model Contracteren / Persoonlijk leiderschap / Triggers en patronen.
 - Podcast sync (2026-10-06): `POST /api/podcast-sync[?dryRun=1]` imports Spotify show episodes as `podcastEpisode` (`podcastEpisode-spotify-<id>`, create-only, number = release order). Auth: Bearer `PODCAST_SYNC_SECRET` or a Sanity member token (admin/editor/developer, checked via /users/me). Studio panel "Spotify sync" (Dry run / Sync now), studio now `loginMethod: 'token'`. Netlify scheduled fn `app/netlify/functions/podcast-sync.mts` (@daily). README "Podcast sync". Verified: typecheck/lint, 401 on no/bad token, Sanity token passes auth. NOT yet run against Spotify (no creds).
 
+- Cache revalidation (2026-10-07, branch `claude/revalidation-endpoint-cache-nmvbvk`, ported from nextjs-sanity-starter): all Sanity reads use `sanityCache` (`app/src/sanity/fetch.ts`, tag `sanity`, 3600s fallback instead of 30s); `POST /api/revalidate` (signed Sanity webhook, SANITY_REVALIDATE_SECRET) expires the tag with `expire: 0`. Verified: typecheck/lint, dev server 401 unsigned/bad sig, 200 with valid signature.
+
 ---
 
 ## 🚀 Next phase — go live with real content
@@ -35,6 +37,8 @@
 7. Run `npm run build` (was blocked this session; typecheck + lint pass, dev server checked).
 8. Copy pending from Eric: Waar je ons voor belt, Hoe klanten ons beschrijven (tekst 4), stats intro (tekst 5), values heading Hoe wij kijken (interim "Ons kompas in de complexiteit"), Gekkigheid long text, Eric bio, 3 cases, 3 layer articles, 10 quotes.
 9. Podcast sync: add SPOTIFY_CLIENT_ID/SECRET, SPOTIFY_SHOW_ID=6Y7eCFCfMleVpsqtb99DYh, PODCAST_SYNC_SECRET to app/.env + SANITY_STUDIO_SITE_URL to studio/.env; dry run from Studio; delete the `[#]` placeholder episodes. On Netlify: base dir `app`, same env vars, Actions var SANITY_STUDIO_SITE_URL.
+
+11. Revalidation webhook: set `SANITY_REVALIDATE_SECRET` on Netlify + app/.env, add webhook in sanity.io/manage → API → Webhooks (URL `<site>/api/revalidate`, dataset production, create/update/delete, projection `{_type}`, POST, same secret). Without it edits take up to an hour to show.
 
 10. Kennisbank: `content/` is gitignored (client source files) — the `kennisbank-content` seed needs it locally. Client may want to rewrite the drafted excerpts/PDF descriptions in Studio. Downloads work without Mailjet (fail-open, no lead mail); keys needed for lead mails (item 1).
 

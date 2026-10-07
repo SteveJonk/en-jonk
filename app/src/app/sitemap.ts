@@ -2,11 +2,12 @@ import type { MetadataRoute } from 'next';
 import { articlePath, HOME_SLUG, pathForSlug } from '@/lib/links';
 import { SITE_URL } from '@/lib/site';
 import { client } from '@/sanity/client';
+import { sanityCache } from '@/sanity/fetch';
 import { ARTICLE_SLUGS_QUERY, PAGE_SLUGS_QUERY } from '@/sanity/queries';
 
 /** Served at `/sitemap.xml`; `robots.ts` points at it. Every published page and article. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const options = { next: { revalidate: 30 } };
+  const options = sanityCache;
   const [pages, articles] = await Promise.all([
     client.fetch(PAGE_SLUGS_QUERY, {}, options),
     client.fetch(ARTICLE_SLUGS_QUERY, {}, options),

@@ -6,12 +6,13 @@ import { PageBuilder } from '@/components/PageBuilder';
 import { pageJsonLd } from '@/lib/json-ld';
 import { HOME_SLUG, pathForSlug } from '@/lib/links';
 import { client } from '@/sanity/client';
+import { sanityCache } from '@/sanity/fetch';
 import { pageMetadata, seoImageUrl } from '@/sanity/metadata';
 import { PAGE_QUERY } from '@/sanity/queries';
 import { getInterfaceText } from '@/sanity/interface-text';
 import { getSiteInformation } from '@/sanity/site-information';
 
-const options = { next: { revalidate: 30 } };
+const options = sanityCache;
 
 /** One request per render, shared by the metadata and the page. */
 const getPage = cache((slug: string) => client.fetch(PAGE_QUERY, { slug }, options));
