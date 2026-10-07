@@ -53,3 +53,4 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 09:44 | Fix podcast-sync CORS: strip trailing slash from SANITY_STUDIO_SITE_URL | studio/tools/PodcastSyncTool.tsx | fixed | ~2k |
+| 10:00 | Port starter revalidation: /api/revalidate webhook + sanityCache (tag `sanity`, 3600s) replacing revalidate: 30 everywhere | app/src/sanity/fetch.ts, app/src/app/api/revalidate/route.ts, 6 call sites, .env.example, README | typecheck/lint green, endpoint 401/200 verified on dev | ~25k |

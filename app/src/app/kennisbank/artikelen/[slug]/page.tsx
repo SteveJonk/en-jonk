@@ -11,6 +11,7 @@ import { Container, Section, SectionHead } from '@/components/site/Section';
 import { pageJsonLd } from '@/lib/json-ld';
 import { ARTICLES_PATH, articlePath } from '@/lib/links';
 import { client } from '@/sanity/client';
+import { sanityCache } from '@/sanity/fetch';
 import { getInterfaceText } from '@/sanity/interface-text';
 import { pageMetadata } from '@/sanity/metadata';
 import { ARTICLE_QUERY, ARTICLE_SLUGS_QUERY } from '@/sanity/queries';
@@ -18,7 +19,7 @@ import { getSiteInformation } from '@/sanity/site-information';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
-const options = { next: { revalidate: 30 } };
+const options = sanityCache;
 
 const getArticle = cache((slug: string) => client.fetch(ARTICLE_QUERY, { slug }, options));
 
