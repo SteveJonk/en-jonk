@@ -1,5 +1,7 @@
-# Build settings (base directory, build command, publish directory) live in the
-# Netlify UI; this file only adds to them.
+[build]
+  # Netlify's Next.js runtime serves from .next; publishing the app root itself
+  # (the UI default here) deploys raw source files, so every route 404s.
+  publish = ".next"
 
 # Netlify's secrets scanner fails the build when an env var's value turns up in
 # the output. NEXT_PUBLIC_* values ship in the browser bundle by design and are
