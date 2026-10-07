@@ -54,3 +54,5 @@
 |------|--------|---------|---------|--------|
 | 09:44 | Fix podcast-sync CORS: strip trailing slash from SANITY_STUDIO_SITE_URL | studio/tools/PodcastSyncTool.tsx | fixed | ~2k |
 | 18:13 | Sentry prep: Sentry DSN/sample rate/org/project added to Netlify SECRETS_SCAN_OMIT_KEYS (en-jonk: netlify.toml created) | app/netlify.toml | done, not committed | ~2k |
+| 10:00 | Port starter revalidation: /api/revalidate webhook + sanityCache (tag `sanity`, 3600s) replacing revalidate: 30 everywhere | app/src/sanity/fetch.ts, app/src/app/api/revalidate/route.ts, 6 call sites, .env.example, README | typecheck/lint green, endpoint 401/200 verified on dev | ~25k |
+| 18:37 | Merged main (revalidation PR) into Sentry branch; added publish = ".next" to netlify.toml. Revalidation needs no toml entry: SANITY_REVALIDATE_SECRET is a real secret, stays scanned | app/netlify.toml | done | ~3k |

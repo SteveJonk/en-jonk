@@ -627,7 +627,8 @@ API and creates a `podcastEpisode` for each one that is not in Sanity yet:
   `[#]` placeholders) are not touched — delete those yourself.
 - `?dryRun=1` does all of the above except the write, and returns what it
   would create.
-- The site picks new episodes up within 30 seconds (page revalidation).
+- The site picks new episodes up within seconds through the revalidate
+  webhook (see Notes), or within an hour without it.
 
 Response:
 
@@ -759,4 +760,8 @@ npm run typegen      npm run schema:extract
   an error, not as a silently empty page.
 - The seed uploads the photos in `app/public/images/` and the logos in
   `app/public/logos/`; after that, photos are managed in the studio.
-- Pages are revalidated every 30 seconds (`revalidate: 30` in the route files).
+- Sanity reads are cached under one tag (`sanity`, see `src/sanity/fetch.ts`) and refresh at most once an hour on their own. To make a publish go live within seconds, per environment:
+  1. Set `SANITY_REVALIDATE_SECRET` on the host to a long random string.
+  2. In sanity.io/manage -> API -> Webhooks, add one: URL `<site>/api/revalidate`, dataset `production`, trigger on create/update/delete, projection `{_type}`, method POST, and the same secret.
+
+  Without the webhook the site still works; edits just take up to an hour to appear.

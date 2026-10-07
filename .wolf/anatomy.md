@@ -321,6 +321,10 @@
 
 - `route.ts` — POST imports Spotify show episodes as podcastEpisode docs (create-only, ?dryRun=1); Bearer PODCAST_SYNC_SECRET or Sanity member token. (~1500 tok)
 
+## app/src/app/api/revalidate/
+
+- `route.ts` — Sanity webhook target (POST, signed with SANITY_REVALIDATE_SECRET): expires the `sanity` cache tag immediately. (~350 tok)
+
 ## app/netlify/functions/
 
 - `podcast-sync.mts` — Netlify scheduled function (@daily) POSTing /api/podcast-sync with the secret. (~150 tok)
@@ -527,6 +531,7 @@
 ## app/src/sanity/
 
 - `client.ts` — Fetch that degrades instead of throwing. (~301 tok)
+- `fetch.ts` — SANITY_TAG + REVALIDATE (3600s safety net) + `sanityCache` options used by every cached Sanity read. (~200 tok)
 - `image-loader.ts` — next/image loader: Sanity CDN renders each srcset width from the original (q=85, auto=format); `isSanityImage` skips SVG/local. (~426 tok)
 - `image.ts` — A `photo` from the studio: an image with its alt text and crop focus. (~390 tok)
 - `interface-text.ts` — The interface text, with defaults filled in where the CMS is empty. (~225 tok)

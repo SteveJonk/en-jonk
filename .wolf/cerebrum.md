@@ -21,6 +21,8 @@
 
 ## Key Learnings
 
+- [2026-10-07] Caching (ported from starter): every cached Sanity read uses `sanityCache` from `app/src/sanity/fetch.ts` (tag `sanity`, revalidate 3600 as safety net). Freshness comes from the Sanity webhook → `/api/revalidate` (`revalidateTag(SANITY_TAG, { expire: 0 })` — not 'max', Netlify would re-cache the stale page for the rest of the hour). New Sanity fetches must pass `sanityCache`, never a hardcoded `revalidate` number. API routes keep `cache: 'no-store'`.
+
 - [2026-10-06] Studio → app calls: the studio bundle is public, so no secrets in SANITY_STUDIO_*. Authenticate with the editor's Sanity token (`useClient().config().token`, needs `auth: {loginMethod: 'token'}` — default 'dual' may use cookies and leave token undefined) and verify server-side via `https://<projectId>.api.sanity.io/v2021-06-07/users/me` → `roles[].name`. Robot (API) tokens also return roles there (write token = editor).
 
 - [2026-10-06] Kennisbank content lives in `content/kennisbank/{Artikelen/*.docx,Naslagwerk/*.pdf}`; `npm run seed -- kennisbank-content` (scripts/seed/kennisbank.ts) converts Word → Portable Text via `unzip -p word/document.xml` (Heading1 = title, all-bold para = h2, numPr = bullet, "Bronnen:" = h3) and uploads PDFs (reused by filename). Slugs/excerpts/PDF titles+descriptions are hand-written tables in that file; list order = newest-first order on the site.

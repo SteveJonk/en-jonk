@@ -1,10 +1,11 @@
 import { cache } from 'react';
 import { resolveInterfaceText, type InterfaceText } from '@/lib/interface-text';
 import { safeFetch } from '@/sanity/client';
+import { sanityCache } from '@/sanity/fetch';
 import { INTERFACE_TEXT_QUERY } from '@/sanity/queries';
 import type { INTERFACE_TEXT_QUERY_RESULT } from '@/sanity/sanity.types';
 
-const options = { next: { revalidate: 30 } };
+const options = sanityCache;
 
 /**
  * The interface text, with defaults filled in where the CMS is empty.

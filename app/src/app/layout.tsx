@@ -9,6 +9,7 @@ import { siteJsonLd } from '@/lib/json-ld';
 import { toLabeledHref, type SanityLabeledLink } from '@/lib/links';
 import { SITE_URL } from '@/lib/site';
 import { safeFetch } from '@/sanity/client';
+import { sanityCache } from '@/sanity/fetch';
 import { FOOTER_QUERY, NAVIGATION_QUERY } from '@/sanity/queries';
 import type {
   FOOTER_QUERY_RESULT,
@@ -62,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const options = { next: { revalidate: 30 } };
+const options = sanityCache;
 
 /** Resolved `{ label, href }` pairs; links that resolve to nothing are dropped. */
 function toLinks(links: SanityLabeledLink[] | null | undefined) {
