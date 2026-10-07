@@ -216,6 +216,22 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-10-06T07:44:19.643Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-10-07T18:40:06+00:00",
+      "error_message": "npm ci: package.json and package-lock.json are not in sync. Missing: @emnapi/runtime@1.11.3, @emnapi/core@1.11.3 from lock file",
+      "file": "app/package-lock.json",
+      "root_cause": "Lockfile on main out of sync with package.json (pre-existing, not fixed)",
+      "fix": "Not fixed yet: run `npm install` in app/ and commit the lockfile. For local checks, `npm install` then `git checkout -- package-lock.json`",
+      "tags": [
+        "npm",
+        "lockfile",
+        "ci"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-10-07T18:40:06+00:00"
     }
   ]
 }

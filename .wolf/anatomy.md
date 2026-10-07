@@ -108,6 +108,7 @@
 - `.gitignore` — Git ignore rules (~179 tok)
 - `Dockerfile` — Docker container definition (~294 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~152 tok)
+- `netlify.toml` — Netlify publish dir + SECRETS_SCAN_OMIT_KEYS (Sanity + Sentry public vars) (~230 tok)
 - `next-env.d.ts` — / <reference types="next" /> (~72 tok)
 - `next.config.ts` — Next.js configuration (~537 tok)
 - `package-lock.json` — npm lock file (~208491 tok)
