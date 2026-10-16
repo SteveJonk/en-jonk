@@ -66,3 +66,5 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 21:53 | Netlify scheduled podcast-sync → Vercel cron (vercel.json, GET=POST, CRON_SECRET) | app/vercel.json, podcast-sync/route.ts, README, .env.example | tsc+eslint green | ~6k |
+| 21:55 | Ported schuijt "reduce vercel costs": no tunnelRoute, traces 0.1, REVALIDATE 1 day, Refresh website panel + x-revalidate-secret/CORS on /api/revalidate | app/next.config.ts, app/sentry.options.ts, app/src/sanity/fetch.ts, app/src/app/api/revalidate/route.ts, app/src/lib/secret.ts, studio/tools/ClearCache.tsx, studio/structure.ts, README.md | tsc+eslint clean (app+studio); curl 204/401/200/401 | ~5k |
+| 22:05 | Merged main (Vercel cron PR) into claude/reduce-vercel-costs; .wolf conflicts only, kept both sides | .wolf/STATUS.md, .wolf/cerebrum.md, .wolf/memory.md | resolved | ~2k |
