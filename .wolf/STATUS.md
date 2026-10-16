@@ -1,13 +1,14 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-16 (Vercel usage)
+> Last updated: 2026-10-16 (Vercel cron + Vercel usage)
 
 ---
 
 ## ✅ Done
 
 - Vercel usage (2026-10-16, ported from schuijt d3cdcf0): Sentry `tunnelRoute` removed, traces sample default 0.1, `REVALIDATE` 3600 → 86400. Studio **Refresh website** panel (`studio/tools/ClearCache.tsx`) POSTs `/api/revalidate` with `x-revalidate-secret: SANITY_REVALIDATE_SECRET` (localStorage); route keeps the signed webhook, now with CORS. Same in in-the-mirror and the starter. **Pending:** set SANITY_STUDIO_SITE_URL for the deployed studio, deploy app + studio, give editors the secret once.
+- Vercel cron (2026-10-16): Netlify scheduled fn removed; `app/vercel.json` crons GET `/api/podcast-sync` daily 00:00 UTC. Route exports `GET = POST`; secret renamed `PODCAST_SYNC_SECRET` → `CRON_SECRET` (Vercel sends it automatically). README/.env.example/studio comment updated. Typecheck/lint green; not yet run on Vercel.
 
 - Sentry test page (2026-10-07, branch `claude/sentry-test-page-route-acohz1`): `/sentry-test` (noindex/nofollow, not in sitemap) with buttons for a client error and `/api/sentry-test` (always throws → onRequestError). Gated by `SENTRY_TEST_SECRET`: open with `?secret=<value>`, otherwise 404. Same in schuijt and the starter. README → Error tracking documents it.
 
@@ -40,7 +41,7 @@
 6. **Delete `page-wat-we-doen` from the dataset** (blocked for Claude by permissions; user runs `npx sanity documents delete page-wat-we-doen` in studio/). Until then /wat-we-doen still renders.
 7. Run `npm run build` (was blocked this session; typecheck + lint pass, dev server checked).
 8. Copy pending from Eric: Waar je ons voor belt, Hoe klanten ons beschrijven (tekst 4), stats intro (tekst 5), values heading Hoe wij kijken (interim "Ons kompas in de complexiteit"), Gekkigheid long text, Eric bio, 3 cases, 3 layer articles, 10 quotes.
-9. Podcast sync: add SPOTIFY_CLIENT_ID/SECRET, SPOTIFY_SHOW_ID=6Y7eCFCfMleVpsqtb99DYh, PODCAST_SYNC_SECRET to app/.env + SANITY_STUDIO_SITE_URL to studio/.env; dry run from Studio; delete the `[#]` placeholder episodes. On Netlify: base dir `app`, same env vars, Actions var SANITY_STUDIO_SITE_URL.
+9. Podcast sync: add SPOTIFY_CLIENT_ID/SECRET, SPOTIFY_SHOW_ID=6Y7eCFCfMleVpsqtb99DYh, CRON_SECRET to app/.env + SANITY_STUDIO_SITE_URL to studio/.env; dry run from Studio; delete the `[#]` placeholder episodes. On Vercel: root dir `app`, same env vars (incl. CRON_SECRET), Actions var SANITY_STUDIO_SITE_URL; test via Settings → Cron Jobs → Run.
 
 11. Revalidation webhook: set `SANITY_REVALIDATE_SECRET` on Netlify + app/.env, add webhook in sanity.io/manage → API → Webhooks (URL `<site>/api/revalidate`, dataset production, create/update/delete, projection `{_type}`, POST, same secret). Without it edits take up to an hour to show.
 

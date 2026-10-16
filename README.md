@@ -19,7 +19,7 @@ studio and it is live.
 - **Generated sitemap and robots.txt** — driven by the CMS, nothing to maintain
 - **Structured data** — one schema.org graph per page, checked by a script
 - **Forms** — CMS-authored, one page or several steps, mailed and spam-gated
-- **Podcast sync** — new Spotify episodes imported daily (Netlify) or from a
+- **Podcast sync** — new Spotify episodes imported daily (Vercel cron) or from a
   studio button, with a dry run
 - **Media library** — a studio panel listing every upload, with search,
   usage per file and a delete button for the ones nothing points at
@@ -615,11 +615,11 @@ documents: once a day automatically, or by hand from the studio.
 | ----- | ---- |
 | API route | `app/src/app/api/podcast-sync/route.ts` |
 | Studio panel ("Spotify sync" in the left-hand menu) | `studio/tools/PodcastSyncTool.tsx` |
-| Daily trigger (Netlify scheduled function) | `app/netlify/functions/podcast-sync.mts` |
+| Daily trigger (Vercel cron job) | `app/vercel.json` |
 
 ### What it does
 
-`POST /api/podcast-sync` fetches every episode of the show from the Spotify Web
+`POST /api/podcast-sync` (or `GET`, which the cron uses) fetches every episode of the show from the Spotify Web
 API and creates a `podcastEpisode` for each one that is not in Sanity yet:
 
 | Field         | From Spotify                                         |
@@ -652,7 +652,7 @@ Response:
 
 The route wants `Authorization: Bearer <token>`, where the token is one of:
 
-- **`PODCAST_SYNC_SECRET`** — used by the Netlify function.
+- **`CRON_SECRET`** — sent by the Vercel cron job.
 - **A Sanity token of a project member with the Administrator, Editor or
   Developer role** — used by the studio button. The route asks Sanity
   (`/users/me`) whose token it is, so the studio bundle — which is public —
@@ -679,7 +679,7 @@ not available in the market).
 
 ### Environment variables
 
-**App** (`app/.env` locally, and in Netlify → Site configuration → Environment variables):
+**App** (`app/.env` locally, and in Vercel → Project → Settings → Environment Variables):
 
 | Name                     | What it is                                                                 |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -687,33 +687,33 @@ not available in the market).
 | `SPOTIFY_CLIENT_SECRET`  | From the Spotify app. Secret                                               |
 | `SPOTIFY_SHOW_ID`        | The show id, see above                                                     |
 | `SANITY_API_WRITE_TOKEN` | Sanity token with Editor rights (the same one the seed uses). Secret       |
-| `PODCAST_SYNC_SECRET`    | Any long random string, e.g. `openssl rand -hex 32`. Secret                |
+| `CRON_SECRET`            | Any long random string, e.g. `openssl rand -hex 32`. Secret                |
 
-The Netlify function reads `PODCAST_SYNC_SECRET` from the same Netlify env vars,
-and `URL`, which Netlify sets itself.
+Vercel sends `CRON_SECRET` with every cron request, so setting it in the
+project's env vars is all the cron needs.
 
 **Studio** (`studio/.env`, and as an Actions *variable* for the deploy workflow):
 
 | Name                     | What it is                                                               |
 | ------------------------ | ------------------------------------------------------------------------ |
-| `SANITY_STUDIO_SITE_URL` | The app's origin, no trailing slash: `http://localhost:3000` locally, the Netlify URL in production. Not a secret |
+| `SANITY_STUDIO_SITE_URL` | The app's origin, no trailing slash: `http://localhost:3000` locally, the Vercel URL in production. Not a secret |
 
-### Netlify
+### Vercel cron
 
-`app/netlify/functions/podcast-sync.mts` is a
-[scheduled function](https://docs.netlify.com/build/functions/scheduled-functions/)
-(`@daily`, midnight UTC) that POSTs to the route with the secret. Netlify finds
-it when the site's **base directory** is `app` (functions live in
-`<base>/netlify/functions` by default). Scheduled functions only run on the
-published production deploy, not on previews; use **Run now** on the function
-in the Netlify UI to try it. A failed run throws, so it shows up as an error in
-the function's log.
+`app/vercel.json` holds a [cron job](https://vercel.com/docs/cron-jobs)
+(`0 0 * * *`, daily around midnight UTC — on the Hobby plan Vercel may run it
+any time within that hour) that sends `GET /api/podcast-sync` with
+`Authorization: Bearer $CRON_SECRET`. Vercel reads `vercel.json` from the
+project's **root directory**, so that must be `app`. Cron jobs only run on the
+production deployment, not on previews; use **Run** next to the job under
+Project → Settings → Cron Jobs to try it. A failed run returns a non-2xx
+status, which shows up in the function's log.
 
 ### Trying it locally
 
 ```bash
 cd app && npm run dev
-curl -X POST -H "Authorization: Bearer $PODCAST_SYNC_SECRET" "http://localhost:3000/api/podcast-sync?dryRun=1"
+curl -X POST -H "Authorization: Bearer $CRON_SECRET" "http://localhost:3000/api/podcast-sync?dryRun=1"
 ```
 
 Or open the studio (`npm run dev` in `studio/`) → **Spotify sync** → **Dry run**.
