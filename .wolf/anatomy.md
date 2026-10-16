@@ -325,9 +325,9 @@
 
 - `route.ts` — Sanity webhook target (POST, signed with SANITY_REVALIDATE_SECRET): expires the `sanity` cache tag immediately. (~350 tok)
 
-## app/netlify/functions/
+## app/ (vercel)
 
-- `podcast-sync.mts` — Netlify scheduled function (@daily) POSTing /api/podcast-sync with the secret. (~150 tok)
+- `vercel.json` — Vercel cron: daily GET /api/podcast-sync (Bearer CRON_SECRET, sent by Vercel). (~50 tok)
 
 ## app/src/app/api/sentry-test/
 

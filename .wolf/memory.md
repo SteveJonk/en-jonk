@@ -60,3 +60,9 @@
 | 12:00 | Sentry test page /sentry-test (noindex) + always-failing /api/sentry-test + client SentryTest buttons                                                                                 | app/src/app/sentry-test/page.tsx, app/src/app/api/sentry-test/route.ts, app/src/components/SentryTest.tsx | tsc+eslint clean; dev: API 500 + error logged (page needs Sanity, not renderable in sandbox)                  | ~6k     |
 | 13:00 | Sentry test page gated by SENTRY_TEST_SECRET: ?secret= on the page, x-sentry-test-secret header on the API, 404 otherwise/unset; secret stripped from URL; no-referrer                | app/src/lib/sentry-test.ts, sentry-test page/route, SentryTest.tsx, .env.example                          | tsc+eslint clean; dev: API 404/404/404/500, page 404/404/200 (en-jonk; schuijt API only, layout needs Sanity) | ~8k     |
 | 10:03 | Client manual (NL, 27pp PDF) for Sanity Studio with annotated screenshots via puppeteer-core on a separate Chrome profile (port 9333)                                                 | docs/handleiding-sanity-studio.pdf                                                                        | done                                                                                                          | ~120k   |
+
+## Session: 2026-10-16 21:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:53 | Netlify scheduled podcast-sync → Vercel cron (vercel.json, GET=POST, CRON_SECRET) | app/vercel.json, podcast-sync/route.ts, README, .env.example | tsc+eslint green | ~6k |

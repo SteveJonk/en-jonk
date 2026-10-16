@@ -4,7 +4,7 @@ import {styles} from './panelStyles'
 
 /**
  * "Spotify sync" in the left-hand menu: runs the app's `/api/podcast-sync`
- * route by hand, as a dry run or for real. The daily run is a Netlify function;
+ * route by hand, as a dry run or for real. The daily run is a Vercel cron job;
  * see "Podcast sync" in the README.
  *
  * The route is called with the editor's own Sanity token, which the route
