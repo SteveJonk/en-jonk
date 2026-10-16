@@ -493,6 +493,7 @@
 
 ## app/src/lib/
 
+- `secret.ts` — matchesSecret(): constant-time string compare (sha256 then timingSafeEqual). (~80 tok)
 - `sentry-test.ts` — isSentryTestSecret(): constant-time compare against SENTRY_TEST_SECRET (false when unset). (~150 tok)
 
 - `chrome.ts` — Scroll threshold (px) before the topbar gets the stuck state. (~31 tok)
@@ -622,6 +623,7 @@
 
 ## studio/tools/
 
+- `ClearCache.tsx` — Structure panel "Refresh website": secret (localStorage) + button POSTing /api/revalidate to expire the site cache. (~900 tok)
 - `mediaData.ts` — Queries, types and formatting helpers for the Media panel (`MediaTool.tsx`). (~2220 tok)
   - fn `chunk` L61-132 (~546 tok)
   - fn `typeLabel` L133-136 (~25 tok)

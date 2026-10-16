@@ -1,11 +1,13 @@
 # STATUS — en-jonk
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
-> Last updated: 2026-10-07 (Sentry test page)
+> Last updated: 2026-10-16 (Vercel usage)
 
 ---
 
 ## ✅ Done
+
+- Vercel usage (2026-10-16, ported from schuijt d3cdcf0): Sentry `tunnelRoute` removed, traces sample default 0.1, `REVALIDATE` 3600 → 86400. Studio **Refresh website** panel (`studio/tools/ClearCache.tsx`) POSTs `/api/revalidate` with `x-revalidate-secret: SANITY_REVALIDATE_SECRET` (localStorage); route keeps the signed webhook, now with CORS. Same in in-the-mirror and the starter. **Pending:** set SANITY_STUDIO_SITE_URL for the deployed studio, deploy app + studio, give editors the secret once.
 
 - Sentry test page (2026-10-07, branch `claude/sentry-test-page-route-acohz1`): `/sentry-test` (noindex/nofollow, not in sitemap) with buttons for a client error and `/api/sentry-test` (always throws → onRequestError). Gated by `SENTRY_TEST_SECRET`: open with `?secret=<value>`, otherwise 404. Same in schuijt and the starter. README → Error tracking documents it.
 
