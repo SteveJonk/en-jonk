@@ -68,6 +68,8 @@
 
 ## Decision Log
 
+- [2026-10-16] Hosting moving Netlify → Vercel. Podcast cron = `app/vercel.json` crons; Vercel cron sends GET with `Authorization: Bearer $CRON_SECRET`, so the route reuses CRON_SECRET instead of its own PODCAST_SYNC_SECRET and exports `GET = POST`.
+
 - [2026-10-07] Sentry test page is gated by server-only SENTRY_TEST_SECRET (user asked for a secret in the URL): page takes `?secret=`, client strips it from the address bar (history.replaceState) and sends it to the API as header `x-sentry-test-secret`; unset/wrong → 404 (not 401, so the page's existence isn't revealed). Not in Netlify SECRETS_SCAN_OMIT_KEYS: it's a real secret and never inlined into the bundle.
 - [2026-10-07] Test/utility pages are kept out of search with `metadata.robots` noindex/nofollow only, NOT a robots.txt Disallow: a disallowed URL is never crawled, so Google can't see the noindex and may still index the bare URL from links.
 
@@ -87,3 +89,6 @@
 
 - [2026-09-29] Photos: full-size originals live in `app/designs/assets/img-originals/jonk-<n>.jpg` (gitignored, 31 MB, from the client's Drive "Groot" folder). Seed `photo()` prefers them over `public/images/*.webp`; the webp copies in public/ and designs/ are only fallbacks. Sanity CDN handles resizing/format; `urlFor` sets quality 85. hero/hoe-klanten/vakmensen-\* and video posters still come from webp (no originals mapped yet).
 - [2026-09-29] jonk-hero.jpg is byte-identical to jonk-7038.jpg (same Sanity asset, hash-deduped, so its originalFilename may flip between the two names; harmless). Only the vakmensen-1..3 and video posters still use webp.
+
+- [2026-10-06] Studio screenshots: enjonk.sanity.studio redirects into the sanity.io dashboard (studio in a cross-origin iframe). Drive a separate Chrome (`--remote-debugging-port=9333 --user-data-dir=<scratch>/profile --disable-backgrounding-occluded-windows --disable-renderer-backgrounding`) with puppeteer-core; without those flags animations stall in a background window and panes screenshot blank. Wait for text in the `sanity.studio` frame, not networkidle (never settles). Deep link to a field: `/structure/page;page-home,path=<encoded path>`.
+- [2026-10-06] Cropping screenshots in print HTML with absolute img + % top is unreliable; pre-crop PNGs with a puppeteer clip instead.

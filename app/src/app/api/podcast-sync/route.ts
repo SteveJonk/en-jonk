@@ -14,7 +14,8 @@ export const runtime = 'nodejs';
  * editors can rewrite titles and descriptions without the next run undoing it.
  *
  * Two ways in, both a bearer token:
- * - `PODCAST_SYNC_SECRET` — the daily Netlify function.
+ * - `CRON_SECRET` — the daily Vercel cron (`vercel.json`), which sends it as
+ *   `Authorization: Bearer <CRON_SECRET>` on a GET.
  * - a Sanity login token — the button in the studio. Checked against Sanity
  *   itself, so the studio bundle (which is public) holds no secret.
  */
@@ -60,7 +61,7 @@ async function isStudioUser(token: string) {
 async function authorized(request: Request) {
   const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (!token) return false;
-  const secret = process.env.PODCAST_SYNC_SECRET;
+  const secret = process.env.CRON_SECRET;
   if (secret && sameSecret(token, secret)) return true;
   return isStudioUser(token);
 }
@@ -163,3 +164,6 @@ export async function POST(request: Request) {
     return json({ error: error instanceof Error ? error.message : String(error) }, 502);
   }
 }
+
+/** Vercel cron jobs only send GET. */
+export const GET = POST;
