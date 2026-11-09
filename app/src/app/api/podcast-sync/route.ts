@@ -113,10 +113,14 @@ function oneLine(text: string, max = 200) {
 }
 
 export async function POST(request: Request) {
-  if (!(await authorized(request))) return json({ error: 'Unauthorized' }, 401);
+  if (!(await authorized(request))) {
+    console.warn('podcast-sync: unauthorized', request.method, request.headers.get('user-agent'));
+    return json({ error: 'Unauthorized' }, 401);
+  }
 
   const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_SHOW_ID, SANITY_API_WRITE_TOKEN } = process.env;
   if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_SHOW_ID || !SANITY_API_WRITE_TOKEN) {
+    console.error('podcast-sync: missing env vars');
     return json(
       { error: 'Missing SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_SHOW_ID or SANITY_API_WRITE_TOKEN' },
       500,
@@ -153,6 +157,7 @@ export async function POST(request: Request) {
       await tx.commit();
     }
 
+    console.log('podcast-sync:', { dryRun, found: docs.length, created: created.length });
     return json({
       dryRun,
       found: docs.length,

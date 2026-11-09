@@ -45,6 +45,7 @@
 
 - [2026-09-23] Photos arrive raw (spread `...`) from PAGE_QUERY — file/video urls are built from the asset ref client-side (`fileUrl`), not dereferenced in GROQ. Logos, SEO/og image, mail logo, siteInformation.logo stay image-only on purpose.
 
+- [2026-11-09] Vercel Hobby keeps runtime logs ~1h and runs daily crons at a random minute in the scheduled hour, so a missing cron log line during the day is normal. Verify via Settings → Cron Jobs → Run + Logs (user agent vercel-cron/1.0), or check Sanity for new podcastEpisode-spotify-* docs.
 ## Do-Not-Repeat
 
 - [2026-10-06] Seed target names must differ from page names in seed/pages.ts — `npm run seed -- <name>` runs both (kennisbank target re-seeded the /kennisbank page).
