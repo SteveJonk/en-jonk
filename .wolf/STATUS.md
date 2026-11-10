@@ -32,7 +32,7 @@
 
 ## 🚀 Next phase — go live with real content
 
-1. Add Mailjet keys to `app/.env` (MAILJET_API_KEY/SECRET/FROM_EMAIL) and send a real test message (route verified up to the mail step).
+1. Pick mail provider in Studio → Form settings (Mailjet or Resend), add its keys to `app/.env` (MAILJET_API_KEY/SECRET/FROM_EMAIL or RESEND_API_KEY/FROM_EMAIL) and send a real test message — neither provider has had a live send yet.
 2. Replace `#` social URLs (LinkedIn, Spotify, Apple Podcasts) in Studio → Site information.
 3. Client fills placeholders in Studio: stats ([naam leergang], [cijfer]), 3 testimonials, 2 cases, podcast episodes, legal links.
 4. Deploy studio (workflow exists) and the app; set `NEXT_PUBLIC_SITE_URL`.

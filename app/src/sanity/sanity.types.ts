@@ -632,8 +632,10 @@ export type FormGeneralSettings = {
   confirmationSubject: string;
   confirmationMessage?: string;
   mailFooter?: string;
+  mailProvider?: "mailjet" | "resend";
   mailjetApiKey?: string;
   mailjetApiSecret?: string;
+  resendApiKey?: string;
   mailLogo?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -2164,7 +2166,7 @@ export type FORM_QUERY_RESULT = {
 
 // Source: ../app/src/sanity/queries.ts
 // Variable: FORM_SETTINGS_QUERY
-// Query: *[_type == "formGeneralSettings"][0]{    adminEmail,    fromEmail,    fromName,    mailLogo,    primaryColor,    textColor,    mailjetApiKey,    mailjetApiSecret,    confirmationSubject,    confirmationMessage,    mailFooter,    recaptchaEnabled,    recaptchaSecretKey  }
+// Query: *[_type == "formGeneralSettings"][0]{    adminEmail,    fromEmail,    fromName,    mailLogo,    primaryColor,    textColor,    mailProvider,    mailjetApiKey,    mailjetApiSecret,    resendApiKey,    confirmationSubject,    confirmationMessage,    mailFooter,    recaptchaEnabled,    recaptchaSecretKey  }
 export type FORM_SETTINGS_QUERY_RESULT = {
   adminEmail: string;
   fromEmail: string | null;
@@ -2178,8 +2180,10 @@ export type FORM_SETTINGS_QUERY_RESULT = {
   } | null;
   primaryColor: string | null;
   textColor: string | null;
+  mailProvider: "mailjet" | "resend" | null;
   mailjetApiKey: string | null;
   mailjetApiSecret: string | null;
+  resendApiKey: string | null;
   confirmationSubject: string;
   confirmationMessage: string | null;
   mailFooter: string | null;
@@ -2200,7 +2204,7 @@ declare global {
     '\n  *[_id == "interfaceText"][0]{\n    header,\n    footer,\n    contact,\n    kennismaken,\n    forms,\n    kennisbank,\n    notFound\n  }\n': INTERFACE_TEXT_QUERY_RESULT;
     '\n  *[_id == "footer"][0]{\n    tagline,\n    legalLinks[]{\n  ...,\n  internalLink->{\n    "slug": slug.current\n  }\n},\n    copyright\n  }\n': FOOTER_QUERY_RESULT;
     '\n  *[_id == $formId && _type == "form"][0]{\n    _id,\n    title,\n    mailRecipients,\n    mailSubject,\n    mailMessage,\n    sendCopyToSubmitter,\n    copySubject,\n    copyMessage,\n    "fields": select(\n      mode == "steps" => steps[].fields[]{label, name, type, isRequired},\n      fields[]{label, name, type, isRequired}\n    )\n  }\n': FORM_QUERY_RESULT;
-    '\n  *[_type == "formGeneralSettings"][0]{\n    adminEmail,\n    fromEmail,\n    fromName,\n    mailLogo,\n    primaryColor,\n    textColor,\n    mailjetApiKey,\n    mailjetApiSecret,\n    confirmationSubject,\n    confirmationMessage,\n    mailFooter,\n    recaptchaEnabled,\n    recaptchaSecretKey\n  }\n': FORM_SETTINGS_QUERY_RESULT;
+    '\n  *[_type == "formGeneralSettings"][0]{\n    adminEmail,\n    fromEmail,\n    fromName,\n    mailLogo,\n    primaryColor,\n    textColor,\n    mailProvider,\n    mailjetApiKey,\n    mailjetApiSecret,\n    resendApiKey,\n    confirmationSubject,\n    confirmationMessage,\n    mailFooter,\n    recaptchaEnabled,\n    recaptchaSecretKey\n  }\n': FORM_SETTINGS_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

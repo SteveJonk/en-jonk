@@ -3779,6 +3779,23 @@
         },
         "optional": true
       },
+      "mailProvider": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "mailjet"
+            },
+            {
+              "type": "string",
+              "value": "resend"
+            }
+          ]
+        },
+        "optional": true
+      },
       "mailjetApiKey": {
         "type": "objectAttribute",
         "value": {
@@ -3787,6 +3804,13 @@
         "optional": true
       },
       "mailjetApiSecret": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "resendApiKey": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

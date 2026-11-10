@@ -4,14 +4,13 @@ import {defineField, defineType} from 'sanity'
 /**
  * Mail and spam settings shared by every `form`. A singleton.
  *
- * Sending goes through Mailjet's HTTP API — see the app's
- * `src/app/api/submit-form/route.ts`. Swapping providers means changing that
- * one function; nothing else here is Mailjet-specific.
+ * Sending goes through Mailjet's or Resend's HTTP API (picked below) — see
+ * `sendMail` in the app's `src/app/api/submit-form/route.ts`.
  *
  * The API credentials below are a fallback for local work only. A Sanity
  * dataset is readable by anyone who knows the project id, so in production
- * these belong in the app environment (MAILJET_API_KEY / MAILJET_API_SECRET),
- * which wins over whatever is stored here.
+ * these belong in the app environment (MAILJET_API_KEY / MAILJET_API_SECRET,
+ * or RESEND_API_KEY), which wins over whatever is stored here.
  */
 export const formGeneralSettingsType = defineType({
   name: 'formGeneralSettings',
@@ -73,11 +72,28 @@ export const formGeneralSettingsType = defineType({
       description: 'Small print under every form mail. Use {form} for the form name and {site} for the sender name.',
     }),
     defineField({
+      name: 'mailProvider',
+      title: 'Mail provider',
+      type: 'string',
+      group: 'mail',
+      options: {
+        list: [
+          {title: 'Mailjet', value: 'mailjet'},
+          {title: 'Resend', value: 'resend'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'mailjet',
+      description: 'Empty means Mailjet.',
+    }),
+    defineField({
       name: 'mailjetApiKey',
       title: 'Mailjet API key',
       type: 'string',
       group: 'mail',
       description: 'Fallback only — prefer MAILJET_API_KEY in the app environment.',
+      hidden: ({document}) => document?.mailProvider === 'resend',
     }),
     defineField({
       name: 'mailjetApiSecret',
@@ -85,6 +101,15 @@ export const formGeneralSettingsType = defineType({
       type: 'string',
       group: 'mail',
       description: 'Fallback only — prefer MAILJET_API_SECRET in the app environment.',
+      hidden: ({document}) => document?.mailProvider === 'resend',
+    }),
+    defineField({
+      name: 'resendApiKey',
+      title: 'Resend API key',
+      type: 'string',
+      group: 'mail',
+      description: 'Fallback only — prefer RESEND_API_KEY in the app environment.',
+      hidden: ({document}) => document?.mailProvider !== 'resend',
     }),
     defineField({
       // Not called `logo`: that field name also exists on siteInformation, and
