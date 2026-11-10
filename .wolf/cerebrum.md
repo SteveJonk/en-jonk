@@ -20,6 +20,7 @@
 - [2026-09-12] OK to delete the old Fieldnote template blocks/demo-content once replaced.
 
 ## Key Learnings
+- [2026-11-10] Mail provider is chosen in Studio (formGeneralSettings.mailProvider, empty = mailjet); keys env-first per provider (MAILJET_* / RESEND_API_KEY + RESEND_FROM_EMAIL), Studio fields as fallback. All provider code lives in `sendMail` in api/submit-form/route.ts — add a provider there + to the schema list.
 
 - [2026-10-07] Sentry test: `/sentry-test` page + `/api/sentry-test` (identical across starter, schuijt, en-jonk). Next 16 GET route handlers are dynamic by default (no `force-dynamic` needed; only `force-static` opts into caching) — Next ships its docs in `node_modules/next/dist/docs/`. Client test error is thrown in a `setTimeout` so React doesn't catch it and Sentry's global handler must.
 

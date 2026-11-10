@@ -371,8 +371,8 @@ right order.
    → Forms** (`„{label}” is verplicht.`, …), so visitors never see an English
    or technical error.
 4. Answers are rendered into an HTML + plain-text mail (`src/lib/form-mail.ts`)
-   and sent through Mailjet. Swapping providers means rewriting one function,
-   `sendViaMailjet`; nothing else is provider-specific. The mail's subject,
+   and sent through Mailjet or Resend (**Form settings → Mail provider**). Both
+   live in one function, `sendMail`; nothing else is provider-specific. The mail's subject,
    intro and footer come from **Form settings**.
 
 ### Field types and layout
@@ -397,6 +397,7 @@ production:
 ```bash
 MAILJET_API_KEY=        MAILJET_API_SECRET=
 MAILJET_FROM_EMAIL=     CONTACT_ADMIN_EMAIL=
+RESEND_API_KEY=         RESEND_FROM_EMAIL=     # when Mail provider = Resend
 RECAPTCHA_SECRET_KEY=   # only when reCAPTCHA is switched on
 ```
 

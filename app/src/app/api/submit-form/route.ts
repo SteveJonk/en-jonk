@@ -50,55 +50,76 @@ function splitEmails(value?: string | null) {
     .filter(Boolean);
 }
 
-/**
- * Sends via Mailjet's HTTP API (v3.1). Throws on a non-2xx response.
- *
- * This is the only provider-specific function in the route: swapping Mailjet
- * for Postmark, Resend or SMTP means rewriting this one and nothing else.
- */
-async function sendViaMailjet(
-  { apiKey, apiSecret }: { apiKey: string; apiSecret: string },
-  message: {
-    fromEmail: string;
-    fromName: string;
-    to: string[];
-    replyTo?: string;
-    subject: string;
-    html: string;
-    text: string;
-    attachments: { filename: string; content: Buffer }[];
-  },
-) {
-  const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
+type MailMessage = {
+  fromEmail: string;
+  fromName: string;
+  to: string[];
+  replyTo?: string;
+  subject: string;
+  html: string;
+  text: string;
+  attachments: { filename: string; content: Buffer }[];
+};
 
-  const response = await fetch('https://api.mailjet.com/v3.1/send', {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${auth}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      Messages: [
-        {
-          From: { Email: message.fromEmail, Name: message.fromName },
-          To: message.to.map((email) => ({ Email: email })),
-          ...(message.replyTo ? { ReplyTo: { Email: message.replyTo } } : {}),
-          Subject: message.subject,
-          HTMLPart: message.html,
-          TextPart: message.text,
-          Attachments: message.attachments.map((attachment) => ({
-            ContentType: 'application/octet-stream',
-            Filename: attachment.filename,
-            Base64Content: attachment.content.toString('base64'),
-          })),
-        },
-      ],
-    }),
-  });
+/** Picked in Form settings; each provider has its own keys. */
+type MailCredentials =
+  | { provider: 'mailjet'; apiKey: string; apiSecret: string }
+  | { provider: 'resend'; apiKey: string };
+
+/**
+ * Sends via the provider's HTTP API (Mailjet v3.1 or Resend). Throws on a
+ * non-2xx response. The only provider-specific code in the route.
+ */
+async function sendMail(credentials: MailCredentials, message: MailMessage) {
+  const response =
+    credentials.provider === 'resend'
+      ? await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${credentials.apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: `${message.fromName.replace(/[<>"]/g, '')} <${message.fromEmail}>`,
+            to: message.to,
+            ...(message.replyTo ? { reply_to: message.replyTo } : {}),
+            subject: message.subject,
+            html: message.html,
+            text: message.text,
+            attachments: message.attachments.map((attachment) => ({
+              filename: attachment.filename,
+              content: attachment.content.toString('base64'),
+            })),
+          }),
+        })
+      : await fetch('https://api.mailjet.com/v3.1/send', {
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${Buffer.from(`${credentials.apiKey}:${credentials.apiSecret}`).toString('base64')}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            Messages: [
+              {
+                From: { Email: message.fromEmail, Name: message.fromName },
+                To: message.to.map((email) => ({ Email: email })),
+                ...(message.replyTo ? { ReplyTo: { Email: message.replyTo } } : {}),
+                Subject: message.subject,
+                HTMLPart: message.html,
+                TextPart: message.text,
+                Attachments: message.attachments.map((attachment) => ({
+                  ContentType: 'application/octet-stream',
+                  Filename: attachment.filename,
+                  Base64Content: attachment.content.toString('base64'),
+                })),
+              },
+            ],
+          }),
+        });
 
   if (!response.ok) {
     const body = await response.text().catch(() => '');
-    throw new Error(`Mailjet responded ${response.status}: ${body}`);
+    throw new Error(`${credentials.provider} responded ${response.status}: ${body}`);
   }
 }
 
@@ -196,19 +217,25 @@ export async function POST(request: Request) {
 
   // Env wins over the studio settings: a dataset is readable by anyone with the
   // project id, so credentials belong in the environment.
-  const mailjetApiKey = process.env.MAILJET_API_KEY || settings?.mailjetApiKey;
-  const mailjetApiSecret = process.env.MAILJET_API_SECRET || settings?.mailjetApiSecret;
+  const resend = settings?.mailProvider === 'resend';
+  const apiKey = resend
+    ? process.env.RESEND_API_KEY || settings?.resendApiKey
+    : process.env.MAILJET_API_KEY || settings?.mailjetApiKey;
+  const apiSecret = process.env.MAILJET_API_SECRET || settings?.mailjetApiSecret;
   const adminEmail = process.env.CONTACT_ADMIN_EMAIL || settings?.adminEmail;
-  // Mailjet only accepts a sender it has validated; fall back to the recipient,
-  // which is the one address known to belong to this account.
-  const fromEmail = process.env.MAILJET_FROM_EMAIL || settings?.fromEmail || adminEmail;
+  // Providers only accept a sender (domain) they have validated; fall back to
+  // the recipient, which is the one address known to belong to this account.
+  const fromEmail =
+    (resend ? process.env.RESEND_FROM_EMAIL : process.env.MAILJET_FROM_EMAIL) ||
+    settings?.fromEmail ||
+    adminEmail;
   const fromName = settings?.fromName || site.name;
 
   // Per-form recipients win over the shared admin address; both are valid.
   const recipients = splitEmails(form.mailRecipients);
   if (recipients.length === 0 && adminEmail) recipients.push(adminEmail);
 
-  if (recipients.length === 0 || !fromEmail || !mailjetApiKey || !mailjetApiSecret) {
+  if (recipients.length === 0 || !fromEmail || !apiKey || (!resend && !apiSecret)) {
     console.error('submit-form: missing mail settings (env or formGeneralSettings)');
     if (download) return downloadReady(download.url!);
     return fail(text.notConfigured, 500);
@@ -235,10 +262,12 @@ export async function POST(request: Request) {
   });
   const replyTo = submitterEmail || answers.find(({ label }) => /mail/i.test(label))?.value;
 
-  const credentials = { apiKey: mailjetApiKey, apiSecret: mailjetApiSecret };
+  const credentials: MailCredentials = resend
+    ? { provider: 'resend', apiKey }
+    : { provider: 'mailjet', apiKey, apiSecret: apiSecret! };
 
   try {
-    await sendViaMailjet(credentials, {
+    await sendMail(credentials, {
       fromEmail,
       fromName,
       to: recipients,
@@ -258,7 +287,7 @@ export async function POST(request: Request) {
   // a failure here is logged, not reported back as a failed submission.
   if (form.sendCopyToSubmitter && submitterEmail) {
     try {
-      await sendViaMailjet(credentials, {
+      await sendMail(credentials, {
         fromEmail,
         fromName,
         to: [submitterEmail],

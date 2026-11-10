@@ -76,3 +76,9 @@
 |------|--------|---------|---------|--------|
 | 11:38 | Diagnosed missing Vercel cron log: config + prod route OK (401 unauth GET); likely Hobby 1h log retention / cron not registered | app/vercel.json | user checking dashboard | ~3k |
 | 11:53 | Added console logs to podcast-sync (401 warn w/ UA, missing env, result summary) on branch claude/podcast-sync-logging | app/src/app/api/podcast-sync/route.ts | tsc+eslint pass | ~2k |
+
+## Session: 2026-11-10 07:53
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 07:55 | Added Resend as mail provider (Studio radio + env keys), sendViaMailjet→sendMail | submit-form/route.ts, formGeneralSettingsType.ts, queries.ts, .env.example, README.md | typecheck+lint+studio tsc pass; no live send | ~6k |
